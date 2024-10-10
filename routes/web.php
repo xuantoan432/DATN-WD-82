@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\Admin\PostController;
+use App\Http\Controllers\Seller\ChatController;
+use App\Http\Controllers\Seller\SellerController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -12,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
 
 Route::get('/', function () {
     return view('client.index');
@@ -63,3 +67,8 @@ Route::get('/11', function () {
 Route::get('/12', function () {
     return view('client.seller-sidebar');
 });
+
+Route::get('/' , [PostController::class,'index'])->name('admin');
+Route::get('/seller' , [SellerController::class,'index'])->name('seller');
+Route::get('/seller/chat' , [ChatController::class,'index'])->name('chat');
+
