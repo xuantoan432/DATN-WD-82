@@ -1,0 +1,43 @@
+<?php
+
+use App\Models\Category;
+use App\Models\Seller;
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::create('products', function (Blueprint $table) {
+            $table->id();
+            $table->foreignIdFor(Category::class) -> constrained() ;
+            $table -> foreignIdFor(Seller::class) -> constrained() ;
+            $table ->unsignedBigInteger('final_fee_percentage')->nullable();
+            $table ->string('name');
+            $table ->string('short_description');
+            $table ->string('sku');
+            $table ->string('content');
+            $table->decimal('price',10,2);
+            $table->decimal('price_sale',10,2) -> nullable(0);
+            $table -> string('image') ;
+            $table -> unsignedBigInteger('views') ->default(0);
+            $table -> unsignedBigInteger('quantity') -> default(0);
+            $table->boolean('is_verified')->default(false);
+            $table->boolean('status')->default(false);
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('products');
+    }
+};
