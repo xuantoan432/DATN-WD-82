@@ -15,10 +15,10 @@ return new class extends Migration
     {
         Schema::create('timelines', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(User::class) -> constraints();
-            $table->foreignIdFor(Product::class) -> constraints();
+            $table->foreignIdFor(User::class) -> constrained();
+            $table->foreignIdFor(Product::class) -> constrained();
             $table->string('event_type');
-            $table->string('event_desciption');
+            $table->string('event_description');
             $table->timestamps();
         });
     }
