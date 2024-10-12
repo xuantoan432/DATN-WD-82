@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\Oder;
+use App\Models\Order;
 use App\Models\Product;
 use App\Models\ProductVariantAttribute;
 use App\Models\Seller;
@@ -15,9 +15,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('oder_details', function (Blueprint $table) {
+        Schema::create('order_details', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Oder::class) -> constraints();
+            $table->foreignIdFor(Order::class) -> constraints();
             $table->foreignIdFor(Product::class) -> constraints();
             $table->foreignIdFor(Seller::class) -> constraints();
             $table->foreignIdFor(ProductVariantAttribute::class) -> constraints();
@@ -34,6 +34,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('oder_details');
+        Schema::dropIfExists('order_details');
     }
 };

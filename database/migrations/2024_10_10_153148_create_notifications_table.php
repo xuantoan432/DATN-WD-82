@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\Oder;
+use App\Models\Order;
 use App\Models\User;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('notifications', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Oder::class) -> constraints();
+            $table->foreignIdFor(Order::class) -> constraints();
             $table->foreignIdFor(User::class) -> constraints();
             $table->string('message');
             $table->string('receiver_type');
