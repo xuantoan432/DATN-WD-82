@@ -15,8 +15,9 @@ return new class extends Migration
     {
         Schema::create('notifications', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Order::class) -> constraints();
-            $table->foreignIdFor(User::class) -> constraints();
+
+            $table->foreignIdFor(Order::class) -> constrained();
+            $table->foreignIdFor(User::class) -> constrained();
             $table->string('message');
             $table->string('receiver_type');
             $table->timestamps();

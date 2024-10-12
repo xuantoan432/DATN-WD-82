@@ -15,16 +15,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('oders', function (Blueprint $table) {
+        Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(PaymentStatus::class) -> constrained();
-            $table->foreignIdFor(PaymentMethod::class) -> constraints();
-            $table->foreignIdFor(OrderStatus::class) -> constraints();
-            $table->foreignIdFor(User::class) -> constraints();
-            $table->string('oder_code') ;
+            $table->foreignIdFor(PaymentMethod::class) -> constrained();
+            $table->foreignIdFor(OrderStatus::class) -> constrained();
+            $table->foreignIdFor(User::class) -> constrained();
+            $table->string('order_code') ;
             $table->string('shipping_address') ;
             $table->decimal('total_price' , 10 , 2 ) ; 
-            $table->string('note') ;
+            $table->string('note') ->nullable();
             $table->timestamps();
         });
     }
@@ -34,6 +34,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('oders');
+        Schema::dropIfExists('orders');
     }
 };

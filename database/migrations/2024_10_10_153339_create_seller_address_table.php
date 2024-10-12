@@ -15,6 +15,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('seller_address', function (Blueprint $table) {
+            $table->id();
             $table->foreignIdFor(Seller::class)->constrained();
             $table->foreignIdFor(Address::class)->constrained();
         });

@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('post_tag', function (Blueprint $table) {
             $table->foreignIdFor(Post::class)->constrained();
             $table->foreignIdFor(Tag::class)->constrained();
-
+            
         });
     }
 
