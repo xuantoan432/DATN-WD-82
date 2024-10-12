@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/', function () {
+Route::get('/', function() {
     return view('client.index');
 });
 Route::get('/1', function () {
