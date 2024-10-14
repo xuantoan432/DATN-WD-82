@@ -76,7 +76,7 @@
                                     <h5 class="comment-title">Update Logo</h5>
                                     <p class="paragraph">Profile of at least Size300x300. Gifs work too.Max 5mb.</p>
                                     <div class="logo-upload">
-                                        <img src="/themes/client/assets/images/homepage-one/sallers-cover.png" alt="upload"
+                                        <img src="/theme/client/assets/images/homepage-one/sallers-cover.png" alt="upload"
                                             class="upload-img" id="upload-img">
                                         <div class="input-item upload-input">
                                             <label for="input-file">
@@ -103,7 +103,7 @@
                                     <h5 class="comment-title">Update Cover</h5>
                                     <p class="paragraph">Cover of at least Size 1170x920.</p>
                                     <div class="cover-upload logo-upload">
-                                        <img src="/themes/client/assets/images/homepage-one/sallers-cover.png" alt="upload"
+                                        <img src="/theme/client/assets/images/homepage-one/sallers-cover.png" alt="upload"
                                             class="cover-img" id="cover-img">
                                         <div class="input-item cover-input">
                                             <label for="cover-file">
@@ -131,6 +131,6 @@
             </div>
         </div>
     </div>
-</section>  
+</section>
 @endsection
 

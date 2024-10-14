@@ -10,7 +10,7 @@
         @include('client.components.breadcrumbs1')
         <div class="blog-item" data-aos="fade-up">
             <div class="cart-img">
-                <img src="/themes/client/assets/images/homepage-one/empty-wishlist.webp" alt>
+                <img src="/theme/client/assets/images/homepage-one/empty-wishlist.webp" alt>
             </div>
             <div class="cart-content">
                 <p class="content-title">Empty! You don’t Cart any Products </p>

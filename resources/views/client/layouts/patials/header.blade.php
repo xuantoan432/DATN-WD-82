@@ -21,7 +21,7 @@
             <div class="header-center">
                 <div class="logo">
                     <a href="index-2.html">
-                        <img src="/themes/client/assets/images/logos/logo.webp" alt="logo">
+                        <img src="/theme/client/assets/images/logos/logo.webp" alt="logo">
                     </a>
                 </div>
                 <div class="header-cart-items">
@@ -134,7 +134,7 @@
                                 <div class="wrapper">
                                     <div class="wrapper-item">
                                         <div class="wrapper-img">
-                                            <img src="client/assets/images/homepage-one/product-img/product-img-1.webp"
+                                            <img src="/theme/client/assets/images/homepage-one/product-img/product-img-1.webp"
                                                 alt="img">
                                         </div>
                                         <div class="wrapper-content">
@@ -156,7 +156,7 @@
                                 <div class="wrapper">
                                     <div class="wrapper-item">
                                         <div class="wrapper-img">
-                                            <img src="client/assets/images/homepage-one/product-img/product-img-2.webp"
+                                            <img src="/theme/client/assets/images/homepage-one/product-img/product-img-2.webp"
                                                 alt="img">
                                         </div>
                                         <div class="wrapper-content">
@@ -178,7 +178,7 @@
                                 <div class="wrapper">
                                     <div class="wrapper-item">
                                         <div class="wrapper-img">
-                                            <img src="client/assets/images/homepage-one/product-img/product-img-3.webp"
+                                            <img src="/theme/client/assets/images/homepage-one/product-img/product-img-3.webp"
                                                 alt="img">
                                         </div>
                                         <div class="wrapper-content">
@@ -200,7 +200,7 @@
                                 <div class="wrapper">
                                     <div class="wrapper-item">
                                         <div class="wrapper-img">
-                                            <img src="client/assets/images/homepage-one/product-img/product-img-4.webp"
+                                            <img src="/theme/client/assets/images/homepage-one/product-img/product-img-4.webp"
                                                 alt="img">
                                         </div>
                                         <div class="wrapper-content">
@@ -263,7 +263,7 @@
                 </span>
             </button>
             <a href="index-2.html" class="mobile-header-logo">
-                <img src="client/assets/images/logos/logo.webp" alt="logo">
+                <img src="/theme/client/assets/images/logos/logo.webp" alt="logo">
             </a>
             <a href="cart.html" class="header-cart cart-item">
                 <span>
@@ -351,7 +351,7 @@
                                 <div class="dropdown-item d-flex justify-content-between align-items-center">
                                     <div class="dropdown-list-item d-flex">
                                         <span class="dropdown-img">
-                                            <img src="client/assets/images/homepage-one/category-img/dresses.webp"
+                                            <img src="/theme/client/assets/images/homepage-one/category-img/dresses.webp"
                                                 alt="dress">
                                         </span>
                                         <span class="dropdown-text">
@@ -377,7 +377,7 @@
                                 <div class="dropdown-item d-flex justify-content-between align-items-center">
                                     <div class="dropdown-list-item d-flex">
                                         <span class="dropdown-img">
-                                            <img src="client/assets/images/homepage-one/category-img/bags.webp" alt="Bags">
+                                            <img src="/theme/client/assets/images/homepage-one/category-img/bags.webp" alt="Bags">
                                         </span>
                                         <span class="dropdown-text">
                                             Bags
@@ -402,7 +402,7 @@
                                 <div class="dropdown-item d-flex justify-content-between align-items-center">
                                     <div class="dropdown-list-item d-flex">
                                         <span class="dropdown-img">
-                                            <img src="client/assets/images/homepage-one/category-img/sweaters.webp"
+                                            <img src="/theme/client/assets/images/homepage-one/category-img/sweaters.webp"
                                                 alt="sweaters">
                                         </span>
                                         <span class="dropdown-text">
@@ -428,7 +428,7 @@
                                 <div class="dropdown-item d-flex justify-content-between align-items-center">
                                     <div class="dropdown-list-item d-flex">
                                         <span class="dropdown-img">
-                                            <img src="client/assets/images/homepage-one/category-img/shoes.webp"
+                                            <img src="/theme/client/assets/images/homepage-one/category-img/shoes.webp"
                                                 alt="sweaters">
                                         </span>
                                         <span class="dropdown-text">
@@ -454,7 +454,7 @@
                                 <div class="dropdown-item d-flex justify-content-between align-items-center">
                                     <div class="dropdown-list-item d-flex">
                                         <span class="dropdown-img">
-                                            <img src="client/assets/images/homepage-one/category-img/gift.webp" alt="gift">
+                                            <img src="/theme/client/assets/images/homepage-one/category-img/gift.webp" alt="gift">
                                         </span>
                                         <span class="dropdown-text">
                                             Gifts
@@ -479,7 +479,7 @@
                                 <div class="dropdown-item d-flex justify-content-between align-items-center">
                                     <div class="dropdown-list-item d-flex">
                                         <span class="dropdown-img">
-                                            <img src="client/assets/images/homepage-one/category-img/sneakers.webp"
+                                            <img src="/theme/client/assets/images/homepage-one/category-img/sneakers.webp"
                                                 alt="sneakers">
                                         </span>
                                         <span class="dropdown-text">
@@ -505,7 +505,7 @@
                                 <div class="dropdown-item d-flex justify-content-between align-items-center">
                                     <div class="dropdown-list-item d-flex">
                                         <span class="dropdown-img">
-                                            <img src="client/assets/images/homepage-one/category-img/watch.webp"
+                                            <img src="/theme/client/assets/images/homepage-one/category-img/watch.webp"
                                                 alt="watch">
                                         </span>
                                         <span class="dropdown-text">
@@ -531,7 +531,7 @@
                                 <div class="dropdown-item d-flex justify-content-between align-items-center">
                                     <div class="dropdown-list-item d-flex">
                                         <span class="dropdown-img">
-                                            <img src="client/assets/images/homepage-one/category-img/ring.webp" alt="ring">
+                                            <img src="/theme/client/assets/images/homepage-one/category-img/ring.webp" alt="ring">
                                         </span>
                                         <span class="dropdown-text">
                                             Gold Ring
@@ -556,7 +556,7 @@
                                 <div class="dropdown-item d-flex justify-content-between align-items-center">
                                     <div class="dropdown-list-item d-flex">
                                         <span class="dropdown-img">
-                                            <img src="client/assets/images/homepage-one/category-img/cap.webp" alt="cap">
+                                            <img src="/theme/client/assets/images/homepage-one/category-img/cap.webp" alt="cap">
                                         </span>
                                         <span class="dropdown-text">
                                             Cap
@@ -581,7 +581,7 @@
                                 <div class="dropdown-item d-flex justify-content-between align-items-center">
                                     <div class="dropdown-list-item d-flex">
                                         <span class="dropdown-img">
-                                            <img src="client/assets/images/homepage-one/category-img/glass.webp"
+                                            <img src="/theme/client/assets/images/homepage-one/category-img/glass.webp"
                                                 alt="glass">
                                         </span>
                                         <span class="dropdown-text">
@@ -607,7 +607,7 @@
                                 <div class="dropdown-item d-flex justify-content-between align-items-center">
                                     <div class="dropdown-list-item d-flex">
                                         <span class="dropdown-img">
-                                            <img src="client/assets/images/homepage-one/category-img/baby.webp" alt="baby">
+                                            <img src="/theme/client/assets/images/homepage-one/category-img/baby.webp" alt="baby">
                                         </span>
                                         <span class="dropdown-text">
                                             Baby Shop
@@ -657,7 +657,7 @@
                                     <div class="dropdown-item">
                                         <div class="dropdown-list-item">
                                             <span class="dropdown-img">
-                                                <img src="client/assets/images/homepage-one/category-img/dresses.webp"
+                                                <img src="/theme/client/assets/images/homepage-one/category-img/dresses.webp"
                                                     alt="dress">
                                             </span>
                                             <span class="dropdown-text">
@@ -683,7 +683,7 @@
                                     <div class="dropdown-item d-flex justify-content-between align-items-center">
                                         <div class="dropdown-list-item d-flex">
                                             <span class="dropdown-img">
-                                                <img src="client/assets/images/homepage-one/category-img/bags.webp"
+                                                <img src="/theme/client/assets/images/homepage-one/category-img/bags.webp"
                                                     alt="Bags">
                                             </span>
                                             <span class="dropdown-text">
@@ -709,7 +709,7 @@
                                     <div class="dropdown-item d-flex justify-content-between align-items-center">
                                         <div class="dropdown-list-item d-flex">
                                             <span class="dropdown-img">
-                                                <img src="client/assets/images/homepage-one/category-img/sweaters.webp"
+                                                <img src="/theme/client/assets/images/homepage-one/category-img/sweaters.webp"
                                                     alt="sweaters">
                                             </span>
                                             <span class="dropdown-text">
@@ -735,7 +735,7 @@
                                     <div class="dropdown-item d-flex justify-content-between align-items-center">
                                         <div class="dropdown-list-item d-flex">
                                             <span class="dropdown-img">
-                                                <img src="client/assets/images/homepage-one/category-img/shoes.webp"
+                                                <img src="/theme/client/assets/images/homepage-one/category-img/shoes.webp"
                                                     alt="sweaters">
                                             </span>
                                             <span class="dropdown-text">
@@ -761,7 +761,7 @@
                                     <div class="dropdown-item d-flex justify-content-between align-items-center">
                                         <div class="dropdown-list-item d-flex">
                                             <span class="dropdown-img">
-                                                <img src="client/assets/images/homepage-one/category-img/gift.webp"
+                                                <img src="/theme/client/assets/images/homepage-one/category-img/gift.webp"
                                                     alt="gift">
                                             </span>
                                             <span class="dropdown-text">
@@ -787,7 +787,7 @@
                                     <div class="dropdown-item d-flex justify-content-between align-items-center">
                                         <div class="dropdown-list-item d-flex">
                                             <span class="dropdown-img">
-                                                <img src="client/assets/images/homepage-one/category-img/sneakers.webp"
+                                                <img src="/theme/client/assets/images/homepage-one/category-img/sneakers.webp"
                                                     alt="sneakers">
                                             </span>
                                             <span class="dropdown-text">
@@ -813,7 +813,7 @@
                                     <div class="dropdown-item d-flex justify-content-between align-items-center">
                                         <div class="dropdown-list-item d-flex">
                                             <span class="dropdown-img">
-                                                <img src="client/assets/images/homepage-one/category-img/watch.webp"
+                                                <img src="/theme/client/assets/images/homepage-one/category-img/watch.webp"
                                                     alt="watch">
                                             </span>
                                             <span class="dropdown-text">
@@ -839,7 +839,7 @@
                                     <div class="dropdown-item d-flex justify-content-between align-items-center">
                                         <div class="dropdown-list-item d-flex">
                                             <span class="dropdown-img">
-                                                <img src="client/assets/images/homepage-one/category-img/ring.webp"
+                                                <img src="/theme/client/assets/images/homepage-one/category-img/ring.webp"
                                                     alt="ring">
                                             </span>
                                             <span class="dropdown-text">
@@ -865,7 +865,7 @@
                                     <div class="dropdown-item d-flex justify-content-between align-items-center">
                                         <div class="dropdown-list-item d-flex">
                                             <span class="dropdown-img">
-                                                <img src="client/assets/images/homepage-one/category-img/cap.webp"
+                                                <img src="/theme/client/assets/images/homepage-one/category-img/cap.webp"
                                                     alt="cap">
                                             </span>
                                             <span class="dropdown-text">
@@ -891,7 +891,7 @@
                                     <div class="dropdown-item d-flex justify-content-between align-items-center">
                                         <div class="dropdown-list-item d-flex">
                                             <span class="dropdown-img">
-                                                <img src="client/assets/images/homepage-one/category-img/glass.webp"
+                                                <img src="/theme/client/assets/images/homepage-one/category-img/glass.webp"
                                                     alt="glass">
                                             </span>
                                             <span class="dropdown-text">
@@ -917,7 +917,7 @@
                                     <div class="dropdown-item d-flex justify-content-between align-items-center">
                                         <div class="dropdown-list-item d-flex">
                                             <span class="dropdown-img">
-                                                <img src="client/assets/images/homepage-one/category-img/baby.webp"
+                                                <img src="/theme/client/assets/images/homepage-one/category-img/baby.webp"
                                                     alt="baby">
                                             </span>
                                             <span class="dropdown-text">
@@ -1000,7 +1000,7 @@
                                     </div>
                                 </div>
                                 <div class="shop-menu-img">
-                                    <img src="client/assets/images/homepage-one/empty-wishlist.webp" alt="img">
+                                    <img src="/theme/client/assets/images/homepage-one/empty-wishlist.webp" alt="img">
                                 </div>
                             </div>
                         </li>
