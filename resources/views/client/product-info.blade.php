@@ -18,42 +18,42 @@
                             </div>
                             <div class="swiper-wrapper">
                                 <div class="swiper-slide slider-top-img">
-                                    <img src="themes/client/assets/images/homepage-one/product-img/product-img-14.webp" alt="img">
+                                    <img src="theme/client/assets/images/homepage-one/product-img/product-img-14.webp" alt="img">
                                 </div>
                                 <div class="swiper-slide slider-top-img">
-                                    <img src="themes/client/assets/images/homepage-one/product-img/product-slider-img-1.webp"
+                                    <img src="theme/client/assets/images/homepage-one/product-img/product-slider-img-1.webp"
                                         alt="img">
                                 </div>
                                 <div class="swiper-slide slider-top-img">
-                                    <img src="themes/client/assets/images/homepage-one/product-img/product-slider-img-2.webp"
+                                    <img src="theme/client/assets/images/homepage-one/product-img/product-slider-img-2.webp"
                                         alt="img">
                                 </div>
                                 <div class="swiper-slide slider-top-img">
-                                    <img src="themes/client/assets/images/homepage-one/product-img/product-slider-img-3.webp"
+                                    <img src="theme/client/assets/images/homepage-one/product-img/product-slider-img-3.webp"
                                         alt="img">
                                 </div>
                                 <div class="swiper-slide slider-top-img">
-                                    <img src="themes/client/assets/images/homepage-one/product-img/product-slider-img-1.webp"
+                                    <img src="theme/client/assets/images/homepage-one/product-img/product-slider-img-1.webp"
                                         alt="img">
                                 </div>
                                 <div class="swiper-slide slider-top-img">
-                                    <img src="themes/client/assets/images/homepage-one/product-img/product-slider-img-2.webp"
+                                    <img src="theme/client/assets/images/homepage-one/product-img/product-slider-img-2.webp"
                                         alt="img">
                                 </div>
                                 <div class="swiper-slide slider-top-img">
-                                    <img src="themes/client/assets/images/homepage-one/product-img/product-slider-img-3.webp"
+                                    <img src="theme/client/assets/images/homepage-one/product-img/product-slider-img-3.webp"
                                         alt="img">
                                 </div>
                                 <div class="swiper-slide slider-top-img">
-                                    <img src="themes/client/assets/images/homepage-one/product-img/product-slider-img-1.webp"
+                                    <img src="theme/client/assets/images/homepage-one/product-img/product-slider-img-1.webp"
                                         alt="img">
                                 </div>
                                 <div class="swiper-slide slider-top-img">
-                                    <img src="themes/client/assets/images/homepage-one/product-img/product-slider-img-2.webp"
+                                    <img src="theme/client/assets/images/homepage-one/product-img/product-slider-img-2.webp"
                                         alt="img">
                                 </div>
                                 <div class="swiper-slide slider-top-img">
-                                    <img src="themes/client/assets/images/homepage-one/product-img/product-slider-img-3.webp"
+                                    <img src="theme/client/assets/images/homepage-one/product-img/product-slider-img-3.webp"
                                         alt="img">
                                 </div>
                             </div>
@@ -61,13 +61,13 @@
                         <div class="swiper product-bottom">
                             <div class="swiper-wrapper">
                                 <div class="swiper-slide slider-bottom-img">
-                                    <img src="themes/client/assets/images/homepage-one/product-img/product-img-16.png" alt="img">
+                                    <img src="theme/client/assets/images/homepage-one/product-img/product-img-16.png" alt="img">
                                 </div>
                                 <div class="swiper-slide slider-bottom-img">
-                                    <img src="themes/client/assets/images/homepage-one/product-img/product-img-17.png" alt="img">
+                                    <img src="theme/client/assets/images/homepage-one/product-img/product-img-17.png" alt="img">
                                 </div>
                                 <div class="swiper-slide slider-bottom-img">
-                                    <img src="themes/client/assets/images/homepage-one/product-img/product-slider-img-2.webp"
+                                    <img src="theme/client/assets/images/homepage-one/product-img/product-slider-img-2.webp"
                                         alt="img">
                                 </div>
                             </div>
@@ -214,7 +214,7 @@
                                         <div class="review-content">
                                             <h5 class="comment-title">Report Products</h5>
                                             <div class="close-btn">
-                                                <img src="themes/client/assets/images/homepage-one/close-btn.png"
+                                                <img src="theme/client/assets/images/homepage-one/close-btn.png"
                                                     onclick="modalAction('.action')" alt="close-btn">
                                             </div>
                                         </div>
@@ -339,7 +339,7 @@
                                 <div class="wrapper-aurthor">
                                     <div class="wrapper-info">
                                         <div class="aurthor-img">
-                                            <img src="themes/client/assets/images/homepage-one/aurthor-img-1.webp"
+                                            <img src="theme/client/assets/images/homepage-one/aurthor-img-1.webp"
                                                 alt="aurthor-img">
                                         </div>
                                         <div class="author-details">
@@ -400,7 +400,7 @@
                 <div class="col-lg-3 col-md-6">
                     <div class="product-wrapper" data-aos="fade-up">
                         <div class="product-img">
-                            <img src="themes/client/assets/images/homepage-one/product-img/product-img-5.webp" alt="product-img">
+                            <img src="theme/client/assets/images/homepage-one/product-img/product-img-5.webp" alt="product-img">
                             <div class="product-cart-items">
                                 <a href="#" class="cart cart-item">
                                     <span>
@@ -507,7 +507,7 @@
                 <div class="col-lg-3 col-md-6">
                     <div class="product-wrapper" data-aos="fade-up">
                         <div class="product-img">
-                            <img src="themes/client/assets/images/homepage-one/product-img/product-img-3.webp" alt="product-img">
+                            <img src="theme/client/assets/images/homepage-one/product-img/product-img-3.webp" alt="product-img">
                             <div class="product-cart-items">
                                 <a href="#" class="cart cart-item">
                                     <span>
@@ -614,7 +614,7 @@
                 <div class="col-lg-3 col-md-6">
                     <div class="product-wrapper" data-aos="fade-up">
                         <div class="product-img">
-                            <img src="themes/client/assets/images/homepage-one/product-img/product-img-6.webp" alt="product-img">
+                            <img src="theme/client/assets/images/homepage-one/product-img/product-img-6.webp" alt="product-img">
                             <div class="product-cart-items">
                                 <a href="#" class="cart cart-item">
                                     <span>
@@ -721,7 +721,7 @@
                 <div class="col-lg-3 col-md-6">
                     <div class="product-wrapper" data-aos="fade-up">
                         <div class="product-img">
-                            <img src="themes/client/assets/images/homepage-one/product-img/product-img-9.webp" alt="product-img">
+                            <img src="theme/client/assets/images/homepage-one/product-img/product-img-9.webp" alt="product-img">
                             <div class="product-cart-items">
                                 <a href="#" class="cart cart-item">
                                     <span>
@@ -833,5 +833,5 @@
 
 
 @section('flash-sale')
-    
+
 @endsection
