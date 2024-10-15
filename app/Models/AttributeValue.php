@@ -8,4 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class AttributeValue extends Model
 {
     use HasFactory;
+    public function attribute()
+    {
+        return $this->belongsTo(Attribute::class);
+    }
+
+    public function productVariantAttributes()
+    {
+        return $this->hasMany(ProductVariantAttribute::class);
+    }
 }
