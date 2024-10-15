@@ -36,7 +36,7 @@
                                 </div>
                                 <div class="wrapper">
                                     <div class="wrapper-img">
-                                        <img src="/themes/client/assets/images/homepage-one/product-img/product-img-1.webp" alt>
+                                        <img src="/theme/client/assets/images/homepage-one/product-img/product-img-1.webp" alt>
                                     </div>
                                     <div class="wrapper-content">
                                         <h5 class="wrapper-details">Leather</h5>
@@ -62,7 +62,7 @@
                                 </div>
                                 <div class="wrapper">
                                     <div class="wrapper-img">
-                                        <img src="/themes/client/assets/images/homepage-one/product-img/product-img-2.webp" alt>
+                                        <img src="/theme/client/assets/images/homepage-one/product-img/product-img-2.webp" alt>
                                     </div>
                                     <div class="wrapper-content">
                                         <h5 class="wrapper-details">Bags</h5>
@@ -88,7 +88,7 @@
                                 </div>
                                 <div class="wrapper">
                                     <div class="wrapper-img">
-                                        <img src="/themes/client/assets/images/homepage-one/product-img/product-img-3.webp" alt>
+                                        <img src="/theme/client/assets/images/homepage-one/product-img/product-img-3.webp" alt>
                                     </div>
                                     <div class="wrapper-content">
                                         <h5 class="wrapper-details">Shoe</h5>

@@ -68,7 +68,7 @@ Route::get('/12', function () {
     return view('client.seller-sidebar');
 });
 
-Route::get('/' , [PostController::class,'index'])->name('admin');
+//Route::get('/' , [PostController::class,'index'])->name('admin');
 Route::get('/seller' , [SellerController::class,'index'])->name('seller');
 Route::get('/seller/chat' , [ChatController::class,'index'])->name('chat');
 
