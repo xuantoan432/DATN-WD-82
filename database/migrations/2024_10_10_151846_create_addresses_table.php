@@ -14,11 +14,9 @@ return new class extends Migration
         Schema::create('addresses', function (Blueprint $table) {
             $table->id();
             $table->string('address_line');
-            $table->string('commune');
-            $table->string('city');
-            $table->string('province');
-            $table->string('postal_code');
-            $table->string('district');
+            $table->foreignIdFor(\Kjmtrue\VietnamZone\Models\Province::class)->constrained();
+            $table->foreignIdFor(\Kjmtrue\VietnamZone\Models\Ward::class)->constrained();
+            $table->foreignIdFor(\Kjmtrue\VietnamZone\Models\District::class)->constrained();
             $table->timestamps();
         });
     }

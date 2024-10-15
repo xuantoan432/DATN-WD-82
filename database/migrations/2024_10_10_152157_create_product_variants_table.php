@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignIdFor(Product::class)->constrained();
             $table->string('sku');
             $table->decimal('price', 10, 2);
-            $table->decimal('price_sale', 10, 2)->nullable(0);
+            $table->decimal('price_sale', 10, 2)->nullable();
             $table->string('image');
             $table->unsignedBigInteger('stock_quantity')->default(0);
             $table->boolean('is_verified')->default(false);
