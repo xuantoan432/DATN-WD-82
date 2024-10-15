@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Attribute;
+use App\Models\Product;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,8 +19,8 @@ class ProductHasAttributeFactory extends Factory
     public function definition(): array
     {
         return [
-            'product_id',
-            'attribute_id'
+            'product_id' => Product::factory(),
+            'attribute_id' => Attribute::factory(),
         ];
     }
 }

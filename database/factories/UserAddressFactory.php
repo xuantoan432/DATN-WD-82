@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Address;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,8 +19,8 @@ class UserAddressFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id',
-            'address_id'
+            'user_id' => User::factory(),
+            'address_id' => Address::factory(),
         ];
     }
 }
