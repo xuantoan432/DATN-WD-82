@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class ProductVariantAttribute extends Model
 {
     use HasFactory;
+
+    public function productVariant()
+    {
+        return $this->belongsTo(ProductVariant::class);
+    }
+
+    public function attributeValue()
+    {
+        return $this->belongsTo(AttributeValue::class);
+    }
 }
