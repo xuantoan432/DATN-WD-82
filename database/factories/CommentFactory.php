@@ -17,10 +17,10 @@ class CommentFactory extends Factory
     public function definition(): array
     {
         return [
-            'post_id',
-            'user_id',
-            'content',
-            'parent_id',
+            'post_id' => \App\Models\Post::factory(),
+            'user_id' => \App\Models\User::factory(),
+            'content' => $this->faker->paragraph,
+            'parent_id' => 0,
         ];
     }
 }

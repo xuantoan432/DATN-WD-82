@@ -17,9 +17,9 @@ class WishlistFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id',
-            'status',
-            'product_variat_id',
+            'user_id' => \App\Models\User::factory(),
+            'status' => rand(0,1),
+            'product_variant_id' => \App\Models\ProductVariant::factory(),
         ];
     }
 }

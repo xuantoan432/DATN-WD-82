@@ -2,12 +2,15 @@
 
 namespace Database\Factories;
 
+use App\Models\Attribute;
+use App\Models\AttributeValue;
+use App\Models\ProductVariant;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\ProductVariantAttribute>
  */
-class ProductVarientAttributeFactory extends Factory
+class ProductVariantAttributeFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,14 +20,9 @@ class ProductVarientAttributeFactory extends Factory
     public function definition(): array
     {
         return [
-            'product_id',
-            'sku',
-            'price',
-            'price_sale',
-            'stock_quantity',
-            'start_date',
-            'end_date',
-            'image',
+            'product_variant_id' => ProductVariant::factory(),
+            'attribute_id' => Attribute::factory(),
+            'attribute_value_id' => AttributeValue::factory(),
         ];
     }
 }

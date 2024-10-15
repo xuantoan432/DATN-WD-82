@@ -17,14 +17,14 @@ class OrderDetailFactory extends Factory
     public function definition(): array
     {
         return [
-            'order_id',
-            'product_id',
-            'seller_id',
-            'quantity',
-            'product_variant_attribute_id',
-            'name',
-            'image',
-            'price'
+            'order_id' => \App\Models\Order::factory(),
+            'product_id' => \App\Models\Product::factory(),
+            'seller_id' => \App\Models\User::factory(),
+            'quantity' => $this->faker->numberBetween(1, 10),
+            'product_variant_attribute_id' => \App\Models\ProductVariantAttribute::factory(),
+            'name' => $this->faker->word,
+            'image' => $this->faker->imageUrl(640, 480, 'products', true),
+            'price' => $this->faker->randomFloat(2, 10, 100),
         ];
     }
 }

@@ -17,12 +17,12 @@ class ReviewFactory extends Factory
     public function definition(): array
     {
         return [
-            'product_id',
-            'user_id',
-            'content',
-            'star',
-            'image',
-            'parent_id',
+            'product_id' => \App\Models\Product::factory(),
+            'user_id' => \App\Models\User::factory(),
+            'content' => $this->faker->sentence(),
+            'star' => $this->faker->numberBetween(1, 5),
+            'image' => $this->faker->optional()->imageUrl(640, 480, 'reviews', true),
+            'parent_id' => 0,
         ];
     }
 }

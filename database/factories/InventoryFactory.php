@@ -17,10 +17,10 @@ class InventoryFactory extends Factory
     public function definition(): array
     {
         return [
-            'product_variant_attribute_id',
-            'product_id',
-            'saller_id',
-            'quantity'
+            'product_variant_attribute_id' => \App\Models\ProductVariantAttribute::factory(),
+            'product_id' => \App\Models\Product::factory(),
+            'seller_id' => \App\Models\User::factory(),
+            'quantity' => $this->faker->numberBetween(1, 100),
         ];
     }
 }

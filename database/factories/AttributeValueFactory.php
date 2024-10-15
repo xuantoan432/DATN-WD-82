@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Attribute;
+use App\Models\AttributeValue;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -14,10 +16,12 @@ class AttributeValueFactory extends Factory
      *
      * @return array<string, mixed>
      */
+
     public function definition(): array
     {
         return [
-            'value',
+            'attribute_id' => Attribute::factory(),
+            'value' => $this->faker->unique()->word(),
         ];
     }
 }

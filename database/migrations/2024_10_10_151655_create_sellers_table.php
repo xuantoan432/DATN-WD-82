@@ -13,9 +13,10 @@ return new class extends Migration
     {
         Schema::create('sellers', function (Blueprint $table) {
             $table->id();
+            $table->foreignIdFor(\App\Models\User::class)->constrained();
             $table->string('store_name') -> unique();
             $table->string('store_email') -> unique();
-            $table->string('store_description') -> nullable();
+            $table->text('store_description') -> nullable();
             $table ->decimal('account_balance',10,2)->default(0);
             $table->timestamps();
         });
