@@ -8,6 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class UserRole extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'user_id',
+        'role_id'
+    ];
+
+    
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -17,4 +24,6 @@ class UserRole extends Model
     {
         return $this->belongsToMany(User::class, 'user_role');
     }
+
+    
 }

@@ -18,7 +18,7 @@ class SellerFactory extends Factory
     {
         return [
             'user_id' => \App\Models\User::factory(),
-            'store_name' => $this->faker->company(),
+            'store_name' => $this->faker->unique()->company(),
             'store_email' => $this->faker->unique()->companyEmail(),
             'store_description' => $this->faker->paragraph(),
             'account_balance' => $this->faker->randomFloat(2, 0, 10000),
