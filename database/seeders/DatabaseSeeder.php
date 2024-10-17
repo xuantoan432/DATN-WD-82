@@ -79,57 +79,89 @@ class DatabaseSeeder extends Seeder
         Banner::truncate();
         DB::table('seller_address')->truncate();
         DB::table('user_address')->truncate();
-//        ProductHasAttribute::truncate();
+        DB::table('user_role')->truncate();
+        //        ProductHasAttribute::truncate();
         Inventory::truncate();
-         \App\Models\User::factory(10)->create();
+        \App\Models\User::factory(10)->create();
          Role::insert([
              ['name' => 'admin'],
              ['name' => 'seller'],
              ['name' => 'customer'],
          ]);
-         Seller::factory(10)->create();
-         Post::factory(10)->create();
-         Tag::factory(10)->create();
-         Comment::factory(10)->create();
-         Voucher::factory(10)->create();
-         Address::factory(10)->create();
-         Category::factory(10)->create();
-         Product::factory(10)->create();
-         Review::factory(10)->create();
-         Gallery::factory(10)->create();
-         ProductVariant::factory(10)->create();
-         Attribute::factory(10)->create();
-         AttributeValue::factory(10)->create();
-         ProductVariantAttribute::factory(10)->create();
-         Wishlist::factory(10)->create();
-         Cart::factory(10)->create();
-         CartItem::factory(10)->create();
-         Chat::factory(10)->create();
-         PaymentMethod::factory(10)->create();
-         PaymentStatus::factory(10)->create();
-         OrderStatus::factory(10)->create();
-         Order::factory(10)->create();
-         OrderDetail::factory(10)->create();
-         Notification::factory(10)->create();
-         Banner::factory(10)->create();
-            for ($i = 1; $i <= 10; $i++) {
-                for ($j = 1; $j <= 5; $j++) {
-                    DB::table('seller_address')->insert([
-                        'seller_id' => $i,
-                        'address_id' =>$j,
-                    ]);
-                    DB::table('user_address')->insert([
-                        'user_id' => $i,
-                        'address_id' =>$j,
-                    ]);
-                    DB::table('user_role')->insert([
-                        'user_id' => $i,
-                        'role_id' =>$j,
-                    ]);
-                }
+        DB::table('user_role')->insert([
+            [
+                'user_id' => 1,
+                'role_id' => 1,
+            ],
+            [
+                'user_id' => 2,
+                'role_id' => 3,
+            ],
+            [
+                'user_id' => 2,
+                'role_id' => 2,
+            ],
+            [
+                'user_id' => 3,
+                'role_id' => 3,
+            ],
+            [
+                'user_id' => 4,
+                'role_id' => 3,
+            ],
+            [
+                'user_id' => 5,
+                'role_id' => 3,
+            ],
+            [
+                'user_id' => 6,
+                'role_id' => 3,
+            ],
+            [
+                'user_id' => 6,
+                'role_id' => 2,
+            ]
+        ]);
+        Seller::factory(10)->create();
+        Post::factory(10)->create();
+        Tag::factory(10)->create();
+        Comment::factory(10)->create();
+        Voucher::factory(10)->create();
+        Address::factory(10)->create();
+        Category::factory(10)->create();
+        Product::factory(10)->create();
+        Review::factory(10)->create();
+        Gallery::factory(10)->create();
+        ProductVariant::factory(10)->create();
+        Attribute::factory(10)->create();
+        AttributeValue::factory(10)->create();
+        ProductVariantAttribute::factory(10)->create();
+        Wishlist::factory(10)->create();
+        Cart::factory(10)->create();
+        CartItem::factory(10)->create();
+        Chat::factory(10)->create();
+        PaymentMethod::factory(10)->create();
+        PaymentStatus::factory(10)->create();
+        OrderStatus::factory(10)->create();
+        Order::factory(10)->create();
+        OrderDetail::factory(10)->create();
+        Notification::factory(10)->create();
+        Banner::factory(10)->create();
+        for ($i = 1; $i <= 10; $i++) {
+            for ($j = 1; $j <= 5; $j++) {
+                DB::table('seller_address')->insert([
+                    'seller_id' => $i,
+                    'address_id' => $j,
+                ]);
+                DB::table('user_address')->insert([
+                    'user_id' => $i,
+                    'address_id' => $j,
+                ]);
+                
             }
-//         ProductHasAttribute::factory(10)->create();
-         Inventory::factory(10)->create();
+        }
+        //         ProductHasAttribute::factory(10)->create();
+        Inventory::factory(10)->create();
         Schema::enableForeignKeyConstraints();
     }
 }

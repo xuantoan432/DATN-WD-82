@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\PostController;
-use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Seller\ChatController;
 use App\Http\Controllers\Seller\SellerController;
 use Illuminate\Support\Facades\Route;
@@ -18,9 +18,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/', function() {
+Route::get('/', function () {
     return view('client.index');
-});
+})->name('index');
 Route::get('/1', function () {
     return view('client.shop');
 });
@@ -70,7 +70,8 @@ Route::get('/12', function () {
 });
 
 //Route::get('/' , [PostController::class,'index'])->name('admin');
-Route::get('/seller' , [SellerController::class,'index'])->name('seller');
-Route::get('/seller/chat' , [ChatController::class,'index'])->name('chat');
+Route::get('/seller', [SellerController::class, 'index'])->name('seller');
+Route::get('/seller/chat', [ChatController::class, 'index'])->name('chat');
 
-
+Route::get('login', [LoginController::class, 'showLogInForm'])->name('login');
+Route::post('login', [LoginController::class, 'logIn']);
