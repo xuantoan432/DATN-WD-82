@@ -25,7 +25,7 @@ class User extends Authenticatable
         'email_verified_at',
         'email',
         'password',
-        'remember_token'
+        'remember_token',
         'phone',
         'email',
         'password',
