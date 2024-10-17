@@ -19,7 +19,7 @@ class BannerFactory extends Factory
         return [
             'banner_title' => $this->faker->sentence,
             'banner_image' => $this->faker->imageUrl(1200, 300, 'business', true, 'banner'),
-            'banner_text' => $this->faker->paragraph,
+            'banner_text' => $this->faker->sentence,
             'banner_link' => $this->faker->url,
         ];
     }
