@@ -23,10 +23,10 @@ class RegisterController extends Controller
         ]);
 
         $user = User::query()->create($data);
-     
+
            $user->roles()->attach(3);
 
 
-        return view('client.login');
+        return view('client.auth.login');
     }
 }
