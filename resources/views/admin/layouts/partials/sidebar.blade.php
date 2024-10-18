@@ -53,8 +53,7 @@
                 </li>
                 <li><a href="{{route('chat')}}"><i class="material-icons-outlined">arrow_right</i>Chat</a>
                 </li>
-                <li><a href="app-fullcalender.html"><i
-                            class="material-icons-outlined">arrow_right</i>Calendar</a>
+                <li><a href="app-fullcalender.html"><i class="material-icons-outlined">arrow_right</i>Calendar</a>
                 </li>
                 <li><a href="app-to-do.html"><i class="material-icons-outlined">arrow_right</i>To do</a>
                 </li>
@@ -81,20 +80,17 @@
                 <li><a href="ecommerce-add-product.html"><i class="material-icons-outlined">arrow_right</i>Add
                         Product</a>
                 </li>
-                <li><a href="ecommerce-products.html"><i
-                            class="material-icons-outlined">arrow_right</i>Products</a>
+                <li><a href="ecommerce-products.html"><i class="material-icons-outlined">arrow_right</i>Products</a>
                 </li>
-                <li><a href="ecommerce-customers.html"><i
-                            class="material-icons-outlined">arrow_right</i>Customers</a>
+                <li><a href="ecommerce-customers.html"><i class="material-icons-outlined">arrow_right</i>Customers</a>
                 </li>
-                <li><a href="ecommerce-customer-details.html"><i
-                            class="material-icons-outlined">arrow_right</i>Customer Details</a>
+                <li><a href="ecommerce-customer-details.html"><i class="material-icons-outlined">arrow_right</i>Customer
+                        Details</a>
                 </li>
-                <li><a href="ecommerce-orders.html"><i
-                            class="material-icons-outlined">arrow_right</i>Orders</a>
+                <li><a href="ecommerce-orders.html"><i class="material-icons-outlined">arrow_right</i>Orders</a>
                 </li>
-                <li><a href="ecommerce-order-details.html"><i
-                            class="material-icons-outlined">arrow_right</i>Order Details</a>
+                <li><a href="ecommerce-order-details.html"><i class="material-icons-outlined">arrow_right</i>Order
+                        Details</a>
                 </li>
             </ul>
         </li>
@@ -105,33 +101,25 @@
                 <div class="menu-title">Components</div>
             </a>
             <ul>
-                <li><a href="component-alerts.html"><i
-                            class="material-icons-outlined">arrow_right</i>Alerts</a>
+                <li><a href="component-alerts.html"><i class="material-icons-outlined">arrow_right</i>Alerts</a>
                 </li>
-                <li><a href="component-accordions.html"><i
-                            class="material-icons-outlined">arrow_right</i>Accordions</a>
+                <li><a href="component-accordions.html"><i class="material-icons-outlined">arrow_right</i>Accordions</a>
                 </li>
-                <li><a href="component-badges.html"><i
-                            class="material-icons-outlined">arrow_right</i>Badges</a>
+                <li><a href="component-badges.html"><i class="material-icons-outlined">arrow_right</i>Badges</a>
                 </li>
-                <li><a href="component-buttons.html"><i
-                            class="material-icons-outlined">arrow_right</i>Buttons</a>
+                <li><a href="component-buttons.html"><i class="material-icons-outlined">arrow_right</i>Buttons</a>
                 </li>
-                <li><a href="component-carousels.html"><i
-                            class="material-icons-outlined">arrow_right</i>Carousels</a>
+                <li><a href="component-carousels.html"><i class="material-icons-outlined">arrow_right</i>Carousels</a>
                 </li>
-                <li><a href="component-media-object.html"><i
-                            class="material-icons-outlined">arrow_right</i>Media
+                <li><a href="component-media-object.html"><i class="material-icons-outlined">arrow_right</i>Media
                         Objects</a>
                 </li>
-                <li><a href="component-modals.html"><i
-                            class="material-icons-outlined">arrow_right</i>Modals</a>
+                <li><a href="component-modals.html"><i class="material-icons-outlined">arrow_right</i>Modals</a>
                 </li>
                 <li><a href="component-navs-tabs.html"><i class="material-icons-outlined">arrow_right</i>Navs
                         & Tabs</a>
                 </li>
-                <li><a href="component-navbar.html"><i
-                            class="material-icons-outlined">arrow_right</i>Navbar</a>
+                <li><a href="component-navbar.html"><i class="material-icons-outlined">arrow_right</i>Navbar</a>
                 </li>
                 <li><a href="component-paginations.html"><i
                             class="material-icons-outlined">arrow_right</i>Pagination</a>
@@ -143,18 +131,15 @@
                 <li><a href="component-progress-bars.html"><i
                             class="material-icons-outlined">arrow_right</i>Progress</a>
                 </li>
-                <li><a href="component-spinners.html"><i
-                            class="material-icons-outlined">arrow_right</i>Spinners</a>
+                <li><a href="component-spinners.html"><i class="material-icons-outlined">arrow_right</i>Spinners</a>
                 </li>
                 <li><a href="component-notifications.html"><i
                             class="material-icons-outlined">arrow_right</i>Notifications</a>
                 </li>
-                <li><a href="component-avtars-chips.html"><i
-                            class="material-icons-outlined">arrow_right</i>Avatrs &
+                <li><a href="component-avtars-chips.html"><i class="material-icons-outlined">arrow_right</i>Avatrs &
                         Chips</a>
                 </li>
-                <li><a href="component-typography.html"><i
-                            class="material-icons-outlined">arrow_right</i>Typography</a>
+                <li><a href="component-typography.html"><i class="material-icons-outlined">arrow_right</i>Typography</a>
                 </li>
                 <li><a href="component-text-utilities.html"><i
                             class="material-icons-outlined">arrow_right</i>Utilities</a>
@@ -171,11 +156,9 @@
                 <li><a href="icons-line-icons.html"><i class="material-icons-outlined">arrow_right</i>Line
                         Icons</a>
                 </li>
-                <li><a href="icons-boxicons.html"><i
-                            class="material-icons-outlined">arrow_right</i>Boxicons</a>
+                <li><a href="icons-boxicons.html"><i class="material-icons-outlined">arrow_right</i>Boxicons</a>
                 </li>
-                <li><a href="icons-feather-icons.html"><i
-                            class="material-icons-outlined">arrow_right</i>Feather
+                <li><a href="icons-feather-icons.html"><i class="material-icons-outlined">arrow_right</i>Feather
                         Icons</a>
                 </li>
             </ul>
@@ -194,8 +177,7 @@
                 <li><a href="form-input-group.html"><i class="material-icons-outlined">arrow_right</i>Input
                         Groups</a>
                 </li>
-                <li><a href="form-radios-and-checkboxes.html"><i
-                            class="material-icons-outlined">arrow_right</i>Radios &
+                <li><a href="form-radios-and-checkboxes.html"><i class="material-icons-outlined">arrow_right</i>Radios &
                         Checkboxes</a>
                 </li>
                 <li><a href="form-layouts.html"><i class="material-icons-outlined">arrow_right</i>Forms
@@ -210,8 +192,7 @@
                 <li><a href="form-file-upload.html"><i class="material-icons-outlined">arrow_right</i>File
                         Upload</a>
                 </li>
-                <li><a href="form-date-time-pickes.html"><i
-                            class="material-icons-outlined">arrow_right</i>Date
+                <li><a href="form-date-time-pickes.html"><i class="material-icons-outlined">arrow_right</i>Date
                         Pickers</a>
                 </li>
                 <li><a href="form-select2.html"><i class="material-icons-outlined">arrow_right</i>Select2</a>
@@ -244,8 +225,7 @@
                 <div class="menu-title">Authentication</div>
             </a>
             <ul>
-                <li><a class="has-arrow" href="javascript:;"><i
-                            class="material-icons-outlined">arrow_right</i>Basic</a>
+                <li><a class="has-arrow" href="javascript:;"><i class="material-icons-outlined">arrow_right</i>Basic</a>
                     <ul>
                         <li><a href="auth-basic-login.html" target="_blank"><i
                                     class="material-icons-outlined">arrow_right</i>Login</a></li>
@@ -257,8 +237,7 @@
                                     class="material-icons-outlined">arrow_right</i>Reset Password</a></li>
                     </ul>
                 </li>
-                <li><a class="has-arrow" href="javascript:;"><i
-                            class="material-icons-outlined">arrow_right</i>Cover</a>
+                <li><a class="has-arrow" href="javascript:;"><i class="material-icons-outlined">arrow_right</i>Cover</a>
                     <ul>
                         <li><a href="auth-cover-login.html" target="_blank"><i
                                     class="material-icons-outlined">arrow_right</i>Login</a></li>
@@ -270,8 +249,7 @@
                                     class="material-icons-outlined">arrow_right</i>Reset Password</a></li>
                     </ul>
                 </li>
-                <li><a class="has-arrow" href="javascript:;"><i
-                            class="material-icons-outlined">arrow_right</i>Boxed</a>
+                <li><a class="has-arrow" href="javascript:;"><i class="material-icons-outlined">arrow_right</i>Boxed</a>
                     <ul>
                         <li><a href="auth-boxed-login.html" target="_blank"><i
                                     class="material-icons-outlined">arrow_right</i>Login</a></li>
@@ -306,12 +284,10 @@
                 <div class="menu-title">Pages</div>
             </a>
             <ul>
-                <li><a href="pages-error-404.html" target="_blank"><i
-                            class="material-icons-outlined">arrow_right</i>404
+                <li><a href="pages-error-404.html" target="_blank"><i class="material-icons-outlined">arrow_right</i>404
                         Error</a>
                 </li>
-                <li><a href="pages-error-505.html" target="_blank"><i
-                            class="material-icons-outlined">arrow_right</i>505
+                <li><a href="pages-error-505.html" target="_blank"><i class="material-icons-outlined">arrow_right</i>505
                         Error</a>
                 </li>
                 <li><a href="pages-coming-soon.html" target="_blank"><i
@@ -344,11 +320,9 @@
                 <div class="menu-title">Charts</div>
             </a>
             <ul>
-                <li><a href="charts-apex-chart.html"><i
-                            class="material-icons-outlined">arrow_right</i>Apex</a>
+                <li><a href="charts-apex-chart.html"><i class="material-icons-outlined">arrow_right</i>Apex</a>
                 </li>
-                <li><a href="charts-chartjs.html"><i
-                            class="material-icons-outlined">arrow_right</i>Chartjs</a>
+                <li><a href="charts-chartjs.html"><i class="material-icons-outlined">arrow_right</i>Chartjs</a>
                 </li>
             </ul>
         </li>
@@ -375,16 +349,15 @@
                 <div class="menu-title">Menu Levels</div>
             </a>
             <ul>
-                <li><a class="has-arrow" href="javascript:;"><i
-                            class="material-icons-outlined">arrow_right</i>Level
+                <li><a class="has-arrow" href="javascript:;"><i class="material-icons-outlined">arrow_right</i>Level
                         One</a>
                     <ul>
                         <li><a class="has-arrow" href="javascript:;"><i
                                     class="material-icons-outlined">arrow_right</i>Level
                                 Two</a>
                             <ul>
-                                <li><a href="javascript:;"><i
-                                            class="material-icons-outlined">arrow_right</i>Level Three</a>
+                                <li><a href="javascript:;"><i class="material-icons-outlined">arrow_right</i>Level
+                                        Three</a>
                                 </li>
                             </ul>
                         </li>

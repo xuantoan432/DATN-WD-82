@@ -42,7 +42,7 @@
         <div class="position-relative">
           <input class="form-control px-5" type="search" placeholder="Search Products">
           <span
-            class="material-icons-outlined position-absolute ms-3 translate-middle-y start-0 top-50 fs-5">search</span>
+            class="material-icons-outlined positsion-absolute ms-3 translate-middle-y start-0 top-50 fs-5">search</span>
         </div>
       </div>
       <div class="col-auto flex-grow-1 overflow-auto">
