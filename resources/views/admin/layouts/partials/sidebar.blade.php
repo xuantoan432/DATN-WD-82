@@ -19,10 +19,10 @@
                 <div class="menu-title">Dashboard</div>
             </a>
             <ul>
-                <li><a href="{{route('admin')}}"><i class="material-icons-outlined">arrow_right</i>Analysis</a>
+                <li><a href=""><i class="material-icons-outlined">arrow_right</i>Analysis</a>
                 </li>
                 <li><a href="{{route('seller')}}"><i class="material-icons-outlined">arrow_right</i>eCommerce</a>
-                </li>
+                </li> --}}
             </ul>
         </li>
         <li>

@@ -16,6 +16,7 @@ return new class extends Migration
             $table->id();
             $table->string('image');
             $table->foreignIdFor(Product::class)->constrained();
+            $table->timestamps();
         });
     }
 

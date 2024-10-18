@@ -17,14 +17,14 @@ class OrderFactory extends Factory
     public function definition(): array
     {
         return [
-            'payment_status_id',
-            'payment_method_id',
-            'order_code',
-            'order_status_id',
-            'total_price',
-            'shipping_address',
-            'note',
-            'user_id'
+            'payment_status_id' => \App\Models\PaymentStatus::factory(),
+            'payment_method_id' => \App\Models\PaymentMethod::factory(),
+            'order_code' => $this->faker->unique()->bothify('ORDER-#####'),
+            'order_status_id' => \App\Models\OrderStatus::factory(),
+            'total_price' => $this->faker->randomFloat(2, 10, 1000),
+            'shipping_address' => $this->faker->address,
+            'note' => $this->faker->sentence,
+            'user_id' => \App\Models\User::factory(),
         ];
     }
 }

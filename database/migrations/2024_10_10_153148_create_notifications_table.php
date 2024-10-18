@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('notifications', function (Blueprint $table) {
             $table->id();
-
+            $table->enum('status', ['pending', 'sent', 'read'])->default('pending');
             $table->foreignIdFor(Order::class) -> constrained();
             $table->foreignIdFor(User::class) -> constrained();
             $table->string('message');

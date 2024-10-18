@@ -17,11 +17,11 @@ class NotificationFactory extends Factory
     public function definition(): array
     {
         return [
-            'oder_id',
-            'message',
-            'status',
-            'receiver_type',
-            'user_id'
+            'order_id' => \App\Models\Order::factory(),
+            'message' => $this->faker->sentence,
+            'status' => $this->faker->randomElement(['pending', 'sent', 'read']),
+            'receiver_type' => $this->faker->randomElement(['saller', 'admin']),
+            'user_id' => \App\Models\User::factory(),
         ];
     }
 }

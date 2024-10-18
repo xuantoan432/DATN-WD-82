@@ -17,12 +17,12 @@ class PostFactory extends Factory
     public function definition(): array
     {
         return [
-            'title',
-            'description',
-            'content',
-            'thumbnail',
-            'views',
-            'user_id'
+            'title' => $this->faker->sentence,
+            'description' => $this->faker->sentence,
+            'content' => $this->faker->text(2000),
+            'thumbnail' => $this->faker->imageUrl(640, 480, 'posts', true),
+            'views' => $this->faker->numberBetween(0, 10000),
+            'user_id' => \App\Models\User::factory(),
         ];
     }
 }

@@ -17,11 +17,11 @@ class SellerFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id',
-            'store_name',
-            'store_email',
-            'store_description',
-            'account_balance',
+            'user_id' => \App\Models\User::factory(),
+            'store_name' => $this->faker->unique()->company(),
+            'store_email' => $this->faker->unique()->companyEmail(),
+            'store_description' => $this->faker->paragraph(),
+            'account_balance' => $this->faker->randomFloat(2, 0, 10000),
         ];
     }
 }
