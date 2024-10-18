@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Maxton | Bootstrap 5 Admin Dashboard Template</title>
     @include('admin.layouts.partials.head')
-    @yield('css_new')
+
 </head>
 
 <body>
@@ -67,7 +67,7 @@
 
     <!--bootstrap js-->
     @include('admin.layouts.partials.script')
-@yield('js_new')
+
 
 </body>
 

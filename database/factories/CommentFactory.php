@@ -19,7 +19,7 @@ class CommentFactory extends Factory
         return [
             'post_id' => \App\Models\Post::factory(),
             'user_id' => \App\Models\User::factory(),
-            'content' => $this->faker->paragraph,
+            'content' => $this->faker->sentence,
             'parent_id' => 0,
         ];
     }

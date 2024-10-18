@@ -79,6 +79,7 @@ class DatabaseSeeder extends Seeder
         Banner::truncate();
         DB::table('seller_address')->truncate();
         DB::table('user_address')->truncate();
+        DB::table('user_role')->truncate();
 //        ProductHasAttribute::truncate();
         Inventory::truncate();
          \App\Models\User::factory(10)->create();
@@ -87,7 +88,43 @@ class DatabaseSeeder extends Seeder
              ['name' => 'seller'],
              ['name' => 'customer'],
          ]);
-         Seller::factory(10)->create();
+        DB::table('user_role')->insert(
+            [
+                [
+                    'user_id' => 1,
+                    'role_id' => 1,
+                ],
+                [
+                    'user_id' => 2,
+                    'role_id' => 3,
+                ],
+                [
+                    'user_id' => 2,
+                    'role_id' => 2,
+                ],
+                [
+                    'user_id' => 3,
+                    'role_id' => 3,
+                ],
+                [
+                    'user_id' => 4,
+                    'role_id' => 3,
+                ],
+                [
+                    'user_id' => 5,
+                    'role_id' => 3,
+                ],
+                [
+                    'user_id' => 6,
+                    'role_id' => 3,
+                ],
+                [
+                    'user_id' => 6,
+                    'role_id' => 2,
+                ]
+            ]
+        );
+        Seller::factory(10)->create();
          Post::factory(10)->create();
          Tag::factory(10)->create();
          Comment::factory(10)->create();
@@ -121,10 +158,6 @@ class DatabaseSeeder extends Seeder
                     DB::table('user_address')->insert([
                         'user_id' => $i,
                         'address_id' =>$j,
-                    ]);
-                    DB::table('user_role')->insert([
-                        'user_id' => $i,
-                        'role_id' =>$j,
                     ]);
                 }
             }
