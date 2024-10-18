@@ -39,6 +39,17 @@
             </ul>
         </li>
         <li>
+            <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon"><i class="material-icons-outlined">Categories</i>
+                </div>
+                <div class="menu-title">Categories</div>
+            </a>
+            <ul>
+              <li><a href="{{route('category.index')}}"><i class="fa fa-circle-o"></i> List</a></li>
+              <li><a href="{{route('category.create')}}"><i class="fa fa-circle-o"></i> Add new</a></li>
+            </ul>
+          </li>
+        <li>
             <a class="has-arrow" href="javascript:;">
                 <div class="parent-icon"><i class="material-icons-outlined">apps</i>
                 </div>
