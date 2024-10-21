@@ -16,8 +16,8 @@ return new class extends Migration
     {
         Schema::create('seller_address', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Seller::class)->constrained();
-            $table->foreignIdFor(Address::class)->constrained();
+            $table->foreignIdFor(Seller::class)->constrained()->onDelete('cascade');
+            $table->foreignIdFor(Address::class)->constrained()->onDelete('cascade');
         });
     }
 

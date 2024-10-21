@@ -17,10 +17,10 @@ return new class extends Migration
     {
         Schema::create('order_details', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Order::class) -> constrained();
-            $table->foreignIdFor(Product::class) -> constrained();
-            $table->foreignIdFor(Seller::class) -> constrained();
-            $table->foreignIdFor(ProductVariantAttribute::class) -> constrained();
+            $table->foreignIdFor(Order::class) -> constrained()->onDelete('cascade');
+            $table->foreignIdFor(Product::class) -> constrained()->onDelete('cascade');
+            $table->foreignIdFor(Seller::class) -> constrained()->onDelete('cascade');
+            $table->foreignIdFor(ProductVariantAttribute::class) -> constrained()->onDelete('cascade');
             $table->unsignedBigInteger('quantity');
             $table->string('name') ;
             $table->string('image') ;

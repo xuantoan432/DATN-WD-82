@@ -19,7 +19,7 @@ return new class extends Migration
             $table->text('content');
             $table->string('thumbnail');
             $table->unsignedBigInteger('views')->default(0);
-            $table->foreignIdFor(User::class) -> constrained() ;
+            $table->foreignIdFor(User::class) -> constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -14,8 +14,8 @@ return new class extends Migration {
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Category::class)->constrained();
-            $table->foreignIdFor(Seller::class)->constrained();
+            $table->foreignIdFor(Category::class)->constrained()->onDelete('cascade');
+            $table->foreignIdFor(Seller::class)->constrained()->onDelete('cascade');
             $table->unsignedBigInteger('final_fee_percentage')->nullable();
             $table->string('name');
             $table->text('short_description');

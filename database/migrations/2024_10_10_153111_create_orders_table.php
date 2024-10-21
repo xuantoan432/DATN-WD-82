@@ -17,13 +17,13 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(PaymentStatus::class) -> constrained();
-            $table->foreignIdFor(PaymentMethod::class) -> constrained();
-            $table->foreignIdFor(OrderStatus::class) -> constrained();
-            $table->foreignIdFor(User::class) -> constrained();
+            $table->foreignIdFor(PaymentStatus::class) -> constrained()->onDelete('cascade');
+            $table->foreignIdFor(PaymentMethod::class) -> constrained()->onDelete('cascade');
+            $table->foreignIdFor(OrderStatus::class) -> constrained()->onDelete('cascade');
+            $table->foreignIdFor(User::class) -> constrained()->onDelete('cascade');
             $table->string('order_code') ;
             $table->string('shipping_address') ;
-            $table->decimal('total_price' , 10 , 2 ) ; 
+            $table->decimal('total_price' , 10 , 2 ) ;
             $table->string('note') ->nullable();
             $table->timestamps();
         });

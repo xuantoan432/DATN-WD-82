@@ -8,6 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Attribute extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'name',
+    ];
     public function attributeValues()
     {
         return $this->hasMany(AttributeValue::class);
@@ -16,5 +19,9 @@ class Attribute extends Model
     public function products()
     {
         return $this->belongsToMany(Product::class, 'product_has_attribute');
+    }
+    public function productVariantAttributes()
+    {
+        return $this->hasMany(ProductVariantAttribute::class);
     }
 }
