@@ -66,7 +66,6 @@ class AttributeController extends Controller
      */
     public function destroy(Attribute $attribute)
     {
-        $attribute->attributeValues()->delete();
         $attribute->delete();
         return redirect()->route('admin.attributes.index')->with('success', 'Xóa thành công');
     }

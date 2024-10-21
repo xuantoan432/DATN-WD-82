@@ -19,8 +19,17 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'dob',
+        'avatar',
+        'gender',
+        'email_verified_at',
         'email',
         'password',
+        'remember_token',
+        'phone',
+        'email',
+        'password',
+
     ];
 
     /**
@@ -32,7 +41,6 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
-
     /**
      * The attributes that should be cast.
      *
@@ -76,4 +84,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Chat::class, 'user_receive_id');
     }
+
+    public function hasRole($role)
+{
+    return $this->roles()->where('role_id', $role)->exists();
+}
 }

@@ -80,7 +80,7 @@
                                         <td class="">
                                             <div class="row row-cols-auto g-3 mt-2">
                                                 <div class="col">
-                                                    <form action="{{ route('admin.attribute.values.destroy', $attributeValue) }}" method="post">
+                                                    <form action="{{ route('admin.attribute.values.destroy', ['attribute' => $attribute, 'attributeValue' => $attributeValue]) }}" method="post">
                                                         @csrf
                                                         @method('DELETE')
                                                         <button type="submit" class="btn btn-outline-danger d-flex gap-2" onclick="return confirm('Bạn có chắc chắn muốn xóa không?')"><i
@@ -89,7 +89,8 @@
 
                                                 </div>
                                                 <div class="col">
-                                                    <a href="{{ route('admin.attribute.values.destroy',$attribute, $attributeValue) }}" class="btn btn-outline-warning d-flex gap-2">
+                                                    <a href="{{ route('admin.attribute.values.edit', ['attribute' => $attribute, 'attributeValue' => $attributeValue]) }}
+" class="btn btn-outline-warning d-flex gap-2">
                                                         <i class="material-icons-outlined">edit</i></a>
                                                 </div>
                                             </div>
