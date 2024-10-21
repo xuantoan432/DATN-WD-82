@@ -6,6 +6,8 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Seller\ChatController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Seller\SellerController;
+use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\SellerRegisterController;
@@ -67,6 +69,9 @@ Route::get('/12', function () {
 //Route::get('/' , [PostController::class,'index'])->name('admin');
 Route::get('/seller', [SellerController::class, 'index'])->name('seller');
 Route::get('/seller/chat', [ChatController::class, 'index'])->name('chat');
+
+Route::get('/admin', [AdminController::class, 'index'])->name('admin');
+Route::resource('admin/category', CategoryController::class);
 
 Route::get('login', [LoginController::class, 'showLogInForm'])->name('login');
 Route::post('login', [LoginController::class, 'logIn']);
