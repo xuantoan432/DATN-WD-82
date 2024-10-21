@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('timelines', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(User::class) -> constrained();
-            $table->foreignIdFor(Product::class) -> constrained();
+            $table->foreignIdFor(User::class) -> constrained()->onDelete('cascade');
+            $table->foreignIdFor(Product::class) -> constrained()->onDelete('cascade');
             $table->string('event_type');
             $table->string('event_description');
             $table->timestamps();

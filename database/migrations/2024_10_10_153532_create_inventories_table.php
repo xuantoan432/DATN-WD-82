@@ -16,10 +16,10 @@ return new class extends Migration
     {
         Schema::create('inventories', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Product::class)->constrained();
-            $table->foreignIdFor(Seller::class)->constrained();
+            $table->foreignIdFor(Product::class)->constrained()->onDelete('cascade');
+            $table->foreignIdFor(Seller::class)->constrained()->onDelete('cascade');
             $table->unsignedBigInteger('quantity');
-            $table->foreignIdFor(ProductVariantAttribute::class)->constrained();
+            $table->foreignIdFor(ProductVariantAttribute::class)->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }

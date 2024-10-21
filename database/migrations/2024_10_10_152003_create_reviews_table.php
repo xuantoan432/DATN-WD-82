@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('reviews', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Product::class) ->constrained();
-            $table->foreignIdFor(User::class) ->constrained();
+            $table->foreignIdFor(Product::class) ->constrained()->onDelete('cascade');
+            $table->foreignIdFor(User::class) ->constrained()->onDelete('cascade');
             $table->string('content') ;
             $table -> unsignedBigInteger('star') ->default(0);
             $table->string('image') -> nullable() ;
