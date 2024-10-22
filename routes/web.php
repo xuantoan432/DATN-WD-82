@@ -26,9 +26,7 @@ Route::get('/2', function () {
     return view('client.product-info');
 });
 
-Route::get('/3', function () {
-    return view('client.user-profile');
-});
+
 
 Route::get('/4', function () {
     return view('client.contact');
@@ -66,26 +64,23 @@ Route::get('/12', function () {
     return view('client.seller-sidebar');
 });
 
-//Route::get('/' , [PostController::class,'index'])->name('admin');
-Route::get('/seller', [SellerController::class, 'index'])->name('seller');
-Route::get('/seller/chat', [ChatController::class, 'index'])->name('chat');
+Route::middleware('guest')->group(function () {
+    Route::get('login', [LoginController::class, 'showLogInForm'])->name('login');
+    Route::post('login', [LoginController::class, 'logIn']);
+    Route::get('register', [RegisterController::class, 'showRegisterForm'])->name('register');
+    Route::post('register', [RegisterController::class, 'register'])->name('register');
+    Route::prefix('auth')->as('auth.')->group(function () {
+        Route::get('/forgot', [ForgotPasswordController::class,'showFormForgotPassword'])->name('forgot');
+        Route::post('/forgot', [ForgotPasswordController::class,'sendMailPassword'])->name('forgot');
+        Route::get('/reset-password/{token}', [ResetPasswordController::class, 'showResetForm']);
+        Route::put('/reset-password/{token}', [ResetPasswordController::class, 'reset'])->name('reset');
+    });
+});
 
-Route::get('/admin', [AdminController::class, 'index'])->name('admin');
-Route::resource('admin/category', CategoryController::class);
+Route::middleware('auth')->group(function () {
+    Route::get('register/seller', [SellerRegisterController::class, 'showRegistrationForm'])->name('register.seller');
+    Route::post('register/seller', [SellerRegisterController::class, 'register']);
+    Route::get('/logout', [LoginController::class,'logout'])->name('logout');
+});
 
-Route::get('login', [LoginController::class, 'showLogInForm'])->name('login');
-Route::post('login', [LoginController::class, 'logIn']);
 
-
-Route::get('register', [RegisterController::class, 'showRegisterForm'])->name('register');
-
-Route::post('register', [RegisterController::class, 'register'])->name('register');
-
-Route::get('register/seller', [SellerRegisterController::class, 'showRegistrationForm'])->name('register.seller');
-Route::post('register/seller', [SellerRegisterController::class, 'register']);
-Route::prefix('auth')->as('auth.')->group(function () {
-    Route::get('/forgot', [ForgotPasswordController::class,'showFormForgotPassword'])->name('forgot');
-    Route::post('/forgot', [ForgotPasswordController::class,'sendMailPassword'])->name('forgot');
-    Route::get('/reset-password/{token}', [ResetPasswordController::class, 'showResetForm']);
-    Route::put('/reset-password/{token}', [ResetPasswordController::class, 'reset'])->name('reset');
- });

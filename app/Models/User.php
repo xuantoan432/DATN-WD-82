@@ -50,6 +50,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
     public function address()
     {
         return $this->belongsToMany(Address::class, 'user_address');
@@ -86,7 +87,7 @@ class User extends Authenticatable
     }
 
     public function hasRole($role)
-{
-    return $this->roles()->where('role_id', $role)->exists();
-}
+    {
+        return $this->roles()->where('id', $role)->exists();
+    }
 }
