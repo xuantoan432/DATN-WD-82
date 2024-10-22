@@ -1,12 +1,15 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\AttributeController;
 use App\Http\Controllers\Admin\AttributeValueController;
 use Illuminate\Support\Facades\Route;
 
-Route::prefix('/admin')->as('admin.')->group(function () {
+Route::prefix('/admin')->as('admin.')->middleware('role:1')->group(function () {
+    Route::get('/', [AdminController::class, 'index']);
+    Route::resource('admin/category', CategoryController::class);
     Route::resource('attributes', AttributeController::class);
     Route::prefix('/attribute')->as('attribute.values.')->group(function () {
         Route::get('{attribute}/values', [AttributeValueController::class, 'index'])->name('index');
