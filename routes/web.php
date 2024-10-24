@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Client\HomeController;
+use App\Http\Controllers\Client\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Auth\LoginController;
@@ -12,6 +14,8 @@ use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\SellerRegisterController;
 
+
+Route::get('/', [HomeController::class, 'index'])->name('index');
 
 
 
@@ -30,7 +34,7 @@ Route::get('/2', function () {
 
 Route::get('/4', function () {
     return view('client.contact');
-});
+})->name('hihi')->middleware('auth');
 
 Route::get('/5', function () {
     return view('client.about');
@@ -42,10 +46,6 @@ Route::get('/6', function () {
 
 Route::get('/7', function () {
     return view('client.compaire');
-});
-
-Route::get('/8', function () {
-    return view('client.become-vendor');
 });
 
 Route::get('/9', function () {
@@ -81,6 +81,7 @@ Route::middleware('auth')->group(function () {
     Route::get('register/seller', [SellerRegisterController::class, 'showRegistrationForm'])->name('register.seller');
     Route::post('register/seller', [SellerRegisterController::class, 'register']);
     Route::get('/logout', [LoginController::class,'logout'])->name('logout');
+    Route::get('/dashboard', [UserController::class, 'userDashboard'])->name('dashboard');
 });
 
 
