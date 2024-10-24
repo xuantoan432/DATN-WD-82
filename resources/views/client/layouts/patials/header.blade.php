@@ -3,7 +3,10 @@
         <div class="container">
             <div class="header-top">
                 <div class="header-profile">
-                    <a href="user-profile.html"><span>Tài khoản</span></a>
+                    @if (auth()->check())
+                    <a href="{{route('logout')}}"><span>Đăng xuất</span></a>
+                    @endif
+                    
                     <a href="order.html"><span>Theo dõi đơn hàng</span></a>
                     <a href="faq.html"><span>Hỗ trợ</span></a>
                 </div>
@@ -20,7 +23,7 @@
         <div class="container">
             <div class="header-center">
                 <div class="logo">
-                    <a href="{{route('index')}}">
+                    <a href="{{route('home.index')}}">
                         <img src="/theme/client/assets/images/logos/logo_header.png" alt="logo" style="width:200px">
                     </a>
                 </div>
@@ -456,7 +459,7 @@
                 <div class="header-nav-menu">
                     <ul class="menu-list">
                         <li>
-                            <a href="{{route('index')}}">
+                            <a href="{{route('home.index')}}">
                                 <span class="list-text">Trang chủ</span>
                             </a>
                         </li>

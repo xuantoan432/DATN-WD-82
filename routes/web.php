@@ -15,8 +15,6 @@ use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\SellerRegisterController;
 
 
-Route::get('/', [HomeController::class, 'index'])->name('index');
-
 
 
 
