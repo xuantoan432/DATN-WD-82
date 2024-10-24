@@ -35,12 +35,9 @@
                 <li><a href="{{ route('admin.attributes.index') }}"><i class="material-icons-outlined">arrow_right</i>Thuộc
                         tính</a>
                 </li>
-                <li><a class="has-arrow" href="javascript:;"><i class="material-icons-outlined">arrow_right</i>Category</a>
-                    <ul>
-                        <li><a href="{{route('admin.category.index')}}" ><i class="material-icons-outlined">arrow_right</i>List</a></li>
-                        <li><a href="{{route('admin.category.create')}}" ><i class="material-icons-outlined">arrow_right</i>Add new</a></li>
-                    </ul>
-                </li>
+                <li>
+                    <a href="{{ route('admin.category.index') }}"><i class="material-icons-outlined">arrow_right</i>Danh mục</a>
+                 </li>
             </ul>
         </li>
 

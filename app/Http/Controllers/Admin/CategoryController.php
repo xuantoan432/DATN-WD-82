@@ -50,10 +50,10 @@ class CategoryController extends Controller
         }
 
         if (Category::create($data)) {
-            return redirect()->route('category.index')->with('ok', 'Category created successfully.');
+            return redirect()->route('admin.category.index')->with('success', 'Thêm danh mục thành công');
         }
 
-        return redirect()->back()->with('no', 'Error creating category.');
+        return redirect()->back()->with('no', 'Lỗi ');
     }
 
     /**
@@ -70,7 +70,8 @@ class CategoryController extends Controller
     public function edit(Category $category)
     {
         //
-        return view('admin.category.edit', compact('category'));
+        $data = Category::orderBy('id', 'DESC')->get();
+        return view('admin.category.edit', compact('category','data'));
     }
 
     /**
@@ -80,7 +81,7 @@ class CategoryController extends Controller
     {
         //
         $request->validate([
-            'name' => 'required|string|max:100' . $category->id,
+            'name' => 'required|string|max:100' ,
             'icon' => 'nullable|image|mimes:jpeg,png,jpg,gif',
             'fee_percentage' => 'required|numeric|min:0|max:100',
         ]);
@@ -97,7 +98,7 @@ class CategoryController extends Controller
         }
         $category->save();
 
-        return redirect()->route('category.index')->with('ok', 'Category updated successfully');
+        return redirect()->route('admin.category.index')->with('success', 'Cập nhật danh mục thành công');
     }
 
     /**
@@ -107,8 +108,8 @@ class CategoryController extends Controller
     {
         //
         if ($category->delete()) {
-            return redirect()->route('category.index')->with('ok', 'Success');
+            return redirect()->route('admin.category.index')->with('success', 'Xóa thành công');
         }
-        return redirect()->back()->with('no', 'Error');
+        return redirect()->back()->with('error', 'Lỗi');
     }
 }
