@@ -1058,7 +1058,7 @@
                     </ul>
                 </div>
                 <div class="header-vendor-btn">
-                    <a href="become-vendor.html" class="shop-btn">
+                    <a href="{{ route('register.seller') }}" class="shop-btn">
                         <span class="list-text shop-text">Became Vendor</span>
                         <span class="icon">
                             <svg width="24" height="16" viewBox="0 0 24 16" fill="none"

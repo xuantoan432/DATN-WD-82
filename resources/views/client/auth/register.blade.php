@@ -64,7 +64,7 @@
                         </div>
                         <div class="login-btn text-center">
                             <button type="submit" class="shop-btn">Đăng ký</button>
-                            <span class="shop-account">Đã có tài khoản ?<a href="login.html">Log In</a></span>
+                            <span class="shop-account">Đã có tài khoản ?<a href="{{ route('login') }}">Log In</a></span>
                         </div>
                     </div>
                 </div>
