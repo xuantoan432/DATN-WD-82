@@ -33,7 +33,7 @@ class RoleController extends Controller
     {
         $request->validate(['name' => 'required|string|max:255']);
         Role::create($request->all());
-        return redirect()->route('roles.index')->with('success', 'Role created successfully.');
+        return redirect()->route('admin.roles.index')->with('success', 'Role created successfully.');
     }
 
     /**
@@ -49,6 +49,10 @@ class RoleController extends Controller
      */
     public function edit(Role $role)
     {
+        if (in_array($role->name, ['admin', 'customer', 'seller'])) {
+            return redirect()->route('admin.roles.index')->with('error', 'Không thể chỉnh sửa Role này.');
+        }
+
         return view('admin.roles.edit', compact('role'));
     }
 
@@ -57,25 +61,27 @@ class RoleController extends Controller
      */
     public function update(Request $request, Role $role)
     {
+        if (in_array($role->name, ['admin', 'customer', 'seller'])) {
+            return redirect()->route('admin.roles.index')->with('error', 'Không thể cập nhật Role này.');
+        }
+
         $request->validate(['name' => 'required|string|max:255']);
         $role->update($request->all());
-        return redirect()->route('admin.roles.index')->with('success', 'Role updated successfully.');
+        return redirect()->route('admin.roles.index')->with('success', 'Role đã được cập nhật thành công.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Request $request)
+    public function destroy(Role $role)
     {
-        $roleName = $request->input('name');
-
-        $role = Role::where('name', $roleName)->first();
-
-        if ($role) {
-            $role->delete();
-            return redirect()->route('roles.index')->with('success', 'Role deleted successfully.');
+        // Kiểm tra nếu role là admin, customer hoặc seller
+        if (in_array($role->name, ['admin', 'customer', 'seller'])) {
+            return redirect()->route('admin.roles.index')->with('error', 'Không thể xóa Role này.');
         }
 
-        return redirect()->route('admin.roles.index')->with('error', 'Role not found.');
+        $role->delete();
+        return redirect()->route('admin.roles.index')->with('success', 'Role đã được xóa thành công.');
     }
+
 }
