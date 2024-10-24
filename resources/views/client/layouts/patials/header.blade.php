@@ -3,14 +3,14 @@
         <div class="container">
             <div class="header-top">
                 <div class="header-profile">
-                    <a href="user-profile.html"><span>Account</span></a>
-                    <a href="order.html"><span>Track Order</span></a>
-                    <a href="faq.html"><span>Support</span></a>
+                    <a href="user-profile.html"><span>Tài khoản</span></a>
+                    <a href="order.html"><span>Theo dõi đơn hàng</span></a>
+                    <a href="faq.html"><span>Hỗ trợ</span></a>
                 </div>
                 <div class="header-contact d-none d-lg-block">
                     <a href="#">
-                        <span>Need help? Call us:</span>
-                        <span class="contact-number">+ 00645 4568</span>
+                        <span>Cần hỗ trợ? Gọi cho chúng tôi:</span>
+                        <span class="contact-number">+966 432 004</span>
                     </a>
                 </div>
             </div>
@@ -20,8 +20,8 @@
         <div class="container">
             <div class="header-center">
                 <div class="logo">
-                    <a href="index-2.html">
-                        <img src="/theme/client/assets/images/logos/logo.webp" alt="logo">
+                    <a href="{{route('index')}}">
+                        <img src="/theme/client/assets/images/logos/logo_header.png" alt="logo" style="width:200px">
                     </a>
                 </div>
                 <div class="header-cart-items">
@@ -51,10 +51,10 @@
                                 </div>
                                 <div class="wrapper-main">
                                     <div class="search-section">
-                                        <input type="text" placeholder="Search Products.........">
+                                        <input type="text" placeholder="Tìm kiếm sản phẩm.........">
                                         <div class="divider"></div>
-                                        <button type="button">All Categories</button>
-                                        <a href="#" class="shop-btn">Search</a>
+                                        <button type="button">Tất cả danh mục</button>
+                                        <a href="#" class="shop-btn">Tìm kiếm</a>
                                     </div>
                                 </div>
                             </div>
@@ -82,7 +82,7 @@
                                 </svg>
                             </span>
                             <span class="cart-text ">
-                                Compaire
+                                So sánh sản phẩm
                             </span>
                         </a>
                     </div>
@@ -101,7 +101,7 @@
                                 </svg>
                             </span>
                             <span class="cart-text">
-                                Wishlist
+                                Danh sách yêu thích
                             </span>
                         </a>
                     </div>
@@ -126,7 +126,7 @@
                                 </svg>
                             </span>
                             <span class="cart-text">
-                                Cart
+                                Giỏ hàng
                             </span>
                         </a>
                         <div class="cart-submenu">
@@ -234,16 +234,32 @@
                         </div>
                     </div>
                     <div class="header-user">
-                        <a href="user-profile.html">
-                            <span>
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"
-                                    class="fill-current">
-                                    <path fill="none" d="M0 0h24v24H0z"></path>
-                                    <path
-                                        d="M20 22H4v-2a5 5 0 0 1 5-5h6a5 5 0 0 1 5 5v2zm-8-9a6 6 0 1 1 0-12 6 6 0 0 1 0 12z">
-                                    </path>
-                                </svg>
-                            </span>
+                        <a href="{{ route('dashboard')}}">
+                            @if (auth()->check())
+                                @if (auth()->user()->avatar)
+                                    <span>
+                                        <img src="{{ Storage::url( auth()->user()->avatar) }}"
+                                            alt="User Avatar" width="40" height="40"
+                                            style="border-radius: 50%;">
+                                    </span>
+                                @else
+                                    <span>
+                                        <img src="{{ asset('theme/client/assets/images/logos/avatar.jpg') }}" alt="Default Avatar"
+                                            width="40" height="40" style="border-radius: 50%;">
+                                    </span>
+                                @endif
+                            @else
+                                <span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24"
+                                        height="24" class="fill-current">
+                                        <path fill="none" d="M0 0h24v24H0z"></path>
+                                        <path
+                                            d="M20 22H4v-2a5 5 0 0 1 5-5h6a5 5 0 0 1 5 5v2zm-8-9a6 6 0 1 1 0-12 6 6 0 0 1 0 12z">
+                                        </path>
+                                    </svg>
+                                </span>
+                            @endif
+                            
                         </a>
                     </div>
                 </div>
@@ -252,10 +268,11 @@
     </div>
     <nav class="mobile-menu d-block d-lg-none">
         <div class="mobile-menu-header d-flex justify-content-between align-items-center">
-            <button class="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions"
-                aria-controls="offcanvasWithBothOptions">
+            <button class="btn" type="button" data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">
                 <span>
-                    <svg width="14" height="9" viewBox="0 0 14 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg width="14" height="9" viewBox="0 0 14 9" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
                         <rect width="14" height="1" fill="#1D1D1D" />
                         <rect y="8" width="14" height="1" fill="#1D1D1D" />
                         <rect y="4" width="10" height="1" fill="#1D1D1D" />
@@ -267,7 +284,8 @@
             </a>
             <a href="cart.html" class="header-cart cart-item">
                 <span>
-                    <svg width="35" height="28" viewBox="0 0 35 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg width="35" height="28" viewBox="0 0 35 28" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
                         <path
                             d="M16.4444 21.897C14.8444 21.897 13.2441 21.8999 11.6441 21.8963C9.79233 21.892 8.65086 21.0273 8.12595 19.2489C7.04294 15.5794 5.95756 11.9107 4.87166 8.24203C4.6362 7.4468 4.37783 7.25412 3.55241 7.25175C2.7786 7.24964 2.00507 7.25754 1.23127 7.24911C0.512247 7.24148 0.0157813 6.79109 0.000242059 6.15064C-0.0160873 5.48281 0.475637 5.01689 1.23232 5.00873C2.11121 4.99952 2.99089 4.99214 3.86951 5.01268C5.36154 5.04769 6.52014 5.93215 6.96393 7.35415C7.14171 7.92378 7.34055 8.49026 7.46382 9.07201C7.54968 9.47713 7.77881 9.49661 8.10566 9.49582C11.8335 9.48897 15.5611 9.49134 19.2889 9.49134C21.0825 9.49134 22.8761 9.48108 24.6694 9.49503C26.0848 9.50608 27.0907 10.4906 27.0156 11.7778C27.0006 12.0363 26.925 12.2958 26.8473 12.5457C26.1317 14.8411 25.4124 17.1351 24.6879 19.4279C24.1851 21.0186 23.0223 21.8826 21.3504 21.8944C19.7151 21.906 18.0797 21.897 16.4444 21.897Z"
                             fill="#6E6D79" />
@@ -346,16 +364,17 @@
                 </div>
                 <div class="category-dropdown">
                     <ul class="category-list">
+                        @foreach ($categories as $cate)
                         <li class="category-list-item">
                             <a href="product-sidebar.html">
                                 <div class="dropdown-item d-flex justify-content-between align-items-center">
                                     <div class="dropdown-list-item d-flex">
                                         <span class="dropdown-img">
-                                            <img src="/theme/client/assets/images/homepage-one/category-img/dresses.webp"
+                                            <img src="{{\Storage::url($cate->icon)}}"
                                                 alt="dress">
                                         </span>
                                         <span class="dropdown-text">
-                                            Dresses
+                                            {{$cate->name}}
                                         </span>
                                     </div>
                                     <div class="drop-down-list-icon">
@@ -372,261 +391,10 @@
                                 </div>
                             </a>
                         </li>
-                        <li class="category-list-item">
-                            <a href="product-sidebar.html">
-                                <div class="dropdown-item d-flex justify-content-between align-items-center">
-                                    <div class="dropdown-list-item d-flex">
-                                        <span class="dropdown-img">
-                                            <img src="/theme/client/assets/images/homepage-one/category-img/bags.webp" alt="Bags">
-                                        </span>
-                                        <span class="dropdown-text">
-                                            Bags
-                                        </span>
-                                    </div>
-                                    <div class="drop-down-list-icon">
-                                        <span>
-                                            <svg width="6" height="9" viewBox="0 0 6 9" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <rect x="1.5" y="0.818359" width="5.78538" height="1.28564"
-                                                    transform="rotate(45 1.5 0.818359)" />
-                                                <rect x="5.58984" y="4.90918" width="5.78538" height="1.28564"
-                                                    transform="rotate(135 5.58984 4.90918)" />
-                                            </svg>
-                                        </span>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="category-list-item">
-                            <a href="product-sidebar.html">
-                                <div class="dropdown-item d-flex justify-content-between align-items-center">
-                                    <div class="dropdown-list-item d-flex">
-                                        <span class="dropdown-img">
-                                            <img src="/theme/client/assets/images/homepage-one/category-img/sweaters.webp"
-                                                alt="sweaters">
-                                        </span>
-                                        <span class="dropdown-text">
-                                            Sweaters
-                                        </span>
-                                    </div>
-                                    <div class="drop-down-list-icon">
-                                        <span>
-                                            <svg width="6" height="9" viewBox="0 0 6 9" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <rect x="1.5" y="0.818359" width="5.78538" height="1.28564"
-                                                    transform="rotate(45 1.5 0.818359)" />
-                                                <rect x="5.58984" y="4.90918" width="5.78538" height="1.28564"
-                                                    transform="rotate(135 5.58984 4.90918)" />
-                                            </svg>
-                                        </span>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="category-list-item">
-                            <a href="product-sidebar.html">
-                                <div class="dropdown-item d-flex justify-content-between align-items-center">
-                                    <div class="dropdown-list-item d-flex">
-                                        <span class="dropdown-img">
-                                            <img src="/theme/client/assets/images/homepage-one/category-img/shoes.webp"
-                                                alt="sweaters">
-                                        </span>
-                                        <span class="dropdown-text">
-                                            Boots
-                                        </span>
-                                    </div>
-                                    <div class="drop-down-list-icon">
-                                        <span>
-                                            <svg width="6" height="9" viewBox="0 0 6 9" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <rect x="1.5" y="0.818359" width="5.78538" height="1.28564"
-                                                    transform="rotate(45 1.5 0.818359)" />
-                                                <rect x="5.58984" y="4.90918" width="5.78538" height="1.28564"
-                                                    transform="rotate(135 5.58984 4.90918)" />
-                                            </svg>
-                                        </span>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="category-list-item">
-                            <a href="product-sidebar.html">
-                                <div class="dropdown-item d-flex justify-content-between align-items-center">
-                                    <div class="dropdown-list-item d-flex">
-                                        <span class="dropdown-img">
-                                            <img src="/theme/client/assets/images/homepage-one/category-img/gift.webp" alt="gift">
-                                        </span>
-                                        <span class="dropdown-text">
-                                            Gifts
-                                        </span>
-                                    </div>
-                                    <div class="drop-down-list-icon">
-                                        <span>
-                                            <svg width="6" height="9" viewBox="0 0 6 9" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <rect x="1.5" y="0.818359" width="5.78538" height="1.28564"
-                                                    transform="rotate(45 1.5 0.818359)" />
-                                                <rect x="5.58984" y="4.90918" width="5.78538" height="1.28564"
-                                                    transform="rotate(135 5.58984 4.90918)" />
-                                            </svg>
-                                        </span>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="category-list-item">
-                            <a href="product-sidebar.html">
-                                <div class="dropdown-item d-flex justify-content-between align-items-center">
-                                    <div class="dropdown-list-item d-flex">
-                                        <span class="dropdown-img">
-                                            <img src="/theme/client/assets/images/homepage-one/category-img/sneakers.webp"
-                                                alt="sneakers">
-                                        </span>
-                                        <span class="dropdown-text">
-                                            Sneakers
-                                        </span>
-                                    </div>
-                                    <div class="drop-down-list-icon">
-                                        <span>
-                                            <svg width="6" height="9" viewBox="0 0 6 9" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <rect x="1.5" y="0.818359" width="5.78538" height="1.28564"
-                                                    transform="rotate(45 1.5 0.818359)" />
-                                                <rect x="5.58984" y="4.90918" width="5.78538" height="1.28564"
-                                                    transform="rotate(135 5.58984 4.90918)" />
-                                            </svg>
-                                        </span>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="category-list-item">
-                            <a href="product-sidebar.html">
-                                <div class="dropdown-item d-flex justify-content-between align-items-center">
-                                    <div class="dropdown-list-item d-flex">
-                                        <span class="dropdown-img">
-                                            <img src="/theme/client/assets/images/homepage-one/category-img/watch.webp"
-                                                alt="watch">
-                                        </span>
-                                        <span class="dropdown-text">
-                                            Watches
-                                        </span>
-                                    </div>
-                                    <div class="drop-down-list-icon">
-                                        <span>
-                                            <svg width="6" height="9" viewBox="0 0 6 9" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <rect x="1.5" y="0.818359" width="5.78538" height="1.28564"
-                                                    transform="rotate(45 1.5 0.818359)" />
-                                                <rect x="5.58984" y="4.90918" width="5.78538" height="1.28564"
-                                                    transform="rotate(135 5.58984 4.90918)" />
-                                            </svg>
-                                        </span>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="category-list-item">
-                            <a href="product-sidebar.html">
-                                <div class="dropdown-item d-flex justify-content-between align-items-center">
-                                    <div class="dropdown-list-item d-flex">
-                                        <span class="dropdown-img">
-                                            <img src="/theme/client/assets/images/homepage-one/category-img/ring.webp" alt="ring">
-                                        </span>
-                                        <span class="dropdown-text">
-                                            Gold Ring
-                                        </span>
-                                    </div>
-                                    <div class="drop-down-list-icon">
-                                        <span>
-                                            <svg width="6" height="9" viewBox="0 0 6 9" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <rect x="1.5" y="0.818359" width="5.78538" height="1.28564"
-                                                    transform="rotate(45 1.5 0.818359)" />
-                                                <rect x="5.58984" y="4.90918" width="5.78538" height="1.28564"
-                                                    transform="rotate(135 5.58984 4.90918)" />
-                                            </svg>
-                                        </span>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="category-list-item">
-                            <a href="product-sidebar.html">
-                                <div class="dropdown-item d-flex justify-content-between align-items-center">
-                                    <div class="dropdown-list-item d-flex">
-                                        <span class="dropdown-img">
-                                            <img src="/theme/client/assets/images/homepage-one/category-img/cap.webp" alt="cap">
-                                        </span>
-                                        <span class="dropdown-text">
-                                            Cap
-                                        </span>
-                                    </div>
-                                    <div class="drop-down-list-icon">
-                                        <span>
-                                            <svg width="6" height="9" viewBox="0 0 6 9" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <rect x="1.5" y="0.818359" width="5.78538" height="1.28564"
-                                                    transform="rotate(45 1.5 0.818359)" />
-                                                <rect x="5.58984" y="4.90918" width="5.78538" height="1.28564"
-                                                    transform="rotate(135 5.58984 4.90918)" />
-                                            </svg>
-                                        </span>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="category-list-item">
-                            <a href="product-sidebar.html">
-                                <div class="dropdown-item d-flex justify-content-between align-items-center">
-                                    <div class="dropdown-list-item d-flex">
-                                        <span class="dropdown-img">
-                                            <img src="/theme/client/assets/images/homepage-one/category-img/glass.webp"
-                                                alt="glass">
-                                        </span>
-                                        <span class="dropdown-text">
-                                            Sunglasses
-                                        </span>
-                                    </div>
-                                    <div class="drop-down-list-icon">
-                                        <span>
-                                            <svg width="6" height="9" viewBox="0 0 6 9" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <rect x="1.5" y="0.818359" width="5.78538" height="1.28564"
-                                                    transform="rotate(45 1.5 0.818359)" />
-                                                <rect x="5.58984" y="4.90918" width="5.78538" height="1.28564"
-                                                    transform="rotate(135 5.58984 4.90918)" />
-                                            </svg>
-                                        </span>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="category-list-item">
-                            <a href="product-sidebar.html">
-                                <div class="dropdown-item d-flex justify-content-between align-items-center">
-                                    <div class="dropdown-list-item d-flex">
-                                        <span class="dropdown-img">
-                                            <img src="/theme/client/assets/images/homepage-one/category-img/baby.webp" alt="baby">
-                                        </span>
-                                        <span class="dropdown-text">
-                                            Baby Shop
-                                        </span>
-                                    </div>
-                                    <div class="drop-down-list-icon">
-                                        <span>
-                                            <svg width="6" height="9" viewBox="0 0 6 9" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <rect x="1.5" y="0.818359" width="5.78538" height="1.28564"
-                                                    transform="rotate(45 1.5 0.818359)" />
-                                                <rect x="5.58984" y="4.90918" width="5.78538" height="1.28564"
-                                                    transform="rotate(135 5.58984 4.90918)" />
-                                            </svg>
-                                        </span>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
+                        
+                        @endforeach
+                        
+                        
                     </ul>
                 </div>
             </div>
@@ -647,315 +415,54 @@
                             </svg>
                         </span>
                         <span class="list-text">
-                            All Categories
+                            Tất cả danh mục
                         </span>
                     </button>
                     <div class="category-dropdown position-absolute" id="subMenu">
                         <ul class="category-list">
-                            <li class="category-list-item">
-                                <a href="product-sidebar.html">
-                                    <div class="dropdown-item">
-                                        <div class="dropdown-list-item">
-                                            <span class="dropdown-img">
-                                                <img src="/theme/client/assets/images/homepage-one/category-img/dresses.webp"
-                                                    alt="dress">
-                                            </span>
-                                            <span class="dropdown-text">
-                                                Dresses
-                                            </span>
+                            @foreach ($categories as $cate)
+                                <li class="category-list-item">
+                                    <a href="product-sidebar.html">
+                                        <div class="dropdown-item d-flex justify-content-between align-items-center">
+                                            <div class="dropdown-list-item d-flex">
+                                                <span class="dropdown-img">
+                                                    <img src="{{\Storage::url($cate->icon)}}" alt="Bags">
+                                                </span>
+                                                <span class="dropdown-text">
+                                                    {{ $cate->name }}
+                                                </span>
+                                            </div>
+                                            <div class="drop-down-list-icon">
+                                                <span>
+                                                    <svg width="6" height="9" viewBox="0 0 6 9"
+                                                        fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <rect x="1.5" y="0.818359" width="5.78538" height="1.28564"
+                                                            transform="rotate(45 1.5 0.818359)" />
+                                                        <rect x="5.58984" y="4.90918" width="5.78538" height="1.28564"
+                                                            transform="rotate(135 5.58984 4.90918)" />
+                                                    </svg>
+                                                </span>
+                                            </div>
                                         </div>
-                                        <div class="drop-down-list-icon">
-                                            <span>
-                                                <svg width="6" height="9" viewBox="0 0 6 9" fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <rect x="1.5" y="0.818359" width="5.78538" height="1.28564"
-                                                        transform="rotate(45 1.5 0.818359)" fill="#1D1D1D" />
-                                                    <rect x="5.58984" y="4.90918" width="5.78538" height="1.28564"
-                                                        transform="rotate(135 5.58984 4.90918)" fill="#1D1D1D" />
-                                                </svg>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="category-list-item">
-                                <a href="product-sidebar.html">
-                                    <div class="dropdown-item d-flex justify-content-between align-items-center">
-                                        <div class="dropdown-list-item d-flex">
-                                            <span class="dropdown-img">
-                                                <img src="/theme/client/assets/images/homepage-one/category-img/bags.webp"
-                                                    alt="Bags">
-                                            </span>
-                                            <span class="dropdown-text">
-                                                Bags
-                                            </span>
-                                        </div>
-                                        <div class="drop-down-list-icon">
-                                            <span>
-                                                <svg width="6" height="9" viewBox="0 0 6 9" fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <rect x="1.5" y="0.818359" width="5.78538" height="1.28564"
-                                                        transform="rotate(45 1.5 0.818359)" />
-                                                    <rect x="5.58984" y="4.90918" width="5.78538" height="1.28564"
-                                                        transform="rotate(135 5.58984 4.90918)" />
-                                                </svg>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="category-list-item">
-                                <a href="product-sidebar.html">
-                                    <div class="dropdown-item d-flex justify-content-between align-items-center">
-                                        <div class="dropdown-list-item d-flex">
-                                            <span class="dropdown-img">
-                                                <img src="/theme/client/assets/images/homepage-one/category-img/sweaters.webp"
-                                                    alt="sweaters">
-                                            </span>
-                                            <span class="dropdown-text">
-                                                Sweaters
-                                            </span>
-                                        </div>
-                                        <div class="drop-down-list-icon">
-                                            <span>
-                                                <svg width="6" height="9" viewBox="0 0 6 9" fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <rect x="1.5" y="0.818359" width="5.78538" height="1.28564"
-                                                        transform="rotate(45 1.5 0.818359)" />
-                                                    <rect x="5.58984" y="4.90918" width="5.78538" height="1.28564"
-                                                        transform="rotate(135 5.58984 4.90918)" />
-                                                </svg>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="category-list-item">
-                                <a href="product-sidebar.html">
-                                    <div class="dropdown-item d-flex justify-content-between align-items-center">
-                                        <div class="dropdown-list-item d-flex">
-                                            <span class="dropdown-img">
-                                                <img src="/theme/client/assets/images/homepage-one/category-img/shoes.webp"
-                                                    alt="sweaters">
-                                            </span>
-                                            <span class="dropdown-text">
-                                                Boots
-                                            </span>
-                                        </div>
-                                        <div class="drop-down-list-icon">
-                                            <span>
-                                                <svg width="6" height="9" viewBox="0 0 6 9" fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <rect x="1.5" y="0.818359" width="5.78538" height="1.28564"
-                                                        transform="rotate(45 1.5 0.818359)" />
-                                                    <rect x="5.58984" y="4.90918" width="5.78538" height="1.28564"
-                                                        transform="rotate(135 5.58984 4.90918)" />
-                                                </svg>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="category-list-item">
-                                <a href="product-sidebar.html">
-                                    <div class="dropdown-item d-flex justify-content-between align-items-center">
-                                        <div class="dropdown-list-item d-flex">
-                                            <span class="dropdown-img">
-                                                <img src="/theme/client/assets/images/homepage-one/category-img/gift.webp"
-                                                    alt="gift">
-                                            </span>
-                                            <span class="dropdown-text">
-                                                Gifts
-                                            </span>
-                                        </div>
-                                        <div class="drop-down-list-icon">
-                                            <span>
-                                                <svg width="6" height="9" viewBox="0 0 6 9" fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <rect x="1.5" y="0.818359" width="5.78538" height="1.28564"
-                                                        transform="rotate(45 1.5 0.818359)" />
-                                                    <rect x="5.58984" y="4.90918" width="5.78538" height="1.28564"
-                                                        transform="rotate(135 5.58984 4.90918)" />
-                                                </svg>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="category-list-item">
-                                <a href="product-sidebar.html">
-                                    <div class="dropdown-item d-flex justify-content-between align-items-center">
-                                        <div class="dropdown-list-item d-flex">
-                                            <span class="dropdown-img">
-                                                <img src="/theme/client/assets/images/homepage-one/category-img/sneakers.webp"
-                                                    alt="sneakers">
-                                            </span>
-                                            <span class="dropdown-text">
-                                                Sneakers
-                                            </span>
-                                        </div>
-                                        <div class="drop-down-list-icon">
-                                            <span>
-                                                <svg width="6" height="9" viewBox="0 0 6 9" fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <rect x="1.5" y="0.818359" width="5.78538" height="1.28564"
-                                                        transform="rotate(45 1.5 0.818359)" fill="#1D1D1D" />
-                                                    <rect x="5.58984" y="4.90918" width="5.78538" height="1.28564"
-                                                        transform="rotate(135 5.58984 4.90918)" fill="#1D1D1D" />
-                                                </svg>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="category-list-item">
-                                <a href="product-sidebar.html">
-                                    <div class="dropdown-item d-flex justify-content-between align-items-center">
-                                        <div class="dropdown-list-item d-flex">
-                                            <span class="dropdown-img">
-                                                <img src="/theme/client/assets/images/homepage-one/category-img/watch.webp"
-                                                    alt="watch">
-                                            </span>
-                                            <span class="dropdown-text">
-                                                Watches
-                                            </span>
-                                        </div>
-                                        <div class="drop-down-list-icon">
-                                            <span>
-                                                <svg width="6" height="9" viewBox="0 0 6 9" fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <rect x="1.5" y="0.818359" width="5.78538" height="1.28564"
-                                                        transform="rotate(45 1.5 0.818359)" />
-                                                    <rect x="5.58984" y="4.90918" width="5.78538" height="1.28564"
-                                                        transform="rotate(135 5.58984 4.90918)" />
-                                                </svg>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="category-list-item">
-                                <a href="product-sidebar.html">
-                                    <div class="dropdown-item d-flex justify-content-between align-items-center">
-                                        <div class="dropdown-list-item d-flex">
-                                            <span class="dropdown-img">
-                                                <img src="/theme/client/assets/images/homepage-one/category-img/ring.webp"
-                                                    alt="ring">
-                                            </span>
-                                            <span class="dropdown-text">
-                                                Gold Ring
-                                            </span>
-                                        </div>
-                                        <div class="drop-down-list-icon">
-                                            <span>
-                                                <svg width="6" height="9" viewBox="0 0 6 9" fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <rect x="1.5" y="0.818359" width="5.78538" height="1.28564"
-                                                        transform="rotate(45 1.5 0.818359)" />
-                                                    <rect x="5.58984" y="4.90918" width="5.78538" height="1.28564"
-                                                        transform="rotate(135 5.58984 4.90918)" />
-                                                </svg>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="category-list-item">
-                                <a href="product-sidebar.html">
-                                    <div class="dropdown-item d-flex justify-content-between align-items-center">
-                                        <div class="dropdown-list-item d-flex">
-                                            <span class="dropdown-img">
-                                                <img src="/theme/client/assets/images/homepage-one/category-img/cap.webp"
-                                                    alt="cap">
-                                            </span>
-                                            <span class="dropdown-text">
-                                                Cap
-                                            </span>
-                                        </div>
-                                        <div class="drop-down-list-icon">
-                                            <span>
-                                                <svg width="6" height="9" viewBox="0 0 6 9" fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <rect x="1.5" y="0.818359" width="5.78538" height="1.28564"
-                                                        transform="rotate(45 1.5 0.818359)" />
-                                                    <rect x="5.58984" y="4.90918" width="5.78538" height="1.28564"
-                                                        transform="rotate(135 5.58984 4.90918)" />
-                                                </svg>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="category-list-item">
-                                <a href="product-sidebar.html">
-                                    <div class="dropdown-item d-flex justify-content-between align-items-center">
-                                        <div class="dropdown-list-item d-flex">
-                                            <span class="dropdown-img">
-                                                <img src="/theme/client/assets/images/homepage-one/category-img/glass.webp"
-                                                    alt="glass">
-                                            </span>
-                                            <span class="dropdown-text">
-                                                Sunglasses
-                                            </span>
-                                        </div>
-                                        <div class="drop-down-list-icon">
-                                            <span>
-                                                <svg width="6" height="9" viewBox="0 0 6 9" fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <rect x="1.5" y="0.818359" width="5.78538" height="1.28564"
-                                                        transform="rotate(45 1.5 0.818359)" />
-                                                    <rect x="5.58984" y="4.90918" width="5.78538" height="1.28564"
-                                                        transform="rotate(135 5.58984 4.90918)" />
-                                                </svg>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="category-list-item">
-                                <a href="product-sidebar.html">
-                                    <div class="dropdown-item d-flex justify-content-between align-items-center">
-                                        <div class="dropdown-list-item d-flex">
-                                            <span class="dropdown-img">
-                                                <img src="/theme/client/assets/images/homepage-one/category-img/baby.webp"
-                                                    alt="baby">
-                                            </span>
-                                            <span class="dropdown-text">
-                                                Baby Shop
-                                            </span>
-                                        </div>
-                                        <div class="drop-down-list-icon">
-                                            <span>
-                                                <svg width="6" height="9" viewBox="0 0 6 9" fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <rect x="1.5" y="0.818359" width="5.78538" height="1.28564"
-                                                        transform="rotate(45 1.5 0.818359)" />
-                                                    <rect x="5.58984" y="4.90918" width="5.78538" height="1.28564"
-                                                        transform="rotate(135 5.58984 4.90918)" />
-                                                </svg>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
+                                    </a>
+                                </li>
+                            @endforeach
+
+
+
                         </ul>
                     </div>
                 </div>
                 <div class="header-nav-menu">
                     <ul class="menu-list">
                         <li>
-                            <a href="index-2.html">
-                                <span class="list-text">Home</span>
+                            <a href="{{route('index')}}">
+                                <span class="list-text">Trang chủ</span>
                             </a>
-                            <ul class="header-sub-menu">
-                                <li><a href="index-2.html">Home-1</a></li>
-                                <li><a href="home-two.html">Home-2</a></li>
-                                <li><a href="home-three.html">Home-3</a></li>
-                            </ul>
                         </li>
                         <li class="mega-menu">
                             <a href="product-sidebar.html">
-                                <span class="list-text">Shop</span>
+                                <span class="list-text">Cửa hàng</span>
                                 <span>
                                     <svg width="10" height="10" viewBox="0 0 10 10" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
@@ -972,41 +479,11 @@
                                     </svg>
                                 </span>
                             </a>
-                            <div class="shop-menu">
-                                <div class="menu-wrapper">
-                                    <div class="menu-list">
-                                        <h5 class="menu-title">Dresses</h5>
-                                        <ul>
-                                            <li><a href="product-sidebar.html">Shirt</a></li>
-                                            <li><a href="product-sidebar.html">Skart</a></li>
-                                            <li><a href="product-sidebar.html"> T-Shirt</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="menu-list">
-                                        <h5 class="menu-title">Bags</h5>
-                                        <ul>
-                                            <li><a href="product-sidebar.html">HandBags</a></li>
-                                            <li><a href="product-sidebar.html">Mobile Bags</a></li>
-                                            <li><a href="product-sidebar.html">School Bags</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="menu-list">
-                                        <h5 class="menu-title">Cosmetics</h5>
-                                        <ul>
-                                            <li><a href="product-sidebar.html">Liptics</a></li>
-                                            <li><a href="product-sidebar.html">Foundation</a></li>
-                                            <li><a href="product-sidebar.html"> Eye Liner</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="shop-menu-img">
-                                    <img src="/theme/client/assets/images/homepage-one/empty-wishlist.webp" alt="img">
-                                </div>
-                            </div>
+                            
                         </li>
                         <li>
                             <a href="#">
-                                <span class="list-text">Pages</span>
+                                <span class="list-text">Trang</span>
                                 <span>
                                     <svg width="10" height="10" viewBox="0 0 10 10" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
@@ -1024,17 +501,15 @@
                                 </span>
                             </a>
                             <ul class="header-sub-menu">
-                                <li><a href="product-info.html">Product-details</a></li>
-                                <li><a href="privacy.html">Privacy Policy</a></li>
-                                <li><a href="terms.html">Terms & Condition</a></li>
-                                <li><a href="faq.html">FAQ</a></li>
-                                <li><a href="product-sidebar.html">Shop Category Icon</a></li>
-                                <li><a href="product-sidebar.html">Shop List View</a></li>
+                                <li><a href="privacy.html">Chính sách bảo mật</a></li>
+                                <li><a href="terms.html">Điều khoản và điều kiện</a></li>
+                                <li><a href="faq.html">Câu hỏi thường gặp</a></li>
+                                <li><a href="product-sidebar.html">Xem danh sách cửa hàng</a></li>
                             </ul>
                         </li>
                         <li>
                             <a href="about.html">
-                                <span class="list-text">About</span>
+                                <span class="list-text">Về chúng tôi</span>
                             </a>
                         </li>
                         <li>
@@ -1042,32 +517,60 @@
                                 <span class="list-text">Blog</span>
                             </a>
                             <ul class="header-sub-menu">
-                                <li><a href="blogs-details.html">Blog-details</a></li>
+                                <li><a href="blogs-details.html">Chi tiết Blog</a></li>
                             </ul>
-                        </li>
+                        </li> 
                         <li>
-                            <a href="user-profile.html">
-                                <span class="list-text">User Dashboard</span>
+                            <a href="dashboard">
+                                <span class="list-text">Thông tin người dùng</span>
                             </a>
                         </li>
                         <li>
                             <a href="contact-us.html">
-                                <span class="list-text">Contact</span>
+                                <span class="list-text">Liên hệ</span>
                             </a>
                         </li>
                     </ul>
                 </div>
                 <div class="header-vendor-btn">
-                    <a href="{{ route('register.seller') }}" class="shop-btn">
-                        <span class="list-text shop-text">Became Vendor</span>
+                    
+                    @if (auth()->check() && auth()->user()->hasRole(3))
+                        <a href="{{ route('seller.index') }}" class="shop-btn">
+                            <span class="list-text shop-text">Trở thành người bán</span>
+                            <span class="icon">
+                                <svg width="24" height="16" viewBox="0 0 24 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M20.257 7.07205C20.038 7.07205 19.8474 7.07205 19.6563 7.07205C17.4825 7.07205 15.3086 7.07205 13.1352 7.07205C10.1545 7.07205 7.17336 7.0725 4.19265 7.0725C3.30392 7.0725 2.41519 7.07024 1.52646 7.07295C1.12124 7.07431 0.809811 7.25265 0.625785 7.62651C0.43866 8.00623 0.488204 8.37556 0.737704 8.70426C0.932347 8.96027 1.20529 9.08173 1.52867 9.08037C2.20948 9.07766 2.8903 9.07902 3.57111 9.07902C5.95285 9.07902 8.33415 9.07902 10.7159 9.07902C13.782 9.07902 16.8485 9.07902 19.9146 9.07902C20.0274 9.07902 20.1398 9.07902 20.2822 9.07902C20.1871 9.18332 20.1141 9.26865 20.0358 9.34857C19.5656 9.82672 19.0922 10.3022 18.6229 10.7812C18.1363 11.2779 17.6541 11.7791 17.1675 12.2757C16.4942 12.9634 15.8116 13.6415 15.1476 14.3391C14.9096 14.5893 14.8455 14.9157 14.9406 15.2575C15.156 16.0305 16.0567 16.2499 16.6119 15.6769C17.4342 14.8286 18.2655 13.9892 19.0927 13.1458C19.6948 12.5317 20.2968 11.9172 20.8985 11.3023C21.5952 10.5902 22.2911 9.87729 22.9878 9.1648C23.1059 9.04425 23.2249 8.9246 23.3435 8.8045C23.6903 8.45367 23.7239 7.84278 23.3943 7.4766C22.998 7.03683 22.5852 6.61241 22.1756 6.18573C21.7965 5.79066 21.4134 5.39965 21.0303 5.00909C20.6733 4.64473 20.3132 4.28306 19.9553 3.91915C19.6147 3.57284 19.2754 3.22563 18.9356 2.87887C18.5154 2.44948 18.0951 2.01964 17.6744 1.5907C17.2511 1.15861 16.8198 0.734188 16.4057 0.29261C16.0363 -0.101559 15.3697 -0.0816927 15.0344 0.257392C14.6238 0.672782 14.5999 1.26381 14.995 1.68552C15.3378 2.0517 15.6957 2.40342 16.0465 2.76192C16.929 3.66449 17.8111 4.56797 18.6937 5.47054C19.1829 5.97081 19.6735 6.47018 20.1632 6.97046C20.1885 6.99574 20.2123 7.02329 20.257 7.07205Z" />
+                                </svg>
+                            </span>
+                        </a>
+                    @elseif(auth()->check() && auth()->user()->hasRole(1))
+                    <a href="{{ route('admin.index') }}" class="shop-btn">
+                        <span class="list-text shop-text">Truy cập quản trị</span>
                         <span class="icon">
-                            <svg width="24" height="16" viewBox="0 0 24 16" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M20.257 7.07205C20.038 7.07205 19.8474 7.07205 19.6563 7.07205C17.4825 7.07205 15.3086 7.07205 13.1352 7.07205C10.1545 7.07205 7.17336 7.0725 4.19265 7.0725C3.30392 7.0725 2.41519 7.07024 1.52646 7.07295C1.12124 7.07431 0.809811 7.25265 0.625785 7.62651C0.43866 8.00623 0.488204 8.37556 0.737704 8.70426C0.932347 8.96027 1.20529 9.08173 1.52867 9.08037C2.20948 9.07766 2.8903 9.07902 3.57111 9.07902C5.95285 9.07902 8.33415 9.07902 10.7159 9.07902C13.782 9.07902 16.8485 9.07902 19.9146 9.07902C20.0274 9.07902 20.1398 9.07902 20.2822 9.07902C20.1871 9.18332 20.1141 9.26865 20.0358 9.34857C19.5656 9.82672 19.0922 10.3022 18.6229 10.7812C18.1363 11.2779 17.6541 11.7791 17.1675 12.2757C16.4942 12.9634 15.8116 13.6415 15.1476 14.3391C14.9096 14.5893 14.8455 14.9157 14.9406 15.2575C15.156 16.0305 16.0567 16.2499 16.6119 15.6769C17.4342 14.8286 18.2655 13.9892 19.0927 13.1458C19.6948 12.5317 20.2968 11.9172 20.8985 11.3023C21.5952 10.5902 22.2911 9.87729 22.9878 9.1648C23.1059 9.04425 23.2249 8.9246 23.3435 8.8045C23.6903 8.45367 23.7239 7.84278 23.3943 7.4766C22.998 7.03683 22.5852 6.61241 22.1756 6.18573C21.7965 5.79066 21.4134 5.39965 21.0303 5.00909C20.6733 4.64473 20.3132 4.28306 19.9553 3.91915C19.6147 3.57284 19.2754 3.22563 18.9356 2.87887C18.5154 2.44948 18.0951 2.01964 17.6744 1.5907C17.2511 1.15861 16.8198 0.734188 16.4057 0.29261C16.0363 -0.101559 15.3697 -0.0816927 15.0344 0.257392C14.6238 0.672782 14.5999 1.26381 14.995 1.68552C15.3378 2.0517 15.6957 2.40342 16.0465 2.76192C16.929 3.66449 17.8111 4.56797 18.6937 5.47054C19.1829 5.97081 19.6735 6.47018 20.1632 6.97046C20.1885 6.99574 20.2123 7.02329 20.257 7.07205Z" />
+                            <svg width="24" height="16" viewBox="0 0 24 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M20.257 7.07205C20.038 7.07205 19.8474 7.07205 19.6563 7.07205C17.4825 7.07205 15.3086 7.07205 13.1352 7.07205C10.1545 7.07205 7.17336 7.0725 4.19265 7.0725C3.30392 7.0725 2.41519 7.07024 1.52646 7.07295C1.12124 7.07431 0.809811 7.25265 0.625785 7.62651C0.43866 8.00623 0.488204 8.37556 0.737704 8.70426C0.932347 8.96027 1.20529 9.08173 1.52867 9.08037C2.20948 9.07766 2.8903 9.07902 3.57111 9.07902C5.95285 9.07902 8.33415 9.07902 10.7159 9.07902C13.782 9.07902 16.8485 9.07902 19.9146 9.07902C20.0274 9.07902 20.1398 9.07902 20.2822 9.07902C20.1871 9.18332 20.1141 9.26865 20.0358 9.34857C19.5656 9.82672 19.0922 10.3022 18.6229 10.7812C18.1363 11.2779 17.6541 11.7791 17.1675 12.2757C16.4942 12.9634 15.8116 13.6415 15.1476 14.3391C14.9096 14.5893 14.8455 14.9157 14.9406 15.2575C15.156 16.0305 16.0567 16.2499 16.6119 15.6769C17.4342 14.8286 18.2655 13.9892 19.0927 13.1458C19.6948 12.5317 20.2968 11.9172 20.8985 11.3023C21.5952 10.5902 22.2911 9.87729 22.9878 9.1648C23.1059 9.04425 23.2249 8.9246 23.3435 8.8045C23.6903 8.45367 23.7239 7.84278 23.3943 7.4766C22.998 7.03683 22.5852 6.61241 22.1756 6.18573C21.7965 5.79066 21.4134 5.39965 21.0303 5.00909C20.6733 4.64473 20.3132 4.28306 19.9553 3.91915C19.6147 3.57284 19.2754 3.22563 18.9356 2.87887C18.5154 2.44948 18.0951 2.01964 17.6744 1.5907C17.2511 1.15861 16.8198 0.734188 16.4057 0.29261C16.0363 -0.101559 15.3697 -0.0816927 15.0344 0.257392C14.6238 0.672782 14.5999 1.26381 14.995 1.68552C15.3378 2.0517 15.6957 2.40342 16.0465 2.76192C16.929 3.66449 17.8111 4.56797 18.6937 5.47054C19.1829 5.97081 19.6735 6.47018 20.1632 6.97046C20.1885 6.99574 20.2123 7.02329 20.257 7.07205Z" />
                             </svg>
                         </span>
                     </a>
+                    @elseif(auth()->check() && auth()->user()->hasRole(2))
+                    <a href="{{ route('seller.index') }}" class="shop-btn">
+                        <span class="list-text shop-text">Truy cập quản trị</span>
+                        <span class="icon">
+                            <svg width="24" height="16" viewBox="0 0 24 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M20.257 7.07205C20.038 7.07205 19.8474 7.07205 19.6563 7.07205C17.4825 7.07205 15.3086 7.07205 13.1352 7.07205C10.1545 7.07205 7.17336 7.0725 4.19265 7.0725C3.30392 7.0725 2.41519 7.07024 1.52646 7.07295C1.12124 7.07431 0.809811 7.25265 0.625785 7.62651C0.43866 8.00623 0.488204 8.37556 0.737704 8.70426C0.932347 8.96027 1.20529 9.08173 1.52867 9.08037C2.20948 9.07766 2.8903 9.07902 3.57111 9.07902C5.95285 9.07902 8.33415 9.07902 10.7159 9.07902C13.782 9.07902 16.8485 9.07902 19.9146 9.07902C20.0274 9.07902 20.1398 9.07902 20.2822 9.07902C20.1871 9.18332 20.1141 9.26865 20.0358 9.34857C19.5656 9.82672 19.0922 10.3022 18.6229 10.7812C18.1363 11.2779 17.6541 11.7791 17.1675 12.2757C16.4942 12.9634 15.8116 13.6415 15.1476 14.3391C14.9096 14.5893 14.8455 14.9157 14.9406 15.2575C15.156 16.0305 16.0567 16.2499 16.6119 15.6769C17.4342 14.8286 18.2655 13.9892 19.0927 13.1458C19.6948 12.5317 20.2968 11.9172 20.8985 11.3023C21.5952 10.5902 22.2911 9.87729 22.9878 9.1648C23.1059 9.04425 23.2249 8.9246 23.3435 8.8045C23.6903 8.45367 23.7239 7.84278 23.3943 7.4766C22.998 7.03683 22.5852 6.61241 22.1756 6.18573C21.7965 5.79066 21.4134 5.39965 21.0303 5.00909C20.6733 4.64473 20.3132 4.28306 19.9553 3.91915C19.6147 3.57284 19.2754 3.22563 18.9356 2.87887C18.5154 2.44948 18.0951 2.01964 17.6744 1.5907C17.2511 1.15861 16.8198 0.734188 16.4057 0.29261C16.0363 -0.101559 15.3697 -0.0816927 15.0344 0.257392C14.6238 0.672782 14.5999 1.26381 14.995 1.68552C15.3378 2.0517 15.6957 2.40342 16.0465 2.76192C16.929 3.66449 17.8111 4.56797 18.6937 5.47054C19.1829 5.97081 19.6735 6.47018 20.1632 6.97046C20.1885 6.99574 20.2123 7.02329 20.257 7.07205Z" />
+                            </svg>
+                        </span>
+                    </a>
+                    @else
+                        <a href="{{ route('login') }}" class="shop-btn">
+                            <span class="list-text shop-text">Đăng nhập/ Đăng ký</span>
+                            <span class="icon">
+                                <svg width="24" height="16" viewBox="0 0 24 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M20.257 7.07205C20.038 7.07205 19.8474 7.07205 19.6563 7.07205C17.4825 7.07205 15.3086 7.07205 13.1352 7.07205C10.1545 7.07205 7.17336 7.0725 4.19265 7.0725C3.30392 7.0725 2.41519 7.07024 1.52646 7.07295C1.12124 7.07431 0.809811 7.25265 0.625785 7.62651C0.43866 8.00623 0.488204 8.37556 0.737704 8.70426C0.932347 8.96027 1.20529 9.08173 1.52867 9.08037C2.20948 9.07766 2.8903 9.07902 3.57111 9.07902C5.95285 9.07902 8.33415 9.07902 10.7159 9.07902C13.782 9.07902 16.8485 9.07902 19.9146 9.07902C20.0274 9.07902 20.1398 9.07902 20.2822 9.07902C20.1871 9.18332 20.1141 9.26865 20.0358 9.34857C19.5656 9.82672 19.0922 10.3022 18.6229 10.7812C18.1363 11.2779 17.6541 11.7791 17.1675 12.2757C16.4942 12.9634 15.8116 13.6415 15.1476 14.3391C14.9096 14.5893 14.8455 14.9157 14.9406 15.2575C15.156 16.0305 16.0567 16.2499 16.6119 15.6769C17.4342 14.8286 18.2655 13.9892 19.0927 13.1458C19.6948 12.5317 20.2968 11.9172 20.8985 11.3023C21.5952 10.5902 22.2911 9.87729 22.9878 9.1648C23.1059 9.04425 23.2249 8.9246 23.3435 8.8045C23.6903 8.45367 23.7239 7.84278 23.3943 7.4766C22.998 7.03683 22.5852 6.61241 22.1756 6.18573C21.7965 5.79066 21.4134 5.39965 21.0303 5.00909C20.6733 4.64473 20.3132 4.28306 19.9553 3.91915C19.6147 3.57284 19.2754 3.22563 18.9356 2.87887C18.5154 2.44948 18.0951 2.01964 17.6744 1.5907C17.2511 1.15861 16.8198 0.734188 16.4057 0.29261C16.0363 -0.101559 15.3697 -0.0816927 15.0344 0.257392C14.6238 0.672782 14.5999 1.26381 14.995 1.68552C15.3378 2.0517 15.6957 2.40342 16.0465 2.76192C16.929 3.66449 17.8111 4.56797 18.6937 5.47054C19.1829 5.97081 19.6735 6.47018 20.1632 6.97046C20.1885 6.99574 20.2123 7.02329 20.257 7.07205Z" />
+                                </svg>
+                            </span>
+                        </a>
+                    @endif
                 </div>
             </div>
         </div>

@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Client\HomeController;
+use App\Http\Controllers\Client\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Auth\LoginController;
@@ -11,7 +13,9 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\SellerRegisterController;
-use App\Http\Controllers\HomeController;
+
+
+Route::get('/', [HomeController::class, 'index'])->name('index');
 
 
 
@@ -46,6 +50,7 @@ Route::middleware('auth')->group(function () {
     Route::get('register/seller', [SellerRegisterController::class, 'showRegistrationForm'])->name('register.seller');
     Route::post('register/seller', [SellerRegisterController::class, 'register']);
     Route::get('/logout', [LoginController::class,'logout'])->name('logout');
+    Route::get('/dashboard', [UserController::class, 'userDashboard'])->name('dashboard');
 });
 
 
