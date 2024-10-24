@@ -15,6 +15,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;600&amp;display=swap"
         rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Material+Icons+Outlined" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
     <!--main css-->
     <link href="{{asset('theme/admin/assets/css/bootstrap-extended.css')}}" rel="stylesheet">
     <link href="{{asset('theme/admin/sass/main.css')}}" rel="stylesheet">
