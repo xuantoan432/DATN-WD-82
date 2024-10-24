@@ -15,54 +15,29 @@ class LoginController extends Controller
 
     function logIn(Request $request)
     {
-
-        // $credentials = $request->validate([
-        //     'email' => ['required', 'email'],
-        //     'password' => ['required'],
-        // ]);
-
-        // if (Auth::attempt($credentials)) {
-        //     $request->session()->regenerate();
-
-        //     return redirect()->intended('/');
-        // }
-        // return back()->withErrors([
-        //     'email' => 'The provided credentials do not match our records.',
-        // ])->onlyInput('email');
-        /////////////////////////////////////////////////
-        // $request->validate([
-        //     'email' => 'required|email',
-        //     'password' => 'required|min:6',
-        // ]);
-
-        // $credentials = $request->only('email', 'password');
-        // $remember = $request->has('remember');
-
-        // if (Auth::attempt($credentials, $remember)) {
-        //     return redirect()->intended('/');
-        // }
-
-        // return redirect()->back()->withErrors([
-        //     'email' => 'Thông tin đăng nhập không chính xác.',
-        // ])->withInput();
-        ///////////////////////////////////////////
-
-
         $credentials = $request->validate([
             'email' => 'required|email',
             'password' => 'required',
         ]);
-    
+
+
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
 
             if ($user->hasRole(1)) {
-                return redirect()->route('seller');
+                return redirect('/admin');
             }
-            return redirect()->route('index');
+            return redirect()->intended('/');
         }
         return back()->withErrors([
             'email' => 'Email không tồn tại, vui lòng đăng ký tài khoản!',
         ]);
+    }
+
+    public function logout(){
+        Auth::logout();
+        \request() -> session() -> invalidate();
+
+        return redirect('/');
     }
 }
