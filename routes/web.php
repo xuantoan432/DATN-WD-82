@@ -11,81 +11,41 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\SellerRegisterController;
+use App\Http\Controllers\HomeController;
 
 
 
 
-Route::get('/', function () {
-    return view('client.index');
-})->name('index');
-Route::get('/1', function () {
-    return view('client.shop');
+Route::get('/', [HomeController::class, 'index'])->name('home.index');
+Route::get('/1', [HomeController::class, 'shop'])->name('home.shop');
+Route::get('/2', [HomeController::class, 'productInfo'])->name('home.product-info');
+Route::get('/4', [HomeController::class, 'contact'])->name('home.contact');
+Route::get('/5', [HomeController::class, 'about'])->name('home.about');
+Route::get('/6', [HomeController::class, 'cart'])->name('home.cart');
+Route::get('/7', [HomeController::class, 'compare'])->name('home.compare');
+Route::get('/8', [HomeController::class, 'becomeVendor'])->name('home.become-vendor');
+Route::get('/9', [HomeController::class, 'flashSale'])->name('home.flash-sale');
+Route::get('/10', [HomeController::class, 'createAccount'])->name('home.create-account');
+Route::get('/11', [HomeController::class, 'login'])->name('home.login');
+Route::get('/12', [HomeController::class, 'sellerSidebar'])->name('home.seller-sidebar');
+
+Route::middleware('guest')->group(function () {
+    Route::get('login', [LoginController::class, 'showLogInForm'])->name('login');
+    Route::post('login', [LoginController::class, 'logIn']);
+    Route::get('register', [RegisterController::class, 'showRegisterForm'])->name('register');
+    Route::post('register', [RegisterController::class, 'register'])->name('register');
+    Route::prefix('auth')->as('auth.')->group(function () {
+        Route::get('/forgot', [ForgotPasswordController::class,'showFormForgotPassword'])->name('forgot');
+        Route::post('/forgot', [ForgotPasswordController::class,'sendMailPassword'])->name('forgot');
+        Route::get('/reset-password/{token}', [ResetPasswordController::class, 'showResetForm']);
+        Route::put('/reset-password/{token}', [ResetPasswordController::class, 'reset'])->name('reset');
+    });
 });
 
-Route::get('/2', function () {
-    return view('client.product-info');
+Route::middleware('auth')->group(function () {
+    Route::get('register/seller', [SellerRegisterController::class, 'showRegistrationForm'])->name('register.seller');
+    Route::post('register/seller', [SellerRegisterController::class, 'register']);
+    Route::get('/logout', [LoginController::class,'logout'])->name('logout');
 });
 
-Route::get('/3', function () {
-    return view('client.user-profile');
-});
 
-Route::get('/4', function () {
-    return view('client.contact');
-});
-
-Route::get('/5', function () {
-    return view('client.about');
-});
-
-Route::get('/6', function () {
-    return view('client.cart');
-});
-
-Route::get('/7', function () {
-    return view('client.compaire');
-});
-
-Route::get('/8', function () {
-    return view('client.become-vendor');
-});
-
-Route::get('/9', function () {
-    return view('client.flash-sale');
-});
-
-Route::get('/10', function () {
-    return view('client.create-account');
-});
-
-Route::get('/11', function () {
-    return view('client.login');
-});
-
-Route::get('/12', function () {
-    return view('client.seller-sidebar');
-});
-
-//Route::get('/' , [PostController::class,'index'])->name('admin');
-Route::get('/seller', [SellerController::class, 'index'])->name('seller');
-Route::get('/seller/chat', [ChatController::class, 'index'])->name('chat');
-
-Route::get('/admin', [AdminController::class, 'index'])->name('admin');
-Route::resource('admin/category', CategoryController::class);
-
-Route::get('login', [LoginController::class, 'showLogInForm'])->name('login');
-Route::post('login', [LoginController::class, 'logIn']);
-
-
-Route::get('register', [RegisterController::class, 'showRegisterForm'])->name('register');
-
-Route::post('register', [RegisterController::class, 'register'])->name('register');
-
-Route::get('register/seller', [SellerRegisterController::class, 'showRegistrationForm'])->name('register.seller');
-Route::post('register/seller', [SellerRegisterController::class, 'register']);
-Route::prefix('auth')->as('auth.')->group(function () {
-    Route::get('/forgot', [ForgotPasswordController::class,'showFormForgotPassword'])->name('forgot');
-    Route::post('/forgot', [ForgotPasswordController::class,'sendMailPassword'])->name('forgot');
-    Route::get('/reset-password/{token}', [ResetPasswordController::class, 'showResetForm']);
-    Route::put('/reset-password/{token}', [ResetPasswordController::class, 'reset'])->name('reset');
- });

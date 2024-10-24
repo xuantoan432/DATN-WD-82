@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'failed' => 'Vui lòng kiểm tra lại Email haowjc Password!',
+    'failed' => 'Vui lòng kiểm tra lại Email hoặc Password!',
     'password' => 'Mật khẩu không chính xác. Vui lòng nhập lại !',
     'throttle' => 'Đăng nhập quá nhiều lần. Vui lòng thử lại sau :seconds giây.',
 

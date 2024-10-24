@@ -75,7 +75,7 @@
                                                         </div>
                                                     @else
                                                         <div class="col">
-                                                            <span class="text-muted">Không thể chỉnh sửa/xóa</span>
+                                                            <span class="text-danger">Không thể chỉnh sửa/xóa</span>
                                                         </div>
                                                     @endif
                                                 </div>

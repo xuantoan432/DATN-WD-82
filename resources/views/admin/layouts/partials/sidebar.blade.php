@@ -36,23 +36,18 @@
                             class="material-icons-outlined">arrow_right</i>Thuộc
                         tính</a>
                 </li>
-                <li><a class="has-arrow" href="javascript:;"><i
-                            class="material-icons-outlined">arrow_right</i>Category</a>
-                    <ul>
-                        <li><a href="{{ route('category.index') }}" target="_blank"><i
-                                    class="material-icons-outlined">arrow_right</i>List</a></li>
-                        <li><a href="{{ route('category.create') }}" target="_blank"><i
-                                    class="material-icons-outlined">arrow_right</i>Add new</a></li>
-                    </ul>
-                </li>
+                <li>
+                    <a href="{{ route('admin.category.index') }}"><i class="material-icons-outlined">arrow_right</i>Danh mục</a>
+                 </li>
 
                 <li><a href="{{ route('admin.roles.index') }}"><i class="material-icons-outlined">arrow_right</i>Phân
                         quyền</a>
 
                 <li><a href="{{ route('admin.tags.index') }}"><i class="material-icons-outlined">arrow_right</i>Thẻ</a>
 
-                <li><a class="has-arrow" href="javascript:;"><i
-                            class="material-icons-outlined">arrow_right</i>Bài viết</a>
+                <li>
+                    <a class="has-arrow" href="javascript:;"><i class="material-icons-outlined">arrow_right</i>Bài
+                        viết</a>
                     <ul>
                         <li><a href="{{ route('admin.posts.index') }}" target="_blank"><i
                                     class="material-icons-outlined">arrow_right</i>List</a></li>
@@ -60,14 +55,9 @@
                                     class="material-icons-outlined">arrow_right</i>Add new</a></li>
                     </ul>
                 </li>
-
+            </ul>
         </li>
     </ul>
-    </li>
-
-
-    </ul>
-    </li>
-    </ul>
+    
     <!--end navigation-->
 </div>
