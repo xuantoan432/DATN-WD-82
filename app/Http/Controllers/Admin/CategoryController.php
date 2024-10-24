@@ -15,7 +15,7 @@ class CategoryController extends Controller
     public function index()
     {
         //
-        $data = Category::orderBy('id', 'DESC')->paginate(20);
+        $data = Category::orderBy('id', 'DESC')->get();
         return view('admin.category.index', compact('data'));
     }
 
@@ -36,7 +36,7 @@ class CategoryController extends Controller
         //
         $request->validate([
             'name' => 'required|string|max:100',
-            'icon' => 'nullable|image|mimes:jpeg,png,jpg,gif',
+            'icon' => 'required|image|mimes:jpeg,png,jpg,gif',
             'fee_percentage' => 'required|numeric|min:0|max:100',
         ]);
 
