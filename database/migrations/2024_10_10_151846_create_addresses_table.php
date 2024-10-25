@@ -14,9 +14,10 @@ return new class extends Migration
         Schema::create('addresses', function (Blueprint $table) {
             $table->id();
             $table->string('address_line');
-            $table->foreignIdFor(\Kjmtrue\VietnamZone\Models\Province::class)->constrained();
-            $table->foreignIdFor(\Kjmtrue\VietnamZone\Models\Ward::class)->constrained();
-            $table->foreignIdFor(\Kjmtrue\VietnamZone\Models\District::class)->constrained();
+            $table->unsignedBigInteger('province_id');
+            $table->unsignedBigInteger('ward_id');
+            $table->unsignedBigInteger('district_id');
+
             $table->timestamps();
         });
     }

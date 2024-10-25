@@ -22,10 +22,10 @@ return new class extends Migration {
             $table->string('sku');
             $table->text('content');
             $table->decimal('price', 10, 2);
-            $table->decimal('price_sale', 10, 2)->nullable();
+
             $table->string('image');
             $table->unsignedBigInteger('views')->default(0);
-            $table->unsignedBigInteger('quantity')->default(0);
+
             $table->boolean('is_verified')->default(false);
             $table->enum('status', ['active', 'inactive', 'pending'])->default('pending');
             $table->timestamps();

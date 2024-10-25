@@ -13,19 +13,27 @@
     <!--navigation-->
     <ul class="metismenu" id="sidenav">
         <li>
-            <a href="javascript:;" class="has-arrow">
+            <a href="javascript:;" >
                 <div class="parent-icon"><i class="material-icons-outlined">home</i>
                 </div>
                 <div class="menu-title">Dashboard</div>
             </a>
+
+        </li>
+        <li>
+            <a href="#" class="has-arrow">
+                <div class="parent-icon"><i class="material-icons-outlined">widgets</i>
+                </div>
+                <div class="menu-title">Sản phẩm</div>
+            </a>
             <ul>
-                <li><a href=""><i class="material-icons-outlined">arrow_right</i>Analysis</a>
+                <li><a href="{{ route('seller.products.create') }}"><i class="material-icons-outlined">arrow_right</i>Thêm Sản Phẩm </a>
                 </li>
-                <li><a href=""><i class="material-icons-outlined">arrow_right</i>eCommerce</a>
+                <li>
+                    <a href="{{ route('seller.products.index') }}"><i class="material-icons-outlined">arrow_right</i>Danh sách Sản Phẩm</a>
                 </li>
             </ul>
         </li>
-
     </ul>
     </li>
     </ul>
