@@ -425,8 +425,8 @@
                                 <a href="product-info.html" class="product-details">{{$np->category->name}}
                                 </a>
                                 <div class="price">
-                                    <span class="price-cut">{{$np->price}}</span>
-                                    <span class="new-price">{{$np->price_sale}}</span>
+                                    {{-- <span class="price-cut">{{$np->price}}</span> --}}
+                                    <span class="new-price">{{$np->price}}</span>
                                 </div>
                             </div>
                         </div>
@@ -566,8 +566,8 @@
                                 <a href="product-info.html" class="product-details">{{$sp->name}}
                                 </a>
                                 <div class="price">
-                                    <span class="price-cut">{{$sp->price}}</span>
-                                    <span class="new-price">{{$sp->sale_price}}</span>
+                                    {{-- <span class="price-cut">{{$sp->price}}</span> --}}
+                                    <span class="new-price">{{$sp->price}}</span>
                                 </div>
                             </div>
                         </div>
@@ -689,8 +689,8 @@
                                 <a href="product-info.html" class="product-details">{{$sell->category->name}}
                                 </a>
                                 <div class="price">
-                                    <span class="price-cut">{{$sell->price}}</span>
-                                    <span class="new-price">{{$sell->price_sale}}</span>
+                                    {{-- <span class="price-cut">{{$sell->price}}</span> --}}
+                                    <span class="new-price">{{$sell->price}}</span>
                                 </div>
                             </div>
                         </div>
@@ -929,8 +929,8 @@
                                 <a href="product-info.html" class="product-details">{{$bs->category->name}}
                                 </a>
                                 <div class="price">
-                                    <span class="price-cut">{{$bs->price}}</span>
-                                    <span class="new-price">{{$bs->price_sale}}</span>
+                                    {{-- <span class="price-cut">{{$bs->price}}</span> --}}
+                                    <span class="new-price">{{$bs->price}}</span>
                                 </div>
                             </div>
                         </div>
@@ -1037,8 +1037,8 @@
                                 <a href="product-info.html" class="product-details">{{$fs->category->name}}
                                 </a>
                                 <div class="price">
-                                    <span class="price-cut">{{$fs->price}}</span>
-                                    <span class="new-price">{{$fs->price_sale}}</span>
+                                    {{-- <span class="price-cut">{{$fs->price}}</span> --}}
+                                    <span class="new-price">{{$fs->price}}</span>
                                 </div>
                             </div>
                         </div>

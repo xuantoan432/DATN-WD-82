@@ -12,11 +12,12 @@ class HomeController extends Controller
 
     public function index()
     {
-        $new_products = Product::orderBy('created_at','DESC')->limit(8)->get();
-        $sale_products = Product::orderBy('created_at','DESC')->where('price_sale','>',0)->limit(4)->get();
-        $sell_products = Product::inRandomOrder()->limit(6)->get();
-        $best_sell = Product::orderBy('price_sale', 'DESC')->limit(4)->get();
-        $flash_sale = Product::orderBy('price_sale', 'ASC')->limit(12)->get();
+        $new_products = Product::where('is_verified', true)->where('status', 'active')->orderBy('created_at', 'DESC')->limit(8)->get();
+        $sell_products = Product::where('is_verified', true)->where('status', 'active')->inRandomOrder()->limit(6)->get();
+        $flash_sale = Product::where('is_verified', true)->where('status', 'active')->orderBy('created_at', 'ASC')->limit(12)->get();
+        $best_sell = Product::where('is_verified', true)->where('status', 'active')->inRandomOrder()->limit(4)->get();
+        $flash_sale = Product::where('is_verified', true)->where('status', 'active')->inRandomOrder()->limit(12)->get();
+
         return view('client.index',[
             'new_products' => $new_products,
             'sale_products' => $sale_products,
@@ -28,8 +29,8 @@ class HomeController extends Controller
 
     public function shop()
     {
-        $new_products = Product::orderBy('created_at','DESC')->limit(6)->get();
-        $sell_products = Product::inRandomOrder()->limit(6)->get();
+        $new_products = Product::where('is_verified', true)->where('status', 'active')->orderBy('created_at', 'DESC')->limit(6)->get();
+        $sell_products = Product::where('is_verified', true)->where('status', 'active')->inRandomOrder()->limit(6)->get();
         return view('client.shop',[
             'new_products' => $new_products,
             'sell_products' => $sell_products,]);
