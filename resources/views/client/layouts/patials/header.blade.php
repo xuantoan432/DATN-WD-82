@@ -516,18 +516,10 @@
                             </a>
                         </li>
                         <li>
-                            <a href="blogs.html">
+                            <a href="{{route('posts')}}">
                                 <span class="list-text">Blog</span>
-                            </a>
-                            <ul class="header-sub-menu">
-                                <li><a href="blogs-details.html">Chi tiết Blog</a></li>
-                            </ul>
-                        </li> 
-                        <li>
-                            <a href="dashboard">
-                                <span class="list-text">Thông tin người dùng</span>
-                            </a>
-                        </li>
+                            </a>                        
+                        </li>      
                         <li>
                             <a href="contact-us.html">
                                 <span class="list-text">Liên hệ</span>

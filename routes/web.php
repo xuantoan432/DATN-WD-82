@@ -3,7 +3,7 @@
 use App\Http\Controllers\Client\HomeController;
 use App\Http\Controllers\Client\UserController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\PostController;
+use App\Http\Controllers\Client\PostController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Seller\ChatController;
 use App\Http\Controllers\Auth\RegisterController;
@@ -30,6 +30,10 @@ Route::get('/9', [HomeController::class, 'flashSale'])->name('home.flash-sale');
 Route::get('/10', [HomeController::class, 'createAccount'])->name('home.create-account');
 Route::get('/11', [HomeController::class, 'login'])->name('home.login');
 Route::get('/12', [HomeController::class, 'sellerSidebar'])->name('home.seller-sidebar');
+
+Route::get('posts', [PostController::class, 'showPost'])->name('posts');
+Route::get('post/{id}', [PostController::class, 'postDetail'])->name('posts.detail');
+Route::get('search', [PostController::class, 'search'])->name('posts.search');
 
 Route::middleware('guest')->group(function () {
     Route::get('login', [LoginController::class, 'showLogInForm'])->name('login');
