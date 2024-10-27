@@ -13,10 +13,10 @@ class HomeController extends Controller
     public function index()
     {
         $new_products = Product::where('is_verified', true)->where('status', 'active')->orderBy('created_at', 'DESC')->limit(8)->get();
+        $sale_products = Product::where('is_verified', true)->where('status', 'active')->orderBy('created_at', 'DESC')->limit(4)->get();
         $sell_products = Product::where('is_verified', true)->where('status', 'active')->inRandomOrder()->limit(6)->get();
         $flash_sale = Product::where('is_verified', true)->where('status', 'active')->orderBy('created_at', 'ASC')->limit(12)->get();
         $best_sell = Product::where('is_verified', true)->where('status', 'active')->inRandomOrder()->limit(4)->get();
-        $flash_sale = Product::where('is_verified', true)->where('status', 'active')->inRandomOrder()->limit(12)->get();
 
         return view('client.index',[
             'new_products' => $new_products,
