@@ -41,11 +41,12 @@
                         <div class="row g-3">
                             <div class="col-12">
                                 <label for="AddCategory" class="form-label">Danh mục </label>
-                                <select class="form-select" id="AddCategory">
-                                    <option value="0">Topwear</option>
-                                    <option value="1">Bottomwear</option>
-                                    <option value="2">Casual Tshirt</option>
-                                    <option value="3">Electronic</option>
+                                <select class="form-select" id="cate" data-placeholder=" Vui lòng chọn danh mục">
+                                    <option value=""  >  Vui lòng chọn danh mục </option>
+
+                                    @foreach ($categories as $item)
+                                        <option value="{{ $item -> id  }}"> {{ $item -> name }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                             <div class="col-12">
@@ -54,11 +55,11 @@
                             </div>
                             <div class="col-12">
                                 <label for="Tags" class="form-label">Giá Sản Phẩm </label>
-                                <input type="text" class="form-control" id="Tags" placeholder="200.000">
-
+                                <input type="text" class="form-control" id="gia" placeholder="200.000">
+                                <span for="" class="text-danger" id="err-gia"  ></span>
                             </div>
                             <hr>
-                            <div class="d-flex justify-content-between"> <span>Tiền Chiết Khấu : </span> <span> 123.123 đ
+                            <div class="d-flex justify-content-between"> <span>Tiền Chiết Khấu : </span> <span id="chietkhau">
                                 </span> </div>
 
                         </div><!--end row-->
@@ -70,16 +71,17 @@
                         <h5 class="mb-3">Biến Thể Sản Phẩm </h5>
                         <div class="row g-3">
                             <div class="col-12">
-                                <select class="form-select" id="multiple-select-clear-field" data-placeholder="Choose anything" multiple>
-									<option>Toản</option>
-									<option>Tâm</option>
-									<option>Jamaica</option>
-									<option>Kenya</option>
-								</select>
+                                <select class="form-select" id="bien-the" data-placeholder="Choose anything" multiple>
+                                    @foreach ($bienthe as $item)
+                                    <option value="{{ $item -> id  }}"> {{  $item -> name }}</option>
+                                    @endforeach
+
+
+                                </select>
                             </div>
                             <div class="col-12">
                                 <div class="d-grid">
-                                    <button type="button" id="add-item-btn" class="btn btn-primary" >Thêm biến thể </button>
+                                    <button type="button" id="add-item-btn" class="btn btn-primary">Thêm biến thể </button>
                                 </div>
                             </div>
                         </div>
@@ -132,10 +134,20 @@
     </div>
 @endsection
 @section('css_new')
-<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ asset('theme/admin/assets/npm/select2/dist/css/select2.min.css') }}">
+    <link rel="stylesheet"
+        href="{{ asset('theme/admin/assets/npm/select2-bootstrap-5/dist/select2-bootstrap-5-theme.min.css') }}">
 @endsection
 @section('js_new')
+    @vite('/resources/js/seller/product.js')
     <script src="https://cdn.ckeditor.com/4.22.1/full/ckeditor.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script>
+        CKEDITOR.replace('content', {
+            height: 100
+        });
+        CKEDITOR.replace('content1');
+    </script>
+    <script src="{{ asset('theme/admin/assets/npm/select2/dist/js/select2.min.js') }}"></script>
+    <script src="{{ asset('theme/admin/assets/plugins/select2/js/select2-custom.js') }}"></script>
 @endsection
-@vite('/resources/js/seller/product.js')
+

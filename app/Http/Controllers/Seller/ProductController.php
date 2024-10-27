@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Seller;
 
-use App\Http\Controllers\Controller;
+use App\Models\Category;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Models\Attribute;
 
 class ProductController extends Controller
 {
@@ -16,7 +18,9 @@ class ProductController extends Controller
 
     public function create()
     {
-        return view(self::PATH_URL . __FUNCTION__);
+        $categories  = Category::all();
+        $bienthe = Attribute::all();
+         return view(self::PATH_URL . __FUNCTION__ , compact('categories' , 'bienthe'));
     }
 
 
