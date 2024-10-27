@@ -37,8 +37,9 @@
                         tính</a>
                 </li>
                 <li>
-                    <a href="{{ route('admin.category.index') }}"><i class="material-icons-outlined">arrow_right</i>Danh mục</a>
-                 </li>
+                    <a href="{{ route('admin.category.index') }}"><i class="material-icons-outlined">arrow_right</i>Danh
+                        mục</a>
+                </li>
 
                 <li><a href="{{ route('admin.roles.index') }}"><i class="material-icons-outlined">arrow_right</i>Phân
                         quyền</a>
@@ -46,18 +47,12 @@
                 <li><a href="{{ route('admin.tags.index') }}"><i class="material-icons-outlined">arrow_right</i>Thẻ</a>
 
                 <li>
-                    <a class="has-arrow" href="javascript:;"><i class="material-icons-outlined">arrow_right</i>Bài
-                        viết</a>
-                    <ul>
-                        <li><a href="{{ route('admin.posts.index') }}" target="_blank"><i
-                                    class="material-icons-outlined">arrow_right</i>List</a></li>
-                        <li><a href="{{ route('admin.posts.create') }}" target="_blank"><i
-                                    class="material-icons-outlined">arrow_right</i>Add new</a></li>
-                    </ul>
+                    <a href="{{ route('admin.posts.index') }}"><i class="material-icons-outlined">arrow_right</i>Bài viết
+                        </a>
                 </li>
             </ul>
         </li>
     </ul>
-    
+
     <!--end navigation-->
 </div>
