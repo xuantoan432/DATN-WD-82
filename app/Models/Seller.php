@@ -8,6 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Seller extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'user_id',  
+        'store_name',
+        'store_email',
+        'store_description'
+
+
+    ];
     public function inventories()
     {
         return $this->hasMany(Inventory::class);
