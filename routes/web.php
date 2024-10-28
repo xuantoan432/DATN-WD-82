@@ -30,6 +30,7 @@ Route::get('/9', [HomeController::class, 'flashSale'])->name('home.flash-sale');
 Route::get('/10', [HomeController::class, 'createAccount'])->name('home.create-account');
 Route::get('/11', [HomeController::class, 'login'])->name('home.login');
 Route::get('/12', [HomeController::class, 'sellerSidebar'])->name('home.seller-sidebar');
+Route::get('/13', [HomeController::class, 'wishlist'])->name('home.wishlist');
 
 Route::get('posts', [PostController::class, 'showPost'])->name('posts');
 Route::get('post/{id}', [PostController::class, 'postDetail'])->name('posts.detail');
