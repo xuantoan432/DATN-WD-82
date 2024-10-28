@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Client\HomeController;
+use App\Http\Controllers\Client\ProductController;
 use App\Http\Controllers\Client\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Client\PostController;
@@ -20,7 +21,7 @@ use App\Http\Controllers\Auth\SellerRegisterController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
 Route::get('/1', [HomeController::class, 'shop'])->name('home.shop');
-Route::get('/2', [HomeController::class, 'productInfo'])->name('home.product-info');
+Route::get('/product/{product}', [ProductController::class, 'detailProduct'])->name('home.product-detail');
 Route::get('/4', [HomeController::class, 'contact'])->name('home.contact');
 Route::get('/5', [HomeController::class, 'about'])->name('home.about');
 Route::get('/6', [HomeController::class, 'cart'])->name('home.cart');
