@@ -417,8 +417,7 @@
                                 @endif --}}
                             </div>
                             <div class="product-description">
-                                <a href="product-info.html" class="product-details">{{$np->name}}
-                                </a>
+                                <a href="{{ route('home.product-detail', $np->id) }}" class="product-details">{{$np->name}}</a>
                                 <div class="price">
                                     {{-- <span class="price-cut">{{$np->price}}</span> --}}
                                     <span class="new-price">{{$np->price}}</span>

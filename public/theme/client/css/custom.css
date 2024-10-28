@@ -1,0 +1,85 @@
+.product-attributes .attribute-options input[type=radio]{
+    display: none;
+}
+.product-attributes .attribute-options{
+    display: flex;
+    column-gap: 10px;
+    row-gap: 20px;
+    flex-wrap: wrap;
+}
+.product-attributes .attribute-options span.attribute-name{
+    border: 1px solid;
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-size: 13px;
+}
+.product-attributes .attribute-options .active,
+.product-attributes .attribute-options label:hover span.attribute-name{
+    background-color: #ae1c9a;
+    color: white;
+}
+.product-quantity input.number{
+    width: 28px;
+    border: none;
+    text-align: center;
+}
+.product-info-content .product-quantity .quantity{
+    gap: unset;
+}
+.quantity span {
+    font-size: 1.5rem;
+    padding: 10px 20px;
+}
+.nested-comments{
+    margin-left: 40px;
+}
+.product-description .tab-item .review-wrapper .wrapper .wrapper-description {
+    margin-top: 0;
+    margin-left: 58px;
+    margin-bottom: 4px;
+}
+.seller-info-section{
+    display: flex;
+}
+.seller-info-section .logo img{
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+}
+.seller-info-section .name-shop{
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+.seller-info-section .action a{
+    font-size: 16px;
+    font-weight: 500;
+    padding: 5px 10px;
+    border-radius: 3px;
+}
+.seller-info-section .action a i{
+    margin-right: 3px;
+}
+.seller-info-section .action a:last-child{
+    background-color: white;
+    border: 1px solid #000000;
+    color: #000000;
+}
+.seller-info-section .action a:first-child:hover{
+    background-color: rgba(174, 28, 154, 0.79);
+    color: #ffffff;
+}
+.seller-info-section .action a:last-child:hover{
+    background-color: rgba(197, 196, 196, 0.55);
+}
+
+.seller-info-section .action a:first-child{
+    border: 1px solid #ae1c9a;
+    color: #ae1c9a;
+    background-color: #ae1c9a1a;
+    margin-right: 5px;
+}
+.seller-info-section .desc{
+    margin-left: 10px;
+    margin-top: 5px;
+}

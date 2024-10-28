@@ -6,18 +6,14 @@ use App\Http\Controllers\Controller;
 use App\Models\Post;
 use App\Models\Tag;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
     public function index(Request $request)
     {
-        $query = Post::query();
+        $posts = Post::with('user')->orderByDesc('id')->get();
 
-        if ($search = $request->input('search')) {
-            $query->where('title', 'like', "%{$search}%");
-        }
-
-        $posts = $query->paginate(5);
 
         return view('admin.posts.index', compact('posts'));
     }
@@ -33,25 +29,24 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title' => 'required|string|max:255',
-            'description' => 'required|string',
-            'content' => 'required|string',
-            'thumbnail' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'tags' => 'array',
+            'title' => 'required',
+            'description' => 'required',
+            'content' => 'required',
+            'thumbnail' => 'required',
+            'tags' => 'required',
         ]);
 
-        $post = new Post();
-        $post->title = $request->title;
-        $post->description = $request->description;
-        $post->content = $request->content;
-
+        $dataPost = $request->except(['tags', 'thumbnail']);
         if ($request->hasFile('thumbnail')) {
             $fileName = $request->thumbnail->store('thumbnails', 'public');
-            $post->thumbnail = $fileName;
+            $dataPost['thumbnail'] = $fileName;
         }
+        $dataPost['user_id'] = auth()->user()->id;
+        // dd($dataPost);
+        $post = Post::create($dataPost);
 
-        $post->save();
 
+        // dd($post);
         // Gắn tags nếu có
         if ($request->tags) {
             $post->tags()->attach($request->tags);
@@ -70,14 +65,28 @@ class PostController extends Controller
     public function update(Request $request, Post $post)
     {
         $request->validate([
-            'title' => 'required|string|max:255',
-            'description' => 'required|string',
-            'content' => 'required|string',
-            'thumbnail' => 'nullable|string',
+            'title' => 'required',
+            'description' => 'required',
+            'content' => 'required',
+            'thumbnail' => 'nullable',
+            'tags' => 'required'
         ]);
 
-        $post->update($request->all());
-        $post->tags()->sync($request->tags);
+        $dataPost = $request->except(['tags', 'thumbnail']);
+        if ($request->hasFile('thumbnail')) {
+            // Xóa file cũ nếu có
+            if ($post->thumbnail) {
+                Storage::disk('public')->delete($post->thumbnail);
+            }
+        
+        
+            // Lưu file mới
+            $fileName = $request->thumbnail->store('thumbnails', 'public');
+            $dataPost['thumbnail'] = $fileName;
+        }
+
+        $post->update($dataPost);
+            $post->tags()->sync($request->tags);
 
         return redirect()->route('admin.posts.index')->with('success', 'Post updated successfully.');
     }

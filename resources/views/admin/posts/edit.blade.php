@@ -42,7 +42,7 @@
 
                         <div class="mb-3">
                             <label for="content" class="form-label">Nội Dung</label>
-                            <textarea name="content" class="form-control @error('content') is-invalid @enderror" required>{{ old('content', $post->content) }}</textarea>
+                            <textarea id="content" name="content" class="form-control @error('content') is-invalid @enderror" required>{{ old('content', $post->content) }}</textarea>
                             @error('content')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -52,7 +52,7 @@
                             <label for="thumbnail" class="form-label">Ảnh Minh Họa</label>
                             <input type="file" name="thumbnail" class="form-control">
                             @if ($post->thumbnail)
-                                <img src="{{ asset($post->thumbnail) }}" alt="Current Thumbnail" class="img-thumbnail mt-2" style="max-width: 150px;">
+                                <img src="{{asset('storage/'.$post->thumbnail) }}" alt="Current Thumbnail" class="img-thumbnail mt-2" style="max-width: 150px;">
                             @endif
                         </div>
 
@@ -74,4 +74,10 @@
         </div>
     </div>
 </div>
+@endsection
+@section('js_new')
+<script src="https:////cdn.ckeditor.com/4.8.0/full-all/ckeditor.js"></script>
+<script>
+    CKEDITOR.replace('content');
+</script>
 @endsection
