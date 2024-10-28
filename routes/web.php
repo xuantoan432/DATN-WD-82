@@ -35,14 +35,18 @@ Route::get('posts', [PostController::class, 'showPost'])->name('posts');
 Route::get('post/{id}', [PostController::class, 'postDetail'])->name('posts.detail');
 Route::get('search', [PostController::class, 'search'])->name('posts.search');
 
+
+
+
+
 Route::middleware('guest')->group(function () {
     Route::get('login', [LoginController::class, 'showLogInForm'])->name('login');
     Route::post('login', [LoginController::class, 'logIn']);
     Route::get('register', [RegisterController::class, 'showRegisterForm'])->name('register');
     Route::post('register', [RegisterController::class, 'register'])->name('register');
     Route::prefix('auth')->as('auth.')->group(function () {
-        Route::get('/forgot', [ForgotPasswordController::class,'showFormForgotPassword'])->name('forgot');
-        Route::post('/forgot', [ForgotPasswordController::class,'sendMailPassword'])->name('forgot');
+        Route::get('/forgot', [ForgotPasswordController::class, 'showFormForgotPassword'])->name('forgot');
+        Route::post('/forgot', [ForgotPasswordController::class, 'sendMailPassword'])->name('forgot');
         Route::get('/reset-password/{token}', [ResetPasswordController::class, 'showResetForm']);
         Route::put('/reset-password/{token}', [ResetPasswordController::class, 'reset'])->name('reset');
     });
@@ -51,8 +55,8 @@ Route::middleware('guest')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::get('register/seller', [SellerRegisterController::class, 'showRegistrationForm'])->name('register.seller');
     Route::post('register/seller', [SellerRegisterController::class, 'register']);
-    Route::get('/logout', [LoginController::class,'logout'])->name('logout');
+    Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
     Route::get('/dashboard', [UserController::class, 'userDashboard'])->name('dashboard');
+    Route::get('posts/{post}', [PostController::class, 'show'])->name('posts.show');
+    Route::post('comments', [PostController::class, 'store'])->name('posts.comments');
 });
-
-
