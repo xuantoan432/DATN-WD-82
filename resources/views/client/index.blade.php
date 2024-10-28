@@ -422,7 +422,7 @@
                                 </span>
                             </div>
                             <div class="product-description">
-                                <a href="product-info.html" class="product-details">{{$np->category->name}}
+                                <a href="{{ route('home.product-detail', $np) }}" class="product-details">{{$np->category->name}}
                                 </a>
                                 <div class="price">
                                     <span class="price-cut">{{$np->price}}</span>

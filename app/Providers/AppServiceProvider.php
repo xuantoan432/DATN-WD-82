@@ -3,7 +3,9 @@
 namespace App\Providers;
 
 use App\Models\Category;
+use App\View\Components\Client\Comment;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -26,7 +28,7 @@ class AppServiceProvider extends ServiceProvider
         ->orderByDesc('id')
         ->limit(10)->get());
 
-        View::share('user',Auth::user());    
-         
+        View::share('user',Auth::user());
+        Blade::component('comment', Comment::class);
     }
 }
