@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Post;
+use App\Models\Tag;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +19,8 @@ class PostTagFactory extends Factory
     public function definition(): array
     {
         return [
-            'tag_id'
+            'tag_id' => Tag::factory(),
+            'post_id' => Post::factory(),
         ];
     }
 }

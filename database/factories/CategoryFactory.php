@@ -17,9 +17,9 @@ class CategoryFactory extends Factory
     public function definition(): array
     {
         return [
-            'name',
-            'icon',
-            'fee_percentage',
+            'name' => $this->faker->word,
+            'icon' => $this->faker->imageUrl(64, 64, 'business', true, 'icon'),
+            'fee_percentage' => $this->faker->randomFloat(2, 0, 100),
         ];
     }
 }

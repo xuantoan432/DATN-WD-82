@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('payment_statuses', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->boolean('status')->default(false);
+            $table->enum('status', ['active', 'inactive'])->default('active');
             $table->timestamps();
         });
     }

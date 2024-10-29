@@ -19,8 +19,17 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'dob',
+        'avatar',
+        'gender',
+        'email_verified_at',
         'email',
         'password',
+        'remember_token',
+        'phone',
+        'email',
+        'password',
+
     ];
 
     /**
@@ -32,7 +41,6 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
-
     /**
      * The attributes that should be cast.
      *
@@ -42,4 +50,44 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function address()
+    {
+        return $this->belongsToMany(Address::class, 'user_address');
+    }
+
+    public function roles()
+{
+    return $this->belongsToMany(Role::class, 'user_role', 'user_id', 'role_id');
+}
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
+
+    public function wishlists()
+    {
+        return $this->hasMany(Wishlist::class);
+    }
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
+
+    public function chatsSent()
+    {
+        return $this->hasMany(Chat::class, 'user_send_id');
+    }
+
+    public function chatsReceived()
+    {
+        return $this->hasMany(Chat::class, 'user_receive_id');
+    }
+
+    public function hasRole($role)
+    {
+        return $this->roles()->where('id', $role)->exists();
+    }
 }

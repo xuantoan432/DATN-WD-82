@@ -14,9 +14,9 @@ return new class extends Migration
     {
         Schema::create('vouchers', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(User::class)->constrained();
+            $table->foreignIdFor(User::class)->constrained()->onDelete('cascade');
             $table->string('code') ;
-            $table->enum('discount_type' , ['%' ]) ;
+            $table->enum('discount_type' , ['percentage', 'fixed']) ;
             $table->decimal('discount_value' ,10 ,2 )  ;
             $table->decimal('max_discount_amount' ,10 ,2 )  ;
             $table->decimal('min_order_value' ,10 ,2 )  ;

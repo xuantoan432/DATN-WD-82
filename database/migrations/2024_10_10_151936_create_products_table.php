@@ -6,8 +6,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -15,20 +14,20 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Category::class) -> constrained() ;
-            $table -> foreignIdFor(Seller::class) -> constrained() ;
-            $table ->unsignedBigInteger('final_fee_percentage')->nullable();
-            $table ->string('name');
-            $table ->string('short_description');
-            $table ->string('sku');
-            $table ->string('content');
-            $table->decimal('price',10,2);
-            $table->decimal('price_sale',10,2) -> nullable(0);
-            $table -> string('image') ;
-            $table -> unsignedBigInteger('views') ->default(0);
-            $table -> unsignedBigInteger('quantity') -> default(0);
+            $table->foreignIdFor(Category::class)->constrained()->onDelete('cascade');
+            $table->foreignIdFor(Seller::class)->constrained()->onDelete('cascade');
+            $table->unsignedBigInteger('final_fee_percentage')->nullable();
+            $table->string('name');
+            $table->text('short_description');
+            $table->string('sku');
+            $table->text('content');
+            $table->decimal('price', 10, 2);
+            $table->decimal('price_sale', 10, 2)->nullable();
+            $table->string('image');
+            $table->unsignedBigInteger('views')->default(0);
+            $table->unsignedBigInteger('quantity')->default(0);
             $table->boolean('is_verified')->default(false);
-            $table->boolean('status')->default(false);
+            $table->enum('status', ['active', 'inactive', 'pending'])->default('pending');
             $table->timestamps();
         });
     }

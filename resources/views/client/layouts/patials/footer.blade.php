@@ -108,7 +108,7 @@
                 <div class="col-lg-3 col-sm-6">
                     <div class="footer-order">
                         <div class="logo">
-                            <img src="/themes/client/assets/images/logos/footer-logo.webp" alt="logo">
+                            <img src="/theme/client/assets/images/logos/lg.png" alt="logo">
                         </div>
                         <div class="footer-link order-link">
                             <ul>

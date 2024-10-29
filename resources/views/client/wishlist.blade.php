@@ -31,7 +31,7 @@
                         <td class="table-wrapper wrapper-product">
                             <div class="wrapper">
                                 <div class="wrapper-img">
-                                    <img src="/themes/client/assets/images/homepage-one/product-img/product-img-1.webp" alt="img">
+                                    <img src="/theme/client/assets/images/homepage-one/product-img/product-img-1.webp" alt="img">
                                 </div>
                                 <div class="wrapper-content">
                                     <h5 class="heading">Classic Oxford Shirt</h5>
@@ -60,7 +60,7 @@
                         <td class="table-wrapper wrapper-product">
                             <div class="wrapper">
                                 <div class="wrapper-img">
-                                    <img src="/themes/client/assets/images/homepage-one/product-img/product-img-2.webp" alt="img">
+                                    <img src="/theme/client/assets/images/homepage-one/product-img/product-img-2.webp" alt="img">
                                 </div>
                                 <div class="wrapper-content">
                                     <h5 class="heading">Classic Oxford Shirt</h5>
@@ -89,7 +89,7 @@
                         <td class="table-wrapper wrapper-product">
                             <div class="wrapper">
                                 <div class="wrapper-img">
-                                    <img src="/themes/client/assets/images/homepage-one/product-img/product-img-3.webp" alt="img">
+                                    <img src="/theme/client/assets/images/homepage-one/product-img/product-img-3.webp" alt="img">
                                 </div>
                                 <div class="wrapper-content">
                                     <h5 class="heading">Classic Oxford Shirt</h5>
@@ -118,7 +118,7 @@
                         <td class="table-wrapper wrapper-product">
                             <div class="wrapper">
                                 <div class="wrapper-img">
-                                    <img src="/themes/client/assets/images/homepage-one/product-img/product-img-4.webp" alt="img">
+                                    <img src="/theme/client/assets/images/homepage-one/product-img/product-img-4.webp" alt="img">
                                 </div>
                                 <div class="wrapper-content">
                                     <h5 class="heading">Classic Oxford Shirt</h5>

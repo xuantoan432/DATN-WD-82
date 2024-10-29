@@ -40,21 +40,22 @@
                                     </td>
                                     <td>{{$user->gender}}</td>
                                     <td>{{ $user->email }}</td>
-                                    <td>{{ $user->password }}</td>
+                                    <td>**********</td>
                                     <td>
                                         <a href="{{ route('admin.users.edit', $user) }}" class="btn btn-warning">Edit</a>
-                                        <form action="{{ route('admin.users.destroy') }}" method="POST"
+                                        <form action="{{ route('admin.users.destroy', $user) }}" method="POST"
                                             style="display:inline;">
                                             @csrf
                                             @method('DELETE')
                                             <input type="hidden" name="name" value="{{ $user->name }}">
-                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                            <button type="submit" onclick="return confirm('Bạn chắc chắn muốn xóa người dùng này không?')" class="btn btn-danger">Delete</button>
                                         </form>
                                     </td>
                                 </tr>
                             @endforeach
                         </tbody>
                     </table>
+                    {{$users->links()}}
                 </div>
             </div>
         </div>

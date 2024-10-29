@@ -14,8 +14,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('product_has_attribute', function (Blueprint $table) {
-            $table->foreignIdFor(Product::class)->constrained();
-            $table->foreignIdFor(Attribute::class)->constrained();
+            $table->foreignIdFor(Product::class)->constrained()->onDelete('cascade');
+            $table->foreignIdFor(Attribute::class)->constrained()->onDelete('cascade');
         });
     }
 

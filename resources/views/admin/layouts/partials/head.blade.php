@@ -11,9 +11,11 @@
     <link rel="stylesheet" type="text/css" href="{{asset('theme/admin/assets/plugins/simplebar/css/simplebar.css')}}">
     <!--bootstrap css-->
     <link href="{{asset('theme/admin/assets/css/bootstrap.min.css')}}" rel="stylesheet">
+    @yield('css_new')
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;600&amp;display=swap"
         rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Material+Icons+Outlined" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
     <!--main css-->
     <link href="{{asset('theme/admin/assets/css/bootstrap-extended.css')}}" rel="stylesheet">
     <link href="{{asset('theme/admin/sass/main.css')}}" rel="stylesheet">
@@ -22,4 +24,3 @@
     <link href="{{asset('theme/admin/sass/semi-dark.css')}}" rel="stylesheet">
     <link href="{{asset('theme/admin/sass/bordered-theme.css')}}" rel="stylesheet">
     <link href="{{asset('theme/admin/sass/responsive.css')}}" rel="stylesheet">
- 

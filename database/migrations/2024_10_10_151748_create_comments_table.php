@@ -6,8 +6,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -15,10 +14,10 @@ return new class extends Migration
     {
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Post::class) -> constrained();
-            $table->foreignIdFor(User::class) -> constrained();
-            $table->string('content') ;
-            $table -> unsignedBigInteger('parent_id') -> default(0) ;
+            $table->foreignIdFor(Post::class)->constrained()->onDelete('cascade');
+            $table->foreignIdFor(User::class)->constrained()->onDelete('cascade');
+            $table->string('content');
+            $table->unsignedBigInteger('parent_id')->default(0);
             $table->timestamps();
         });
     }
