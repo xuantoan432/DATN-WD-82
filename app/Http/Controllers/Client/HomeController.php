@@ -55,13 +55,6 @@ class HomeController extends Controller
             'flash_sale' => $flash_sale,
         ]);
 
-        return view('client.index',[
-            'new_products' => $new_products,
-            'sale_products' => $sale_products,
-            'sell_products' => $sell_products,
-            'best_sell' => $best_sell,
-            'flash_sale' => $flash_sale,
-        ]);
     }
 
     public function shop(Request $request)
