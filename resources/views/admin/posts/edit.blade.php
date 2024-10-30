@@ -26,7 +26,7 @@
 
                         <div class="mb-3">
                             <label for="title" class="form-label">Tiêu Đề</label>
-                            <input type="text" name="title" class="form-control @error('title') is-invalid @enderror" value="{{ old('title', $post->title) }}" required>
+                            <input type="text" name="title" class="form-control @error('title') is-invalid @enderror" value="{{ old('title', $post->title) }}">
                             @error('title')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -34,7 +34,7 @@
                         
                         <div class="mb-3">
                             <label for="description" class="form-label">Mô Tả</label>
-                            <textarea name="description" class="form-control @error('description') is-invalid @enderror" required>{{ old('description', $post->description) }}</textarea>
+                            <textarea name="description" class="form-control @error('description') is-invalid @enderror">{{ old('description', $post->description) }}</textarea>
                             @error('description')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -42,7 +42,7 @@
 
                         <div class="mb-3">
                             <label for="content" class="form-label">Nội Dung</label>
-                            <textarea id="content" name="content" class="form-control @error('content') is-invalid @enderror" required>{{ old('content', $post->content) }}</textarea>
+                            <textarea id="content" name="content" class="form-control @error('content') is-invalid @enderror">{{ old('content', $post->content) }}</textarea>
                             @error('content')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
