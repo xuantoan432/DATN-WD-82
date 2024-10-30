@@ -12,27 +12,59 @@ class HomeController extends Controller
 
     public function index()
     {
-        $new_products = Product::orderBy('created_at','DESC')->limit(8)->get();
-        $sale_products = Product::orderBy('created_at','DESC')->where('price_sale','>',0)->limit(4)->get();
-        $sell_products = Product::inRandomOrder()->limit(6)->get();
-        $best_sell = Product::orderBy('price_sale', 'DESC')->limit(4)->get();
-        $flash_sale = Product::orderBy('price_sale', 'ASC')->limit(12)->get();
-        return view('client.index',[
+        $new_products = Product::where('is_verified', true)
+            ->where('status', 'active')
+            ->withAvg('reviews', 'star')
+            ->orderBy('created_at', 'DESC')
+            ->limit(8)
+            ->get();
+
+        $sale_products = Product::where('is_verified', true)
+            ->where('status', 'active')
+            ->withAvg('reviews', 'star')
+            ->orderBy('created_at', 'DESC')
+            ->limit(4)
+            ->get();
+
+        $sell_products = Product::where('is_verified', true)
+            ->where('status', 'active')
+            ->withAvg('reviews', 'star')
+            ->orderBy('views', 'DESC')
+            ->limit(6)
+            ->get();
+
+        $best_sell = Product::where('is_verified', true)
+            ->where('status', 'active')
+            ->withAvg('reviews', 'star')
+            ->orderBy('price', 'ASC')
+            ->limit(4)
+            ->get();
+
+        $flash_sale = Product::where('is_verified', true)
+            ->where('status', 'active')
+            ->withAvg('reviews', 'star')
+            ->orderBy('price', 'ASC')
+            ->limit(12)
+            ->get();
+
+        return view('client.index', [
             'new_products' => $new_products,
             'sale_products' => $sale_products,
             'sell_products' => $sell_products,
             'best_sell' => $best_sell,
             'flash_sale' => $flash_sale,
         ]);
+
     }
 
-    public function shop()
+    public function shop(Request $request)
     {
-        $new_products = Product::orderBy('created_at','DESC')->limit(6)->get();
-        $sell_products = Product::inRandomOrder()->limit(6)->get();
-        return view('client.shop',[
-            'new_products' => $new_products,
-            'sell_products' => $sell_products,]);
+        $products = Product::where('is_verified', true)
+        ->where('status', 'active')
+        ->withAvg('reviews', 'star')
+        ->orderByDesc('reviews_avg_star')
+        ->paginate(16);
+        return view('client.shop', compact('products'));
     }
 
     public function productInfo()
@@ -55,9 +87,13 @@ class HomeController extends Controller
         return view('client.cart');
     }
 
-    public function compare()
+    public function compaire()
     {
         return view('client.compaire');
+    }
+    public function wishlist()
+    {
+        return view('client.wishlist');
     }
 
     public function becomeVendor()

@@ -9,7 +9,7 @@ class Seller extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'user_id',  
+        'user_id',
         'store_name',
         'store_email',
         'store_description'
@@ -23,5 +23,9 @@ class Seller extends Model
     public function address()
     {
         return $this->belongsToMany(Address::class, 'seller_address');
+    }
+    public function user()
+    {
+        return $this->hasOne(User::class);
     }
 }
