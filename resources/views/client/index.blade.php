@@ -894,14 +894,13 @@
                                     </span>
                                 @endfor
                             </div>
-                            <!-- <div class="product-description">
-                                <a href="{{ route('home.product-info', $bs->id) }}" class="product-details">{{$bs->name}}
+                            <div class="product-description">
                                 </a>
                                 <div class="price">
                                     {{-- <span class="price-cut">{{$bs->price}}</span> --}}
                                     <span class="new-price">{{$bs->price}}</span>
                                 </div>
-                            </div> -->
+                            </div>
                         </div>
                         <div class="product-cart-btn">
                             <a href="cart.html" class="product-btn">Add To Cart</a>
@@ -994,7 +993,7 @@
                                 @endfor
                             </div>
                             <div class="product-description">
-                                <a href="{{ route('home.product-info', $fs->id) }}" class="product-details">{{$fs->name}}
+                                <!-- <a href="{{ route('home.product-info', $fs->id) }}" class="product-details">{{$fs->name}} -->
                                 </a>
                                 <div class="price">
                                     {{-- <span class="price-cut">{{$fs->price}}</span> --}}

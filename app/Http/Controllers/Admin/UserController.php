@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -38,7 +38,7 @@ class UserController extends Controller
             'name' => 'required|string|max:255',
             'dob' => 'required|string|max:255',
             'phone' => 'required',
-            'icon' => 'nullable|image|mimes:png,jpg,gif',
+            'avatar' => 'nullable|image|mimes:png,jpg,gif',
             'email' => 'required|string|max:255',
         ]);
         $path = null;
@@ -88,7 +88,7 @@ class UserController extends Controller
             'name' => 'required|string|max:255',
             'dob' => 'required|string|max:255',
             'phone' => 'required',
-            'icon' => 'nullable|image|mimes:png,jpg,gif',
+            'avatar' => 'nullable|image|mimes:png,jpg,gif',
             'email' => 'required|string|max:255',
         ]);
         $update = User::find($id);
