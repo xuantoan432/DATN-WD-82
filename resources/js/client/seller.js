@@ -3,7 +3,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     axios.get('https://provinces.open-api.vn/api/p/')
         .then(function (response) {
-
             const provinces = response.data;
             let provinceSelect = document.getElementById('province');
             provinces.forEach(function(province) {

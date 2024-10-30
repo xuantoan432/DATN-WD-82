@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Client\HomeController;
+use App\Http\Controllers\Client\ProductController;
 use App\Http\Controllers\Client\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Client\PostController;
@@ -20,16 +21,17 @@ use App\Http\Controllers\Auth\SellerRegisterController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
 Route::get('/1', [HomeController::class, 'shop'])->name('home.shop');
-Route::get('/2', [HomeController::class, 'productInfo'])->name('home.product-info');
+Route::get('/product/{product}', [ProductController::class, 'detailProduct'])->name('home.product-detail');
 Route::get('/4', [HomeController::class, 'contact'])->name('home.contact');
 Route::get('/5', [HomeController::class, 'about'])->name('home.about');
 Route::get('/6', [HomeController::class, 'cart'])->name('home.cart');
-Route::get('/7', [HomeController::class, 'compare'])->name('home.compare');
+Route::get('/7', [HomeController::class, 'compaire'])->name('home.compaire');
 Route::get('/8', [HomeController::class, 'becomeVendor'])->name('home.become-vendor');
 Route::get('/9', [HomeController::class, 'flashSale'])->name('home.flash-sale');
 Route::get('/10', [HomeController::class, 'createAccount'])->name('home.create-account');
 Route::get('/11', [HomeController::class, 'login'])->name('home.login');
 Route::get('/12', [HomeController::class, 'sellerSidebar'])->name('home.seller-sidebar');
+Route::get('/13', [HomeController::class, 'wishlist'])->name('home.wishlist');
 
 Route::get('posts', [PostController::class, 'showPost'])->name('posts');
 Route::get('post/{id}', [PostController::class, 'postDetail'])->name('posts.detail');
@@ -53,7 +55,11 @@ Route::middleware('auth')->group(function () {
     Route::post('register/seller', [SellerRegisterController::class, 'register']);
     Route::get('/logout', [LoginController::class,'logout'])->name('logout');
     Route::get('/dashboard', [UserController::class, 'userDashboard'])->name('dashboard');
+
     Route::put('/updateUser/{id}',[UserController::class,'updateUser'])->name('user.update');
+    Route::get('posts/{post}', [PostController::class, 'show'])->name('posts.show');
+    Route::post('comments', [PostController::class, 'store'])->name('posts.comments');
+
 });
 
 
