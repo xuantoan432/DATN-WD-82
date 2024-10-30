@@ -29,12 +29,5 @@ class AppServiceProvider extends ServiceProvider
         ->limit(10)->get());
 
         View::share('user',Auth::user());  
-        
-        
-          
-         
-
-
-   
     }
 }

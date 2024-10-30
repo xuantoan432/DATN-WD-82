@@ -1,5 +1,7 @@
 <script src="/theme/client/assets/js/jquery_3.7.1.min.js"></script>
 
+<script src="https://kit.fontawesome.com/147ffd2c04.js"></script>
+
 <script src="/theme/client/assets/js/bootstrap_5.3.2.bundle.min.js"></script>
 
 <script src="/theme/client/assets/js/nouislider.min.js"></script>
