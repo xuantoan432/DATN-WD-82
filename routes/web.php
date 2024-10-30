@@ -55,8 +55,11 @@ Route::middleware('auth')->group(function () {
     Route::post('register/seller', [SellerRegisterController::class, 'register']);
     Route::get('/logout', [LoginController::class,'logout'])->name('logout');
     Route::get('/dashboard', [UserController::class, 'userDashboard'])->name('dashboard');
+
+    Route::put('/updateUser/{id}',[UserController::class,'updateUser'])->name('user.update');
     Route::get('posts/{post}', [PostController::class, 'show'])->name('posts.show');
     Route::post('comments', [PostController::class, 'store'])->name('posts.comments');
+
 });
 
 
