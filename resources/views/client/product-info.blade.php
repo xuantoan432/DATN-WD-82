@@ -264,9 +264,14 @@
                         <div class="product-review-section" data-aos="fade-up">
                             <h5 class="intro-heading">Reviews</h5>
                             <div class="review-wrapper">
+                                @if(isset($reviews[0]))
                                 @foreach($reviews[0] as $review)
                                     <x-comment :review="$review" :reviews="$reviews" />
                                 @endforeach
+                                @else
+                                    <p>Không có đánh giá nào</p>
+                                @endif
+
                             </div>
                         </div>
                     </div>
@@ -759,4 +764,8 @@
             $(this).next('.attribute-name').addClass('active');
         });
     </script>
+@endsection
+
+@section()
+
 @endsection

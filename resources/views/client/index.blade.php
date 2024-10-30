@@ -895,7 +895,7 @@
                                 @endfor
                             </div>
                             <div class="product-description">
-                                <a href="{{ route('home.product-info', $bs->id) }}" class="product-details">{{$bs->name}}
+                                <a href="{{ route('home.product-detail', $bs->id) }}" class="product-details">{{$bs->name}}
                                 </a>
                                 <div class="price">
                                     {{-- <span class="price-cut">{{$bs->price}}</span> --}}
@@ -994,7 +994,7 @@
                                 @endfor
                             </div>
                             <div class="product-description">
-                                <a href="{{ route('home.product-info', $fs->id) }}" class="product-details">{{$fs->name}}
+                                <a href="{{ route('home.product-detail', $fs->id) }}" class="product-details">{{$fs->name}}
                                 </a>
                                 <div class="price">
                                     {{-- <span class="price-cut">{{$fs->price}}</span> --}}
