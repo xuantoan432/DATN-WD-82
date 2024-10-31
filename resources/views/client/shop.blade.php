@@ -113,7 +113,7 @@
                             @endfor
                         </div>
                         <div class="product-description">
-                            <a href="{{ route('home.product-info', $product->id) }}" class="product-details">{{$product->name}}
+                            <a href="{{ route('home.product-detail', $product->id) }}" class="product-details">{{$product->name}}
                             </a>
                             <div class="price">
                                 {{-- <span class="price-cut">{{$np->price}}</span> --}}
@@ -131,7 +131,7 @@
 
             <div class="col-lg-12">
                 <div class="pagination-section">
-                    {{ $products->links() }} 
+                    {{ $products->links() }}
                 </div>
             </div>
         </div>

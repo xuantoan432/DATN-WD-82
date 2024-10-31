@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\AttributeController;
 use App\Http\Controllers\Admin\AttributeValueController;
+use App\Http\Controllers\Client\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('/admin')->as('admin.')->middleware('role:1')->group(function () {
@@ -39,5 +40,7 @@ Route::prefix('/admin')->as('admin.')->middleware('role:1')->group(function () {
     Route::resource('posts', PostController::class);
     Route::delete('/posts', [PostController::class, 'destroy'])->name('admin.posts.destroy');
     Route::delete('/posts', [PostController::class, 'edit'])->name('admin.posts.edit');
+    
+    Route::resource('users',\App\Http\Controllers\Admin\UserController::class);
 
 });

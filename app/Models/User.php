@@ -86,6 +86,11 @@ class User extends Authenticatable
         return $this->hasMany(Chat::class, 'user_receive_id');
     }
 
+    public function seller()
+    {
+        return $this->hasOne(Seller::class);
+    }
+
     public function hasRole($role)
     {
         return $this->roles()->where('id', $role)->exists();
