@@ -51,6 +51,10 @@
                     <a href="{{ route('admin.posts.index') }}"><i class="material-icons-outlined">arrow_right</i>Bài viết
                         </a>
                 </li>
+                <li>
+                    <a href="{{ route('admin.vouchers.index') }}"><i class="material-icons-outlined">arrow_right</i>Mã giảm giá
+                        </a>
+                </li>
             </ul>
         </li>
     </ul>

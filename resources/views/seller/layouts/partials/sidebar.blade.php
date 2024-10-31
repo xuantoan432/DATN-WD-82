@@ -25,6 +25,19 @@
                 </li>
             </ul>
         </li>
+        <li>
+            <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon"><i class="material-icons-outlined">widgets</i>
+                </div>
+                <div class="menu-title">Sản phẩm</div>
+            </a>
+            <ul>
+                <li>
+                    <a href="{{ route('seller.vouchers.index') }}"><i class="material-icons-outlined">arrow_right</i>Mã giảm giá
+                        </a>
+                </li>
+            </ul>
+        </li>
 
     </ul>
     </li>

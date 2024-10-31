@@ -95,4 +95,8 @@ class User extends Authenticatable
     {
         return $this->roles()->where('id', $role)->exists();
     }
+    public function vouchers()
+    {
+        return $this->hasMany(Voucher::class);
+    }
 }
