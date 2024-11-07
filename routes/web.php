@@ -62,7 +62,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/change-password', [UserController::class, 'changePassword'])->name('user.changePassword');
     Route::get('posts/{post}', [PostController::class, 'show'])->name('posts.show');
     Route::post('comments', [PostController::class, 'store'])->name('posts.comments');
-
+    Route::post('add-cart', [CartController::class, 'addToCart'])->name('add.cart');
+    Route::get('cart', [CartController::class, 'showCart'])->name('cart.show');
 });
 
 
