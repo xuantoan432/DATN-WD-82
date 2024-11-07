@@ -27,9 +27,6 @@ class User extends Authenticatable
         'password',
         'remember_token',
         'phone',
-        'email',
-        'password',
-
     ];
 
     /**
@@ -51,7 +48,7 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function address()
+    public function addresses()
     {
         return $this->belongsToMany(Address::class, 'user_address');
     }
@@ -84,6 +81,11 @@ class User extends Authenticatable
     public function chatsReceived()
     {
         return $this->hasMany(Chat::class, 'user_receive_id');
+    }
+
+    public function seller()
+    {
+        return $this->hasOne(Seller::class);
     }
 
     public function hasRole($role)
