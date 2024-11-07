@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Client\CartController;
 use App\Http\Controllers\Client\HomeController;
 use App\Http\Controllers\Client\ProductController;
 use App\Http\Controllers\Client\UserController;
@@ -57,6 +58,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [UserController::class, 'userDashboard'])->name('dashboard');
     Route::get('posts/{post}', [PostController::class, 'show'])->name('posts.show');
     Route::post('comments', [PostController::class, 'store'])->name('posts.comments');
+    Route::post('add-cart', [CartController::class, 'addToCart'])->name('add.cart');
+    Route::get('cart', [CartController::class, 'showCart'])->name('cart.show');
 });
 
 
