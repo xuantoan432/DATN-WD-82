@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\AdminUserApprovalController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\TagController;
@@ -11,6 +12,9 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('/admin')->as('admin.')->middleware('role:1')->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('index');
     Route::resource('admin/category',CategoryController::class);
+    Route::get('/seller-approvals', [AdminUserApprovalController::class, 'index'])->name('admin.seller-approval');
+    Route::post('/seller-approve/{id}', [AdminUserApprovalController::class, 'approve'])->name('seller-approve');
+    Route::post('/seller-reject/{id}', [AdminUserApprovalController::class, 'reject'])->name('seller-reject');
 
     // Bảng Role
     Route::get('/dashboard', [PostController::class, 'index'])->name('admin.dashboard');

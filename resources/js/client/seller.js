@@ -1,64 +1,66 @@
-import './bootstrap';
-document.addEventListener('DOMContentLoaded', function() {
 
-    axios.get('https://provinces.open-api.vn/api/p/')
-        .then(function (response) {
-            const provinces = response.data;
-            let provinceSelect = document.getElementById('province');
-            provinces.forEach(function(province) {
-                let option = document.createElement('option');
-                option.value = province.code;
-                option.text = province.name;
-                provinceSelect.appendChild(option);
-            });
-        })
-        .catch(function (error) {
 
+var j = jQuery.noConflict();
+
+j(document).ready(function() {
+
+    $.ajax({
+        url: 'https://provinces.open-api.vn/api/p/',
+        method: 'GET',
+        success: function(data) {
+            $('#province').append(data.map(function(province) {
+                return `<option value="${province.code}">${province.name}</option>`;
+            }));
+        },
+        error: function() {
             alert('Không thể tải danh sách Tỉnh/Thành phố.');
-            console.error(error);
-        });
+        }
+    });
 });
-function getDistricts(provinceCode) {
-    let districtSelect = document.getElementById('district');
-    districtSelect.innerHTML = '<option value="">Chọn Quận/Huyện</option>';
-    document.getElementById('ward').innerHTML = '<option value="">Chọn Xã/Phường</option>';
 
-    if (provinceCode) {
-        axios.get(`https://provinces.open-api.vn/api/p/${provinceCode}?depth=2`)
-            .then(function (response) {
 
-                const districts = response.data.districts;
-                districts.forEach(function(district) {
-                    let option = document.createElement('option');
-                    option.value = district.code;
-                    option.text = district.name;
-                    districtSelect.appendChild(option);
-                });
-            })
-            .catch(function (error) {
-                alert('Không thể tải danh sách Quận/Huyện.');
-                console.error(error);
+
+j('#province').on( 'change' , function () {
+
+    let selectedValue = $(this).val();
+
+    $('#district').html('<option value="">Chọn Quận/Huyện</option>'); // Reset danh sách quận/huyện
+       $('#ward').html('<option value="">Chọn Xã/Phường</option>'); // Reset danh sách xã/phường
+
+        if (selectedValue) {
+            $.ajax({
+                url: `https://provinces.open-api.vn/api/p/${selectedValue}?depth=2`,
+                method: 'GET',
+                success: function(data) {
+                    $('#district').append(data.districts.map(function(district) {
+                        return `<option value="${district.code}">${district.name}</option>`;
+                    }));
+                },
+                error: function() {
+                    alert('Không thể tải danh sách Quận/Huyện.');
+                }
             });
-    }
-}
-function getWards(districtCode) {
-    let wardSelect = document.getElementById('ward');
-    wardSelect.innerHTML = '<option value="">Chọn Xã/Phường</option>';
+        }
+})
 
-    if (districtCode) {
-        axios.get(`https://provinces.open-api.vn/api/d/${districtCode}?depth=2`)
-            .then(function (response) {
-                const wards = response.data.wards;
-                wards.forEach(function(ward) {
-                    let option = document.createElement('option');
-                    option.value = ward.code;
-                    option.text = ward.name;
-                    wardSelect.appendChild(option);
-                });
-            })
-            .catch(function (error) {
+j('#district').on( 'change' , function () {
+
+    let selectedValue = $(this).val();
+    $('#ward').html('<option value="">Chọn Xã/Phường</option>'); // Reset danh sách xã/phường
+
+    if (selectedValue) {
+        $.ajax({
+            url: `https://provinces.open-api.vn/api/d/${selectedValue}?depth=2`,
+            method: 'GET',
+            success: function(data) {
+                $('#ward').append(data.wards.map(function(ward) {
+                    return `<option value="${ward.code}">${ward.name}</option>`;
+                }));
+            },
+            error: function() {
                 alert('Không thể tải danh sách Xã/Phường.');
-                console.error(error);
-            });
+            }
+        });
     }
-}
+
+})

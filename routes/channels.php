@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Seller;
+use App\Models\User;
 use Illuminate\Support\Facades\Broadcast;
 
 /*
@@ -15,4 +17,14 @@ use Illuminate\Support\Facades\Broadcast;
 
 Broadcast::channel('App.Models.User.{id}', function ($user, $id) {
     return (int) $user->id === (int) $id;
+});
+
+Broadcast::channel('seller', function(){
+    return true;
+});
+
+
+Broadcast::channel('user.{userId}', function ($user, $userId) {
+    // Kiểm tra quyền truy cập kênh (chỉ cho phép người dùng có userId đúng)
+    return (int) $user->id === (int) $userId;
 });
