@@ -36,9 +36,6 @@ class SellerRegisterController extends Controller
 
 
         $user = Auth::user();
-
-
-
         $seller =   Seller::create([
             'user_id' => $user->id,
             'store_name' => $validatedData['store_name'],
@@ -60,9 +57,6 @@ class SellerRegisterController extends Controller
         }
         broadcast(new SellerRegistrationRequested($seller))->toOthers();
 
-        // event(new SellerRegistrationRequested($seller));
-        //  event(new SellerRegistrationRequested($user));
-        // $seller->notify(new SellerApplicationSubmitted());
 
         return redirect()->back()->with('message', 'Registration submitted. Awaiting admin approval.');
 
