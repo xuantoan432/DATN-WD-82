@@ -90,4 +90,8 @@ class User extends Authenticatable
     {
         return $this->roles()->where('id', $role)->exists();
     }
+    public function seller()
+    {
+        return $this->hasOne(Seller::class);
+    }
 }

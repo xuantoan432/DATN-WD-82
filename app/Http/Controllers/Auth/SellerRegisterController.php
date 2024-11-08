@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Events\SellerApproved;
+use App\Events\SellerRegistrationRequested;
 use App\Http\Controllers\Controller;
 use App\Models\Address;
 use App\Models\Role;
 use App\Models\Seller;
 use App\Models\User;
 use App\Models\UserRole;
+use App\Notifications\SellerApplicationSubmitted;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -41,6 +44,7 @@ class SellerRegisterController extends Controller
             'store_name' => $validatedData['store_name'],
             'store_email' => $validatedData['store_email'],
             'store_description' => $validatedData['store_description'],
+            'is_verified' => false,
         ]);
         $address = Address::create([
             'address_line' => $validatedData['address_line'],
@@ -49,14 +53,21 @@ class SellerRegisterController extends Controller
             'ward_id' => $validatedData['ward'],
         ]);
 
-        $seller->address()->attach($address->id);
 
-        $user_id = User::findOrFail($user->id);
-        if (!$user_id->roles()->where('role_id', 2)->exists()) {
-            $user_id->roles()->attach(2);
+        $user = User::findOrFail($user->id);
+        if (!$user->roles()->where('role_id', 2)->exists()) {
+            $user->roles()->attach(2);
         }
+        broadcast(new SellerRegistrationRequested($seller))->toOthers();
+
+        // event(new SellerRegistrationRequested($seller));
+        //  event(new SellerRegistrationRequested($user));
+        // $seller->notify(new SellerApplicationSubmitted());
+
+        return redirect()->back()->with('message', 'Registration submitted. Awaiting admin approval.');
 
 
-        return redirect('/')->with('success', 'You are now registered as a seller.');
     }
+
 }
+

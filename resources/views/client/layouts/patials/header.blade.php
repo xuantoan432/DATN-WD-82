@@ -6,7 +6,7 @@
                     @if (auth()->check())
                     <a href="{{route('logout')}}"><span>Đăng xuất</span></a>
                     @endif
-                    
+
                     <a href="order.html"><span>Theo dõi đơn hàng</span></a>
                     <a href="faq.html"><span>Hỗ trợ</span></a>
                 </div>
@@ -262,7 +262,7 @@
                                     </svg>
                                 </span>
                             @endif
-                            
+
                         </a>
                     </div>
                 </div>
@@ -394,10 +394,10 @@
                                 </div>
                             </a>
                         </li>
-                        
+
                         @endforeach
-                        
-                        
+
+
                     </ul>
                 </div>
             </div>
@@ -482,7 +482,7 @@
                                     </svg>
                                 </span>
                             </a>
-                            
+
                         </li>
                         <li>
                             <a href="#">
@@ -518,8 +518,8 @@
                         <li>
                             <a href="{{route('posts')}}">
                                 <span class="list-text">Blog</span>
-                            </a>                        
-                        </li>      
+                            </a>
+                        </li>
                         <li>
                             <a href="contact-us.html">
                                 <span class="list-text">Liên hệ</span>
@@ -528,9 +528,9 @@
                     </ul>
                 </div>
                 <div class="header-vendor-btn">
-                    
+
                     @if (auth()->check() && auth()->user()->hasRole(3))
-                        <a href="{{ route('seller.index') }}" class="shop-btn">
+                        <a href="{{ route('register.seller') }}" class="shop-btn">
                             <span class="list-text shop-text">Trở thành người bán</span>
                             <span class="icon">
                                 <svg width="24" height="16" viewBox="0 0 24 16" fill="none" xmlns="http://www.w3.org/2000/svg">
