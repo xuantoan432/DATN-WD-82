@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Client\API\AddToCartController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +18,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('check-variant', [AddToCartController::class, 'checkVariant']);
+Route::get('check-quantity', [AddToCartController::class, 'checkQuantity']);
+Route::delete('remove-from-cart', [AddToCartController::class, 'deleteItemCart']);

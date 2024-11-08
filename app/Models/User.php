@@ -27,9 +27,6 @@ class User extends Authenticatable
         'password',
         'remember_token',
         'phone',
-        'email',
-        'password',
-
     ];
 
     /**
@@ -51,7 +48,7 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function address()
+    public function addresses()
     {
         return $this->belongsToMany(Address::class, 'user_address');
     }

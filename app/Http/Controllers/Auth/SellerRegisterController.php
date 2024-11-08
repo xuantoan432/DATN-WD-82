@@ -34,8 +34,6 @@ class SellerRegisterController extends Controller
 
         $user = Auth::user();
 
-
-
         $seller =   Seller::create([
             'user_id' => $user->id,
             'store_name' => $validatedData['store_name'],
