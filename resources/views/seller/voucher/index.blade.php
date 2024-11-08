@@ -38,8 +38,8 @@
                                         <th>Mã Voucher</th>
                                         <th>Loại Giảm Giá</th>
                                         <th>Giá Trị Giảm Giá</th>
-                                        <th>Số Tiền Giảm Tối Đa</th>
-                                        <th>Giá Đơn Tối Thiểu</th>
+                                        {{-- <th>Số Tiền Giảm Tối Đa</th>
+                                        <th>Giá Đơn Tối Thiểu</th> --}}
                                         <th>Ngày Bắt Đầu</th>
                                         <th>Ngày Kết Thúc</th>
                                         <th>Giới Hạn Sử Dụng</th>
@@ -56,12 +56,12 @@
                                             <td>{{ $voucher->code }}</td>
                                             <td>{{ $voucher->discount_type }}</td>
                                             <td>{{ number_format($voucher->discount_value, 0) }}</td>
-                                            <td>{{ number_format($voucher->max_discount_amount, 0) }}</td>
-                                            <td>{{ number_format($voucher->min_order_value, 0) }}</td>
+                                            {{-- <td>{{ number_format($voucher->max_discount_amount, 0) }}</td>
+                                            <td>{{ number_format($voucher->min_order_value, 0) }}</td> --}}
                                             <td>{{ $voucher->start_date }}</td>
                                             <td>{{ $voucher->end_date }}</td>
                                             <td>{{ $voucher->usage_limit }}</td>
-                                            <td>{{ $voucher->usage_type == 1 ? 'Cửa hàng' : 'Người bán' }}</td>
+                                            <td>{{ $voucher->usage_type == 1 ? 'Xếp chồng' : 'Không xếp chồng' }}</td>
                                             <td>{{ $voucher->usage_per_customer }}</td>
                                             <td>
                                                 <div class="row row-cols-auto g-3 mt-2">

@@ -102,8 +102,8 @@
                             <div class="mb-3">
                                 <label for="usage_type" class="form-label">Loại Sử Dụng</label>
                                 <select class="form-select @error('usage_type') is-invalid @enderror" id="usage_type" name="usage_type" required>
-                                    <option value="1">Cửa hàng</option>
-                                    <option value="0">Người bán</option>
+                                    <option value="1">Xếp chồng</option>
+                                    <option value="0">Không xếp chồng</option>
                                 </select>
                                 @error('usage_type')
                                     <p class="text-danger">{{ $message }}</p>
