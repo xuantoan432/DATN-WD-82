@@ -1,4 +1,4 @@
-@extends('admin.layouts.master')
+@extends('seller.layouts.master')
 
 @section('content')
     <div class="main-content">
@@ -8,7 +8,7 @@
             <div class="ps-3">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb mb-0 p-0">
-                        <li class="breadcrumb-item active" aria-current="page">Danh sách thuộc tính</li>
+                        <li class="breadcrumb-item active" aria-current="page">Sửa giá trị thuộc tính</li>
                     </ol>
                 </nav>
             </div>
@@ -19,27 +19,27 @@
             <div class="col-6">
                 <div class="card">
                     <div class="card-header">
-                        <h6 class="m-0 font-weight-bold">Thêm Thuộc Tính</h6>
+                        <h6 class="m-0 font-weight-bold">Sửa Giá Trị Thuộc Tính: {{ $attributeValue->value }}</h6>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <table class="table table-bordered" id="dataTable">
                                 <div class="col-12">
-                                    <form action="{{ route('admin.attributes.store') }}" method="post"
+                                    <form action="{{ route('seller.attribute.values.update', $attributeValue) }}" method="post"
                                           enctype="multipart/form-data">
                                         @csrf
+                                        @method('PUT')
                                         <div class="mb-3">
                                             <label for="exampleFormControlInput1" class="form-label">Tên Thuộc
                                                 Tính</label>
-                                            <input type="text" name="name" class="form-control @error('name') is-invalid @enderror"
+                                            <input type="text" name="value" class="form-control @error('value') is-invalid @enderror" value="{{ $attributeValue->value }}"
                                                    placeholder="Nhập tên thuộc tính">
-                                            @error('name')
+                                            @error('value')
                                                 <p class="text-danger">{{ $message }}</p>
                                             @enderror
                                         </div>
                                         <div>
-                                            <button type="submit" class="btn btn-grd-primary px-4">Tạo</button>
-                                            <button type="reset" class="btn btn-grd-royal px-4">Reset</button>
+                                            <button type="submit" class="btn btn-grd-primary px-4">Cập nhật</button>
                                         </div>
                                     </form>
                                 </div>
@@ -66,39 +66,37 @@
                                 <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Tên thuộc tính</th>
                                     <th>Giá trị thuộc tính</th>
+                                    <th>Thao tác</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($attributes as $attribute)
-                                        <tr>
-                                            <td>{{ $attribute->id }}</td>
-                                            <td>
-                                                {{ $attribute->name }}
-                                                <div class="row row-cols-auto g-3 mt-2">
-                                                    <div class="col">
-                                                        <form action="{{ route('admin.attributes.destroy', $attribute) }}" method="post">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <button type="submit" class="btn btn-outline-danger d-flex gap-2" onclick="return confirm('Bạn có chắc chắn muốn xóa không?')"><i
-                                                                    class="material-icons-outlined">delete</i></button>
-                                                        </form>
+                                @foreach($attributeValues as $attributeValue)
+                                    <tr>
+                                        <td>{{ $attributeValue->id }}</td>
+                                        <td>
+                                            {{ $attributeValue->value }}
+                                        </td>
+                                        <td class="">
+                                            <div class="row row-cols-auto g-3 mt-2">
+                                                <div class="col">
+                                                    <form action="{{ route('seller.attribute.values.destroy', ['attribute' => $attribute, 'attributeValue' => $attributeValue]) }}" method="post">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-outline-danger d-flex gap-2" onclick="return confirm('Bạn có chắc chắn muốn xóa không?')"><i
+                                                                class="material-icons-outlined">delete</i></button>
+                                                    </form>
 
-                                                    </div>
-                                                    <div class="col">
-                                                        <a href="{{ route('admin.attributes.edit', $attribute) }}" class="btn btn-outline-warning d-flex gap-2">
-                                                            <i class="material-icons-outlined">edit</i></a>
-                                                    </div>
                                                 </div>
-                                            </td>
-                                            <td class="">
-                                                <a href="{{ route('admin.attribute.values.index', $attribute) }}" class="btn btn-outline-success d-flex gap-2">Thêm
-                                                    value
-                                                </a>
-                                            </td>
-                                        </tr>
-                                    @endforeach
+                                                <div class="col">
+                                                    <a href="{{ route('seller.attribute.values.edit', ['attribute' => $attribute, 'attributeValue' => $attributeValue]) }}
+" class="btn btn-outline-warning d-flex gap-2">
+                                                        <i class="material-icons-outlined">edit</i></a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endforeach
                                 </tbody>
                             </table>
                         </div>

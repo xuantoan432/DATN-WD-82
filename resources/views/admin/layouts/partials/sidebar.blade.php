@@ -32,10 +32,6 @@
                 <div class="menu-title">Sản phẩm</div>
             </a>
             <ul>
-                <li><a href="{{ route('admin.attributes.index') }}"><i
-                            class="material-icons-outlined">arrow_right</i>Thuộc
-                        tính</a>
-                </li>
                 <li>
                     <a href="{{ route('admin.category.index') }}"><i class="material-icons-outlined">arrow_right</i>Danh
                         mục</a>

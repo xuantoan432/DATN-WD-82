@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Client\CartController;
 use App\Http\Controllers\Client\HomeController;
+use App\Http\Controllers\Client\OrderController;
 use App\Http\Controllers\Client\ProductController;
 use App\Http\Controllers\Client\UserController;
 use Illuminate\Support\Facades\Route;
@@ -66,6 +67,8 @@ Route::middleware('auth')->group(function () {
     Route::post('comments', [PostController::class, 'store'])->name('posts.comments');
     Route::post('add-cart', [CartController::class, 'addToCart'])->name('add.cart');
     Route::get('cart', [CartController::class, 'showCart'])->name('cart.show');
+    Route::get('checkout', [OrderController::class, 'showCheckout'])->name('checkout.show');
+
 });
 
 

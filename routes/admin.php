@@ -6,24 +6,12 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Admin\PostController;
-use App\Http\Controllers\Admin\AttributeController;
-use App\Http\Controllers\Admin\AttributeValueController;
+use App\Http\Controllers\Client\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('/admin')->as('admin.')->middleware('role:1')->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('index');
     Route::resource('admin/category',CategoryController::class);
-    Route::resource('attributes', AttributeController::class);
-
-    Route::prefix('/attribute')->as('attribute.values.')->group(function () {
-        Route::get('{attribute}/values', [AttributeValueController::class, 'index'])->name('index');
-        Route::post('{attribute}/values', [AttributeValueController::class, 'store'])->name('store');
-        Route::get('{attribute}/values/{attributeValue}', [AttributeValueController::class, 'edit'])->name('edit');
-        Route::put('/values/{attributeValue}', [AttributeValueController::class, 'update'])->name('update');
-        Route::delete('{attribute}/values/{attributeValue}', [AttributeValueController::class, 'destroy'])->name('destroy');
-
-
-    });
     Route::get('/seller-approvals', [AdminUserApprovalController::class, 'index'])->name('admin.seller-approval');
     Route::post('/seller-approve/{id}', [AdminUserApprovalController::class, 'approve'])->name('seller-approve');
     Route::post('/seller-reject/{id}', [AdminUserApprovalController::class, 'reject'])->name('seller-reject');
