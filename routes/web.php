@@ -54,6 +54,7 @@ Route::middleware('guest')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::get('register/seller', [SellerRegisterController::class, 'showRegistrationForm'])->name('register.seller');
     Route::post('register/seller', [SellerRegisterController::class, 'register']);
+
     Route::get('/logout', [LoginController::class,'logout'])->name('logout');
     Route::get('/dashboard', [UserController::class, 'userDashboard'])->name('dashboard');
     Route::post('/createAddress', [UserController::class, 'createAddress'])->name('user.address.create');
