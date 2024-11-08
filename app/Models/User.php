@@ -54,9 +54,9 @@ class User extends Authenticatable
     }
 
     public function roles()
-{
-    return $this->belongsToMany(Role::class, 'user_role', 'user_id', 'role_id');
-}
+    {
+        return $this->belongsToMany(Role::class, 'user_role', 'user_id', 'role_id');
+    }
 
     public function reviews()
     {
@@ -91,5 +91,18 @@ class User extends Authenticatable
     public function hasRole($role)
     {
         return $this->roles()->where('id', $role)->exists();
+    }
+
+    public function cart(){
+        return $this->hasOne(Cart::class);
+    }
+
+    public function attributes()
+    {
+        return $this->hasOne(Attribute::class);
+    }
+
+    public function attributeValues(){
+        return $this->hasOne(AttributeValue::class);
     }
 }

@@ -13,7 +13,6 @@
             <div class="row gy-5">
                 <div class="col-lg-6">
                     <div class="checkout-wrapper">
-                        <a href="login.html" class="shop-btn">Log into Your Account</a>
                         <div class="account-section billing-section">
                             <h5 class="wrapper-heading">Billing Details</h5>
                             <div class="review-form">
@@ -89,7 +88,6 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="checkout-wrapper">
-                        <a href="#" class="shop-btn">Enter Coupon Code</a>
                         <div class="account-section billing-section">
                             <h5 class="wrapper-heading">Order Summary</h5>
                             <div class="order-summery">

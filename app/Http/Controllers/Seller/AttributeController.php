@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Seller;
 
 use App\Http\Controllers\Controller;
 use App\Models\Attribute;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AttributeController extends Controller
 {
@@ -13,8 +15,10 @@ class AttributeController extends Controller
      */
     public function index()
     {
-        $attributes = Attribute::query()->orderBy('id', 'desc')->get();
-        return view('admin.attributes.index', compact('attributes'));
+        $user = User::with('seller')->find(Auth::id());
+    dd($user);
+        $attributes = Attribute::query()->where('user_id', Auth::id())->get();
+        return view('seller.attributes.index', compact('attributes'));
     }
 
     /**
@@ -25,9 +29,10 @@ class AttributeController extends Controller
         $data = $request->validate([
             'name' => 'required|unique:attributes,name',
         ]);
+        $data['user_id'] = auth()->id();
         Attribute::query()->create($data);
         return redirect()
-                ->route('admin.attributes.index')
+                ->route('seller.attributes.index')
                 ->with('success', 'Thêm mới thuộc tính thành công!');
     }
 
@@ -37,7 +42,7 @@ class AttributeController extends Controller
     public function show(Attribute $attribute)
     {
         $attributes = Attribute::query()->orderBy('id', 'desc')->get();
-        return view('admin.attributes.show', compact('attribute', 'attributes'));
+        return view('seller.attributes.show', compact('attribute', 'attributes'));
     }
 
     /**
@@ -46,7 +51,7 @@ class AttributeController extends Controller
     public function edit(Attribute $attribute)
     {
         $attributes = Attribute::query()->orderBy('id', 'desc')->get();
-        return view('admin.attributes.edit', compact('attribute', 'attributes'));
+        return view('seller.attributes.edit', compact('attribute', 'attributes'));
     }
 
     /**
@@ -67,6 +72,6 @@ class AttributeController extends Controller
     public function destroy(Attribute $attribute)
     {
         $attribute->delete();
-        return redirect()->route('admin.attributes.index')->with('success', 'Xóa thành công');
+        return redirect()->route('seller.attributes.index')->with('success', 'Xóa thành công');
     }
 }
