@@ -61,7 +61,7 @@
                                             <td>{{ $voucher->start_date }}</td>
                                             <td>{{ $voucher->end_date }}</td>
                                             <td>{{ $voucher->usage_limit }}</td>
-                                            <td>{{ $voucher->usage_type }}</td>
+                                            <td>{{ $voucher->usage_type == 1 ? 'Cửa hàng' : 'Người bán' }}</td>
                                             <td>{{ $voucher->usage_per_customer }}</td>
                                             <td>
                                                 <div class="row row-cols-auto g-3 mt-2">

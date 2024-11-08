@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Voucher;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class VoucherController extends Controller
 {
@@ -29,10 +30,10 @@ class VoucherController extends Controller
      * Store a newly created voucher in storage.
      */
     public function store(Request $request)
-    {
+    {   
         $request->validate([
             'code' => 'required|string|max:255|unique:vouchers,code',
-            'discount_type' => 'required|in:percentage,fixed',
+            'discount_type' => 'required|in:Phần trăm,Cố định',
             'discount_value' => 'required|numeric|min:0',
             'max_discount_amount' => 'nullable|numeric|min:0',
             'min_order_value' => 'nullable|numeric|min:0',
@@ -43,9 +44,10 @@ class VoucherController extends Controller
             'usage_per_customer' => 'nullable|integer|min:1',
         ]);
         $voucherData = $request->all();
+        // dd($request->all());
         $voucherData['user_id'] = auth()->id();
-        Voucher::create($request->all());
-
+        Voucher::create($voucherData);
+        
         return redirect()->route('admin.vouchers.index')->with('success', 'Thêm voucher thành công');
     }
 
@@ -65,7 +67,7 @@ class VoucherController extends Controller
 {
     $request->validate([
         'code' => 'required|string|max:255|unique:vouchers,code,' . $voucher->id,
-        'discount_type' => 'required|in:percentage,fixed',
+        'discount_type' => 'required|in:Phần trăm,Cố định',
         'discount_value' => 'required|numeric|min:0',
         'max_discount_amount' => 'nullable|numeric|min:0',
         'min_order_value' => 'nullable|numeric|min:0',
