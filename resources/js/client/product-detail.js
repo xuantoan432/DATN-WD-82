@@ -43,33 +43,51 @@ $(document).ready(function () {
                     productId: productId,
                 },
                 success: function (response) {
-                    console.log(response)
-                    const variantImage = `/storage/${response.image}`;
+                    if (response.status){
+                        const variantImage = `/storage/${response.variant.image}`;
 
-                    swiperTop.slides[0].querySelector('img').src = variantImage;
+                        swiperTop.slides[0].querySelector('img').src = variantImage;
 
-                    swiperTop.update();
+                        swiperTop.update();
 
-                    swiperTop.slideTo(0);
+                        swiperTop.slideTo(0);
 
-                    if (response.price_sale) {
-                        $('.new-price').html('₫' + response.price_sale)
-                        $('.price-cut').html('₫' + response.price)
-                    } else {
-                        $('.price-cut').html('')
-                        $('.new-price').html('₫' + response.price)
-                    }
 
-                    $('.product-availability').children('.inner-text').html(`${response.stock_quantity} sản phẩm có sẵn`);
-                    $('#stock-quantity').val(response.stock_quantity);
-                    $('#product-variant-id').val(response.id);
+                        if(response.variant.price_sale){
+                            $('.new-price').html('₫' + response.variant.price_sale)
+                            $('.price-cut').html('₫' + response.variant.price)
+                        }else{
+                            $('.price-cut').html('')
+                            $('.new-price').html('₫' + response.variant.price)
+                        }
 
-                    if (response.sku) {
-                        $('.sku').children('.inner-text').html(response.sku)
+                        $('.product-availability').children('.inner-text').html(`${response.variant.stock_quantity} sản phẩm có sẵn`);
+                        $('#stock-quantity').val(response.variant.stock_quantity);
+                        $('#product-variant-id').val(response.variant.id);
+
+
+                        if (response.variant.sku){
+                            $('.sku').children('.inner-text').html(response.variant.sku)
+                        }
                     }
                 },
-                error: function (xhr) {
-                    console.log("Đã xảy ra lỗi:", xhr.responseText);
+                error: function(xhr) {
+                    toastr.options = {
+                        "closeButton": true,
+                        "progressBar": true,
+                        "positionClass": "toast-top-right",
+                        "timeOut": "5000",
+                    };
+                    toastr.warning("Không có sản phẩm với biến thể này", "Thông báo!");
+                    $.each(selectedValues, function(attrKey, attrId) {
+                        let $radioInput = $(`.attribute-options input[type="radio"][value="${attrKey}-${attrId}"]`);
+
+                        if ($radioInput.length) {
+                            $radioInput.prop('checked', false);
+
+                            $radioInput.closest('.attribute-options').find('.attribute-name').removeClass('active');
+                        }
+                    });
                 }
             });
         }

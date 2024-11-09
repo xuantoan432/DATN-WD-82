@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Client\CartController;
 use App\Http\Controllers\Client\HomeController;
+use App\Http\Controllers\Client\OrderController;
 use App\Http\Controllers\Client\ProductController;
 use App\Http\Controllers\Client\UserController;
 use Illuminate\Support\Facades\Route;
@@ -51,6 +52,7 @@ Route::middleware('guest')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::get('register/seller', [SellerRegisterController::class, 'showRegistrationForm'])->name('register.seller');
     Route::post('register/seller', [SellerRegisterController::class, 'register']);
+
     Route::get('/logout', [LoginController::class,'logout'])->name('logout');
     Route::get('/dashboard', [UserController::class, 'userDashboard'])->name('dashboard');
     Route::post('/createAddress', [UserController::class, 'createAddress'])->name('user.address.create');
@@ -62,6 +64,8 @@ Route::middleware('auth')->group(function () {
     Route::post('comments', [PostController::class, 'store'])->name('posts.comments');
     Route::post('add-cart', [CartController::class, 'addToCart'])->name('add.cart');
     Route::get('cart', [CartController::class, 'showCart'])->name('cart.show');
+    Route::get('checkout', [OrderController::class, 'showCheckout'])->name('checkout.show');
+
 
     Route::get('/wishlist', [WishlistController::class, 'listWishlist'])->name('wishlist.show');
     Route::get('/wishlist/add', [WishlistController::class, 'addToWishlist'])->name('wishlist.add');

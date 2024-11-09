@@ -11,12 +11,16 @@ use Illuminate\Support\Facades\Auth;
 class CartController extends Controller
 {
     public function showCart(){
-
-        $cart = Cart::query()->where('user_id',Auth::id())->first();
-        $cartItems = $cart->cartItems()->with([
-            'productVariant.product',
-            'productVariant.attributes.attribute',
-        ])->orderByDesc('id')->get();
+        $cart = Cart::query()->where('user_id', Auth::id())->first();
+        if ($cart) {
+            $cartItems = $cart->cartItems()->with([
+                'productVariant.product',
+                'productVariant.attributes.attribute',
+            ])->orderByDesc('id')->get();
+        } else {
+            // Nếu không có giỏ hàng, đặt $cartItems thành mảng rỗng
+            $cartItems = collect([]);
+        }
         return view('client.cart', compact( 'cartItems'));
     }
     public function addToCart(Request $request)

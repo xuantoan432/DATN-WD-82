@@ -9,6 +9,7 @@
     @include('client.components.breadcrumbs')
 
     <section class="product-cart product footer-padding">
+        @if(!$cartItems->isEmpty())
         <div class="container">
             <div class="cart-section">
                 <table>
@@ -131,9 +132,20 @@
             <div class="wishlist-btn cart-btn">
                 <a href="empty-cart.html" class="clean-btn">Clear Cart</a>
                 <a href="#" class="shop-btn update-btn">Update Cart</a>
-                <a href="checkout.html" class="shop-btn">Proceed to Checkout</a>
+                <a href="{{ route('checkout.show') }}" class="shop-btn">Proceed to Checkout</a>
             </div>
         </div>
+        @else
+            <div class="blog-item" data-aos="fade-up">
+                <div class="cart-img">
+                    <img src="{{ asset('theme/client/assets/images/homepage-one/empty-cart.webp') }}" alt>
+                </div>
+                <div class="cart-content">
+                    <p class="content-title">Giỏ hàng của bạn đang không có sản phẩm nào </p>
+                    <a href="product-sidebar.html" class="shop-btn">Quay lại trang sản phẩm</a>
+                </div>
+            </div>
+        @endif
     </section>
 
 @endsection

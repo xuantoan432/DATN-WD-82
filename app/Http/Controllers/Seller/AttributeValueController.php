@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Seller;
 
 use App\Http\Controllers\Controller;
 use App\Models\Attribute;
@@ -15,7 +15,7 @@ class AttributeValueController extends Controller
     public function index(Attribute $attribute)
     {
         $attributeValues = $attribute->attributeValues;
-        return view('admin.attributeValues.index', compact('attributeValues', 'attribute'));
+        return view('seller.attributeValues.index', compact('attributeValues', 'attribute'));
     }
 
 
@@ -27,9 +27,10 @@ class AttributeValueController extends Controller
         $data = $request->validate([
             'value' => 'required|unique:attribute_values,value' ,
         ]);
+        $data['user_id'] = auth()->id();
         $attribute->attributeValues()->create($data);
         return redirect()
-            ->route('admin.attribute.values.index', $attribute)
+            ->route('seller.attribute.values.index', $attribute)
             ->with('success', 'Thêm mới giá trị thuộc tính thành công!');
     }
 
@@ -40,7 +41,7 @@ class AttributeValueController extends Controller
     public function edit(Attribute $attribute, AttributeValue $attributeValue)
     {
         $attributeValues = $attribute->attributeValues;
-        return view('admin.attributeValues.edit', compact('attributeValue', 'attributeValues', 'attribute'));
+        return view('seller.attributeValues.edit', compact('attributeValue', 'attributeValues', 'attribute'));
     }
 
     /**
@@ -62,7 +63,7 @@ class AttributeValueController extends Controller
     {
         $attributeValue->delete();
         $attributeValues = $attribute->attributeValues;
-        return redirect()->route('admin.attribute.values.index', $attribute)
+        return redirect()->route('seller.attribute.values.index', $attribute)
             ->with('sucess', 'Xóa thành công!');
     }
 }

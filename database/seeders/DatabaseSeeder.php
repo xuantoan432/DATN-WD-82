@@ -138,6 +138,11 @@ class DatabaseSeeder extends Seeder
             ['id' => 2, 'name' => 'Size'],
             ['id' => 3, 'name' => 'Material'],
         ];
+
+        foreach ($attributes as &$attribute) {
+            $attribute['user_id'] = 2;
+        }
+
         $attribute_values = [
             ['id' => 1, 'attribute_id' => 1, 'value' => 'Red'],
             ['id' => 2, 'attribute_id' => 1, 'value' => 'Blue'],
@@ -148,6 +153,10 @@ class DatabaseSeeder extends Seeder
             ['id' => 7, 'attribute_id' => 3, 'value' => 'Cotton'],
             ['id' => 8, 'attribute_id' => 3, 'value' => 'Polyester'],
         ];
+
+        foreach ($attribute_values as &$attribute_value) {
+            $attribute_value['user_id'] = 2;
+        }
         $product_variants = [
             [
                 'id' => 1,
