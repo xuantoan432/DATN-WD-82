@@ -5,6 +5,7 @@
     <script src="{{asset('theme/admin/assets/js/pace.min.js')}}"></script>
 
     <!--plugins-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link href="{{asset('theme/admin/assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css')}}" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{asset('theme/admin/assets/plugins/metismenu/metisMenu.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('theme/admin/assets/plugins/metismenu/mm-vertical.css')}}">

@@ -16,4 +16,8 @@ class Seller extends Model
     {
         return $this->belongsToMany(Address::class, 'seller_address');
     }
+    public function user()
+    {
+        return $this->hasOne(User::class);
+    }
 }

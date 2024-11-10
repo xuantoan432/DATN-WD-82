@@ -8,6 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class ProductHasAttribute extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'product_id' ,
+        'attribute_id'
+    ]  ;
+
+
     public function product()
     {
         return $this->belongsTo(Product::class);
