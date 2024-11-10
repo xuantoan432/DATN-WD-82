@@ -10,7 +10,7 @@ class Attribute extends Model
     use HasFactory;
     protected $fillable = [
         'name',
-        'user_id'
+        'user_id' , 
     ];
     public function attributeValues()
     {
@@ -24,9 +24,5 @@ class Attribute extends Model
     public function productVariantAttributes()
     {
         return $this->hasMany(ProductVariantAttribute::class);
-    }
-
-    public function user(){
-        return $this->belongsTo(User::class);
     }
 }

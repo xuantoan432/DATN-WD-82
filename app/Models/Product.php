@@ -17,13 +17,13 @@ class Product extends Model
         'sku',
         'content',
         'price',
-        'price_sale',
         'image',
         'views',
         'quantity',
         'is_verified',
         'status'
     ];
+
     public function category()
     {
         return $this->belongsTo(Category::class);
