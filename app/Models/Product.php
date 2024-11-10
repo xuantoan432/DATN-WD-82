@@ -11,12 +11,17 @@ class Product extends Model
     protected $fillable = [
         'category_id',
         'seller_id',
+        'final_fee_percentage',
         'name',
         'short_description',
         'sku',
         'content',
         'price',
         'image',
+        'views',
+        'quantity',
+        'is_verified',
+        'status'
     ];
 
     public function category()
@@ -47,5 +52,9 @@ class Product extends Model
     public function variants()
     {
         return $this->hasMany(ProductVariant::class);
+    }
+    public function seller()
+    {
+        return $this->belongsTo(Seller::class);
     }
 }

@@ -1,6 +1,6 @@
 <div class="sidebar-header">
     <div class="logo-icon">
-        <img src="{{asset('theme/admin/assets/images/logo-icon.png')}}" class="logo-img" alt="">
+        <img src="{{ asset('theme/admin/assets/images/logo-icon.png') }}" class="logo-img" alt="">
     </div>
     <div class="logo-name flex-grow-1">
         <h5 class="mb-0">Maxton</h5>
@@ -32,18 +32,24 @@
                 <div class="menu-title">Sản phẩm</div>
             </a>
             <ul>
-                <li><a href="{{ route('admin.attributes.index') }}"><i class="material-icons-outlined">arrow_right</i>Thuộc
-                        tính</a>
-                </li>
                 <li>
-                    <a href="{{ route('admin.category.index') }}"><i class="material-icons-outlined">arrow_right</i>Danh mục</a>
-                 </li>
+                    <a href="{{ route('admin.category.index') }}"><i class="material-icons-outlined">arrow_right</i>Danh
+                        mục</a>
+                </li>
+
+
+                <li><a href="{{ route('admin.roles.index') }}"><i class="material-icons-outlined">arrow_right</i>Phân
+                        quyền</a>
+
+                <li><a href="{{ route('admin.tags.index') }}"><i class="material-icons-outlined">arrow_right</i>Thẻ</a>
+
+                <li>
+                    <a href="{{ route('admin.posts.index') }}"><i class="material-icons-outlined">arrow_right</i>Bài viết
+                        </a>
+                </li>
             </ul>
         </li>
-
-
     </ul>
-    </li>
-    </ul>
+
     <!--end navigation-->
 </div>

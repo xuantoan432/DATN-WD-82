@@ -17,7 +17,6 @@ return new class extends Migration
             $table->unsignedBigInteger('province_id');
             $table->unsignedBigInteger('ward_id');
             $table->unsignedBigInteger('district_id');
-
             $table->timestamps();
         });
     }

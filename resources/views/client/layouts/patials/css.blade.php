@@ -7,3 +7,4 @@
 <link rel="stylesheet" href="/theme/client/css/aos-3.0.0.css">
 
 <link rel="stylesheet" href="/theme/client/css/style.css">
+<link rel="stylesheet" href="/theme/client/css/custom.css">
