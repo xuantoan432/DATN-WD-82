@@ -1,12 +1,11 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\AdminUserApprovalController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Admin\PostController;
-use App\Http\Controllers\Admin\AttributeController;
-use App\Http\Controllers\Admin\AttributeValueController;
 use App\Http\Controllers\Client\UserController;
 use App\Http\Controllers\Admin\VoucherController;
 use Illuminate\Support\Facades\Route;
@@ -15,14 +14,9 @@ Route::prefix('/admin')->as('admin.')->middleware('role:1')->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('index');
     Route::resource('/category',CategoryController::class);
     Route::resource('/vouchers',VoucherController::class);
-    Route::resource('attributes', AttributeController::class);
-    Route::prefix('/attribute')->as('attribute.values.')->group(function () {
-        Route::get('{attribute}/values', [AttributeValueController::class, 'index'])->name('index');
-        Route::post('{attribute}/values', [AttributeValueController::class, 'store'])->name('store');
-        Route::get('{attribute}/values/{attributeValue}', [AttributeValueController::class, 'edit'])->name('edit');
-        Route::put('/values/{attributeValue}', [AttributeValueController::class, 'update'])->name('update');
-        Route::delete('{attribute}/values/{attributeValue}', [AttributeValueController::class, 'destroy'])->name('destroy');
-    });
+    Route::get('/seller-approvals', [AdminUserApprovalController::class, 'index'])->name('admin.seller-approval');
+    Route::post('/seller-approve/{id}', [AdminUserApprovalController::class, 'approve'])->name('seller-approve');
+    Route::post('/seller-reject/{id}', [AdminUserApprovalController::class, 'reject'])->name('seller-reject');
 
     // Bảng Role
     Route::get('/dashboard', [PostController::class, 'index'])->name('admin.dashboard');
@@ -42,7 +36,7 @@ Route::prefix('/admin')->as('admin.')->middleware('role:1')->group(function () {
     Route::resource('posts', PostController::class);
     Route::delete('/posts', [PostController::class, 'destroy'])->name('admin.posts.destroy');
     Route::delete('/posts', [PostController::class, 'edit'])->name('admin.posts.edit');
-    
+
     Route::resource('users',\App\Http\Controllers\Admin\UserController::class);
 
 });

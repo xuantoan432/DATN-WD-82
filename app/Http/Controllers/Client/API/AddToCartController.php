@@ -31,8 +31,13 @@ class AddToCartController extends Controller
             ->having(\DB::raw('COUNT(DISTINCT pva.attribute_id)'), '=', count($attributes))
             ->select('pv.*')
             ->first();
-
-        return $variant;
+        if($variant){
+            return response()->json([
+                'status' => true,
+                'variant' => $variant,
+            ], 200);
+        }
+        return response()->json([], 400);
     }
 
     public function checkQuantity(Request $request)

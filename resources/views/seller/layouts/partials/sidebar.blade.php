@@ -1,6 +1,6 @@
 <div class="sidebar-header">
     <div class="logo-icon">
-        <img src="{{asset('theme/admin/assets/images/logo-icon.png')}}" class="logo-img" alt="">
+        <img src="{{ asset('theme/admin/assets/images/logo-icon.png') }}" class="logo-img" alt="">
     </div>
     <div class="logo-name flex-grow-1">
         <h5 class="mb-0">Maxton</h5>
@@ -32,15 +32,24 @@
                 <div class="menu-title">Sản phẩm</div>
             </a>
             <ul>
+                <li><a href="{{ route('seller.products.create') }}"><i
+                            class="material-icons-outlined">arrow_right</i>Thêm Sản Phẩm </a>
+                </li>
                 <li>
-                    <a href="{{ route('seller.vouchers.index') }}"><i class="material-icons-outlined">arrow_right</i>Mã giảm giá
-                        </a>
+                    <a href="{{ route('seller.products.index') }}"><i
+                            class="material-icons-outlined">arrow_right</i>Danh sách Sản Phẩm</a>
+                </li>
+                <li>
+                    <a href="{{ route('seller.vouchers.index') }}"><i class="material-icons-outlined">arrow_right</i>Mã
+                        giảm giá
+                    </a>
+                </li>
+                <li><a href="{{ route('seller.attributes.index') }}"><i
+                            class="material-icons-outlined">arrow_right</i>Thuộc
+                        tính</a>
                 </li>
             </ul>
         </li>
-
-    </ul>
-    </li>
     </ul>
     <!--end navigation-->
 </div>

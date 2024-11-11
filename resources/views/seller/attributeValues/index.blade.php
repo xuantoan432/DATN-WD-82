@@ -1,4 +1,4 @@
-@extends('admin.layouts.master')
+@extends('seller.layouts.master')
 
 @section('content')
     <div class="main-content">
@@ -25,7 +25,7 @@
                         <div class="table-responsive">
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <div class="col-12">
-                                    <form action="{{ route('admin.attribute.values.store', $attribute) }}" method="post">
+                                    <form action="{{ route('seller.attribute.values.store', $attribute) }}" method="post">
                                         @csrf
                                         <div class="mb-3">
                                             <label for="exampleFormControlInput1" class="form-label">Tên Giá Thuộc
@@ -79,7 +79,7 @@
                                             <td class="">
                                                 <div class="row row-cols-auto g-3 mt-2">
                                                     <div class="col">
-                                                        <form action="{{ route('admin.attribute.values.destroy', ['attribute' => $attribute, 'attributeValue' => $attributeValue]) }}" method="post">
+                                                        <form action="{{ route('seller.attribute.values.destroy', ['attribute' => $attribute, 'attributeValue' => $attributeValue]) }}" method="post">
                                                             @csrf
                                                             @method('DELETE')
                                                             <button type="submit" class="btn btn-outline-danger d-flex gap-2" onclick="return confirm('Bạn có chắc chắn muốn xóa không?')"><i
@@ -88,7 +88,7 @@
 
                                                     </div>
                                                     <div class="col">
-                                                        <a href="{{ route('admin.attribute.values.edit', ['attribute' => $attribute, 'attributeValue' => $attributeValue]) }}
+                                                        <a href="{{ route('seller.attribute.values.edit', ['attribute' => $attribute, 'attributeValue' => $attributeValue]) }}
 " class="btn btn-outline-warning d-flex gap-2">
                                                             <i class="material-icons-outlined">edit</i></a>
                                                     </div>
