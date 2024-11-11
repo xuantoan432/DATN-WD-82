@@ -16,10 +16,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\SellerRegisterController;
-
-
-
-
+use App\Http\Controllers\Client\WishlistController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
 Route::get('/1', [HomeController::class, 'shop'])->name('home.shop');
@@ -69,6 +66,11 @@ Route::middleware('auth')->group(function () {
     Route::get('cart', [CartController::class, 'showCart'])->name('cart.show');
     Route::get('checkout', [OrderController::class, 'showCheckout'])->name('checkout.show');
 
+
+    Route::get('/wishlist', [WishlistController::class, 'listWishlist'])->name('wishlist.show');
+    Route::get('/wishlist/add', [WishlistController::class, 'addToWishlist'])->name('wishlist.add');
+    Route::post('/wishlist/remove/{id}', [WishlistController::class, 'removeWishlist'])->name('wishlist.remove');
+    Route::post('/wishlist/clean', [WishlistController::class, 'cleanWishlist'])->name('wishlist.clean');
 });
 
 

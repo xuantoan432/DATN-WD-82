@@ -18,15 +18,10 @@
                 </div>
                 <div class="menu-title">Dashboard</div>
             </a>
-            <ul>
-                <li><a href=""><i class="material-icons-outlined">arrow_right</i>Analysis</a>
-                </li>
-                <li><a href=""><i class="material-icons-outlined">arrow_right</i>eCommerce</a>
-                </li>
-            </ul>
+
         </li>
         <li>
-            <a href="javascript:;" class="has-arrow">
+            <a href="#" class="has-arrow">
                 <div class="parent-icon"><i class="material-icons-outlined">widgets</i>
                 </div>
                 <div class="menu-title">Sản phẩm</div>

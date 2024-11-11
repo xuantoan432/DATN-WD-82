@@ -52,6 +52,7 @@ $(document).ready(function () {
 
                         swiperTop.slideTo(0);
 
+
                         if(response.variant.price_sale){
                             $('.new-price').html('₫' + response.variant.price_sale)
                             $('.price-cut').html('₫' + response.variant.price)
@@ -63,6 +64,7 @@ $(document).ready(function () {
                         $('.product-availability').children('.inner-text').html(`${response.variant.stock_quantity} sản phẩm có sẵn`);
                         $('#stock-quantity').val(response.variant.stock_quantity);
                         $('#product-variant-id').val(response.variant.id);
+
 
                         if (response.variant.sku){
                             $('.sku').children('.inner-text').html(response.variant.sku)
@@ -91,7 +93,7 @@ $(document).ready(function () {
         }
     });
 
-    swiperBottom.on('click', function(swiper) {
+    swiperBottom.on('click', function (swiper) {
         var currentImage = swiperTop.slides[0].querySelector('img').src;
 
         if (currentImage !== defaultImage) {
@@ -134,7 +136,7 @@ $(document).ready(function () {
 
         if (currentValue > 1) {
             input.val(currentValue - 1);
-        }else{
+        } else {
             toastr.options = {
                 "closeButton": true,
                 "progressBar": true,
@@ -161,7 +163,35 @@ $(document).ready(function () {
     });
 });
 
+$('.favourite.cart-item').on('click', function (e) {
+    e.preventDefault();
+    const productId = $(this).data('product-id');
+    const csrf_token = $('meta[name="csrf-token"]').attr('content');
+    console.log('Product ID:', productId);
 
+    if (!productId) {
+        toastr.error('Sản phẩm không hợp lệ.');
+        return;
+    }
+
+    $.ajax({
+        url: PATH_ROOT + 'wishlist/add',
+        method: 'GET',
+        data: {
+            product_id: productId,
+        },
+        success: function (response) {
+            if (response.success) {
+                toastr.success(response.message, "🎉 Thành công!");
+            } else {
+                toastr.error(response.message || 'Đã có lỗi xảy ra.');
+            }
+        },
+        error: function (xhr) {
+            toastr.error(xhr.responseJSON.message || 'Đã có lỗi xảy ra.');
+        }
+    });
+});
 
 
 
