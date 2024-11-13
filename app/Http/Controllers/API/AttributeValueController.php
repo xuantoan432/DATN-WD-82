@@ -13,7 +13,7 @@ class AttributeValueController extends Controller
      */
     public function index()
     {
-        //
+
     }
 
     /**
@@ -28,13 +28,10 @@ class AttributeValueController extends Controller
             'message' => 'Thành công!',
         ]);
     }
-
-    /**
-     * Display the specified resource.
-     */
     public function show(string $id)
     {
-        //
+        $data =  AttributeValue::where( 'attribute_id' , $id) ->get();
+        return response()->json($data);
     }
 
     /**

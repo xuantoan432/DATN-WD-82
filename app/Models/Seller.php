@@ -14,9 +14,8 @@ class Seller extends Model
         'user_id',
         'store_name',
         'store_email',
-        'store_description'
-
-
+        'store_description' ,
+        'account_balance'
     ];
     public function inventories()
     {
