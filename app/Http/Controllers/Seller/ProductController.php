@@ -47,7 +47,7 @@ class ProductController extends Controller
 
 
     public function store(ProducStoreRequest  $request)
-    { 
+    {
         $seller = User::findOrFail(Auth::id())->seller;
         $seller_id = $seller ? $seller->id : null;
 
@@ -92,7 +92,12 @@ class ProductController extends Controller
                 }
                 $variantproduct =  ProductVariant::create($datavariant);
                 foreach ($variant['idvalue'] as $value) {
-                    $attributeValue = AttributeValue::findOrFail($value);
+                    // $attributeValue = AttributeValue::findOrFail($value);
+                    $attributeValue = AttributeValue::where([
+                        ['user_id', '=', Auth::id()],
+                        ['value', '=', $value]
+                    ])->firstOrFail();
+
                     $data = [
                         'product_variant_id'=> $variantproduct->id,
                         'attribute_id' => $attributeValue->attribute_id,
@@ -103,7 +108,7 @@ class ProductController extends Controller
                 $datavariant = [];
             }
         return response()->json([
-            'success' => 'Thêm Thành công',
+            'success' => 'Đăng sản phẩm thành công , vui lòng đợi Admin phê duyệt sản phẩm của bạn',
             'color' => 'success',
             'icon' => 'bi bi-check2-circle',
         ]);

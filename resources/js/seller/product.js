@@ -7,6 +7,7 @@ $(function () {
     var isValid = false;
     var chietkhau = 0;
     $('#chietkhau').text(formatPriceToVND(chietkhau))
+    $('#phantram').text('Tiền Chiết Khấu :')
     $('#cate').change(function () {
         var cate = $('#cate option:selected');
         catgoryId = cate.val();
@@ -100,6 +101,8 @@ $('#add-item-btn').click(function (e) {
 var IdSelect2 = [];
 function valuebienthe(selectedValues) {
     var htmls = '';
+    var ajaxRequests = []; // Mảng lưu các yêu cầu AJAX
+
     selectedValues.forEach((valueAttribute) => {
         let options = '';
         let IdValue = 'value-bien-the-' + Math.random().toString(36).substr(2, 9);
@@ -108,45 +111,59 @@ function valuebienthe(selectedValues) {
             valueIDA: valueAttribute.id,
             valueId: `#${IdValue}`
         });
-        if (attributeValues[valueAttribute.id] && Object.keys(attributeValues[valueAttribute.id]).length > 0) {
-            for (const [id, name] of Object.entries(attributeValues[valueAttribute.id])) {
-                options += `<option value="${id}">${name}</option>`;
-            }
-        }
-        htmls += `
-                 <div class="col-md-12 mb-3">
-                          <label class="form-label"> Giá Trị: ${valueAttribute.name}</label>
+
+        var ajaxRequest = $.ajax({
+            type: "GET",
+            url: `http://datn-wd-823.test/api/attributevalue/${valueAttribute.id}`,
+            dataType: "json",
+            success: function (data) {
+                data.forEach((value) => {
+                    options += `<option value="${value.id}">${value.value}</option>`;
+                });
+                htmls += `
+                    <div class="col-md-12 mb-3">
+                        <label class="form-label"> Giá Trị: ${valueAttribute.name}</label>
                         <select class="form-select" id="${IdValue}" data-name="${valueAttribute.name}" data-id="${valueAttribute.id}" name="attributeValues[${valueAttribute.id}][]" multiple>
-                           ${options}
+                            ${options}
                         </select>
-                </div>`;
+                    </div>`;
+            }
+        });
+        ajaxRequests.push(ajaxRequest);
     });
 
-    $('#vaule-bienthe').append(htmls);
-    IdSelect2.forEach(value => {
-        $(value.valueId).select2({
-            theme: "bootstrap-5",
-            width: $(value.valueId).data('width') ? $(value.valueId).data('width') : $(value.valueId).hasClass('w-100') ? '100%' : 'style',
-            placeholder: 'Vui lòng chọn giá trị ' + value.valueName,
-            allowClear: true,
-            tags: true,
-            createTag: function (params) {
-                return {
-                    id: params.term,
-                    text: params.term,
-                    newOption: true
-                };
-            },
-            templateResult: function (data) {
-                var $result = $('<span></span>');
-                $result.text(data.text);
-                if (data.newOption) {
-                    $result.append('<em>( giá trị mới)</em>');
-                }
-                return $result;
-            }
 
+    $.when.apply($, ajaxRequests).then(function () {
+        // Sau khi tất cả AJAX hoàn thành, thêm HTML vào DOM
+        $('#vaule-bienthe').append(htmls);
+
+        // Khởi tạo select2 cho các phần tử mới
+        IdSelect2.forEach(value => {
+            $(value.valueId).select2({
+                theme: "bootstrap-5",
+                width: $(value.valueId).data('width') ? $(value.valueId).data('width') : $(value.valueId).hasClass('w-100') ? '100%' : 'style',
+                placeholder: 'Vui lòng chọn giá trị ' + value.valueName,
+                allowClear: true,
+                tags: true,
+                createTag: function (params) {
+                    return {
+                        id: params.term,
+                        text: params.term,
+                        newOption: true
+                    };
+                },
+                templateResult: function (data) {
+                    var $result = $('<span></span>');
+                    $result.text(data.text);
+                    if (data.newOption) {
+                        $result.append('<em>( giá trị mới)</em>');
+                    }
+                    return $result;
+                }
+            });
         });
+    }).catch(function (error) {
+        console.error("Có lỗi xảy ra khi tải dữ liệu:", error);
     });
 }
 let index = 0;
@@ -156,17 +173,19 @@ let danhSachToHopBienThe = [];
 $('#them-bien-the').click(function (e) {
     e.preventDefault();
     let chek = true;
+    let datavs = [];
 
     if (IdSelect2.length != previousLength) {
         index = 0;
         $('#repeater').empty();
-        IdSelect2.map(function (value) {
+        danhSachToHopBienThe =[] ;
+        IdSelect2.forEach(function (value) {
             const selectedValues = $(value.valueId).select2('data');
 
             if (selectedValues.length > 0) {
-                selectedValues.map(item => {
+                selectedValues.forEach(item => {
                     if (item.newOption) {
-                        return $.ajax({
+                        $.ajax({
                             type: "POST",
                             url: "http://datn-wd-82.test/api/attributevalue",
                             data: {
@@ -176,14 +195,13 @@ $('#them-bien-the').click(function (e) {
                             },
                             dataType: "json",
                             success: function (data) {
-                                let option = `<option value="${data.id}">${data.name}</option>`;
+                                datavs.push(data);
+                                let option = `<option value="${data.id}" id="new-id-${data.id}">${data.name}</option>`;
                                 $(value.id).append(option);
                             }
                         });
-                    }
-                    else {
-                        // console.log(item) ;
-                        return Promise.resolve();
+                    } else {
+                        datavs.push(item);
                     }
                 });
             } else {
@@ -195,12 +213,12 @@ $('#them-bien-the').click(function (e) {
             }
         });
     } else if (IdSelect2.length === previousLength) {
-        IdSelect2.map(function (value) {
+        IdSelect2.forEach(function (value) {
             const selectedValues = $(value.valueId).select2('data');
             if (selectedValues.length > 0) {
-                selectedValues.map(item => {
+                selectedValues.forEach(item => {
                     if (item.newOption) {
-                        return $.ajax({
+                        $.ajax({
                             type: "POST",
                             url: "http://datn-wd-82.test/api/attributevalue",
                             data: {
@@ -210,12 +228,11 @@ $('#them-bien-the').click(function (e) {
                             },
                             dataType: "json",
                             success: function (data) {
-                                let option = `<option value="${data.id}">${data.name}</option>`;
-                                $(value.id).append(option);
+                                datavs.push(data);
                             }
                         });
                     } else {
-                        return Promise.resolve();
+                        datavs.push(item);
                     }
                 });
             } else {
@@ -227,46 +244,63 @@ $('#them-bien-the').click(function (e) {
             }
         });
     }
+
     previousLength = IdSelect2.length;
+
     if (chek) {
         let selectedAttributes = $('select[name^="attributeValues"]');
         let attributeValues = getCombinations(selectedAttributes);
         let duplicateCombination = null;
-
-        // Kiểm tra nếu có bất kỳ tổ hợp nào bị trùng
-        let isDuplicate = attributeValues.some((val) => {
-            let comboString = JSON.stringify(val);
-            if (danhSachToHopBienThe.includes(comboString)) {
-                duplicateCombination = val;
-                return true;
+        let datacheck = false;
+        attributeValues.some((value) => {
+            let data = value.map((val) => {
+                return {
+                    [val.nameop]: val.name,
+                };
+            });
+            if (hasDuplicateSubArray(danhSachToHopBienThe, data)) {
+                console.log('đã bị trùng rồi ', data);
+                duplicateCombination = data;
+                datacheck = true
             }
-            return false;
         });
-
-        if (isDuplicate && duplicateCombination) {
-            // Tạo thông báo chi tiết về tổ hợp bị trùng
-            let duplicateText = duplicateCombination.map(item => `${item.nameop}: ${item.name}`).join(', ');
+        if (datacheck && duplicateCombination) {
+            let duplicateText = "";
+            duplicateCombination.forEach(obj => {
+                for (const key in obj) {
+                    if (obj.hasOwnProperty(key)) {
+                        duplicateText += `${key} : ${obj[key]}`;
+                    }
+                }
+            });
             thongbao('error', 'bi bi-exclamation-triangle', `Vui lòng bỏ biến thể : ${duplicateText}`);
             return;
         }
-            attributeValues.forEach((val) => {
-                let comboString = JSON.stringify(val);
-                danhSachToHopBienThe.push(comboString);
-                let html = ``;
-                val.forEach(item => {
-                    html += `
+         // Tạo biến thể mới
+        attributeValues.forEach((val) => {
+            let data = val.map((value) => {
+                return {
+                    [value.nameop]: value.name,
+                };
+            });
+            danhSachToHopBienThe.push(data);
+
+            let html = '';
+            val.forEach(item => {
+                html += `
                     <div class="col-md-6">
                         <label for="input1" class="form-label">Giá Trị Biến Thể: ${item.nameop}</label>
                         <input type="text" class="form-control" value="${item.name}" disabled>
+                        <input type="hidden" class="form-control"  name="variants[${index}][idvalue][]" value="${item.name}" >
                         <input type="hidden" class="form-control" name="valuebute[${index}]" value="${item.id}">
-                        <input type="hidden" class="form-control" name="variants[${index}][idvalue][]" value="${item.id}">
                     </div>`;
-                });
-                let newVariant = `
-            <div class="card" data-value="${JSON.stringify(val)}" >
+            });
+
+            let newVariant = `
+            <div class="card">
                 <div class="card-body">
                     <div class="d-flex align-items-center justify-content-between">
-                        <h5 class="mb-0">Biến thể sản phẩm </h5>
+                        <h5 class="mb-0">Biến thể sản phẩm</h5>
                         <button class="btn btn-danger remove-variant">Xóa</button>
                     </div>
                     <div class="form-group row g-3">
@@ -289,41 +323,39 @@ $('#them-bien-the').click(function (e) {
                     </div>
                     <div class="form-group">
                         <label>Số lượng:</label>
-                        <input type="text" name="variants[${index}][soluong]" class="form-control" placeholder="">
+                        <input type="text" name="variants[${index}][soluong]" class="form-control">
                         <div class="error-variants-${index}-soluong text-danger"></div>
                     </div>
                     <div class="form-group">
                         <label>Ảnh sản phẩm:</label>
-                         <input id="anhbienthe-${index}" class="form-control" type="file" name="variants[${index}][anhbienthe]" >
+                        <input id="anhbienthe-${index}" class="form-control" type="file" name="variants[${index}][anhbienthe]">
                         <div class="error-variants-${index}-anhbienthe text-danger"></div>
                     </div>
                     <div class="form-group">
                         <label>Ngày bắt đầu giảm giá:</label>
-                        <input type="date" name="variants[${index}][ngaybd]" class="form-control">
+                        <input type="datetime-local" name="variants[${index}][ngaybd]" class="form-control">
                         <div class="error-variants-${index}-ngaybd text-danger"></div>
                     </div>
                     <div class="form-group">
                         <label>Ngày kết thúc giảm giá:</label>
-                        <input type="date" name="variants[${index}][ngayketthuc]" class="form-control">
+                        <input type="datetime-local" name="variants[${index}][ngayketthuc]" class="form-control">
                         <div class="error-variants-${index}-ngayketthuc text-danger"></div>
                     </div>
                 </div>
             </div>`;
 
             let cardElement = $(newVariant);
-            cardElement.data('combo', val);
+            cardElement.data('combo', data);
             $('#repeater').append(cardElement);
-            index++  ;
-    })
-            $('#FormModal').modal('hide');
-            thongbao('success', 'bi bi-check-circle', 'thêm biến thể thành công');
-
-
-
+            index++;
+        });
+        $('#FormModal').modal('hide');
+        thongbao('success', 'bi bi-check-circle', 'thêm biến thể thành công');
     }
-})
+});
 $('#FormModal').on('hidden.bs.modal', function () {
     $('#vaule-bienthe').empty();
+    $('#bien-the').val(null).trigger('change');
     IdSelect2 = [];
     IdAttribute = [];
 });
@@ -344,6 +376,7 @@ function show(idcate, gia) {
     categories.forEach((value) => {
         if (value.id == idcate) {
             var chietkhau = (gia * value.fee_percentage) / 100;
+            $('#phantram').text(`Tiền Chiết Khấu - (${value.fee_percentage}%) :`)
             $('#chietkhau').text(formatPriceToVND(chietkhau))
         }
     })
@@ -436,9 +469,10 @@ $('#product').on('submit', function (e) {
         success: function (data) {
             console.log("Form submitted successfully", data);
             thongbao(data.color, data.icon, data.success);
-            // Xóa tất cả các giá trị của các trường input, select
             $('#product').find('input, select, textarea').val('').prop('checked', false).prop('selected', false);
-
+            setTimeout(function () {
+                location.reload();
+            }, 5000);
         },
         error: function (error, xhr, status) {
             if (error.status === 422) {
@@ -487,3 +521,37 @@ $('#product').on('submit', function (e) {
 
 
 
+function hasDuplicateSubArray(arr1, arr2) {
+    // Nếu `arr2` không phải là mảng con, thì đặt nó vào một mảng mới để phù hợp cấu trúc so sánh
+    if (!Array.isArray(arr2[0])) {
+        arr2 = [arr2];
+    }
+
+    // Hàm sắp xếp các đối tượng trong mảng theo key để so sánh không phụ thuộc thứ tự
+    function sortSubArray(subArray) {
+        return subArray.slice().sort((a, b) => {
+            // Sắp xếp theo key, hoặc có thể chọn theo một key cụ thể
+            const keyA = Object.keys(a)[0];
+            const keyB = Object.keys(b)[0];
+            return keyA.localeCompare(keyB); // Sắp xếp theo tên key
+        });
+    }
+
+    return arr1.some(subArray1 => {
+        const sortedSubArray1 = sortSubArray(subArray1);
+
+        return arr2.some(subArray2 => {
+            const sortedSubArray2 = sortSubArray(subArray2);
+
+            // So sánh từng đối tượng sau khi sắp xếp
+            return sortedSubArray1.every((obj1, i) => {
+                const obj2 = sortedSubArray2[i];
+                const keys1 = Object.keys(obj1);
+                const keys2 = Object.keys(obj2);
+
+                // Kiểm tra số lượng key và so sánh từng key và value
+                return keys1.length === keys2.length && keys1.every(key => obj1[key] === obj2[key]);
+            });
+        });
+    });
+}

@@ -70,7 +70,7 @@
                                 <span class="text text-danger error-giasanpham" id=""></span>
                             </div>
                             <hr>
-                            <div class="d-flex justify-content-between"> <span> Tiền Chiết Khấu : </span> <span
+                            <div class="d-flex justify-content-between"> <span id="phantram">  </span> <span
                                     id="chietkhau">
                                 </span> </div>
 
