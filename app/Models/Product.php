@@ -8,6 +8,21 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'category_id',
+        'seller_id',
+        'final_fee_percentage',
+        'name',
+        'short_description',
+        'sku',
+        'content',
+        'price',
+        'image',
+        'views',
+        'quantity',
+        'is_verified',
+        'status'
+    ];
 
     public function category()
     {
@@ -38,7 +53,8 @@ class Product extends Model
     {
         return $this->hasMany(ProductVariant::class);
     }
-    public function seller(){
+    public function seller()
+    {
         return $this->belongsTo(Seller::class);
     }
 }

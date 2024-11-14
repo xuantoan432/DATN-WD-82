@@ -195,7 +195,7 @@
                             </span>
                         </button>
                         <div class="nav-link">
-                            <a href="login.html">
+                            <a href="{{route('logout')}}">
                                 <span>
                                     <svg width="18" height="18" viewBox="0 0 18 18" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
@@ -335,7 +335,7 @@
 
                                                             </div>
                                                         </div>
-                                                        <a href="" class="btn  p-3 mt-4 "
+                                                        <a href="{{ route('seller.index') }}" class="btn  p-3 mt-4 "
                                                             style="background-color: #ae1c9a; color:#ffffff; font-size:15px">Quản
                                                             lý shop</a>
                                                     @elseif($user->hasRole(1))
@@ -343,7 +343,7 @@
                                                             <p>Bạn đang đăng nhập với quyền Admin.</p>
                                                         </div>
                                                     @elseif($user->hasRole(3))
-                                                        <a href="" class="btn  p-3 mt-4 "
+                                                        <a href="{{ route('register.seller') }}" class="btn  p-3 mt-4 "
                                                             style="background-color: #ae1c9a; color:#ffffff; font-size:15px">Trở
                                                             thành nhà bán hàng</a>
                                                     @endif
@@ -1013,112 +1013,113 @@
                             aria-labelledby="v-pills-address-tab" tabindex="0">
                             <div class="profile-section address-section addresses ">
                                 <div class="row gy-md-0 g-5">
-                                    <div class="col-md-6">
-                                        <div class="seller-info">
-                                            <h5 class="heading">Địa chỉ </h5>
-                                            <div class="info-list">
-                                                <div class="info-title">
-                                                    <p>Name:</p>
-                                                    <p>Email:</p>
-                                                    <p>Phone:</p>
-                                                    <p>City:</p>
-                                                    <p>Zip:</p>
-                                                </div>
-                                                <div class="info-details">
-                                                    <p>Sajjad</p>
-                                                    <p><a href="https://quomodothemes.website/cdn-cgi/l/email-protection"
-                                                            class="__cf_email__"
-                                                            data-cfemail="442021292b2129252d28042329252d286a272b29">[email&#160;protected]</a>
-                                                    </p>
-                                                    <p>023 434 54354</p>
-                                                    <p>Haydarabad, Rord 34</p>
-                                                    <p>3454</p>
-                                                </div>
-                                            </div>
-                                            <div class="text-end">
-                                                <i class="fa-solid fa-trash" style="color: #ae1c9a; font-size:20px"></i>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-12">
-                                            <a href="#" class="shop-btn" onclick="modalAction('.submit')">Add New
-                                                Address</a>
-
-                                            <div class="modal-wrapper submit">
-                                                <div onclick="modalAction('.submit')" class="anywhere-away"></div>
-
-                                                <div class="login-section account-section modal-main">
-                                                    <div class="review-form">
-                                                        <div class="review-content">
-                                                            <h5 class="comment-title">Thêm địa chỉ mới</h5>
-                                                            <div class="close-btn">
-                                                                <img src="theme/client/assets/images/homepage-one/close-btn.png"
-                                                                    onclick="modalAction('.submit')" alt="close-btn">
-                                                            </div>
-                                                        </div>
-                                                        <div class=" account-inner-form">
-                                                            <div class="review-form-name">
-                                                                <label for="firstname" class="form-label">First
-                                                                    Name*</label>
-                                                                <input type="text" id="firstname" class="form-control"
-                                                                    placeholder="First Name">
-                                                            </div>
-                                                            <div class="review-form-name">
-                                                                <label for="lastname" class="form-label">Last
-                                                                    Name*</label>
-                                                                <input type="text" id="lastname" class="form-control"
-                                                                    placeholder="Last Name">
-                                                            </div>
-                                                        </div>
-                                                        <div class=" account-inner-form">
-                                                            <div class="review-form-name">
-                                                                <label for="useremail" class="form-label">Email*</label>
-                                                                <input type="email" id="useremail" class="form-control"
-                                                                    placeholder="user@gmail.com">
-                                                            </div>
-                                                            <div class="review-form-name">
-                                                                <label for="userphone" class="form-label">Phone*</label>
-                                                                <input type="tel" id="userphone" class="form-control"
-                                                                    placeholder="+880388**0899">
-                                                            </div>
-                                                        </div>
-                                                        <div class="review-form-name address-form">
-                                                            <label for="useraddress" class="form-label">Address*</label>
-                                                            <input type="text" id="useraddress" class="form-control"
-                                                                placeholder="Enter your Address">
-                                                        </div>
-                                                        <div class=" account-inner-form city-inner-form">
-                                                            <div class="review-form-name">
-                                                                <label for="usercity" class="form-label">Town /
-                                                                    City*</label>
-                                                                <select id="usercity" class="form-select">
-                                                                    <option>Choose...</option>
-                                                                    <option>Newyork</option>
-                                                                    <option>Dhaka</option>
-                                                                    <option selected>London</option>
-                                                                </select>
-                                                            </div>
-                                                            <div class="review-form-name">
-                                                                <label for="usernumber" class="form-label">Postcode /
-                                                                    ZIP*</label>
-                                                                <input type="number" id="usernumber"
-                                                                    class="form-control" placeholder="0000">
-                                                            </div>
-
-                                                        </div>
-                                                        <div class="login-btn text-center">
-                                                            <a href="#" onclick="modalAction('.submit')"
-                                                                class="shop-btn">Add Address</a>
-                                                        </div>
+                                    @foreach ($addresses as $key => $address)
+                                        <div class="col-md-6 mt-5">
+                                            <div class="seller-info">
+                                                <h5 class="heading">Địa chỉ {{ $key + 1 }}</h5>
+                                                <div class="info-list">
+                                                    <div class="info-title">
+                                                        <p>Địa chỉ:</p>
+                                                    </div>
+                                                    <div class="info-details">
+                                                        <p>{{ $address->address_line }}</p>
                                                     </div>
                                                 </div>
+                                                <form action="{{ route('user.address.delete', $address->id) }}"
+                                                    method="POST"
+                                                    onsubmit="return confirm('Bạn có chắc chắn muốn xóa địa chỉ này không?');">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit ">
+                                                        <div class="text-end">
+                                                            <i class="fa-solid fa-trash"
+                                                                style="color: #ae1c9a; font-size:20px"></i>
+                                                        </div>
+                                                    </button>
+                                                </form>
 
                                             </div>
                                         </div>
-                                    </div>
+                                    @endforeach
 
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <a href="#" class="shop-btn" onclick="modalAction('.submit')">Thêm địa
+                                                chỉ mới</a>
+                                            <div class="modal-wrapper submit">
+                                                <div onclick="modalAction('.submit')" class="anywhere-away"></div>
+                                                <form action="{{ route('user.address.create') }}" method="POST">
+                                                    @csrf
+                                                    <div class="login-section account-section modal-main">
+                                                        <div class="review-form">
+                                                            <div class="review-content">
+                                                                <h5 class="comment-title">Thêm địa chỉ mới</h5>
+                                                                <div class="close-btn">
+                                                                    <img src="theme/client/assets/images/homepage-one/close-btn.png"
+                                                                        onclick="modalAction('.submit')" alt="close-btn">
+                                                                </div>
+                                                            </div>
+
+                                                            <div class=" account-inner-form city-inner-form">
+                                                                <div class="review-form-name">
+                                                                    <label for="usercity" class="form-label ">Tỉnh/Thành
+                                                                        phố</label>
+                                                                    <select id="province" name="province"
+                                                                        class="form-select province form-control">
+                                                                        <option></option>
+                                                                        @error('province')
+                                                                            <span
+                                                                                class="text-danger">{{ $message }}</span>
+                                                                        @enderror
+                                                                    </select>
+                                                                </div>
+                                                                <div class="review-form-name">
+                                                                    <label for="usercity"
+                                                                        class="form-label">Quận/Huyện</label>
+                                                                    <select id="district" name="district"
+                                                                        class="form-select district form-control">
+                                                                    </select>
+                                                                    @error('district')
+                                                                        <span class="text-danger">{{ $message }}</span>
+                                                                    @enderror
+                                                                </div>
+                                                            </div>
+
+                                                            <div class=" account-inner-form city-inner-form">
+                                                                <div class="review-form-name">
+                                                                    <label for="usercity"
+                                                                        class="form-label">Phường/Xã</label>
+                                                                    <select id="ward" name="ward"
+                                                                        class="form-select ward form-control">
+
+
+                                                                    </select>
+                                                                    @error('ward')
+                                                                        <span class="text-danger">{{ $message }}</span>
+                                                                    @enderror
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="review-form-name address-form">
+                                                                <label for="useraddress" class="form-label">Địa
+                                                                    chỉ</label>
+                                                                <input type="text" id="useraddress"
+                                                                    name="address_line" class="form-control"
+                                                                    placeholder="Khu/Số nhà ...">
+                                                                @error('address_line')
+                                                                    <span class="text-danger">{{ $message }}</span>
+                                                                @enderror
+                                                            </div>
+                                                            <div class="login-btn text-center">
+                                                                <button type="submit" class="shop-btn">Thêm địa
+                                                                    chỉ</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -1314,32 +1315,56 @@
                             <div class="row align-items-center">
                                 <div class="col-lg-6">
                                     <div class="form-section">
-                                        <form action="#">
+                                        <form action="{{ route('user.changePassword') }}" method="POST">
+                                            @csrf
                                             <div class="currentpass form-item">
-                                                <label for="currentpass" class="form-label">Current Password*</label>
-                                                <input type="password" class="form-control" id="currentpass"
-                                                    placeholder="******">
+                                                <label for="currentpass" class="form-label">Mật khẩu hiện tại</label>
+                                                <div class="input-group">
+                                                    <input type="password" name="current_password" class="form-control"
+                                                        id="currentpass" placeholder="******">
+                                                    <button type="button" class="input-group-text"
+                                                        onclick="togglePassword('currentpass')">👁️</button>
+                                                </div>
+                                                @error('current_password')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                @enderror
                                             </div>
+
                                             <div class="password form-item">
-                                                <label for="pass" class="form-label">Password*</label>
-                                                <input type="password" class="form-control" id="pass"
-                                                    placeholder="******">
+                                                <label for="pass" class="form-label">Mật khẩu mới</label>
+                                                <div class="input-group">
+                                                    <input type="password" name="new_password" class="form-control"
+                                                        id="pass" placeholder="******" >
+                                                    <button type="button" class="input-group-text"
+                                                        onclick="togglePassword('pass')">👁️</button>
+                                                </div>
+                                                @error('new_password')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                @enderror
                                             </div>
+
                                             <div class="re-password form-item">
-                                                <label for="repass" class="form-label">Re-enter Password*</label>
-                                                <input type="password" class="form-control" id="repass"
-                                                    placeholder="******">
+                                                <label for="repass" class="form-label">Xác nhận mật khẩu mới</label>
+                                                <div class="input-group">
+                                                    <input type="password" name="new_password_confirmation"
+                                                        class="form-control" id="repass" placeholder="******">
+                                                    <button type="button" class="input-group-text"
+                                                        onclick="togglePassword('repass')">👁️</button>
+                                                </div>
+                                                @error('new_password_confirmation')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                @enderror
+                                            </div>
+
+                                            <div class="form-btn">
+                                                <button type="submit" class="shop-btn">Cập nhật mật khẩu</button>
                                             </div>
                                         </form>
-                                        <div class="form-btn">
-                                            <a href="#" class="shop-btn">Upldate Password</a>
-                                            <a href="#" class="shop-btn cancel-btn">Cancel</a>
-                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="reset-img text-end">
-                                        <img src="assets/images/homepage-one/reset.webp" alt="reset">
+                                        <img src="theme/client/assets/images/homepage-one/reset.webp" alt="reset">
                                     </div>
                                 </div>
                             </div>
@@ -1737,16 +1762,32 @@
 @section('css')
     <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" />
 
+
+
     <style>
-        .toast-title, .toast-message {
-        font-size: 20px !important;
-    }
+        .toast-title,
+        .toast-message {
+            font-size: 20px !important;
+        }
+
+        .form-control,
+        .form-select {
+            height: 50px;
+            font-size: 16px;
+            width: 100%;
+            max-width: 500px;
+            margin-top: 10px;
+        }
     </style>
 @endsection
 
 @section('js')
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
+    @vite('resources/js/client/address.js')
     <script>
         @if (session('success'))
             toastr.options = {
@@ -1758,4 +1799,14 @@
             toastr.success("{{ session('success') }}", "🎉 Thành công!");
         @endif
     </script>
+    <script>
+        function togglePassword(inputId) {
+            var input = document.getElementById(inputId);
+            if (input.type === "password") {
+                input.type = "text";
+            } else {
+                input.type = "password";
+            }
+        }
+        </script>
 @endsection

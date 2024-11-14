@@ -11,6 +11,12 @@
 
     <section class="seller-application product footer-padding">
         <div class="container">
+            <script>
+   window.userId = @json(auth()->user()->id);
+            </script>
+             @if (session('message'))
+             <div class="alert alert-success">{{ session('message') }}</div>
+         @endif
             <div class="seller-application-section">
                 <form action="{{ route('register.seller') }}" method="POST">
                     @csrf
@@ -80,7 +86,7 @@
                                                 <div class="review-form-name">
                                                     <label for="province" class="form-label">Tỉnh/Thành phố*</label>
                                                     <select id="province" name="province"
-                                                        onchange="getDistricts(this.value)" class="form-select province">
+                                                        class="form-select province">
                                                         <option></option>
 
                                                     </select>
@@ -94,7 +100,7 @@
                                             <div class="review-inner-form ">
                                                 <div class="review-form-name">
                                                     <label for="district" class="form-label">Quận/Huyện*</label>
-                                                    <select id="district" name="district" onchange="getWards(this.value)"
+                                                    <select id="district" name="district"
                                                         class="form-select district">
 
 
@@ -137,69 +143,18 @@
         </form>
         </div>
         </div>
+
     </section>
 @endsection
+
+
 @section('js')
+
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('.province').select2();
-            $('.district').select2();
-            $('.ward').select2();
-            $.ajax({
-                url: 'https://provinces.open-api.vn/api/p/',
-                method: 'GET',
-                success: function(data) {
-                    $('#province').append(data.map(function(province) {
-                        return `<option value="${province.code}">${province.name}</option>`;
-                    }));
-                },
-                error: function() {
-                    alert('Không thể tải danh sách Tỉnh/Thành phố.');
-                }
-            });
-        });
+    @vite('resources/js/client/seller.js')
+    {{-- @vite('resources/js/public.js') --}}
+    @vite('resources/js/app.js')
 
-        // Khi chọn tỉnh/thành phố, tải danh sách quận/huyện
-        function getDistricts(provinceCode) {
-            $('#district').html('<option value="">Chọn Quận/Huyện</option>'); // Reset danh sách quận/huyện
-            $('#ward').html('<option value="">Chọn Xã/Phường</option>'); // Reset danh sách xã/phường
-
-            if (provinceCode) {
-                $.ajax({
-                    url: `https://provinces.open-api.vn/api/p/${provinceCode}?depth=2`,
-                    method: 'GET',
-                    success: function(data) {
-                        $('#district').append(data.districts.map(function(district) {
-                            return `<option value="${district.code}">${district.name}</option>`;
-                        }));
-                    },
-                    error: function() {
-                        alert('Không thể tải danh sách Quận/Huyện.');
-                    }
-                });
-            }
-        }
-
-        // Khi chọn quận/huyện, tải danh sách xã/phường
-        function getWards(districtCode) {
-            $('#ward').html('<option value="">Chọn Xã/Phường</option>'); // Reset danh sách xã/phường
-
-            if (districtCode) {
-                $.ajax({
-                    url: `https://provinces.open-api.vn/api/d/${districtCode}?depth=2`,
-                    method: 'GET',
-                    success: function(data) {
-                        $('#ward').append(data.wards.map(function(ward) {
-                            return `<option value="${ward.code}">${ward.name}</option>`;
-                        }));
-                    },
-                    error: function() {
-                        alert('Không thể tải danh sách Xã/Phường.');
-                    }
-                });
-            }
-        }
-    </script>
 @endsection

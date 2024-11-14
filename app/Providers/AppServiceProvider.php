@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Models\Category;
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\Pagination\Paginator;
 use App\View\Components\Client\Comment;
 use Illuminate\Support\Facades\Auth;
@@ -29,9 +30,13 @@ class AppServiceProvider extends ServiceProvider
         View::share('categories', Category::with('products')
         ->orderByDesc('id')
         ->limit(10)->get());
-        
         View::share('user',Auth::user());
         Blade::component('comment', Comment::class);
 
+        if (Auth::check()) {
+            $user = User::with('cart.cartItems')->find(Auth::id());
+            View::share('user', $user);
+        }
+        Blade::component('comment', Comment::class);
     }
 }

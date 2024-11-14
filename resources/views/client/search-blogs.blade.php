@@ -70,7 +70,7 @@
 
                                             </div>
                                         </div>
-                                        <a href="blogs-details.html"
+                                        <a href="{{ route('posts.detail', $search->id) }}"
                                             class="about-details wrapper-details">{{ $search->title }}
                                         </a>
                                         <div class="divider"></div>
