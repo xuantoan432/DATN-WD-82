@@ -17,7 +17,7 @@ class SellerApprovedNotification extends Mailable
     public $seller;
     public function __construct(Seller $seller)
     {
-        $this->seller = $seller; 
+        $this->seller = $seller;
     }
 
     public function build()
