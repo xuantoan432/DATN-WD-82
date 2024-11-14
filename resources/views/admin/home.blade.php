@@ -2,6 +2,15 @@
 
 @section('content')
 <div class="main-content">
+    {{-- <script>
+        window.Echo.channel('seller')
+            .listen('SellerRegistrationRequested', (e) => {
+                if (confirm(`New seller registration: ${e.seller.store_name} (${e.seller.email}). Click OK to verify.`)) {
+                    // Redirect to the verification page for the registered seller
+                    window.location.href = `/admin/seller-approvals`;
+                }
+            });
+    </script> --}}
     <!--breadcrumb-->
     <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
       <div class="breadcrumb-title pe-3">Dashboard</div>

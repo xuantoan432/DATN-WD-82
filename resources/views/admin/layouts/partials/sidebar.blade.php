@@ -47,6 +47,11 @@
                     <a href="{{ route('admin.posts.index') }}"><i class="material-icons-outlined">arrow_right</i>Bài viết
                         </a>
                 </li>
+
+                <li>
+                    <a href="{{ route('admin.seller-approval') }}"><i class="material-icons-outlined">arrow_right</i>Phân quyền
+                        </a>
+                </li>
             </ul>
         </li>
     </ul>

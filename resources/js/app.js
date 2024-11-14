@@ -3,7 +3,8 @@ window.Echo.private(`user.${window.userId}`)  // Kênh riêng tư cho người d
     .listen('SellerApproved', (e) => {
         console.log(e);
         if (e.userId === window.userId) {
-            alert('Bạn đã được xác thực thành công. Chuyển hướng tới trang đăng nhập...');
-            // window.location.href = "/login";
+            if (confirm('Bạn đã được xác thực thành công. Bạn có muốn chuyển hướng tới trang đăng nhập không?')) {
+                window.location.href = "/"; 
+            }
         }
     });
