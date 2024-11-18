@@ -49,6 +49,8 @@
                 </li>
                 <li>
                     <a href="{{ route('admin.vouchers.index') }}"><i class="material-icons-outlined">arrow_right</i>Mã giảm giá
+                <li>
+                    <a href="{{ route('admin.seller-approval') }}"><i class="material-icons-outlined">arrow_right</i>Phân quyền
                         </a>
                 </li>
             </ul>
