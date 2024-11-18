@@ -20,22 +20,22 @@
     }
 
     // Hàm tìm kiếm sản phẩm
-    function searchProducts() {
-        // Lấy giá trị từ ô tìm kiếm
-        const keyword = document.getElementById('searchKeyword').value;
+    // function searchProducts() {
+    //     // Lấy giá trị từ ô tìm kiếm
+    //     const keyword = document.getElementById('searchKeyword').value;
 
-        // Kiểm tra nếu không có từ khóa tìm kiếm
-        if (keyword.trim() === '') {
-            alert("Vui lòng nhập từ khóa tìm kiếm.");
-            return;
-        }
+    //     // Kiểm tra nếu không có từ khóa tìm kiếm
+    //     if (keyword.trim() === '') {
+    //         alert("Vui lòng nhập từ khóa tìm kiếm.");
+    //         return;
+    //     }
 
-        // Tạo URL tìm kiếm (đảm bảo route trong Laravel đã được định nghĩa)
-        const searchUrl = '/product/search?keyword=' + encodeURIComponent(keyword);
+    //     // Tạo URL tìm kiếm (đảm bảo route trong Laravel đã được định nghĩa)
+    //     const searchUrl = '{{ route('home.shop') }}/' + encodeURIComponent(keyword);
 
-        // Điều hướng đến URL tìm kiếm
-        window.location.href = searchUrl;
-    }
+    //     // Điều hướng đến URL tìm kiếm
+    //     window.location.href = searchUrl;
+    // }
 
     // Hàm để hiển thị danh mục tìm kiếm (nếu cần)
     function showCategories() {

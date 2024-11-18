@@ -50,14 +50,19 @@
                                         </svg>
                                     </span>
                                 </div>
-                                <div class="wrapper-main">
-                                    <div class="search-section">
-                                        <input type="text" id="searchKeyword" placeholder="Tìm kiếm sản phẩm.........">
-                                        <div class="divider"></div>
-                                        <button type="button" onclick="showCategories()">Tất cả danh mục</button>
-                                        <a href="#" class="shop-btn" onclick="searchProducts()">Tìm kiếm</a>
+                                <form action="{{ route('home.shop') }}" method="GET">
+                                    <div class="wrapper-main">
+                                        <div class="search-section">
+                                        
+                                                <input type="text" name="searchProduct" id="searchKeyword" placeholder="Tìm kiếm sản phẩm.........">
+                                                <div class="divider"></div>
+                                                <button type="button" onclick="showCategories()">Tất cả danh mục</button>
+                                                <button  type="submit" class="shop-btn" style="background:#ae1c9a !important;  color:white !important;" >Tìm kiếm</button>
+                                        
+                                        </div>
                                     </div>
-                                </div>
+                                       
+                                </form>
                             </div>
                         </div>
                         

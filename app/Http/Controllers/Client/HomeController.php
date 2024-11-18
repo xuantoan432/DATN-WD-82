@@ -80,6 +80,11 @@ class HomeController extends Controller
             $query =  $query->whereIn('seller_id', $checkSeller);
         }
 
+        if($request->searchProduct){
+            $query =  $query->where('name', 'like', '%' . $request->searchProduct . '%');
+
+        }
+
         
         $products = $query->paginate(16);
         
