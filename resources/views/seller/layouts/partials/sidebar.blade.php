@@ -25,6 +25,17 @@
                 </li>
             </ul>
         </li>
+        <li>
+            <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon"><i class="material-icons-outlined">home</i>
+                </div>
+                <div class="menu-title">Seller</div>
+            </a>
+            <ul>
+                <li><a href="{{route('seller.order.index')}}"><i class="material-icons-outlined">arrow_right</i>Danh sách đơn hàng</a>
+                </li>
+            </ul>
+        </li>
 
     </ul>
     </li>
