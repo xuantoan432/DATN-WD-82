@@ -50,4 +50,10 @@ class ProductController extends Controller
         $reviews = $product->reviews->groupBy('parent_id');
         return view('client.product-info', compact('product', 'reviews','averageRating','attributes', 'imageVariants', 'priceSales', 'priceRegulars', 'imageVariants', 'priceSales'));
     }
+    public function search(Request $request)
+    {
+        $keyword = $request->input('keyword');
+        $products = Product::where('name', 'LIKE', "%{$keyword}%")->paginate(10);
+        return view('client.search-product', compact('products','keyword'));
+    }
 }

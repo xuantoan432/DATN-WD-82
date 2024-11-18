@@ -41,28 +41,26 @@
                         </button>
                         <div class="modal-wrapper search">
                             <div onclick="modalAction('.search')" class="anywhere-away"></div>
-
+                        
                             <div class="modal-main">
                                 <div class="wrapper-close-btn" onclick="modalAction('.search')">
                                     <span>
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                            stroke-width="1.5" stroke="red" class="w-6 h-6">
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="M6 18L18 6M6 6l12 12"></path>
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="red" class="w-6 h-6">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
                                         </svg>
                                     </span>
                                 </div>
                                 <div class="wrapper-main">
                                     <div class="search-section">
-                                        <input type="text" placeholder="Tìm kiếm sản phẩm.........">
+                                        <input type="text" id="searchKeyword" placeholder="Tìm kiếm sản phẩm.........">
                                         <div class="divider"></div>
-                                        <button type="button">Tất cả danh mục</button>
-                                        <a href="#" class="shop-btn">Tìm kiếm</a>
+                                        <button type="button" onclick="showCategories()">Tất cả danh mục</button>
+                                        <a href="#" class="shop-btn" onclick="searchProducts()">Tìm kiếm</a>
                                     </div>
                                 </div>
                             </div>
-
                         </div>
+                        
                     </div>
                     <div class="header-compaire">
                         <a href="compaire.html" class="cart-item">

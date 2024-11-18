@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
 use App\Models\Product;
+use App\Models\Category;
+use App\Models\Seller;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -58,13 +60,30 @@ class HomeController extends Controller
     }
 
     public function shop(Request $request)
-    {
-        $products = Product::where('is_verified', true)
+    {   
+    
+        $cats = Category::all();
+        $seller = Seller::all();
+
+  
+        $categoryIds = $request->get('category', []);
+        $query = Product::where('is_verified', true)
         ->where('status', 'active')
         ->withAvg('reviews', 'star')
-        ->orderByDesc('reviews_avg_star')
-        ->paginate(16);
-        return view('client.shop', compact('products'));
+        ->orderByDesc('reviews_avg_star');
+        $checkCategoryId = $request->category_id ?? [];
+        $checkSeller = $request->seller ?? [];
+        if(count($checkCategoryId) > 0){
+            $query =  $query->whereIn('category_id', $checkCategoryId);
+        }
+        if(count($checkSeller) > 0){
+            $query =  $query->whereIn('seller_id', $checkSeller);
+        }
+
+        
+        $products = $query->paginate(16);
+        
+        return view('client.shop', compact('products','cats','checkCategoryId','seller','checkSeller'));
     }
 
     public function productInfo()
