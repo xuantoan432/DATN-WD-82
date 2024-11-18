@@ -4,6 +4,8 @@ window.Echo.channel('seller')
 .listen('SellerRegistrationRequested', (e) => {
     console.log(e);
     alert(`Bạn có một người đăng ký mới : ${e.user_name}`);
+    window.location.href = `/admin/seller-approvals`;
+
 
     let html = document.querySelector('#data') ;
     let tr = `  <tr>
