@@ -16,7 +16,7 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(User::class)->constrained()->onDelete('cascade');
             $table->string('code') ;
-            $table->enum('discount_type' , ['Phần trăm', 'Cố định']) ;
+            $table->enum('discount_type' , ['percentage', 'fixed']) ;
             $table->decimal('discount_value' ,10 ,2 )  ;
             $table->decimal('max_discount_amount' ,10 ,2 )  ;
             $table->decimal('min_order_value' ,10 ,2 )  ;

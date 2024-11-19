@@ -36,8 +36,8 @@
                             <div class="mb-3">
                                 <label for="discount_type" class="form-label">Loại giảm giá</label>
                                 <select name="discount_type" class="form-select @error('discount_type') is-invalid @enderror">
-                                    <option value="Phần trăm" {{ old('discount_type', $voucher->discount_type) == 'Phần trăm' ? 'selected' : '' }}>Phần trăm</option>
-                                    <option value="Cố định" {{ old('discount_type', $voucher->discount_type) == 'Cố định' ? 'selected' : '' }}>Giá cố định</option>
+                                    <option value="percentage" {{ old('discount_type', $voucher->discount_type) == 'percentage' ? 'selected' : '' }}>Phần trăm</option>
+                                    <option value="fixed" {{ old('discount_type', $voucher->discount_type) == 'fixed' ? 'selected' : '' }}>Giá cố định</option>
                                 </select>
                                 @error('discount_type')
                                     <p class="text-danger">{{ $message }}</p>

@@ -43,8 +43,8 @@
                             <div class="mb-3">
                                 <label for="discount_type" class="form-label">Loại Giảm Giá</label>
                                 <select class="form-select @error('discount_type') is-invalid @enderror" id="discount_type" name="discount_type" required>
-                                    <option value="Phần trăm">Phần trăm</option>
-                                    <option value="Cố định">Cố định</option>
+                                    <option value="percentage">Phần trăm</option>
+                                    <option value="fixed">Cố định</option>
                                 </select>
                                 @error('discount_type')
                                     <p class="text-danger">{{ $message }}</p>

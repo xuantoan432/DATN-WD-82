@@ -54,7 +54,9 @@
                                             <td>{{ $voucher->id }}</td>
                                             <td>{{ $voucher->user_id }}</td>
                                             <td>{{ $voucher->code }}</td>
-                                            <td>{{ $voucher->discount_type }}</td>
+                                            <td>
+                                                {{ $voucher->discount_type === 'percentage' ? 'Phần trăm' : ($voucher->discount_type === 'fixed' ? 'Cố định' : 'Không xác định') }}
+                                            </td>
                                             <td>{{ number_format($voucher->discount_value, 0) }}</td>
                                             {{-- <td>{{ number_format($voucher->max_discount_amount, 0) }}</td>
                                             <td>{{ number_format($voucher->min_order_value, 0) }}</td> --}}

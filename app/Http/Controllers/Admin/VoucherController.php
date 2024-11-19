@@ -34,7 +34,7 @@ class VoucherController extends Controller
     {   
         $request->validate([
             'code' => 'required|string|max:255|unique:vouchers,code',
-            'discount_type' => 'required|in:Phần trăm,Cố định',
+            'discount_type' => 'required|in:percentage,fixed',
             'discount_value' => 'required|numeric|min:0',
             'max_discount_amount' => 'nullable|numeric|min:0',
             'min_order_value' => 'nullable|numeric|min:0',
@@ -44,13 +44,21 @@ class VoucherController extends Controller
             'usage_type' => 'required|boolean',
             'usage_per_customer' => 'nullable|integer|min:1',
         ]);
-        if ($request->filled('max_discount_amount') && $request->filled('min_order_value')) {
-            $maxAllowedDiscount = $request->input('min_order_value') * 0.5;
-            
-            if ($request->input('max_discount_amount') > $maxAllowedDiscount) {
-                throw ValidationException::withMessages([
-                    'max_discount_amount' => 'Số tiền giảm giá tối đa không được vượt quá 50% giá trị đơn hàng.',
-                ]);
+        if ($request->filled('max_discount_amount')) {
+            if ($request->discount_type === 'percentage') {
+                $maxAllowedDiscount = ($request->min_order_value ?? 0) * ($request->discount_value / 100);
+    
+                if ($request->max_discount_amount > $maxAllowedDiscount) {
+                    throw ValidationException::withMessages([
+                        'max_discount_amount' => 'Số tiền giảm giá tối đa không được vượt quá số tiền giảm giá dự kiến từ giá trị đơn hàng',
+                    ]);
+                }
+            } elseif ($request->discount_type === 'fixed') {
+                if ($request->max_discount_amount > $request->discount_value) {
+                    throw ValidationException::withMessages([
+                        'max_discount_amount' => 'Số tiền giảm giá tối đa không được vượt quá số tiền giảm giá cố định',
+                    ]);
+                }
             }
         }
         $voucherData = $request->all();
@@ -79,20 +87,28 @@ class VoucherController extends Controller
 {
     $request->validate([
         'code' => 'required|string|max:255|unique:vouchers,code,' . $voucher->id,
-        'discount_type' => 'required|in:Phần trăm,Cố định',
+        'discount_type' => 'required|in:percentage,fixed',
         'discount_value' => 'required|numeric|min:0',
         'max_discount_amount' => 'nullable|numeric|min:0',
         'min_order_value' => 'nullable|numeric|min:0',
         'start_date' => 'required|date',
         'end_date' => 'required|date|after_or_equal:start_date',
     ]);
-    if ($request->filled('max_discount_amount') && $request->filled('min_order_value')) {
-        $maxAllowedDiscount = $request->input('min_order_value') * 0.5;
-        
-        if ($request->input('max_discount_amount') > $maxAllowedDiscount) {
-            throw ValidationException::withMessages([
-                'max_discount_amount' => 'Số tiền giảm giá tối đa không được vượt quá 50% giá trị đơn hàng.',
-            ]);
+    if ($request->filled('max_discount_amount')) {
+        if ($request->discount_type === 'percentage') {
+            $maxAllowedDiscount = ($request->min_order_value ?? 0) * ($request->discount_value / 100);
+
+            if ($request->max_discount_amount > $maxAllowedDiscount) {
+                throw ValidationException::withMessages([
+                    'max_discount_amount' => 'Số tiền giảm giá tối đa không được vượt quá số tiền giảm giá dự kiến từ giá trị đơn hàng',
+                ]);
+            }
+        } elseif ($request->discount_type === 'fixed') {
+            if ($request->max_discount_amount > $request->discount_value) {
+                throw ValidationException::withMessages([
+                    'max_discount_amount' => 'Số tiền giảm giá tối đa không được vượt quá số tiền giảm giá cố định',
+                ]);
+            }
         }
     }
     $voucher->update($request->only([
