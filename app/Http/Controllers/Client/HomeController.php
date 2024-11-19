@@ -60,35 +60,44 @@ class HomeController extends Controller
     }
 
     public function shop(Request $request)
-    {   
-    
+    {
+        $topSellers = Seller::withCount('products')
+            ->orderByDesc('products_count')
+            ->limit(10)
+            ->get();
+
+        $topCategories = Category::withCount('products')
+            ->orderByDesc('products_count')
+            ->limit(10)
+            ->get();
+
         $cats = Category::all();
         $seller = Seller::all();
 
-  
         $categoryIds = $request->get('category', []);
         $query = Product::where('is_verified', true)
-        ->where('status', 'active')
-        ->withAvg('reviews', 'star')
-        ->orderByDesc('reviews_avg_star');
+            ->where('status', 'active')
+            ->withAvg('reviews', 'star')
+            ->orderByDesc('reviews_avg_star');
+
         $checkCategoryId = $request->category_id ?? [];
         $checkSeller = $request->seller ?? [];
-        if(count($checkCategoryId) > 0){
-            $query =  $query->whereIn('category_id', $checkCategoryId);
-        }
-        if(count($checkSeller) > 0){
-            $query =  $query->whereIn('seller_id', $checkSeller);
+
+        if (count($checkCategoryId) > 0) {
+            $query = $query->whereIn('category_id', $checkCategoryId);
         }
 
-        if($request->searchProduct){
-            $query =  $query->where('name', 'like', '%' . $request->searchProduct . '%');
-
+        if (count($checkSeller) > 0) {
+            $query = $query->whereIn('seller_id', $checkSeller);
         }
 
-        
+        if ($request->searchProduct) {
+            $query = $query->where('name', 'like', '%' . $request->searchProduct . '%');
+        }
+
         $products = $query->paginate(16);
-        
-        return view('client.shop', compact('products','cats','checkCategoryId','seller','checkSeller'));
+
+        return view('client.shop', compact('products', 'cats', 'checkCategoryId', 'seller', 'checkSeller', 'topCategories', 'topSellers'));
     }
 
     public function productInfo()

@@ -9,7 +9,7 @@
                     <form action="{{ route('home.shop') }}" method="GET" id="category-form">
                     <div class="sidebar-item">
                         <ul class="sidebar-list">
-                            @foreach ($cats as $cat)
+                            @foreach ($topCategories as $cat)
                             <li>
                                 <input type="checkbox" data-filter="category"
                                 name = "category_id[]"
@@ -44,7 +44,7 @@
                     <h5 class="wrapper-heading">Tên cửa hàng</h5>
                     <div class="sidebar-item">
                         <ul class="sidebar-list">
-                            @foreach($seller as $sell)
+                            @foreach($topSellers as $sell)
                                 <li>
                                     <input type="checkbox" id="couture" name="seller[]" value="{{$sell->id}}"
                                     
