@@ -47,7 +47,7 @@
                             <div class="mb-3">
                                 <label for="discount_value" class="form-label">Giá trị giảm giá</label>
                                 <input type="number" name="discount_value" class="form-control @error('discount_value') is-invalid @enderror"
-                                       value="{{ old('discount_value',number_format($voucher->discount_value, 0)) }}" min="0">
+                                       value="{{ old('discount_value',number_format($voucher->discount_value, 0,',','.')) }}" min="0">
                                 @error('discount_value')
                                     <p class="text-danger">{{ $message }}</p>
                                 @enderror
@@ -56,7 +56,7 @@
                             <div class="mb-3">
                                 <label for="max_discount_amount" class="form-label">Giới hạn giảm giá tối đa</label>
                                 <input type="number" name="max_discount_amount" class="form-control @error('max_discount_amount') is-invalid @enderror"
-                                       value="{{ old('max_discount_amount', number_format($voucher->max_discount_amount, 0)) }}" min="0">
+                                       value="{{ old('max_discount_amount', number_format($voucher->max_discount_amount, 0,',','.')) }}" min="0">
                                 @error('max_discount_amount')
                                     <p class="text-danger">{{ $message }}</p>
                                 @enderror
