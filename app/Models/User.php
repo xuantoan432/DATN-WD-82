@@ -57,7 +57,7 @@ class User extends Authenticatable
 
     public function seller()
     {
-        return $this->hasOne(Seller::class);
+        return $this->hasMany(Seller::class);
     }
     public function roles()
     {
@@ -91,6 +91,11 @@ class User extends Authenticatable
     public function hasRole($role)
     {
         return $this->roles()->where('id', $role)->exists();
+    }
+
+    public function vouchers()
+    {
+        return $this->hasMany(Voucher::class);
     }
 
     public function cart(){

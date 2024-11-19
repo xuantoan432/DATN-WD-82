@@ -20,8 +20,8 @@ return new class extends Migration
             $table->decimal('discount_value' ,10 ,2 )  ;
             $table->decimal('max_discount_amount' ,10 ,2 )  ;
             $table->decimal('min_order_value' ,10 ,2 )  ;
-            $table->dateTime('start_date') ;
-            $table->dateTime('end_date') ;
+            $table->dateTime('start_date')->nullable();
+            $table->dateTime('end_date')->nullable();
             $table->unsignedBigInteger('usage_limit') ;
             $table->boolean('usage_type') -> default(false) ;
             $table->unsignedBigInteger('usage_per_customer') ;
