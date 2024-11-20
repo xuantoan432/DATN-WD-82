@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
+use App\Models\Banner;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -12,6 +13,8 @@ class HomeController extends Controller
 
     public function index()
     {
+        $activeBanners = Banner::where('is_featured', 1)->get(); 
+
         $new_products = Product::where('is_verified', true)
             ->where('status', 'active')
             ->withAvg('reviews', 'star')
@@ -53,6 +56,7 @@ class HomeController extends Controller
             'sell_products' => $sell_products,
             'best_sell' => $best_sell,
             'flash_sale' => $flash_sale,
+            'activeBanners' => $activeBanners
         ]);
 
     }
@@ -91,15 +95,11 @@ class HomeController extends Controller
     {
         return view('client.compaire');
     }
-    public function wishlist()
+    public function policy()
     {
-        return view('client.wishlist');
+        return view('client.privacy');
     }
 
-    public function becomeVendor()
-    {
-        return view('client.become-vendor');
-    }
 
     public function flashSale()
     {

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AdminUserApprovalController;
+use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\TagController;
@@ -37,4 +38,6 @@ Route::prefix('/admin')->as('admin.')->middleware('role:1')->group(function () {
 
     Route::resource('users',\App\Http\Controllers\Admin\UserController::class);
 
+    // Bảng banner
+    Route::resource('banners', BannerController::class);
 });
