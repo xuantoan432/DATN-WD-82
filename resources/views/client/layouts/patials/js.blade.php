@@ -9,6 +9,7 @@
 <script src="/theme/client/assets/js/aos-3.0.0.js"></script>
 
 <script src="/theme/client/assets/js/swiper10-bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script src="/theme/client/assets/js/shopus.js"></script>
 
