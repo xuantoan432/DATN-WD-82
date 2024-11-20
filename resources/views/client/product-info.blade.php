@@ -764,7 +764,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script>
         const attributes = @json($attributes);
-        const PATH_ROOT = '{{ config('app.url') }}';
         const productId = {{ $product->id }};
     </script>
     @vite('resources/js/client/product-detail.js')

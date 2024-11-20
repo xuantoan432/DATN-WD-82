@@ -31,10 +31,6 @@ class AppServiceProvider extends ServiceProvider
         ->orderByDesc('id')
         ->limit(10)->get());
 
-        if (Auth::check()) {
-            $user = User::with('cart.cartItems')->find(Auth::id());
-            View::share('user', $user);
-        }
         Blade::component('comment', Comment::class);
     }
 }

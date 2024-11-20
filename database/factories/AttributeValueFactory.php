@@ -22,6 +22,7 @@ class AttributeValueFactory extends Factory
         return [
             'attribute_id' => Attribute::factory(),
             'value' => $this->faker->unique()->word(),
+            'user_id' => $this->faker->numberBetween(1,10),
         ];
     }
 }

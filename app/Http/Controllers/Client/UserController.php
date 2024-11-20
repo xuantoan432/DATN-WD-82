@@ -128,4 +128,10 @@ class UserController extends Controller
 
       return redirect()->back()->with('success', 'Mật khẩu đã được thay đổi thành công.');
    }
+
+   public function updateAddressDefault(Request $request,User $user){
+        $idAddress = $request->input('address');
+        $user->update(['default_address_id' => $idAddress]);
+        return redirect()->back();
+   }
 }

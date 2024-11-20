@@ -35,7 +35,7 @@
                             </tr>
                         </thead>
                         <tbody id=data>
-                            {{-- @foreach ($seller as $se)
+                             @foreach ($seller as $se)
                                 <tr>
                                     <td>{{ $se->id }}</td>
 
@@ -54,7 +54,7 @@
                                             <button type="submit" class="btn btn-danger">Từ chối</button>
                                         </form>
                                 </tr>
-                            @endforeach --}}
+                            @endforeach
                         </tbody>
                     </table>
                     {{-- {{$seller->links()}} --}}

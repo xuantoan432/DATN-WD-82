@@ -8,6 +8,31 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'payment_method_id',
+        'payment_status_id',
+        'order_status_id',
+        'user_id',
+        'address_id',
+        'order_code',
+        'total_price',
+        'note',
+    ];
+
+    protected static function boot()
+    {
+        parent::boot();
+        static::creating(function ($order) {
+            $order->order_code = self::generateOrderID();
+        });
+    }
+    private static function generateOrderID()
+    {
+        $date = now()->format('Ymd');
+        $randomString = \Str::upper(\Str::random(6));
+        return 'ORD-' . $date . '-' . $randomString;
+    }
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -31,5 +56,9 @@ class Order extends Model
     public function orderDetails()
     {
         return $this->hasMany(OrderDetail::class);
+    }
+
+    public function address(){
+        return $this->belongsTo(Address::class);
     }
 }

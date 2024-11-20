@@ -15,8 +15,6 @@ class AttributeController extends Controller
      */
     public function index()
     {
-        $user = User::with('seller')->find(Auth::id());
-    dd($user);
         $attributes = Attribute::query()->where('user_id', Auth::id())->get();
         return view('seller.attributes.index', compact('attributes'));
     }

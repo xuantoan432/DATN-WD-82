@@ -25,6 +25,7 @@ class User extends Authenticatable
         'email_verified_at',
         'email',
         'password',
+        'default_address_id',
         'remember_token',
         'phone',
     ];
@@ -46,11 +47,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
+        'is_default' => 'boolean',
     ];
 
     public function addresses()
     {
-        return $this->belongsToMany(Address::class, 'user_address');
+        return $this->belongsToMany(Address::class, 'user_address')->with('details');
     }
 
     public function roles()
@@ -85,7 +87,7 @@ class User extends Authenticatable
 
     public function seller()
     {
-        return $this->hasOne(Seller::class);
+        return $this->hasMany(Seller::class);
     }
 
     public function hasRole($role)
@@ -93,7 +95,8 @@ class User extends Authenticatable
         return $this->roles()->where('id', $role)->exists();
     }
 
-    public function cart(){
+    public function cart()
+    {
         return $this->hasOne(Cart::class);
     }
 
@@ -102,7 +105,19 @@ class User extends Authenticatable
         return $this->hasOne(Attribute::class);
     }
 
-    public function attributeValues(){
+    public function attributeValues()
+    {
         return $this->hasOne(AttributeValue::class);
+    }
+
+    public function defaultAddress()
+    {
+        return $this->belongsTo(Address::class, 'default_address_id')->with('details');
+    }
+
+    public function userVouchers()
+    {
+        return $this->belongsToMany(Voucher::class, 'user_voucher')
+            ->withTimestamps();
     }
 }

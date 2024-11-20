@@ -2,6 +2,7 @@
 
 use App\Models\Order;
 use App\Models\Product;
+use App\Models\ProductVariant;
 use App\Models\ProductVariantAttribute;
 use App\Models\Seller;
 use Illuminate\Database\Migrations\Migration;
@@ -18,9 +19,8 @@ return new class extends Migration
         Schema::create('order_details', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Order::class) -> constrained()->onDelete('cascade');
-            $table->foreignIdFor(Product::class) -> constrained()->onDelete('cascade');
             $table->foreignIdFor(Seller::class) -> constrained()->onDelete('cascade');
-            $table->foreignIdFor(ProductVariantAttribute::class) -> constrained()->onDelete('cascade');
+            $table->foreignIdFor(ProductVariant::class) -> constrained()->onDelete('cascade');
             $table->unsignedBigInteger('quantity');
             $table->string('name') ;
             $table->string('image') ;

@@ -122,9 +122,10 @@
                                     <path
                                         d="M22.509 25.2393C22.5193 26.4842 21.5393 27.4971 20.3064 27.5155C19.048 27.5342 18.0272 26.525 18.0277 25.2622C18.0279 24.0208 19.0214 23.0161 20.2572 23.0074C21.4877 22.9984 22.4988 24.0006 22.509 25.2393Z"
                                         fill="#6E6D79" />
-                                    @if(auth()->check())
+                                    @if(Auth::check())
+
                                     <circle cx="26.9523" cy="10" r="9" fill="#AE1C9A" />
-                                    <text x="23" y="14" font-family="Arial" font-size="12" fill="white"></text>
+                                    <text x="23" y="14" font-family="Arial" font-size="12" fill="white" id="text-quantity">{{ $user->cart ? $user->cart->cartItems()->count() : 0 }}</text>
                                     @endif
                                 </svg>
                             </span>
@@ -132,109 +133,61 @@
                                 Giỏ hàng
                             </span>
                         </a>
-                        <div class="cart-submenu">
-                            <div class="cart-wrapper-item">
-                                <div class="wrapper">
-                                    <div class="wrapper-item">
-                                        <div class="wrapper-img">
-                                            <img src="/theme/client/assets/images/homepage-one/product-img/product-img-1.webp"
-                                                alt="img">
-                                        </div>
-                                        <div class="wrapper-content">
-                                            <h5 class="wrapper-title">Classic Design Skart</h5>
-                                            <div class="price">
-                                                <p class="new-price">$20.00</p>
+                        @if(Auth::check())
+                            @php
+                                $cartItems = $user->cart ? $user->cart->cartItems()->get() : collect([]);
+                                $total = 0;
+                            @endphp
+                            <div class="cart-submenu">
+                            <div class="cart-wrapper-item" @if($cartItems->isEmpty())  style="height: unset !important;" @endif>
+                                @if(!$cartItems->isEmpty())
+                                    @foreach($cartItems as $cartItem)
+                                        @php
+                                            $total += $cartItem->productVariant->getCurrentPrice() * $cartItem->quantity
+                                        @endphp
+
+                                        <div class="wrapper" data-unit-price="{{ $cartItem->productVariant->getCurrentPrice() }}">
+                                            <div class="wrapper-item">
+                                                <div class="wrapper-img">
+                                                    <img src="{{ \Storage::url($cartItem->productVariant->image) }}"
+                                                        alt="img">
+                                                </div>
+                                                <div class="wrapper-content">
+                                                    <h5 class="wrapper-title">{{ $cartItem->productVariant->product->name }} x {{ $cartItem->quantity }}</h5>
+                                                    <div class="price">
+                                                        <p class="new-price">₫{{ number_format($cartItem->productVariant->getCurrentPrice(), 0, ',', '.') }}</p>
+                                                    </div>
+                                                </div>
                                             </div>
+                                            <span class="close-btn cart-btn-delete p-3" data-id="{{ $cartItem->id }}">
+                                                <svg viewBox="0 0 10 10" fill="none" class="fill-current"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <path
+                                                        d="M9.7 0.3C9.3 -0.1 8.7 -0.1 8.3 0.3L5 3.6L1.7 0.3C1.3 -0.1 0.7 -0.1 0.3 0.3C-0.1 0.7 -0.1 1.3 0.3 1.7L3.6 5L0.3 8.3C-0.1 8.7 -0.1 9.3 0.3 9.7C0.7 10.1 1.3 10.1 1.7 9.7L5 6.4L8.3 9.7C8.7 10.1 9.3 10.1 9.7 9.7C10.1 9.3 10.1 8.7 9.7 8.3L6.4 5L9.7 1.7C10.1 1.3 10.1 0.7 9.7 0.3Z">
+                                                    </path>
+                                                </svg>
+                                            </span>
                                         </div>
+                                    @endforeach
+                                @else
+                                    <div class="d-flex justify-content-center align-content-center">
+                                        <p class="text-center">Không có sản phẩm nào trong giỏ hàng</p>
                                     </div>
-                                    <span class="close-btn">
-                                        <svg viewBox="0 0 10 10" fill="none" class="fill-current"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path
-                                                d="M9.7 0.3C9.3 -0.1 8.7 -0.1 8.3 0.3L5 3.6L1.7 0.3C1.3 -0.1 0.7 -0.1 0.3 0.3C-0.1 0.7 -0.1 1.3 0.3 1.7L3.6 5L0.3 8.3C-0.1 8.7 -0.1 9.3 0.3 9.7C0.7 10.1 1.3 10.1 1.7 9.7L5 6.4L8.3 9.7C8.7 10.1 9.3 10.1 9.7 9.7C10.1 9.3 10.1 8.7 9.7 8.3L6.4 5L9.7 1.7C10.1 1.3 10.1 0.7 9.7 0.3Z">
-                                            </path>
-                                        </svg>
-                                    </span>
-                                </div>
-                                <div class="wrapper">
-                                    <div class="wrapper-item">
-                                        <div class="wrapper-img">
-                                            <img src="/theme/client/assets/images/homepage-one/product-img/product-img-2.webp"
-                                                alt="img">
-                                        </div>
-                                        <div class="wrapper-content">
-                                            <h5 class="wrapper-title">Black Suit</h5>
-                                            <div class="price">
-                                                <p class="new-price">$10.00</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <span class="close-btn">
-                                        <svg viewBox="0 0 10 10" fill="none" class="fill-current"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path
-                                                d="M9.7 0.3C9.3 -0.1 8.7 -0.1 8.3 0.3L5 3.6L1.7 0.3C1.3 -0.1 0.7 -0.1 0.3 0.3C-0.1 0.7 -0.1 1.3 0.3 1.7L3.6 5L0.3 8.3C-0.1 8.7 -0.1 9.3 0.3 9.7C0.7 10.1 1.3 10.1 1.7 9.7L5 6.4L8.3 9.7C8.7 10.1 9.3 10.1 9.7 9.7C10.1 9.3 10.1 8.7 9.7 8.3L6.4 5L9.7 1.7C10.1 1.3 10.1 0.7 9.7 0.3Z">
-                                            </path>
-                                        </svg>
-                                    </span>
-                                </div>
-                                <div class="wrapper">
-                                    <div class="wrapper-item">
-                                        <div class="wrapper-img">
-                                            <img src="/theme/client/assets/images/homepage-one/product-img/product-img-3.webp"
-                                                alt="img">
-                                        </div>
-                                        <div class="wrapper-content">
-                                            <h5 class="wrapper-title">Blue Party Dress</h5>
-                                            <div class="price">
-                                                <p class="new-price">$15.00</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <span class="close-btn">
-                                        <svg viewBox="0 0 10 10" fill="none" class="fill-current"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path
-                                                d="M9.7 0.3C9.3 -0.1 8.7 -0.1 8.3 0.3L5 3.6L1.7 0.3C1.3 -0.1 0.7 -0.1 0.3 0.3C-0.1 0.7 -0.1 1.3 0.3 1.7L3.6 5L0.3 8.3C-0.1 8.7 -0.1 9.3 0.3 9.7C0.7 10.1 1.3 10.1 1.7 9.7L5 6.4L8.3 9.7C8.7 10.1 9.3 10.1 9.7 9.7C10.1 9.3 10.1 8.7 9.7 8.3L6.4 5L9.7 1.7C10.1 1.3 10.1 0.7 9.7 0.3Z">
-                                            </path>
-                                        </svg>
-                                    </span>
-                                </div>
-                                <div class="wrapper">
-                                    <div class="wrapper-item">
-                                        <div class="wrapper-img">
-                                            <img src="/theme/client/assets/images/homepage-one/product-img/product-img-4.webp"
-                                                alt="img">
-                                        </div>
-                                        <div class="wrapper-content">
-                                            <h5 class="wrapper-title">Classic Red Dress</h5>
-                                            <div class="price">
-                                                <p class="new-price">$18.00</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <span class="close-btn">
-                                        <svg viewBox="0 0 10 10" fill="none" class="fill-current"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path
-                                                d="M9.7 0.3C9.3 -0.1 8.7 -0.1 8.3 0.3L5 3.6L1.7 0.3C1.3 -0.1 0.7 -0.1 0.3 0.3C-0.1 0.7 -0.1 1.3 0.3 1.7L3.6 5L0.3 8.3C-0.1 8.7 -0.1 9.3 0.3 9.7C0.7 10.1 1.3 10.1 1.7 9.7L5 6.4L8.3 9.7C8.7 10.1 9.3 10.1 9.7 9.7C10.1 9.3 10.1 8.7 9.7 8.3L6.4 5L9.7 1.7C10.1 1.3 10.1 0.7 9.7 0.3Z">
-                                            </path>
-                                        </svg>
-                                    </span>
-                                </div>
+                                @endif
                             </div>
                             <div class="cart-wrapper-section">
                                 <div class="wrapper-line"></div>
                                 <div class="wrapper-subtotal">
                                     <h5 class="wrapper-title">Subtotal</h5>
-                                    <h5 class="wrapper-title">$60</h5>
+                                    <h5 class="wrapper-title" id="cart-total">{{ $total }}</h5>
                                 </div>
                                 <div class="cart-btn">
-                                    <a href="cart.html" class="shop-btn view-btn">View Cart</a>
-                                    <a href="checkout.html" class="shop-btn checkout-btn">Checkout Now</a>
+                                    <a href="{{ route('cart.show') }}" class="shop-btn view-btn">View Cart</a>
+                                    <a href="{{ route('checkout.show', $user) }}" class="shop-btn checkout-btn">Checkout Now</a>
                                 </div>
                             </div>
                         </div>
+                        @endif
                     </div>
                     <div class="header-user">
                         <a href="{{ route('dashboard')}}">

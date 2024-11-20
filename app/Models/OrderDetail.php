@@ -8,6 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class OrderDetail extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'order_id',
+        'seller_id',
+        'product_variant_id',
+        'quantity',
+        'name',
+        'image',
+        'price',
+    ];
     public function order()
     {
         return $this->belongsTo(Order::class);
@@ -23,8 +33,8 @@ class OrderDetail extends Model
         return $this->belongsTo(Seller::class);
     }
 
-    public function productVariantAttribute()
+    public function productVariant()
     {
-        return $this->belongsTo(ProductVariantAttribute::class);
+        return $this->belongsTo(ProductVariant::class);
     }
 }
