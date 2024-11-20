@@ -55,6 +55,18 @@
                 </li>
             </ul>
         </li>
+        <li>
+            <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon"><i class="material-icons-outlined">widgets</i>
+                </div>
+                <div class="menu-title">Quản lý trang chủ</div>
+            </a>
+            <ul>
+                <li>
+                    <a href="{{ route('admin.banners.index') }}"><i class="material-icons-outlined">arrow_right</i>Banner</a>
+                </li>
+            </ul>
+        </li>
     </ul>
 
     <!--end navigation-->

@@ -8,56 +8,27 @@
     <section id="hero" class="hero">
         <div class="swiper hero-swiper">
             <div class="swiper-wrapper hero-wrapper">
-                <div class="swiper-slide hero-slider-one">
-                    <div class="container">
-                        <div class="col-lg-6">
-                            <div class="wrapper-section" data-aos="fade-up">
-                                <div class="wrapper-info">
-                                    <h5 class="wrapper-subtitle">UP TO <span class="wrapper-inner-title">70%</span> OFF
-                                    </h5>
-                                    <h1 class="wrapper-details">Fashion Collection
-                                        Summer Sale</h1>
-                                    <a href="product-sidebar.html" class="shop-btn">Shop Now</a>
+                @foreach($activeBanners as $banner)
+                    <div class="swiper-slide hero-slider" style="background-image: url('{{ Storage::url($banner->banner_image) }}'); width:100%; background-size:100%">
+                        <div class="container">
+                            <div class="col-lg-6">
+                                <div class="wrapper-section" data-aos="fade-up">
+                                    <div class="wrapper-info">
+                                        <h5 class="wrapper-subtitle">{{ $banner->banner_text }} <span class="wrapper-inner-title">70%</span> OFF</h5>
+                                        <h1 class="wrapper-details">{{ $banner->banner_title }}</h1>
+                                        <a href="{{ $banner->banner_link }}" class="shop-btn">Mua hàng ngay</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="swiper-slide hero-slider-two">
-                    <div class="container">
-                        <div class="col-lg-6">
-                            <div class="wrapper-section">
-                                <div class="wrapper-info">
-                                    <h5 class="wrapper-subtitle">UP TO <span class="wrapper-inner-title">70%</span> OFF
-                                    </h5>
-                                    <h1 class="wrapper-details">Fashion Collection
-                                        Summer Sale</h1>
-                                    <a href="#" class="shop-btn">Shop Now</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-slide hero-slider-three">
-                    <div class="container">
-                        <div class="col-lg-6">
-                            <div class="wrapper-section">
-                                <div class="wrapper-info">
-                                    <h5 class="wrapper-subtitle">UP TO <span class="wrapper-inner-title">70%</span> OFF
-                                    </h5>
-                                    <h1 class="wrapper-details">Fashion Collection
-                                        Summer Sale</h1>
-                                    <a href="#" class="shop-btn">Shop Now</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
             <div class="swiper-pagination"></div>
         </div>
     </section>
 @endsection
+ 
 
 
 @section('content')
@@ -515,7 +486,7 @@
                                                 </svg>
                                             </span>
                                         </a>
-                                        <a href="{{ route('home.compaire', $sp->id) }}" class="compaire cart-item">
+                                        <a href="" class="compaire cart-item">
                                             <span>
                                                 <svg width="40" height="40" viewBox="0 0 40 40" fill="none"
                                                     xmlns="http://www.w3.org/2000/svg">
@@ -632,7 +603,7 @@
                                                 </svg>
                                             </span>
                                         </a>
-                                        <a href="{{ route('home.compaire', $sell->id) }}" class="compaire cart-item">
+                                        <a href="" class="compaire cart-item">
                                             <span>
                                                 <svg width="40" height="40" viewBox="0 0 40 40" fill="none"
                                                     xmlns="http://www.w3.org/2000/svg">
@@ -866,7 +837,7 @@
                                                 </svg>
                                             </span>
                                         </a>
-                                        <a href="{{ route('home.compaire', $bs->id) }}" class="compaire cart-item">
+                                        <a href="" class="compaire cart-item">
                                             <span>
                                                 <svg width="40" height="40" viewBox="0 0 40 40" fill="none"
                                                     xmlns="http://www.w3.org/2000/svg">

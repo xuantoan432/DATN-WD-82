@@ -21,6 +21,7 @@ class BannerFactory extends Factory
             'banner_image' => $this->faker->imageUrl(1200, 300, 'business', true, 'banner'),
             'banner_text' => $this->faker->sentence,
             'banner_link' => $this->faker->url,
+            'is_featured' => $this->faker->boolean(50),
         ];
     }
 }
