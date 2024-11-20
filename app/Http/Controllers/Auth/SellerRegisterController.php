@@ -25,7 +25,7 @@ class SellerRegisterController extends Controller
     {
         // Validate the input
         $validatedData = $request->validate([
-            'store_name' => 'required|string|max:255',
+            'store_name' => 'required|string|max:255|unique:sellers',
             'store_email' => 'required|email|max:255|unique:sellers',
             'store_description' => 'required|string|max:1000',
             'address_line' => 'required|string|max:255',

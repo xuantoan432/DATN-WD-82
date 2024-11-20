@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Events\SellerApproved;
 use App\Events\SellerRegistrationRequested;
+use App\Events\SellerRejected;
 use App\Http\Controllers\Controller;
 use App\Mail\SellerApprovedNotification;
 use App\Models\Seller;
@@ -31,13 +32,12 @@ class AdminUserApprovalController extends Controller
         $seller->is_verified = true;
         $seller->save();
 
-
         // if (Auth::check() && Auth::user()->id === $seller->user_id) {
         //     return redirect()->route('home.index')->with('success', 'Your account has been approved!');
         // }
 
 
-        broadcast(new SellerApproved($seller->user_id))->toOthers();
+        event(new SellerApproved($seller->user_id));
         // $seller->notify(new SellerApplicationSubmitted());
 
         return redirect()->back()->with('success', 'Seller approved successfully.');
@@ -47,7 +47,14 @@ class AdminUserApprovalController extends Controller
     public function reject($id)
     {
         $seller = Seller::findOrFail($id);
+        $seller->is_verified = false;
+        $seller->save();
+        $user = $seller->user;
+        $user->roles()->sync([3]);
         $seller->delete();
+
+        event(new SellerRejected($seller->user_id, 'Yêu cầu đăng ký của bạn đã bị từ chối vì không đáp ứng điều kiện.'));
+
 
         return redirect()->back()->with('success', 'Seller rejected successfully.');
     }
