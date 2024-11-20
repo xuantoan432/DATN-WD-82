@@ -123,8 +123,6 @@ class DatabaseSeeder extends Seeder
         Post::factory(10)->create();
         Tag::factory(10)->create();
         Comment::factory(10)->create();
-        // Voucher::factory(10)->create();
-        Address::factory(10)->create();
         Voucher::factory(10)->create();
         Category::factory(10)->create();
         Product::factory(10)->create();
@@ -357,7 +355,7 @@ class DatabaseSeeder extends Seeder
         Order::factory(10)->create();
         OrderDetail::factory(10)->create();
         Notification::factory(10)->create();
-        Banner::factory(10)->create();
+//        Banner::factory(10)->create();
         for ($i = 1; $i <= 10; $i++) {
             for ($j = 1; $j <= 5; $j++) {
                 DB::table('seller_address')->insert([
