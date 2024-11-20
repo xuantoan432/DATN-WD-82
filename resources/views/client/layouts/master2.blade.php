@@ -40,5 +40,9 @@
 </body>
 
 <!-- Mirrored from quomodothemes.website/html/shopus/product-sidebar.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 05 Oct 2024 15:18:43 GMT -->
-
+<script type="test/javascript">
+    $('.category-filter').click(funtion(){
+        var category = [],
+    })
+</script>
 </html>

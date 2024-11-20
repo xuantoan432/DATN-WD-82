@@ -26,8 +26,8 @@
                             </span>
                         </div>
                         <div class="service-content">
-                            <h5 class="service-info service-title">Free Shipping</h5>
-                            <p class="service-info service-details">When ordering over $100</p>
+                            <h5 class="service-info service-title">Miễn phí giao hàng</h5>
+                            <p class="service-info service-details">Khi mua trên 100.000 VNĐ</p>
                         </div>
                     </div>
                 </div>
@@ -46,8 +46,8 @@
                             </span>
                         </div>
                         <div class="service-content">
-                            <h5 class="service-info service-title">Free Return</h5>
-                            <p class="service-info service-details">Get Return within 30 days</p>
+                            <h5 class="service-info service-title">Hoàn trả miễn phí</h5>
+                            <p class="service-info service-details">Hoàn trả trong 30 ngày</p>
                         </div>
                     </div>
                 </div>
@@ -71,8 +71,8 @@
                             </span>
                         </div>
                         <div class="service-content">
-                            <h5 class="service-info service-title">Secure Payment</h5>
-                            <p class="service-info service-details">100% Secure Online Payment</p>
+                            <h5 class="service-info service-title">Bảo mật thanh toán</h5>
+                            <p class="service-info service-details">100% bảo mật thanh toán trực tuyến </p>
                         </div>
                     </div>
                 </div>
@@ -96,8 +96,8 @@
                             </span>
                         </div>
                         <div class="service-content">
-                            <h5 class="service-info service-title">Best Quality</h5>
-                            <p class="service-info service-details">Original Product Guarenteed</p>
+                            <h5 class="service-info service-title">Chất lượng tốt nhất</h5>
+                            <p class="service-info service-details">Đảm bảo sản phẩm chính hãng</p>
                         </div>
                     </div>
                 </div>
@@ -110,13 +110,12 @@
                         <div class="logo">
                             <img src="/theme/client/assets/images/logos/lg.png" alt="logo">
                         </div>
-                        <div class="footer-link order-link">
+                        {{-- <div class="footer-link order-link">
                             <ul>
                                 <li><a href="order.html">Track Order</a></li>
-                                <li><a href="cart.html">Delivery & Returns</a></li>
-                                <li><a href="about.html">Warranty</a></li>
+                                
                             </ul>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
                 <div class="col-lg-3 col-sm-6">
@@ -152,7 +151,7 @@
                 <div class="col-lg-3 col-sm-6">
                     <div class="contact-info">
                         <h4 class="footer-heading footer-title">
-                            Contact Info
+                            Thông tin liên hệ
                         </h4>
                         <div class="footer-link contact-link">
                             <div class="address">
@@ -179,8 +178,8 @@
                                     </span>
                                 </div>
                                 <div class="details">
-                                    <h4 class="footer-heading">Address:</h4>
-                                    <p>4517 Washington Ave. Manchester, Kentucky 39495</p>
+                                    <h4 class="footer-heading">Địa Chỉ:</h4>
+                                    <p>Kiều Mai, Phú Diễn, Bắc Từ Liêm, Hà Nội</p>
                                 </div>
                             </div>
                             <div class="phone address">
@@ -204,7 +203,7 @@
                                     </span>
                                 </div>
                                 <div class="details">
-                                    <h4 class="footer-heading">Phone:</h4>
+                                    <h4 class="footer-heading">Điện thoại:</h4>
                                     <p>+880171889547</p>
                                 </div>
                             </div>

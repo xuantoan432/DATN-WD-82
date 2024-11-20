@@ -28,10 +28,10 @@ class ProductFactory extends Factory
             'sku' => $this->faker->unique()->numerify('SKU-#####'),
             'content' => $this->faker->paragraphs(3, true),
             'price' => $this->faker->randomFloat(2, 10, 1000),
-            'price_sale' => $this->faker->optional()->randomFloat(2, 5, 900),
+
             'image' => $this->faker->imageUrl(640, 480, 'products', true),
             'views' => $this->faker->numberBetween(0, 1000),
-            'quantity' => $this->faker->numberBetween(1, 100),
+
             'is_verified' => $this->faker->boolean,
             'status' => $this->faker->randomElement(['active', 'inactive', 'pending']),
         ];

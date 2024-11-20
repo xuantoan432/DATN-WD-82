@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Client\API\AddToCartController;
+use App\Http\Controllers\API\AttributeController;
+use App\Http\Controllers\API\AttributeValueController;
 use App\Http\Controllers\Client\API\VoucherController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -23,4 +25,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('check-variant', [AddToCartController::class, 'checkVariant']);
 Route::get('check-quantity', [AddToCartController::class, 'checkQuantity']);
 Route::delete('remove-from-cart', [AddToCartController::class, 'deleteItemCart']);
+Route::resource('attribute', AttributeController::class);
+Route::resource('attributevalue', AttributeValueController::class);
 Route::post('voucher/apply', [VoucherController::class, 'applyVoucher']);

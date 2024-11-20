@@ -30,6 +30,8 @@ class AppServiceProvider extends ServiceProvider
         View::share('categories', Category::with('products')
         ->orderByDesc('id')
         ->limit(10)->get());
+        View::share('user',Auth::user());
+        Blade::component('comment', Comment::class);
 
         Blade::component('comment', Comment::class);
     }

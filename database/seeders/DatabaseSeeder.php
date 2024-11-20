@@ -123,8 +123,9 @@ class DatabaseSeeder extends Seeder
         Post::factory(10)->create();
         Tag::factory(10)->create();
         Comment::factory(10)->create();
+        // Voucher::factory(10)->create();
+        Address::factory(10)->create();
         Voucher::factory(10)->create();
-
         Category::factory(10)->create();
         Product::factory(10)->create();
         Review::factory(10)->create();
@@ -236,9 +237,8 @@ class DatabaseSeeder extends Seeder
             ['id' => 11, 'product_variant_id' => 4, 'attribute_id' => 2, 'attribute_value_id' => 6], // Size: Large
             ['id' => 12, 'product_variant_id' => 4, 'attribute_id' => 3, 'attribute_value_id' => 8], // Material: Polyester
         ];
-
-        DB::table('galleries')->insert($galleries);
         DB::table('attributes')->insert($attributes);
+        DB::table('galleries')->insert($galleries);
         DB::table('attribute_values')->insert($attribute_values);
         DB::table('product_variants')->insert($product_variants);
         DB::table('product_variant_attributes')->insert($product_variant_attributes);

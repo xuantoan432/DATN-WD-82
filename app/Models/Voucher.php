@@ -21,6 +21,16 @@ class Voucher extends Model
         'usage_type',
         'usage_per_customer',
     ];
+
+    protected $casts = [
+        'start_date' => 'datetime',
+        'end_date' => 'datetime',
+    ];
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
     public function orders()
     {
         return $this->hasMany(Order::class);

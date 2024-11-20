@@ -14,9 +14,8 @@ class Seller extends Model
         'user_id',
         'store_name',
         'store_email',
-        'store_description'
-
-
+        'store_description' ,
+        'account_balance'
     ];
     public function inventories()
     {
@@ -28,6 +27,10 @@ class Seller extends Model
     }
     public function user()
     {
-         return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class);
+    }
+    public function products()
+    {
+        return $this->hasMany(Product::class);
     }
 }

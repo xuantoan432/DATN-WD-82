@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Wishlist extends Model
 {
     use HasFactory;
-    protected $fillable = ['id', 'user_id', 'product_id'];
+
+    protected $fillable = ['user_id', 'status', 'product_id'];
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -17,5 +18,10 @@ class Wishlist extends Model
     public function productVariant()
     {
         return $this->belongsTo(ProductVariant::class);
+    }
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
     }
 }

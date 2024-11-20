@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
+use App\Models\Banner;
 use App\Models\Product;
+use App\Models\Category;
+use App\Models\Seller;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -12,6 +15,8 @@ class HomeController extends Controller
 
     public function index()
     {
+        $activeBanners = Banner::where('is_featured', 1)->get(); 
+
         $new_products = Product::where('is_verified', true)
             ->where('status', 'active')
             ->withAvg('reviews', 'star')
@@ -53,18 +58,50 @@ class HomeController extends Controller
             'sell_products' => $sell_products,
             'best_sell' => $best_sell,
             'flash_sale' => $flash_sale,
+            'activeBanners' => $activeBanners
         ]);
 
     }
 
     public function shop(Request $request)
     {
-        $products = Product::where('is_verified', true)
-        ->where('status', 'active')
-        ->withAvg('reviews', 'star')
-        ->orderByDesc('reviews_avg_star')
-        ->paginate(16);
-        return view('client.shop', compact('products'));
+        $topSellers = Seller::withCount('products')
+            ->orderByDesc('products_count')
+            ->limit(10)
+            ->get();
+
+        $topCategories = Category::withCount('products')
+            ->orderByDesc('products_count')
+            ->limit(10)
+            ->get();
+
+        $cats = Category::all();
+        $seller = Seller::all();
+
+        $categoryIds = $request->get('category', []);
+        $query = Product::where('is_verified', true)
+            ->where('status', 'active')
+            ->withAvg('reviews', 'star')
+            ->orderByDesc('reviews_avg_star');
+
+        $checkCategoryId = $request->category_id ?? [];
+        $checkSeller = $request->seller ?? [];
+
+        if (count($checkCategoryId) > 0) {
+            $query = $query->whereIn('category_id', $checkCategoryId);
+        }
+
+        if (count($checkSeller) > 0) {
+            $query = $query->whereIn('seller_id', $checkSeller);
+        }
+
+        if ($request->searchProduct) {
+            $query = $query->where('name', 'like', '%' . $request->searchProduct . '%');
+        }
+
+        $products = $query->paginate(16);
+
+        return view('client.shop', compact('products', 'cats', 'checkCategoryId', 'seller', 'checkSeller', 'topCategories', 'topSellers'));
     }
 
     public function productInfo()
@@ -91,15 +128,11 @@ class HomeController extends Controller
     {
         return view('client.compaire');
     }
-    public function wishlist()
+    public function policy()
     {
-        return view('client.wishlist');
+        return view('client.privacy');
     }
 
-    public function becomeVendor()
-    {
-        return view('client.become-vendor');
-    }
 
     public function flashSale()
     {

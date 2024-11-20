@@ -3,10 +3,12 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\Seller;
+use App\Models\AttributeValue;
+use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
@@ -55,6 +57,10 @@ class User extends Authenticatable
         return $this->belongsToMany(Address::class, 'user_address')->with('details');
     }
 
+    public function seller()
+    {
+        return $this->hasMany(Seller::class);
+    }
     public function roles()
     {
         return $this->belongsToMany(Role::class, 'user_role', 'user_id', 'role_id');
@@ -84,19 +90,17 @@ class User extends Authenticatable
     {
         return $this->hasMany(Chat::class, 'user_receive_id');
     }
-
-    public function seller()
-    {
-        return $this->hasMany(Seller::class);
-    }
-
     public function hasRole($role)
     {
         return $this->roles()->where('id', $role)->exists();
     }
 
-    public function cart()
+    public function vouchers()
     {
+        return $this->hasMany(Voucher::class);
+    }
+
+    public function cart(){
         return $this->hasOne(Cart::class);
     }
 

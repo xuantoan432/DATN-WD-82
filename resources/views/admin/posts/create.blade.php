@@ -55,6 +55,7 @@
             <button type="submit" class="btn btn-primary">Lưu Bài Viết</button>
         </form>
     </div>
+    
 @endsection
 
 @section('js_new')

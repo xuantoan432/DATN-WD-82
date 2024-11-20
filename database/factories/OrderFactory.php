@@ -16,6 +16,9 @@ class OrderFactory extends Factory
      */
     public function definition(): array
     {
+        // Lấy ngày tạo ngẫu nhiên trong khoảng thời gian nhất định
+        $createdAt = $this->faker->dateTimeBetween('-1 year', 'now');  // Ngày ngẫu nhiên trong 1 năm qua
+
         return [
             'payment_status_id' => \App\Models\PaymentStatus::factory(),
             'payment_method_id' => \App\Models\PaymentMethod::factory(),
@@ -25,6 +28,8 @@ class OrderFactory extends Factory
             'address_id' => rand(1, 10),
             'note' => $this->faker->sentence,
             'user_id' => \App\Models\User::factory(),
+            'created_at' => $createdAt,  // Gán giá trị ngày tạo ngẫu nhiên
+            'updated_at' => $createdAt,  // Gán giá trị ngày cập nhật bằng với ngày tạo
         ];
     }
 }

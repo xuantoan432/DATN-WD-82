@@ -35,7 +35,7 @@
                             </tr>
                         </thead>
                         <tbody id=data>
-                             @foreach ($seller as $se)
+                            @foreach ($seller as $se)
                                 <tr>
                                     <td>{{ $se->id }}</td>
 

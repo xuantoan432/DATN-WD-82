@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('banner_image');
             $table->string('banner_text');
             $table->string('banner_link');
+            $table->boolean('is_featured')->default(false);
             $table->timestamps();
         });
     }

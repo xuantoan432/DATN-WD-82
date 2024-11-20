@@ -12,22 +12,23 @@ class HomeController extends Controller
     public function index()
     {
         $new_products = Product::orderBy('created_at','DESC')->limit(8)->get();
-        $sale_products = Product::orderBy('created_at','DESC')->where('price_sale','>',0)->limit(4)->get();
+//        $sale_products = Product::orderBy('created_at','DESC')->where('price_sale','>',0)->limit(4)->get();
         $sell_products = Product::inRandomOrder()->limit(6)->get();
-        $best_sell = Product::orderBy('price_sale', 'DESC')->limit(4)->get();
-        $flash_sale = Product::orderBy('price_sale', 'ASC')->limit(12)->get();
+//        $best_sell = Product::orderBy('price_sale', 'DESC')->limit(4)->get();
+//        $flash_sale = Product::orderBy('price_sale', 'ASC')->limit(12)->get();
         return view('client.index',[
             'new_products' => $new_products,
-            'sale_products' => $sale_products,
+            'sale_products' => [],
             'sell_products' => $sell_products,
-            'best_sell' => $best_sell,
-            'flash_sale' => $flash_sale,
+            'best_sell' => [],
+            'flash_sale' => [],
         ]);
     }
 
     public function shop()
     {
         $new_products = Product::orderBy('created_at','DESC')->limit(6)->get();
+      
         $sell_products = Product::inRandomOrder()->limit(6)->get();
         return view('client.shop',[
             'new_products' => $new_products,

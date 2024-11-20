@@ -6,7 +6,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Maxton | Bootstrap 5 Admin Dashboard Template</title>
+    <title>Trang cho người bán hàng </title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     @include('seller.layouts.partials.head')
 
 </head>
