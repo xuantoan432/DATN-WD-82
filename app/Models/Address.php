@@ -24,4 +24,13 @@ class Address extends Model
     {
         return $this->belongsToMany(Seller::class, 'seller_address');
     }
+
+    public function userWithThisAsDefault()
+    {
+        return $this->hasOne(User::class, 'default_address_id');
+    }
+    public function details()
+    {
+        return $this->hasOne(AddressDetail::class);
+    }
 }

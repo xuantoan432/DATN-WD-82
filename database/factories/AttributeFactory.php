@@ -18,7 +18,7 @@ class AttributeFactory extends Factory
     {
         return [
             'name' => $this->faker->unique()->word(),
-            'user_id' => 1,
+            'user_id' => $this->faker->numberBetween(1,10),
         ];
     }
 }

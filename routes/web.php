@@ -56,6 +56,7 @@ Route::middleware('auth')->group(function () {
 
     Route::put('/updateUser/{id}',[UserController::class,'updateUser'])->name('user.update');
     Route::post('/change-password', [UserController::class, 'changePassword'])->name('user.changePassword');
+    Route::post('user/address-default/{user}', [UserController::class, 'updateAddressDefault'])->name('user.address.default');
     Route::get('posts/{post}', [PostController::class, 'show'])->name('posts.show');
     Route::post('comments', [PostController::class, 'store'])->name('posts.comments');
     Route::post('add-cart', [CartController::class, 'addToCart'])->name('add.cart');
@@ -67,6 +68,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/wishlist/add', [WishlistController::class, 'addToWishlist'])->name('wishlist.add');
     Route::post('/wishlist/remove/{id}', [WishlistController::class, 'removeWishlist'])->name('wishlist.remove');
     Route::post('/wishlist/clean', [WishlistController::class, 'cleanWishlist'])->name('wishlist.clean');
+    Route::get('checkout/{user}', [OrderController::class, 'showCheckout'])->name('checkout.show');
+    Route::post('order/create', [OrderController::class, 'createOrder'])->name('order.create');
+    Route::get('order/check', [OrderController::class, 'checkOrderMomo'])->name('order.check');
+    Route::get('thank', [OrderController::class, 'thank'])->name('thank');
 });
 
 

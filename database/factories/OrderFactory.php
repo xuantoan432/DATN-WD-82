@@ -25,7 +25,7 @@ class OrderFactory extends Factory
             'order_code' => $this->faker->unique()->bothify('ORDER-#####'),
             'order_status_id' => \App\Models\OrderStatus::factory(),
             'total_price' => $this->faker->randomFloat(2, 10, 1000),
-            'shipping_address' => $this->faker->address,
+            'address_id' => rand(1, 10),
             'note' => $this->faker->sentence,
             'user_id' => \App\Models\User::factory(),
             'created_at' => $createdAt,  // Gán giá trị ngày tạo ngẫu nhiên

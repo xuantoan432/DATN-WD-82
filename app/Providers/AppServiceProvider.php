@@ -33,10 +33,6 @@ class AppServiceProvider extends ServiceProvider
         View::share('user',Auth::user());
         Blade::component('comment', Comment::class);
 
-        if (Auth::check()) {
-            $user = User::with('cart.cartItems')->find(Auth::id());
-            View::share('user', $user);
-        }
         Blade::component('comment', Comment::class);
     }
 }

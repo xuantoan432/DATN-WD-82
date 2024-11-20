@@ -123,20 +123,15 @@ class DatabaseSeeder extends Seeder
         Post::factory(10)->create();
         Tag::factory(10)->create();
         Comment::factory(10)->create();
-        // Voucher::factory(10)->create();
-        Address::factory(10)->create();
+        Voucher::factory(10)->create();
         Category::factory(10)->create();
         Product::factory(10)->create();
         Review::factory(10)->create();
 
-//        ProductVariant::factory(10)->create();
-//        Attribute::factory(10)->create();
-//        AttributeValue::factory(10)->create();
-//        ProductVariantAttribute::factory(10)->create();
         $attributes = [
-            ['id' => 1, 'name' => 'Color'],
-            ['id' => 2, 'name' => 'Size'],
-            ['id' => 3, 'name' => 'Material'],
+            ['id' => 1, 'user_id' => 2, 'name' => 'Color'],
+            ['id' => 2, 'user_id' => 2, 'name' => 'Size'],
+            ['id' => 3, 'user_id' => 2, 'name' => 'Material'],
         ];
 
         foreach ($attributes as &$attribute) {
@@ -144,14 +139,14 @@ class DatabaseSeeder extends Seeder
         }
 
         $attribute_values = [
-            ['id' => 1, 'attribute_id' => 1, 'value' => 'Red'],
-            ['id' => 2, 'attribute_id' => 1, 'value' => 'Blue'],
-            ['id' => 3, 'attribute_id' => 1, 'value' => 'Green'],
-            ['id' => 4, 'attribute_id' => 2, 'value' => 'Small'],
-            ['id' => 5, 'attribute_id' => 2, 'value' => 'Medium'],
-            ['id' => 6, 'attribute_id' => 2, 'value' => 'Large'],
-            ['id' => 7, 'attribute_id' => 3, 'value' => 'Cotton'],
-            ['id' => 8, 'attribute_id' => 3, 'value' => 'Polyester'],
+            ['id' => 1, 'attribute_id' => 1, 'value' => 'Red', 'user_id' => 2],
+            ['id' => 2, 'attribute_id' => 1, 'value' => 'Blue', 'user_id' => 2],
+            ['id' => 3, 'attribute_id' => 1, 'value' => 'Green', 'user_id' => 2],
+            ['id' => 4, 'attribute_id' => 2, 'value' => 'Small','user_id' => 2],
+            ['id' => 5, 'attribute_id' => 2, 'value' => 'Medium','user_id' => 2],
+            ['id' => 6, 'attribute_id' => 2, 'value' => 'Large','user_id' => 2],
+            ['id' => 7, 'attribute_id' => 3, 'value' => 'Cotton','user_id' => 2],
+            ['id' => 8, 'attribute_id' => 3, 'value' => 'Polyester','user_id' => 2],
         ];
 
         foreach ($attribute_values as &$attribute_value) {
@@ -162,8 +157,8 @@ class DatabaseSeeder extends Seeder
                 'id' => 1,
                 'product_id' => 10,
                 'sku' => 'SKU10-RD-SM-CT',
-                'price' => 100,
-                'price_sale' => 90,
+                'price' => 100000,
+                'price_sale' => 90000,
                 'image' => $this->uploadImage('a6u00sSpJk6w3GxrBz32imHyYZOhTq7SeXxP7MHm.jpg'),
                 'stock_quantity' => 10,
                 'is_verified' => true,
@@ -175,8 +170,8 @@ class DatabaseSeeder extends Seeder
                 'id' => 2,
                 'product_id' => 10,
                 'sku' => 'SKU10-RD-MD-CT',
-                'price' => 105,
-                'price_sale' => 95,
+                'price' => 105000,
+                'price_sale' => 95000,
                 'image' => $this->uploadImage('AXY6PDa1WKifnqZX6oeDAl6YyxXz6lkHuezeo4iZ.jpg'),
                 'stock_quantity' => 8,
                 'is_verified' => true,
@@ -188,8 +183,8 @@ class DatabaseSeeder extends Seeder
                 'id' => 3,
                 'product_id' => 10,
                 'sku' => 'SKU10-BL-MD-PL',
-                'price' => 110,
-                'price_sale' => 100,
+                'price' => 110000,
+                'price_sale' => 100000,
                 'image' => $this->uploadImage('BnuBDZqMjxWagVoU4T1nsEjqmRrJGNzCAQ2ZJVN2.jpg'),
                 'stock_quantity' => 5,
                 'is_verified' => false,
@@ -201,8 +196,8 @@ class DatabaseSeeder extends Seeder
                 'id' => 4,
                 'product_id' => 10,
                 'sku' => 'SKU10-GR-LG-PL',
-                'price' => 120,
-                'price_sale' => 110,
+                'price' => 120000,
+                'price_sale' => 110000,
                 'image' => $this->uploadImage('qhyaQd59SXgJZTlFkbsG0DsC6xqx3XclzRjAKw8y.jpg'),
                 'stock_quantity' => 3,
                 'is_verified' => true,
@@ -252,23 +247,121 @@ class DatabaseSeeder extends Seeder
         CartItem::factory(10)->create();
         Chat::factory(10)->create();
         PaymentMethod::factory(10)->create();
-        PaymentStatus::factory(10)->create();
-        OrderStatus::factory(10)->create();
+        DB::table('payment_statuses')->insert([
+            [
+                'name' => 'Pending',
+            ],
+            [
+                'name' => 'Paid',
+            ],
+            [
+                'name' => 'Failed',
+            ],
+            [
+                'name' => 'Refunded',
+            ],
+        ]);
+        DB::table('order_statuses')->insert([
+            [
+                'name' => 'Pending',
+                'description' => 'Đơn hàng đang chờ xử lý.',
+            ],
+            [
+                'name' => 'Processing',
+                'description' => 'Đơn hàng đang được xử lý.',
+            ],
+            [
+                'name' => 'Shipped',
+                'description' => 'Đơn hàng đã được giao cho đơn vị vận chuyển.',
+            ],
+            [
+                'name' => 'Delivered',
+                'description' => 'Đơn hàng đã được giao đến khách hàng.',
+            ],
+            [
+                'name' => 'Cancelled',
+                'description' => 'Đơn hàng đã bị hủy bởi khách hàng hoặc quản trị viên.',
+            ],
+            [
+                'name' => 'Returned',
+                'description' => 'Đơn hàng đã được khách hàng trả lại.',
+            ],
+        ]);
+        $addresses = [
+            [
+                'address_line' => 'Xóm 1 Bắc Song',
+                'province_id' => 2,
+                'ward_id' => 745,
+                'district_id' => 26,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'address_line' => 'Xóm 2 Bắc Song',
+                'province_id' => 4,
+                'ward_id' => 1693,
+                'district_id' => 40,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'address_line' => 'Xóm 3 Bắc Song',
+                'province_id' => 12,
+                'ward_id' => 3517,
+                'district_id' => 108,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'address_line' => 'Xóm 4 Bắc Song',
+                'province_id' => 8,
+                'ward_id' => 2404,
+                'district_id' => 74,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+        ];
+        DB::table('addresses')->insert($addresses);
+        $user = User::find(3);
+        $user->update([
+            'email' => 'toannxph44181@fpt.edu.vn',
+            'default_address_id' => '1'
+        ]);
+        $user->addresses()->sync([1, 2, 3]);
+
+        DB::table('address_details')->insert([
+            [
+                'address_id' => 1,
+                'full_name' => 'Nguyễn Xuân Toàn',
+                'phone_number' => '0966432994',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'address_id' => 2,
+                'full_name' => 'nguyễn xuân tuấn',
+                'phone_number' => '09843434',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'address_id' => 3,
+                'full_name' => 'NGuyễn văn a',
+                'phone_number' => '093432422',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+        ]);
         Order::factory(10)->create();
         OrderDetail::factory(10)->create();
         Notification::factory(10)->create();
-        Banner::factory(10)->create();
+//        Banner::factory(10)->create();
         for ($i = 1; $i <= 10; $i++) {
             for ($j = 1; $j <= 5; $j++) {
                 DB::table('seller_address')->insert([
                     'seller_id' => $i,
                     'address_id' => $j,
                 ]);
-                DB::table('user_address')->insert([
-                    'user_id' => $i,
-                    'address_id' => $j,
-                ]);
-
             }
         }
         //         ProductHasAttribute::factory(10)->create();

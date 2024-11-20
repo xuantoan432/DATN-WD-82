@@ -23,7 +23,7 @@ class LoginController extends Controller
 
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
-
+            $request->session()->regenerate();
             if ($user->hasRole(1)) {
                 return redirect('/admin');
             }
@@ -36,7 +36,8 @@ class LoginController extends Controller
 
     public function logout(){
         Auth::logout();
-        \request() -> session() -> invalidate();
+        request()->session()->invalidate();
+        request()->session()->regenerateToken();
 
         return redirect('/');
     }

@@ -1,3 +1,6 @@
+<script>
+    const PATH_ROOT = '{{ config('app.url') }}/';
+</script>
 <script src="/theme/client/assets/js/jquery_3.7.1.min.js"></script>
 
 <script src="https://kit.fontawesome.com/147ffd2c04.js"></script>
@@ -11,6 +14,8 @@
 <script src="/theme/client/assets/js/swiper10-bundle.min.js"></script>
 
 <script src="/theme/client/assets/js/shopus.js"></script>
+
+<script src="/theme/client/assets/js/custom.js"></script>
 
 <script>
     // Hàm mở/đóng modal
