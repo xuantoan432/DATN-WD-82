@@ -78,11 +78,9 @@ class HomeController extends Controller
         $cats = Category::all();
         $seller = Seller::all();
 
-        $categoryIds = $request->get('category', []);
         $query = Product::where('is_verified', true)
             ->where('status', 'active')
-            ->withAvg('reviews', 'star')
-            ->orderByDesc('reviews_avg_star');
+            ->withAvg('reviews', 'star');
 
         $checkCategoryId = $request->category_id ?? [];
         $checkSeller = $request->seller ?? [];
@@ -99,9 +97,29 @@ class HomeController extends Controller
             $query = $query->where('name', 'like', '%' . $request->searchProduct . '%');
         }
 
+        $sort = $request->get('sort', 'default');
+        switch ($sort) {
+            case 'price_asc':
+                $query->orderBy('price', 'asc');
+                break;
+            case 'price_desc':
+                $query->orderBy('price', 'desc');
+                break;
+            case 'rating':
+                $query->orderByDesc('reviews_avg_star');
+                break;
+            default:
+                $query->orderBy('created_at', 'desc'); 
+                break;
+        }
+
         $products = $query->paginate(16);
 
-        return view('client.shop', compact('products', 'cats', 'checkCategoryId', 'seller', 'checkSeller', 'topCategories', 'topSellers'));
+        return view('client.shop', compact(
+            'products', 'cats', 'checkCategoryId', 
+            'seller', 'checkSeller', 'topCategories', 
+            'topSellers', 'sort'
+        ));
     }
 
     public function productInfo()

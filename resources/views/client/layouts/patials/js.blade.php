@@ -48,5 +48,23 @@
         // Chức năng hiển thị danh mục sẽ được xử lý ở đây (nếu cần)
         alert("Hiển thị danh mục tìm kiếm!");
     }
+    document.addEventListener('click', function(event) {
+        const dropdown = document.getElementById("category-dropdown");
+        const button = document.querySelector('.category-btn');
+        if (!dropdown.contains(event.target) && !button.contains(event.target)) {
+            dropdown.classList.remove("show");
+            document.body.classList.remove("dropdown-open");
+        }
+    });
+    document.getElementById('sortOptions').addEventListener('change', function() {
+        const sortOption = this.value;
+        const urlParams = new URLSearchParams(window.location.search);
+
+        // Thêm hoặc cập nhật tham số "sort"
+        urlParams.set('sort', sortOption);
+
+        // Tải lại trang với URL mới
+        window.location.href = `${window.location.pathname}?${urlParams.toString()}`;
+    });
 </script>
 

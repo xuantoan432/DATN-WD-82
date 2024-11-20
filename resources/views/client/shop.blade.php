@@ -14,13 +14,13 @@
                         <p>Showing <span>{{ $products->firstItem() }}–{{ $products->lastItem() }} of {{ $products->total() }} results</span></p>
                     </div>
                     <div class="product-sorting">
-                        <span class="product-sort">Sort by:</span>
+                        <span class="product-sort">Sắp xếp theo:</span>
                         <div class="product-list">
                             <select class="form-select" id="sortOptions">
-                                <option value="default" selected>Default</option>
-                                <option value="price_asc">Price: Low to High</option>
-                                <option value="price_desc">Price: High to Low</option>
-                                <option value="rating">Rating</option>
+                                <option value="default" {{ $sort == 'default' ? 'selected' : '' }}>Mặc định</option>
+                                <option value="price_asc" {{ $sort == 'price_asc' ? 'selected' : '' }}>Giá: Thấp đến cao</option>
+                                <option value="price_desc" {{ $sort == 'price_desc' ? 'selected' : '' }}>Giá: Cao đến thâp</option>
+                                <option value="rating" {{ $sort == 'rating' ? 'selected' : '' }}>Số sao</option>
                             </select>
                         </div>
                     </div>
