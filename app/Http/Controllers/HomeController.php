@@ -28,6 +28,7 @@ class HomeController extends Controller
     public function shop()
     {
         $new_products = Product::orderBy('created_at','DESC')->limit(6)->get();
+      
         $sell_products = Product::inRandomOrder()->limit(6)->get();
         return view('client.shop',[
             'new_products' => $new_products,
