@@ -97,6 +97,8 @@
                                             <input type="text" id="coupon-code" placeholder="Coupon code" />
                                             <input type="hidden" id="cart_total" value="{{ $total }}" />
                                             <input type="hidden" id="user_id" value="{{ auth()->id() }}" />
+                                            <input type="hidden" id="discount_value" value="0" />
+                                            <input type="hidden" id="voucher_previous" value="0" />
                                             <input type="submit" value="Apply Coupon" />
                                         </div>
                                     </form>
@@ -104,24 +106,31 @@
                                 <div class="d-block text-end" id="coupon-message"></div>
                                 <div class="subtotal product-total">
                                     <h5 class="wrapper-heading">TỔNG TIỀN PHỤ</h5>
-                                    <h5 class="wrapper-heading">đ {{ $total }}</h5>
+                                    <h5 class="wrapper-heading"> {{ number_format($total, 0, ',', '.') }} ₫</h5>
                                 </div>
                                 <div class="subtotal product-total">
                                     <ul class="product-list fee">
-
+                                        <li>
+                                            <div class="product-info">
+                                                <p class="paragraph">Giảm giá</p>
+                                                <h5 class="wrapper-heading">Giảm giá sản phẩm</h5>
+                                            </div>
+                                            <div class="price">
+                                                <h5 class="wrapper-heading"> 0 ₫</h5>
+                                            </div>
+                                        </li>
                                     </ul>
                                 </div>
                                 <form action="{{ route('order.create') }}" method="post">
                                     @csrf
                                     <input type="hidden" name="address_id">
                                     <input type="hidden" name="user_id" value="{{ $user->id }}">
-                                    <input type="hidden" name="total_price" >
-                                    <input type="hidden" name="voucher_id" >
+                                    <input type="hidden" name="total_price" value="{{ $total }}">
                                     <input type="hidden" name="cart_items" value="{{ $cartItems }}">
                                     <hr>
                                     <div class="subtotal total">
                                         <h5 class="wrapper-heading">Tổng tiền</h5>
-                                        <h5 class="wrapper-heading price">đ<span class="price wrapper-heading" id="total-amount">{{ $total }}</span></h5>
+                                        <h5 class="wrapper-heading price"><span class="price wrapper-heading" id="total-amount">{{ number_format($total, 0, ',', '.') }}₫</span></h5>
                                     </div>
                                     <div class="subtotal payment-type">
                                         <label for="momo" class="w-100">

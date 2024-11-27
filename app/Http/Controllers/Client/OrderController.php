@@ -32,7 +32,6 @@ class OrderController extends Controller
             'payment_method' => 'required',
             'total_price' => 'required',
             'user_id' => 'required',
-            'voucher_id' => 'nullable',
             'note' => 'nullable',
         ]);
         $paymentMethod = $request->input('payment_method');
@@ -41,7 +40,6 @@ class OrderController extends Controller
             'total_price' => $request->input('total_price'),
             'user_id' => $request->input('user_id'),
             'note' => $request->input('note'),
-            'voucher_id' => $request->input('voucher_id')
 
         ];
         $cartItems = json_decode($request->input('cart_items'));
@@ -65,9 +63,6 @@ class OrderController extends Controller
                     'order_status_id' => 1
                 ]);
                 $order = Order::create($data);
-                if ($data['voucher_id']){
-                    $this->updateVoucherApply($data['voucher_id'], $data['user_id']);
-                }
                 foreach ($orderDetails as $orderDetail){
                     $order->orderDetails()->create($orderDetail);
                     $this->updateQuantityProductVariant($orderDetail['quantity'], $orderDetail['product_variant_id']);
@@ -159,9 +154,6 @@ class OrderController extends Controller
     public function checkOrderMomo(Request $request){
         $user = User::query()->find(auth()->id());
         if($request->input('resultCode') == 0){
-            if (session('order.voucher_id')){
-                $this->updateVoucherApply(session('order.voucher_id'), session('order.user_id'));
-            }
             $order = Order::create(session('order'));
             foreach (session('orderDetails') as $orderDetail){
                 $order->orderDetails()->create($orderDetail);
@@ -182,14 +174,7 @@ class OrderController extends Controller
         $productVariant->update(['stock_quantity' => $newQuantity]);
     }
 
-    public function updateVoucherApply($voucherId, $user_id){
-        $voucher =  Voucher::find($voucherId);
-        $voucher->usage_limit -= 1;
-        $voucher->save();
 
-        $user = User::find($user_id);
-        $user->userVouchers()->attach($voucher->id);
-    }
 
     public function thank()
     {

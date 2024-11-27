@@ -77,7 +77,6 @@ $(document).ready(function() {
         }
     })
 
-    $("input[name='total_price']").val($('#total-amount').text());
 
     $('#cart-coupon').submit(function (e) {
         e.preventDefault();
@@ -85,7 +84,8 @@ $(document).ready(function() {
         var couponCode = $('#coupon-code').val();
         var cartTotal = $('#cart_total').val();
         var userId = $('#user_id').val();
-        var voucherId = $('#voucher_id').val();
+        var discountValue = $('#discount_value').val();
+        var voucherPrevious = $('#voucher_previous').val();
 
         $.ajax({
             url: PATH_ROOT + 'api/voucher/apply',
@@ -95,24 +95,20 @@ $(document).ready(function() {
                 coupon_code: couponCode,
                 total: cartTotal,
                 user_id: userId,
-                voucher_id: voucherId
+                discount_value: discountValue,
+                voucher_previous: voucherPrevious
             },
             success: function (response) {
                 // Nếu thành công, hiển thị thông báo và số tiền đã được trừ
                 if (response.success) {
                     $('#coupon-message').html('<p>Áp dụng mã giảm giá thành công!</p>');
-                    let html = ` <li>
-                                            <div class="product-info">
-                                                <p class="paragraph">Giảm giá</p>
-                                                <h5 class="wrapper-heading">Giảm giá sản phẩm</h5>
-                                            </div>
-                                            <div class="price">
-                                                <h5 class="wrapper-heading">- đ ${response.discount}</h5>
-                                            </div>
-                                        </li>`;
-                    $('ul.product-list.fee').append(html);
-                    $('#total-amount').text(response.total_after_discount);
-                    $("input[name='voucher_id']").val(response.voucher_id);
+
+                    $('ul.product-list.fee .price .wrapper-heading').text(formatCurrencyVND(response.discount));
+                    $('#total-amount').text(formatCurrencyVND(response.total_after_discount));
+                    $("input[name='total_price']").val(response.total_after_discount);
+
+                    $('#voucher_previous').val(response.voucher_id)
+                    $("#discount_value").val(response.discount);
                 } else {
                     $('#coupon-message').html('<p>' + response.message + '</p>');
                 }
@@ -144,4 +140,15 @@ const getLocation = (type, id) => {
 const getFullAddress = (addressInline, ward, district, province) => {
 
     return  `${addressInline},${ward},${district},${province}`;
+}
+
+const formatCurrencyVND = (amount) => {
+    if (typeof amount !== "number") {
+        amount = parseFloat(amount);
+        if (isNaN(amount)) {
+            throw new Error("Số tiền không hợp lệ");
+        }
+    }
+
+    return new Intl.NumberFormat("vi-VN", { style: "currency", currency: "VND" }).format(amount);
 }

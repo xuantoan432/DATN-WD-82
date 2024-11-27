@@ -13,10 +13,20 @@ class VoucherController extends Controller
 {
     public function applyVoucher(Request $request)
     {
+        $request->validate([
+            'coupon_code' => 'required|string',
+            'total' => 'required|numeric|min:0',
+            'user_id' => 'nullable|integer|exists:users,id',
+            'discount_value' => 'nullable',
+            'voucher_previous' => 'nullable'
+        ]);
         $couponCode = $request->input('coupon_code');
         $cartTotal = $request->input('total');
         $userId = $request->input('user_id');
+        $discountValue = $request->input('discount_value');
+        $voucher_previous = $request->input('voucher_previous');
         $now = Carbon::now()->format('Y-m-d H:i:s');
+
         $voucher = Voucher::where('code', $couponCode)
             ->where('status', 'active')
             ->where('start_date', '<=', [$now])
@@ -29,6 +39,12 @@ class VoucherController extends Controller
             ]);
         }
 
+        if($voucher->id == $voucher_previous){
+            return response()->json([
+                'success' => false,
+                'message' => 'Voucher này đang sử dụng'
+            ]);
+        }
         if ($cartTotal < $voucher->min_order_value) {
             return response()->json([
                 'success' => false,
@@ -41,6 +57,16 @@ class VoucherController extends Controller
                 'success' => false,
                 'message' => 'Voucher đã hết lượt sử dụng'
             ]);
+        }
+
+        if($voucher_previous){
+            $previousVoucher = Voucher::find($voucher_previous);
+            if ($previousVoucher && $previousVoucher->usage_type != 1 && $voucher->usage_type != 1) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Voucher không thể áp dụng cùng với các voucher khác'
+                ]);
+            }
         }
 
         $usageCount = $userId ? User::find($userId)->userVouchers()->where('voucher_id', $voucher->id)->count() : 0;
@@ -58,18 +84,28 @@ class VoucherController extends Controller
             $discount = $voucher->discount_value;
         }
 
+
         if ($voucher->max_discount_amount) {
             $discount = min($discount, $voucher->max_discount_amount);
         }
+        $discount += $discountValue;
+
+        $this->updateVoucherApply($voucher->id, $userId);
 
         $totalAfterDiscount = $cartTotal - $discount;
-
         return response()->json([
             'success' => true,
-            'discount' => number_format($discount, 0, ',', '.'),
-            'total_after_discount' => number_format($totalAfterDiscount, 0, ',', '.'),
+            'discount' => $discount,
+            'total_after_discount' => $totalAfterDiscount,
             'voucher_id' => $voucher->id,
         ]);
     }
+    public function updateVoucherApply($voucherId, $user_id){
+        $voucher =  Voucher::find($voucherId);
+        $voucher->usage_limit -= 1;
+        $voucher->save();
 
+        $user = User::find($user_id);
+        $user->userVouchers()->attach($voucher->id);
+    }
 }
