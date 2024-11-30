@@ -65,7 +65,7 @@ Route::middleware('auth')->group(function () {
 
 
     Route::get('/wishlist', [WishlistController::class, 'listWishlist'])->name('wishlist.show');
-    Route::get('/wishlist/add', [WishlistController::class, 'addToWishlist'])->name('wishlist.add');
+    Route::post('/wishlist/add', [WishlistController::class, 'addToWishlist'])->name('wishlist.add');
     Route::post('/wishlist/remove/{id}', [WishlistController::class, 'removeWishlist'])->name('wishlist.remove');
     Route::post('/wishlist/clean', [WishlistController::class, 'cleanWishlist'])->name('wishlist.clean');
     Route::get('checkout/{user}', [OrderController::class, 'showCheckout'])->name('checkout.show');
