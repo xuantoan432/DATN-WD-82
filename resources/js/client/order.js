@@ -77,7 +77,6 @@ $(document).ready(function() {
         }
     })
 
-    $("input[name='total_price']").val($('#total-amount').text());
 
     $('#cart-coupon').submit(function (e) {
         e.preventDefault();
@@ -85,7 +84,8 @@ $(document).ready(function() {
         var couponCode = $('#coupon-code').val();
         var cartTotal = $('#cart_total').val();
         var userId = $('#user_id').val();
-        var voucherId = $('#voucher_id').val();
+        var discountValue = $('#discount_value').val();
+        var voucherPrevious = $('#voucher_previous').val();
 
         $.ajax({
             url: PATH_ROOT + 'api/voucher/apply',
@@ -95,24 +95,20 @@ $(document).ready(function() {
                 coupon_code: couponCode,
                 total: cartTotal,
                 user_id: userId,
-                voucher_id: voucherId
+                discount_value: discountValue,
+                voucher_previous: voucherPrevious
             },
             success: function (response) {
                 // Nếu thành công, hiển thị thông báo và số tiền đã được trừ
                 if (response.success) {
                     $('#coupon-message').html('<p>Áp dụng mã giảm giá thành công!</p>');
-                    let html = ` <li>
-                                            <div class="product-info">
-                                                <p class="paragraph">Giảm giá</p>
-                                                <h5 class="wrapper-heading">Giảm giá sản phẩm</h5>
-                                            </div>
-                                            <div class="price">
-                                                <h5 class="wrapper-heading">- đ ${response.discount}</h5>
-                                            </div>
-                                        </li>`;
-                    $('ul.product-list.fee').append(html);
-                    $('#total-amount').text(response.total_after_discount);
-                    $("input[name='voucher_id']").val(response.voucher_id);
+
+                    $('ul.product-list.fee .price .wrapper-heading').text(formatCurrencyVND(response.discount));
+                    $('#total-amount').text(formatCurrencyVND(response.total_after_discount));
+                    $("input[name='total_price']").val(response.total_after_discount);
+
+                    $('#voucher_previous').val(response.voucher_id)
+                    $("#discount_value").val(response.discount);
                 } else {
                     $('#coupon-message').html('<p>' + response.message + '</p>');
                 }
@@ -124,6 +120,159 @@ $(document).ready(function() {
         });
     });
 
+    $('.add-new-address').click(function (){
+        $('#modal-address').html(`
+            <form action="" method="POST" id="new-address-form">
+                <div class="login-section account-section modal-main">
+                    <div class="review-form">
+                        <div class="review-content">
+                            <h5 class="comment-title mt-0">Thêm địa chỉ mới</h5>
+                        </div>
+                        <div class=" account-inner-form">
+                            <div class="review-form-name">
+                                <label for="full_name" class="form-label">Họ và tên*</label>
+                                <input type="text" id="full_name" name="full_name" class="form-control"
+                                     required  placeholder="Nhập họ và tên">
+                            </div>
+                            <div class="review-form-name">
+                                <label for="phone_number" class="form-label">Phone*</label>
+                                <input type="tel" id="phone_number" required name="phone_number" class="form-control"
+                                       placeholder="+880388**0899">
+                            </div>
+                        </div>
+                        <div class=" account-inner-form city-inner-form">
+                            <div class="review-form-name">
+                                <label for="usercity" class="form-label ">Tỉnh/Thành
+                                    phố</label>
+                                <select id="province" name="province" required
+                                    class="form-select province form-control">
+                                    <option></option>
+                                </select>
+                            </div>
+                            <div class="review-form-name">
+                                <label for="usercity"
+                                    class="form-label">Quận/Huyện</label>
+                                <select id="district" name="district" required
+                                    class="form-select district form-control">
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class=" account-inner-form city-inner-form">
+                            <div class="review-form-name">
+                                <label for="usercity"
+                                    class="form-label">Phường/Xã</label>
+                                <select id="ward" name="ward" required
+                                    class="form-select ward form-control">
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="review-form-name address-form">
+                            <label for="useraddress" class="form-label">Địa
+                                chỉ</label>
+                            <input type="text" id="useraddress"
+                                name="address_line" class="form-control"
+                                placeholder="Khu/Số nhà ...">
+                        </div>
+                        <div class="login-btn text-center">
+                            <button type="submit" class="shop-btn">Thêm địa
+                                chỉ</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        `)
+        $.ajax({
+            url: 'https://provinces.open-api.vn/api/p/',
+            method: 'GET',
+            success: function(data) {
+                $('#province').append(data.map(function(province) {
+                    return `<option value="${province.code}">${province.name}</option>`;
+                }));
+            },
+            error: function() {
+                alert('Không thể tải danh sách Tỉnh/Thành phố.');
+            }
+        });
+
+        $('#province').on( 'change' , function () {
+
+            let selectedValue = $(this).val();
+
+            $('#district').html('<option value="">Chọn Quận/Huyện</option>'); // Reset danh sách quận/huyện
+            $('#ward').html('<option value="">Chọn Xã/Phường</option>'); // Reset danh sách xã/phường
+
+            if (selectedValue) {
+                $.ajax({
+                    url: `https://provinces.open-api.vn/api/p/${selectedValue}?depth=2`,
+                    method: 'GET',
+                    success: function(data) {
+                        $('#district').append(data.districts.map(function(district) {
+                            return `<option value="${district.code}">${district.name}</option>`;
+                        }));
+                    },
+                    error: function() {
+                        alert('Không thể tải danh sách Quận/Huyện.');
+                    }
+                });
+            }
+        })
+
+        $('#district').on( 'change' , function () {
+
+            let selectedValue = $(this).val();
+            $('#ward').html('<option value="">Chọn Xã/Phường</option>'); // Reset danh sách xã/phường
+
+            if (selectedValue) {
+                $.ajax({
+                    url: `https://provinces.open-api.vn/api/d/${selectedValue}?depth=2`,
+                    method: 'GET',
+                    success: function(data) {
+                        $('#ward').append(data.wards.map(function(ward) {
+                            return `<option value="${ward.code}">${ward.name}</option>`;
+                        }));
+                    },
+                    error: function() {
+                        alert('Không thể tải danh sách Xã/Phường.');
+                    }
+                });
+            }
+
+        })
+    });
+    $(document).on('submit', '#new-address-form', function (e) {
+        e.preventDefault(); // Ngăn hành vi gửi form mặc định
+
+        // Thu thập dữ liệu từ form
+        const formData = {
+            full_name: $('#full_name').val(),
+            phone_number: $('#phone_number').val(),
+            province: $('#province').val(),
+            district: $('#district').val(),
+            ward: $('#ward').val(),
+            address_line: $('#useraddress').val(),
+        };
+
+        // Gửi dữ liệu qua AJAX
+        $.ajax({
+            url: '/api/address/create',
+            method: 'POST',
+            data: formData,
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            success: function (response) {
+                $('#exampleModal').modal('hide');
+                displayFullAddress(response.data)
+            },
+            error: function (xhr) {
+
+                console.error(xhr.responseJSON);
+                alert(responseJSON.message);
+            }
+        });
+    });
 });
 
 const getLocation = (type, id) => {
@@ -145,3 +294,6 @@ const getFullAddress = (addressInline, ward, district, province) => {
 
     return  `${addressInline},${ward},${district},${province}`;
 }
+
+
+

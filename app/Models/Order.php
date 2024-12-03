@@ -9,15 +9,21 @@ class Order extends Model
 {
     use HasFactory;
 
+    const PENDING = 'Pending';
+    const PROCESSING = 'Processing';
+    const SHIPPING = 'Shipping';
+    const DELIVERED = 'Delivered';
+    const CANCELLED = 'Cancelled';
+
     protected $fillable = [
         'payment_method_id',
         'payment_status_id',
-        'order_status_id',
         'user_id',
         'address_id',
         'order_code',
         'total_price',
         'note',
+        'status'
     ];
 
     protected static function boot()

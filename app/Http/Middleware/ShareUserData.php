@@ -19,7 +19,7 @@ class ShareUserData
     public function handle(Request $request, Closure $next): Response
     {
         if (Auth::check()) {
-            $user = User::with('cart.cartItems')->find(Auth::id());
+            $user = User::with(['cart.cartItems', 'orders.orderDetails', 'seller'])->find(Auth::id());
             View::share('user', $user);
         } else {
             View::share('user', null);

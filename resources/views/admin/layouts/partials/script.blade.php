@@ -1,5 +1,7 @@
 <script src="{{ asset('theme/admin/assets/js/bootstrap.bundle.min.js') }}"></script>
-
+<script>
+    const PATH_ROOT = '{{ config('app.url') }}'
+</script>
 <!--plugins-->
 <script src="{{ asset('theme/admin/assets/js/jquery.min.js') }}"></script>
 <!--plugins-->

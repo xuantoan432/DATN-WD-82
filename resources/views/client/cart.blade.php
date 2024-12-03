@@ -120,8 +120,8 @@
                         <td colspan="4"></td>
                         <td class="table-wrapper">
                             <div class="table-wrapper-center">
-                                <h5 class="heading" id="cart-total">
-                                    {{ $total }}
+                                <h5 class="heading" id="cart-total1">
+                                    ₫ {{ number_format($total, 0,',', '.') }}
                                 </h5>
                             </div>
                         </td>

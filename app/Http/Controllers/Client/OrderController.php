@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Client;
 use App\Http\Controllers\Controller;
 use App\Models\Cart;
 use App\Models\Order;
+use App\Models\OrderDetail;
 use App\Models\ProductVariant;
 use App\Models\User;
 use App\Models\Voucher;
@@ -32,7 +33,6 @@ class OrderController extends Controller
             'payment_method' => 'required',
             'total_price' => 'required',
             'user_id' => 'required',
-            'voucher_id' => 'nullable',
             'note' => 'nullable',
         ]);
         $paymentMethod = $request->input('payment_method');
@@ -41,13 +41,16 @@ class OrderController extends Controller
             'total_price' => $request->input('total_price'),
             'user_id' => $request->input('user_id'),
             'note' => $request->input('note'),
-            'voucher_id' => $request->input('voucher_id')
 
         ];
         $cartItems = json_decode($request->input('cart_items'));
         $orderDetails = [];
         foreach($cartItems as $cartItem){
             $price = ProductVariant::query()->findOrFail($cartItem->product_variant_id)->getCurrentPrice();
+            $variant_name = '';
+            foreach ($cartItem->product_variant->attributes as $attributeValue) {
+                $variant_name .=  $attributeValue->value . ',';
+            }
             $orderDetails[] = [
                 'seller_id' => $cartItem->product_variant->product->seller_id,
                 'product_variant_id' => $cartItem->product_variant_id,
@@ -55,6 +58,8 @@ class OrderController extends Controller
                 'name' => $cartItem->product_variant->product->name,
                 'image' => $cartItem->product_variant->image,
                 'price' => $price,
+                'variant_name' => $variant_name,
+                'status' => OrderDetail::PENDING,
             ];
         }
         switch ($paymentMethod) {
@@ -62,12 +67,9 @@ class OrderController extends Controller
                 $data = array_merge($data,[
                     'payment_method_id' => 2,
                     'payment_status_id' => 1,
-                    'order_status_id' => 1
+                    'status' => Order::PENDING,
                 ]);
                 $order = Order::create($data);
-                if ($data['voucher_id']){
-                    $this->updateVoucherApply($data['voucher_id'], $data['user_id']);
-                }
                 foreach ($orderDetails as $orderDetail){
                     $order->orderDetails()->create($orderDetail);
                     $this->updateQuantityProductVariant($orderDetail['quantity'], $orderDetail['product_variant_id']);
@@ -81,7 +83,7 @@ class OrderController extends Controller
                 $data = array_merge($data, [
                     'payment_method_id' => 1,
                     'payment_status_id' => 2,
-                    'order_status_id' => 1
+                    'status' => Order::PENDING,
                 ]);
                 session(['orderDetails' => $orderDetails]);
                 session(['order' => $data]);
@@ -159,9 +161,6 @@ class OrderController extends Controller
     public function checkOrderMomo(Request $request){
         $user = User::query()->find(auth()->id());
         if($request->input('resultCode') == 0){
-            if (session('order.voucher_id')){
-                $this->updateVoucherApply(session('order.voucher_id'), session('order.user_id'));
-            }
             $order = Order::create(session('order'));
             foreach (session('orderDetails') as $orderDetail){
                 $order->orderDetails()->create($orderDetail);
@@ -182,14 +181,7 @@ class OrderController extends Controller
         $productVariant->update(['stock_quantity' => $newQuantity]);
     }
 
-    public function updateVoucherApply($voucherId, $user_id){
-        $voucher =  Voucher::find($voucherId);
-        $voucher->usage_limit -= 1;
-        $voucher->save();
 
-        $user = User::find($user_id);
-        $user->userVouchers()->attach($voucher->id);
-    }
 
     public function thank()
     {
