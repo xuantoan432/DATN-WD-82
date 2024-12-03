@@ -41,7 +41,7 @@
                         </button>
                         <div class="modal-wrapper search">
                             <div onclick="modalAction('.search')" class="anywhere-away"></div>
-                        
+
                             <div class="modal-main">
                                 <div class="wrapper-close-btn" onclick="modalAction('.search')">
                                     <span>
@@ -53,19 +53,19 @@
                                 <form action="{{ route('home.shop') }}" method="GET">
                                     <div class="wrapper-main">
                                         <div class="search-section">
-                                        
+
                                                 <input type="text" name="searchProduct" id="searchKeyword" placeholder="Tìm kiếm sản phẩm.........">
                                                 <div class="divider"></div>
                                                 <button type="button" onclick="showCategories()">Tất cả danh mục</button>
                                                 <button  type="submit" class="shop-btn" style="background:#ae1c9a !important;  color:white !important;" >Tìm kiếm</button>
-                                        
+
                                         </div>
                                     </div>
-                                       
+
                                 </form>
                             </div>
                         </div>
-                        
+
                     </div>
                     {{-- <div class="header-compaire">
                         <a href="compaire.html" class="cart-item">
@@ -420,7 +420,7 @@
                             </a>
                         </li>
                         <li class="mega-menu">
-                            <a href="product-sidebar.html">
+                            <a href="{{ route('home.shop') }}">
                                 <span class="list-text">Cửa hàng</span>
                                 <span>
                                     <svg width="10" height="10" viewBox="0 0 10 10" fill="none"

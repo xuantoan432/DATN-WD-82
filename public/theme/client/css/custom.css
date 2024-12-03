@@ -319,9 +319,9 @@
     }
 }
 
-.h5, h5 {
-    font-size: 1.25rem
-}
+/*.h5, h5 {*/
+/*    font-size: 1.25rem*/
+/*}*/
 
 .h6, h6 {
     font-size: 1rem
@@ -966,3 +966,6 @@ input.form-control, select.form-control {
     background: #0c80a4
 }
 
+.user-dashboard .nav-content .address-section .seller-info{
+    height: 100%;
+}

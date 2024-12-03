@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Order;
+use App\Models\OrderStatus;
 use App\Models\Product;
 use App\Models\ProductVariant;
 use App\Models\ProductVariantAttribute;
@@ -25,6 +26,8 @@ return new class extends Migration
             $table->string('name') ;
             $table->string('image') ;
             $table->decimal('price',10,2);
+            $table->string('variant_name');
+            $table->enum('status',['Pending', 'Processing', 'Shipping', 'Delivered', 'Cancelled']);
             $table->timestamps();
         });
     }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Client;
 use App\Http\Controllers\Controller;
 use App\Models\Cart;
 use App\Models\Order;
+use App\Models\OrderDetail;
 use App\Models\ProductVariant;
 use App\Models\User;
 use App\Models\Voucher;
@@ -46,6 +47,10 @@ class OrderController extends Controller
         $orderDetails = [];
         foreach($cartItems as $cartItem){
             $price = ProductVariant::query()->findOrFail($cartItem->product_variant_id)->getCurrentPrice();
+            $variant_name = '';
+            foreach ($cartItem->product_variant->attributes as $attributeValue) {
+                $variant_name .=  $attributeValue->value . ',';
+            }
             $orderDetails[] = [
                 'seller_id' => $cartItem->product_variant->product->seller_id,
                 'product_variant_id' => $cartItem->product_variant_id,
@@ -53,6 +58,8 @@ class OrderController extends Controller
                 'name' => $cartItem->product_variant->product->name,
                 'image' => $cartItem->product_variant->image,
                 'price' => $price,
+                'variant_name' => $variant_name,
+                'status' => OrderDetail::PENDING,
             ];
         }
         switch ($paymentMethod) {
@@ -60,7 +67,7 @@ class OrderController extends Controller
                 $data = array_merge($data,[
                     'payment_method_id' => 2,
                     'payment_status_id' => 1,
-                    'order_status_id' => 1
+                    'status' => Order::PENDING,
                 ]);
                 $order = Order::create($data);
                 foreach ($orderDetails as $orderDetail){
@@ -76,7 +83,7 @@ class OrderController extends Controller
                 $data = array_merge($data, [
                     'payment_method_id' => 1,
                     'payment_status_id' => 2,
-                    'order_status_id' => 1
+                    'status' => Order::PENDING,
                 ]);
                 session(['orderDetails' => $orderDetails]);
                 session(['order' => $data]);

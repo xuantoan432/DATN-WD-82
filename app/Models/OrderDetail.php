@@ -9,6 +9,12 @@ class OrderDetail extends Model
 {
     use HasFactory;
 
+    const PENDING = 'Pending';
+    const PROCESSING = 'Processing';
+    const SHIPPING = 'Shipping';
+    const DELIVERED = 'Delivered';
+    const CANCELLED = 'Cancelled';
+
     protected $fillable = [
         'order_id',
         'seller_id',
@@ -17,6 +23,8 @@ class OrderDetail extends Model
         'name',
         'image',
         'price',
+        'variant_name',
+        'status'
     ];
     public function order()
     {
@@ -36,5 +44,9 @@ class OrderDetail extends Model
     public function productVariant()
     {
         return $this->belongsTo(ProductVariant::class);
+    }
+
+    public function status(){
+        return $this->belongsTo(OrderStatus::class);
     }
 }

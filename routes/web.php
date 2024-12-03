@@ -19,7 +19,7 @@ use App\Http\Controllers\Auth\SellerRegisterController;
 use App\Http\Controllers\Client\WishlistController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
-Route::get('/1', [HomeController::class, 'shop'])->name('home.shop');
+Route::get('/shop', [HomeController::class, 'shop'])->name('home.shop');
 Route::get('/product/{product}', [ProductController::class, 'detailProduct'])->name('home.product-detail');
 Route::get('/contact', [HomeController::class, 'contact'])->name('home.contact');
 Route::get('/about', [HomeController::class, 'about'])->name('home.about');
@@ -51,6 +51,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/logout', [LoginController::class,'logout'])->name('logout');
     Route::get('/dashboard', [UserController::class, 'userDashboard'])->name('dashboard');
+    Route::get('/orderDetail/{code}', [UserController::class, 'orderDetail'])->name('orderDetail');
     Route::post('/createAddress', [UserController::class, 'createAddress'])->name('user.address.create');
     Route::delete('/deleteAddress/{id}', [UserController::class, 'deleteAddress'])->name('user.address.delete');
 
@@ -65,7 +66,7 @@ Route::middleware('auth')->group(function () {
 
 
     Route::get('/wishlist', [WishlistController::class, 'listWishlist'])->name('wishlist.show');
-    Route::get('/wishlist/add', [WishlistController::class, 'addToWishlist'])->name('wishlist.add');
+    Route::post('/wishlist/add', [WishlistController::class, 'addToWishlist'])->name('wishlist.add');
     Route::post('/wishlist/remove/{id}', [WishlistController::class, 'removeWishlist'])->name('wishlist.remove');
     Route::post('/wishlist/clean', [WishlistController::class, 'cleanWishlist'])->name('wishlist.clean');
     Route::get('checkout/{user}', [OrderController::class, 'showCheckout'])->name('checkout.show');

@@ -59,7 +59,7 @@ class User extends Authenticatable
 
     public function seller()
     {
-        return $this->hasMany(Seller::class);
+        return $this->hasOne(Seller::class);
     }
     public function roles()
     {
@@ -123,5 +123,10 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Voucher::class, 'user_voucher')
             ->withTimestamps();
+    }
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
     }
 }

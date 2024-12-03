@@ -180,7 +180,7 @@
                     <div id="all-address"></div>
                     <!-- Add New Address -->
                     <div class="d-block p-4">
-                        <a href="#" class="add-new-address" onclick="addNewAddress()">+ Thêm Địa Chỉ Mới</a>
+                        <a class="add-new-address">+ Thêm Địa Chỉ Mới</a>
                     </div>
 
                     <!-- Action Buttons -->

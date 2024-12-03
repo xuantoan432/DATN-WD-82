@@ -20,9 +20,9 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(PaymentStatus::class) -> constrained()->onDelete('cascade');
             $table->foreignIdFor(PaymentMethod::class) -> constrained()->onDelete('cascade');
-            $table->foreignIdFor(OrderStatus::class) -> constrained()->onDelete('cascade');
             $table->foreignIdFor(User::class) -> constrained()->onDelete('cascade');
             $table->foreignIdFor(Address::class) -> constrained()->onDelete('cascade');
+            $table->enum('status',['Pending', 'Processing', 'Shipping', 'Delivered', 'Cancelled']);
             $table->string('order_code') ;
             $table->decimal('total_price' , 10 , 2 ) ;
             $table->string('note') ->nullable();

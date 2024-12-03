@@ -49,7 +49,7 @@
                                     <span class="address">Ghi nhớ phiên đăng nhập</span>
                                 </div>
                                 <div class="forget-pass">
-                                    <p>Quên mật khẩu?</p>
+                                    <a href="{{ route('auth.forgot') }}"><p>Quên mật khẩu?</p></a>
                                 </div>
                             </div>
                         </div>

@@ -24,6 +24,8 @@ class OrderDetailFactory extends Factory
             'name' => $this->faker->word,
             'image' => $this->faker->imageUrl(640, 480, 'products', true),
             'price' => $this->faker->randomFloat(2, 10, 100),
+            'status' => $this->faker->randomElement(['Pending', 'Processing', 'Shipping', 'Delivered', 'Cancelled']),
+            'variant_name' => $this->faker->word,
         ];
     }
 }
