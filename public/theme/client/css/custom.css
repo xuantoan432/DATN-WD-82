@@ -969,3 +969,9 @@ input.form-control, select.form-control {
 .user-dashboard .nav-content .address-section .seller-info{
     height: 100%;
 }
+.product-wrapper{
+    height: 46.5rem;
+}
+.best-product .product-wrapper {
+    height: 34.5rem;
+}
