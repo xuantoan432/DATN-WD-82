@@ -123,7 +123,6 @@ class DatabaseSeeder extends Seeder
         Tag::factory(10)->create();
         Comment::factory(10)->create();
         Voucher::factory(10)->create();
-        Product::factory(10)->create();
         Review::factory(10)->create();
 
         $this->call([
@@ -244,17 +243,14 @@ class DatabaseSeeder extends Seeder
         Order::factory(10)->create();
         OrderDetail::factory(10)->create();
         Notification::factory(10)->create();
-//        Banner::factory(10)->create();
         for ($i = 1; $i <= 10; $i++) {
-            for ($j = 1; $j <= 5; $j++) {
+            for ($j = 1; $j <= 4; $j++) {
                 DB::table('seller_address')->insert([
                     'seller_id' => $i,
                     'address_id' => $j,
                 ]);
             }
         }
-        //         ProductHasAttribute::factory(10)->create();
-        Inventory::factory(10)->create();
         Schema::enableForeignKeyConstraints();
     }
 }

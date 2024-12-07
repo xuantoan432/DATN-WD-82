@@ -18,7 +18,7 @@ class OrderDetailFactory extends Factory
     {
         return [
             'order_id' => \App\Models\Order::factory(),
-            'seller_id' => \App\Models\User::factory(),
+            'seller_id' => rand(1, 10),
             'quantity' => $this->faker->numberBetween(1, 10),
             'product_variant_id' => \App\Models\ProductVariant::factory(),
             'name' => $this->faker->word,
