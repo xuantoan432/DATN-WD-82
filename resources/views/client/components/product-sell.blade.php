@@ -110,8 +110,15 @@
                 </a>
                 <div class="price">
                     @php
-                        $minRegularPrice = min($priceRegulars);
-                        $maxRegularPrice = max($priceRegulars);
+                        $minRegularPrice = !empty($priceRegulars) ? min($priceRegulars) : null;
+                        $maxRegularPrice = !empty($priceRegulars) ? max($priceRegulars) : null;
+
+                        // Nếu cần, xử lý trường hợp không có giá trị
+                        if ($minRegularPrice === null || $maxRegularPrice === null) {
+                            // Gán giá trị mặc định hoặc thông báo lỗi
+                            $minRegularPrice = 0;
+                            $maxRegularPrice = 0;
+                        }
                     @endphp
 
                     @if (!empty($priceSales))

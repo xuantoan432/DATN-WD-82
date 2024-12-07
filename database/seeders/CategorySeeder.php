@@ -39,7 +39,7 @@ class CategorySeeder extends Seeder
     {
         $sourcePath = base_path("database/seeders/images/categories/{$fileName}");
         if (file_exists($sourcePath)) {
-            $storagePath = 'products/' . \Str::random(10) . '_' . $fileName;
+            $storagePath = 'categories/' . \Str::random(10) . '_' . $fileName;
             Storage::put($storagePath, file_get_contents($sourcePath));
             return $storagePath;
         }

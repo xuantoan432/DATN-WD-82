@@ -24,7 +24,7 @@ class OrderFactory extends Factory
             'payment_method_id' => \App\Models\PaymentMethod::factory(),
             'order_code' => $this->faker->unique()->bothify('ORDER-#####'),
             'total_price' => $this->faker->randomFloat(2, 10, 1000),
-            'address_id' => rand(1, 10),
+            'address_id' => rand(1, 4),
             'note' => $this->faker->sentence,
             'status' => $this->faker->randomElement(['Pending', 'Processing', 'Shipping', 'Delivered', 'Cancelled']),
             'user_id' => \App\Models\User::factory(),
