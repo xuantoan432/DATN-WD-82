@@ -15,7 +15,9 @@ class HomeController extends Controller
 
     public function index()
     {
-        $activeBanners = Banner::where('is_featured', 1)->get(); 
+        $activeBanners = Banner::where('is_featured', 1)->get();
+
+        $categories = Category::query()->limit(11)->get();
 
         $new_products = Product::where('is_verified', true)
             ->where('status', 'active')
@@ -58,7 +60,8 @@ class HomeController extends Controller
             'sell_products' => $sell_products,
             'best_sell' => $best_sell,
             'flash_sale' => $flash_sale,
-            'activeBanners' => $activeBanners
+            'activeBanners' => $activeBanners,
+            'categories' => $categories
         ]);
 
     }
@@ -109,15 +112,15 @@ class HomeController extends Controller
                 $query->orderByDesc('reviews_avg_star');
                 break;
             default:
-                $query->orderBy('created_at', 'desc'); 
+                $query->orderBy('created_at', 'desc');
                 break;
         }
 
         $products = $query->paginate(16);
 
         return view('client.shop', compact(
-            'products', 'cats', 'checkCategoryId', 
-            'seller', 'checkSeller', 'topCategories', 
+            'products', 'cats', 'checkCategoryId',
+            'seller', 'checkSeller', 'topCategories',
             'topSellers', 'sort'
         ));
     }
