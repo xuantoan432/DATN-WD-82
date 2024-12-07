@@ -55,7 +55,6 @@ class DatabaseSeeder extends Seeder
         Comment::truncate();
         Voucher::truncate();
         Address::truncate();
-        Category::truncate();
         Product::truncate();
         Review::truncate();
         Gallery::truncate();
@@ -124,123 +123,13 @@ class DatabaseSeeder extends Seeder
         Tag::factory(10)->create();
         Comment::factory(10)->create();
         Voucher::factory(10)->create();
-        Category::factory(10)->create();
         Product::factory(10)->create();
         Review::factory(10)->create();
 
-        $attributes = [
-            ['id' => 1, 'user_id' => 2, 'name' => 'Color'],
-            ['id' => 2, 'user_id' => 2, 'name' => 'Size'],
-            ['id' => 3, 'user_id' => 2, 'name' => 'Material'],
-        ];
-
-        foreach ($attributes as &$attribute) {
-            $attribute['user_id'] = 2;
-        }
-
-        $attribute_values = [
-            ['id' => 1, 'attribute_id' => 1, 'value' => 'Red', 'user_id' => 2],
-            ['id' => 2, 'attribute_id' => 1, 'value' => 'Blue', 'user_id' => 2],
-            ['id' => 3, 'attribute_id' => 1, 'value' => 'Green', 'user_id' => 2],
-            ['id' => 4, 'attribute_id' => 2, 'value' => 'Small','user_id' => 2],
-            ['id' => 5, 'attribute_id' => 2, 'value' => 'Medium','user_id' => 2],
-            ['id' => 6, 'attribute_id' => 2, 'value' => 'Large','user_id' => 2],
-            ['id' => 7, 'attribute_id' => 3, 'value' => 'Cotton','user_id' => 2],
-            ['id' => 8, 'attribute_id' => 3, 'value' => 'Polyester','user_id' => 2],
-        ];
-
-        foreach ($attribute_values as &$attribute_value) {
-            $attribute_value['user_id'] = 2;
-        }
-        $product_variants = [
-            [
-                'id' => 1,
-                'product_id' => 10,
-                'sku' => 'SKU10-RD-SM-CT',
-                'price' => 100000,
-                'price_sale' => 90000,
-                'image' => $this->uploadImage('a6u00sSpJk6w3GxrBz32imHyYZOhTq7SeXxP7MHm.jpg'),
-                'stock_quantity' => 10,
-                'is_verified' => true,
-                'status' => 1,  // Active
-                'date_start' => '2024-01-01',
-                'date_end' => '2024-12-31',
-            ],
-            [
-                'id' => 2,
-                'product_id' => 10,
-                'sku' => 'SKU10-RD-MD-CT',
-                'price' => 105000,
-                'price_sale' => 95000,
-                'image' => $this->uploadImage('AXY6PDa1WKifnqZX6oeDAl6YyxXz6lkHuezeo4iZ.jpg'),
-                'stock_quantity' => 8,
-                'is_verified' => true,
-                'status' => 1,  // Active
-                'date_start' => '2024-01-01',
-                'date_end' => '2024-12-31',
-            ],
-            [
-                'id' => 3,
-                'product_id' => 10,
-                'sku' => 'SKU10-BL-MD-PL',
-                'price' => 110000,
-                'price_sale' => 100000,
-                'image' => $this->uploadImage('BnuBDZqMjxWagVoU4T1nsEjqmRrJGNzCAQ2ZJVN2.jpg'),
-                'stock_quantity' => 5,
-                'is_verified' => false,
-                'status' => 0,  // Inactive
-                'date_start' => '2024-03-01',
-                'date_end' => '2024-12-31',
-            ],
-            [
-                'id' => 4,
-                'product_id' => 10,
-                'sku' => 'SKU10-GR-LG-PL',
-                'price' => 120000,
-                'price_sale' => 110000,
-                'image' => $this->uploadImage('qhyaQd59SXgJZTlFkbsG0DsC6xqx3XclzRjAKw8y.jpg'),
-                'stock_quantity' => 3,
-                'is_verified' => true,
-                'status' => 1,  // Active
-                'date_start' => '2024-05-01',
-                'date_end' => '2024-12-31',
-            ],
-        ];
-
-        $galleries = [
-            ['id' => 1, 'product_id' => 10, 'image' => $this->uploadImage('a6u00sSpJk6w3GxrBz32imHyYZOhTq7SeXxP7MHm.jpg')],
-            ['id' => 2, 'product_id' => 10, 'image' => $this->uploadImage('AXY6PDa1WKifnqZX6oeDAl6YyxXz6lkHuezeo4iZ.jpg')],
-            ['id' => 3, 'product_id' => 10, 'image' => $this->uploadImage('BnuBDZqMjxWagVoU4T1nsEjqmRrJGNzCAQ2ZJVN2.jpg')],
-            ['id' => 4, 'product_id' => 10, 'image' => $this->uploadImage('qhyaQd59SXgJZTlFkbsG0DsC6xqx3XclzRjAKw8y.jpg')],
-        ];
-
-        $product_variant_attributes = [
-            // SKU10-RD-SM-CT
-            ['id' => 1, 'product_variant_id' => 1, 'attribute_id' => 1, 'attribute_value_id' => 1], // Color: Red
-            ['id' => 2, 'product_variant_id' => 1, 'attribute_id' => 2, 'attribute_value_id' => 4], // Size: Small
-            ['id' => 3, 'product_variant_id' => 1, 'attribute_id' => 3, 'attribute_value_id' => 7], // Material: Cotton
-
-            // SKU10-RD-MD-CT
-            ['id' => 4, 'product_variant_id' => 2, 'attribute_id' => 1, 'attribute_value_id' => 1], // Color: Red
-            ['id' => 5, 'product_variant_id' => 2, 'attribute_id' => 2, 'attribute_value_id' => 5], // Size: Medium
-            ['id' => 6, 'product_variant_id' => 2, 'attribute_id' => 3, 'attribute_value_id' => 7], // Material: Cotton
-
-            // SKU10-BL-MD-PL
-            ['id' => 7, 'product_variant_id' => 3, 'attribute_id' => 1, 'attribute_value_id' => 2], // Color: Blue
-            ['id' => 8, 'product_variant_id' => 3, 'attribute_id' => 2, 'attribute_value_id' => 5], // Size: Medium
-            ['id' => 9, 'product_variant_id' => 3, 'attribute_id' => 3, 'attribute_value_id' => 8], // Material: Polyester
-
-            // SKU10-GR-LG-PL
-            ['id' => 10, 'product_variant_id' => 4, 'attribute_id' => 1, 'attribute_value_id' => 3], // Color: Green
-            ['id' => 11, 'product_variant_id' => 4, 'attribute_id' => 2, 'attribute_value_id' => 6], // Size: Large
-            ['id' => 12, 'product_variant_id' => 4, 'attribute_id' => 3, 'attribute_value_id' => 8], // Material: Polyester
-        ];
-        DB::table('attributes')->insert($attributes);
-        DB::table('galleries')->insert($galleries);
-        DB::table('attribute_values')->insert($attribute_values);
-        DB::table('product_variants')->insert($product_variants);
-        DB::table('product_variant_attributes')->insert($product_variant_attributes);
-
+        $this->call([
+            ProductSeeder::class,
+            CategorySeeder::class
+        ]);
 
         Wishlist::factory(10)->create();
         Cart::factory(10)->create();
@@ -367,21 +256,5 @@ class DatabaseSeeder extends Seeder
         //         ProductHasAttribute::factory(10)->create();
         Inventory::factory(10)->create();
         Schema::enableForeignKeyConstraints();
-    }
-
-    private function uploadImage($fileName)
-    {
-        // Đường dẫn gốc của file ảnh trong thư mục `database/seeders/images`
-        $sourcePath = database_path("seeders/images/{$fileName}");
-
-        // Kiểm tra nếu file tồn tại, di chuyển vào thư mục lưu trữ
-        if (file_exists($sourcePath)) {
-            $storagePath = 'products/' . \Str::random(10) . '_' . $fileName;
-            Storage::put($storagePath, file_get_contents($sourcePath));
-            return $storagePath;
-        }
-
-        // Nếu file không tồn tại, trả về null hoặc một placeholder
-        return 'products/placeholder.jpg';
     }
 }
