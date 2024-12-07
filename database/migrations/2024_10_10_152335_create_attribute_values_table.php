@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('attribute_values', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Attribute::class)->constrained()->onDelete('cascade');
-            $table->string('value') ->unique();
+            $table->string('value');
             $table->foreignIdFor(User::class)->constrained()->onDelete('cascade');
             $table->timestamps();
         });

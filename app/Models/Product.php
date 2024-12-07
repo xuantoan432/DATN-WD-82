@@ -19,7 +19,6 @@ class Product extends Model
         'price',
         'image',
         'views',
-        'quantity',
         'is_verified',
         'status'
     ];
