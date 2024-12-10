@@ -105,4 +105,8 @@ class User extends Authenticatable
     public function attributeValues(){
         return $this->hasOne(AttributeValue::class);
     }
+    public function notifications()
+    {
+        return $this->morphMany(Notification::class, 'notifiable');
+    }
 }

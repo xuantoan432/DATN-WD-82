@@ -2,19 +2,21 @@
 
 namespace App\Http\Controllers\Seller;
 
-use App\Models\User;
+use App\Events\EventNotification;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\ProducStoreRequest;
+use App\Models\Attribute;
+use App\Models\AttributeValue;
+use App\Models\Category;
 use App\Models\Gallery;
 use App\Models\Product;
-use App\Models\Category;
-use App\Models\Attribute;
-use Illuminate\Http\Request;
-use App\Models\AttributeValue;
 use App\Models\ProductVariant;
-use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
 use App\Models\ProductVariantAttribute;
+use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Broadcast;
 use Illuminate\Support\Facades\Storage;
-use App\Http\Requests\ProducStoreRequest;
 
 class ProductController extends Controller
 {
@@ -22,7 +24,10 @@ class ProductController extends Controller
     const PATH_UPLOAD = 'products';
     public function index()
     {
-
+         $id_user  =   Auth::user();
+         $id = $id_user->seller->id;
+        $products = Product::where('seller_id' , $id) -> orderBy('id','desc')->get();
+        return view(self::PATH_URL . __FUNCTION__, compact('products'));
     }
 
 
@@ -66,47 +71,53 @@ class ProductController extends Controller
         // thêm sản phẩm chính vào product
         $product = Product::create($dataProduct);
 
-
-            if ($request->hasFile('gallery')) {
-                foreach ($request->file('gallery') as $image) {
-                    $path = Storage::put('galleries', $image);
-                    Gallery::create([
-                        'product_id' => $product->id,
-                        'image' => $path,
-                    ]);
-                }
-            }
-
-            foreach ($request->variants as $variant) {
-                $datavariant = [
+        $thongbao =  $product->notifications()->create([
+            'title' => 'Đăng sản phẩm ',
+               'message' => 'Cần admin phê duyệt !! ' ,
+              'receiver_type' => 'admin',
+           ]);
+     broadcast(new EventNotification( $thongbao , $seller));
+        if ($request->hasFile('gallery')) {
+            foreach ($request->file('gallery') as $image) {
+                $path = Storage::put('galleries', $image);
+                Gallery::create([
                     'product_id' => $product->id,
-                    'sku' => $variant['sku'],
-                    'price' => $variant['gia'],
-                    'price_sale' => $variant['giamgia'],
-                    'stock_quantity' => $variant['soluong'],
-                    'date_start' => $variant['ngaybd'],
-                    'date_end' => $variant['ngayketthuc'],
-                ];
-                if (isset($variant['anhbienthe']) && $variant['anhbienthe']) {
-                    $datavariant['image'] = Storage::put('products/variants', $variant['anhbienthe']);
-                }
-                $variantproduct =  ProductVariant::create($datavariant);
-                foreach ($variant['idvalue'] as $value) {
-                    // $attributeValue = AttributeValue::findOrFail($value);
-                    $attributeValue = AttributeValue::where([
-                        ['user_id', '=', Auth::id()],
-                        ['value', '=', $value]
-                    ])->firstOrFail();
-
-                    $data = [
-                        'product_variant_id'=> $variantproduct->id,
-                        'attribute_id' => $attributeValue->attribute_id,
-                        'attribute_value_id' => $attributeValue->id,
-                    ];
-                    ProductVariantAttribute::create($data);
-                }
-                $datavariant = [];
+                    'image' => $path,
+                ]);
             }
+        }
+
+        foreach ($request->variants as $variant) {
+            $datavariant = [
+                'product_id' => $product->id,
+                'sku' => $variant['sku'],
+                'price' => $variant['gia'],
+                'price_sale' => $variant['giamgia'],
+                'stock_quantity' => $variant['soluong'],
+                'date_start' => $variant['ngaybd'],
+                'date_end' => $variant['ngayketthuc'],
+            ];
+            if (isset($variant['anhbienthe']) && $variant['anhbienthe']) {
+                $datavariant['image'] = Storage::put('products/variants', $variant['anhbienthe']);
+            }
+            $variantproduct =  ProductVariant::create($datavariant);
+            foreach ($variant['idvalue'] as $value) {
+                // $attributeValue = AttributeValue::findOrFail($value);
+                $attributeValue = AttributeValue::where([
+                    ['user_id', '=', Auth::id()],
+                    ['value', '=', $value]
+                ])->firstOrFail();
+
+                $data = [
+                    'product_variant_id' => $variantproduct->id,
+                    'attribute_id' => $attributeValue->attribute_id,
+                    'attribute_value_id' => $attributeValue->id,
+                ];
+                ProductVariantAttribute::create($data);
+            }
+            $datavariant = [];
+        }
+
         return response()->json([
             'success' => 'Đăng sản phẩm thành công , vui lòng đợi Admin phê duyệt sản phẩm của bạn',
             'color' => 'success',

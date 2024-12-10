@@ -29,4 +29,8 @@ class Seller extends Model
     {
         return $this->hasOne(User::class);
     }
+    public function notifications()
+    {
+        return $this->morphMany(Notification::class, 'notifiable');
+    }
 }

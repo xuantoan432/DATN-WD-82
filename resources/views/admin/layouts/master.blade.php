@@ -68,6 +68,7 @@
     <!--bootstrap js-->
     @include('admin.layouts.partials.script')
 
+    @vite('resources/js/admin/notification.js')
 
 </body>
 

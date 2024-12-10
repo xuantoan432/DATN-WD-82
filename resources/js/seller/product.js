@@ -62,7 +62,7 @@ $('#add-item-btn').click(function (e) {
             if (item.newOption) {
                 return $.ajax({
                     type: "POST",
-                    url: "http://datn-wd-82.test/api/attribute",
+                    url: "/api/attribute",
                     data: {
                         name: item.text,
                         user_id: user_id
@@ -114,7 +114,7 @@ function valuebienthe(selectedValues) {
 
         var ajaxRequest = $.ajax({
             type: "GET",
-            url: `http://datn-wd-823.test/api/attributevalue/${valueAttribute.id}`,
+            url: `/api/attributevalue/${valueAttribute.id}`,
             dataType: "json",
             success: function (data) {
                 data.forEach((value) => {
@@ -187,7 +187,7 @@ $('#them-bien-the').click(function (e) {
                     if (item.newOption) {
                         $.ajax({
                             type: "POST",
-                            url: "http://datn-wd-82.test/api/attributevalue",
+                            url: "/api/attributevalue",
                             data: {
                                 attribute_id: value.valueIDA,
                                 value: item.text,
@@ -220,7 +220,7 @@ $('#them-bien-the').click(function (e) {
                     if (item.newOption) {
                         $.ajax({
                             type: "POST",
-                            url: "http://datn-wd-82.test/api/attributevalue",
+                            url: "/api/attributevalue",
                             data: {
                                 attribute_id: value.valueIDA,
                                 value: item.text,
