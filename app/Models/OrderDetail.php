@@ -8,6 +8,24 @@ use Illuminate\Database\Eloquent\Model;
 class OrderDetail extends Model
 {
     use HasFactory;
+
+    const PENDING = 'Pending';
+    const PROCESSING = 'Processing';
+    const SHIPPING = 'Shipping';
+    const DELIVERED = 'Delivered';
+    const CANCELLED = 'Cancelled';
+
+    protected $fillable = [
+        'order_id',
+        'seller_id',
+        'product_variant_id',
+        'quantity',
+        'name',
+        'image',
+        'price',
+        'variant_name',
+        'status'
+    ];
     public function order()
     {
         return $this->belongsTo(Order::class);
@@ -23,8 +41,12 @@ class OrderDetail extends Model
         return $this->belongsTo(Seller::class);
     }
 
-    public function productVariantAttribute()
+    public function productVariant()
     {
-        return $this->belongsTo(ProductVariantAttribute::class);
+        return $this->belongsTo(ProductVariant::class);
+    }
+
+    public function status(){
+        return $this->belongsTo(OrderStatus::class);
     }
 }

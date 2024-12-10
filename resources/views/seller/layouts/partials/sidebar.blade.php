@@ -34,6 +34,11 @@
                     <a href="{{ route('seller.products.index') }}"><i
                             class="material-icons-outlined">arrow_right</i>Danh sách Sản Phẩm</a>
                 </li>
+                <li>
+                    <a href="{{ route('seller.vouchers.index') }}"><i class="material-icons-outlined">arrow_right</i>Mã
+                        giảm giá
+                    </a>
+                </li>
                 <li><a href="{{ route('seller.attributes.index') }}"><i
                             class="material-icons-outlined">arrow_right</i>Thuộc
                         tính</a>

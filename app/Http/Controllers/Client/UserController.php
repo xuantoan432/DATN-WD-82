@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
 use App\Models\Address;
+use App\Models\AddressDetail;
+use App\Models\Order;
 use App\Models\Seller;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -14,11 +16,37 @@ use Illuminate\Validation\ValidationException;
 
 class UserController extends Controller
 {
-   public function userDashboard()
+   public function userDashboard(Request $request)
    {
-      $user =  Auth::user();
-      $addresses = $user->addresses;
-      return view('client.user-profile', compact('user', 'addresses'));
+       $type = $request->input('type') ?? null;
+
+       switch ($type) {
+           case 'personal':{
+               return view('client.profile.components.personal-info');
+           }
+           case 'payment-method':{
+               return view('client.profile.components.payment-method');
+           }
+           case 'order':{
+               return view('client.profile.components.order');
+           }
+           case 'address':{
+               $user =  Auth::user();
+               $user->load('addresses');
+               $addresses = $user->addresses;
+               return view('client.profile.components.address', compact('addresses'));
+           }
+           case 'rating':{
+               return view('client.profile.components.rating');
+           }
+           case 'change-password':{
+               return view('client.profile.components.password');
+           }
+           default:
+               return view('client.profile.components.dashboard');
+
+       }
+
    }
 
 
@@ -59,21 +87,28 @@ class UserController extends Controller
          return redirect()->back()->with('error', 'Bạn không có quyền thêm địa chỉ.');
       }
 
-      $validatedData = $request->validate([
-         'address_line' => 'required|string|max:255',
-         'province' => 'required|integer',
-         'district' => 'required|integer',
-         'ward' => 'required|integer',
-      ]);
-
+       $validatedData = $request->validate([
+           'address_line' => 'required|string|max:255',
+           'province' => 'required|integer',
+           'district' => 'required|integer',
+           'ward' => 'required|integer',
+           'full_name' => 'required|string|max:255',
+           'phone_number' => 'required',
+       ]);
       $address = Address::create([
          'address_line' => $validatedData['address_line'],
          'province_id' => $validatedData['province'],
          'district_id' => $validatedData['district'],
          'ward_id' => $validatedData['ward'],
       ]);
-      $request->user()->addresses()->save($address);
 
+      $address->users()->attach($request->user()->id);
+
+      AddressDetail::create([
+          'address_id' => $address->id,
+          'full_name' => $validatedData['full_name'],
+          'phone_number' => $validatedData['phone_number'],
+      ]);
       return redirect()->back()->with('success', 'Địa chỉ mới đã được thêm thành công.');
    }
 
@@ -127,5 +162,21 @@ class UserController extends Controller
       ]);
 
       return redirect()->back()->with('success', 'Mật khẩu đã được thay đổi thành công.');
+   }
+
+   public function updateAddressDefault(Request $request,User $user){
+        $idAddress = $request->input('address');
+        $user->update(['default_address_id' => $idAddress]);
+        return redirect()->back();
+   }
+
+   public function orderDetail(Request $request, string $orderCode)
+   {
+        $order = Order::query()->with('orderDetails')->where('order_code', $orderCode)->first();
+        if(!$order){
+            return back();
+        }
+        $orderDetails = $order->orderDetails;
+       return view('client.profile.components.order-detail', compact('orderDetails'));
    }
 }

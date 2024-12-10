@@ -15,7 +15,6 @@ class AddToCartController extends Controller
     public function checkVariant(Request $request)
     {
         $attributes = $request->input('selectedAttributes');
-
         $variant = \DB::table('product_variants as pv')
             ->join('product_variant_attributes as pva', 'pv.id', '=', 'pva.product_variant_id')
             ->where('pv.product_id', $request->input('productId'))

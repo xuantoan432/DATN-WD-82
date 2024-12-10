@@ -5,178 +5,162 @@
 @endsection
 
 @section('content')
-
 @include('client.components.breadcrumbs')
 <section class="checkout product footer-padding">
     <div class="container">
         <div class="checkout-section">
             <div class="row gy-5">
-                <div class="col-lg-6">
-                    <div class="checkout-wrapper">
-                        <div class="account-section billing-section">
-                            <h5 class="wrapper-heading">Billing Details</h5>
-                            <div class="review-form">
-                                <div class=" account-inner-form">
-                                    <div class="review-form-name">
-                                        <label for="fname" class="form-label">First Name*</label>
-                                        <input type="text" id="fname" class="form-control" placeholder="First Name">
-                                    </div>
-                                    <div class="review-form-name">
-                                        <label for="lname" class="form-label">Last Name*</label>
-                                        <input type="text" id="lname" class="form-control" placeholder="Last Name">
-                                    </div>
+                <div class="col-lg-12 ">
+                    <div class="border rounded-3">
+                        <div class="address-ship"></div>
+                        <div class="address-content">
+                            <div class="address-top">
+                                <i class="fa-solid fa-location-dot"></i>
+                                <p>Địa chỉ nhận hàng</p>
+                            </div>
+                            <div class="address-botton">
+                                <div class="address-info">
+                                    <div class="name"></div>
+                                    <div class="address-line"></div>
+                                    <div class="address-deafault">Mặc định</div>
                                 </div>
-                                <div class=" account-inner-form">
-                                    <div class="review-form-name">
-                                        <label for="email" class="form-label">Email*</label>
-                                        <input type="email" id="email" class="form-control"
-                                            placeholder="user@gmail.com">
-                                    </div>
-                                    <div class="review-form-name">
-                                        <label for="phone" class="form-label">Phone*</label>
-                                        <input type="tel" id="phone" class="form-control"
-                                            placeholder="+880388**0899">
-                                    </div>
-                                </div>
-                                <div class="review-form-name">
-                                    <label for="country" class="form-label">Country*</label>
-                                    <select id="country" class="form-select">
-                                        <option>Choose...</option>
-                                        <option>Bangladesh</option>
-                                        <option>United States</option>
-                                        <option selected>United Kingdom</option>
-                                    </select>
-                                </div>
-                                <div class="review-form-name address-form">
-                                    <label for="address" class="form-label">Address*</label>
-                                    <input type="text" id="address" class="form-control"
-                                        placeholder="Enter your Address">
-                                </div>
-                                <div class=" account-inner-form city-inner-form">
-                                    <div class="review-form-name">
-                                        <label for="city" class="form-label">Town / City*</label>
-                                        <select id="city" class="form-select">
-                                            <option>Choose...</option>
-                                            <option>Newyork</option>
-                                            <option>Dhaka</option>
-                                            <option selected>London</option>
-                                        </select>
-                                    </div>
-                                    <div class="review-form-name">
-                                        <label for="number" class="form-label">Postcode / ZIP*</label>
-                                        <input type="number" id="number" class="form-control" placeholder="0000">
-                                    </div>
-                                </div>
-                                <div class="review-form-name checkbox">
-                                    <div class="checkbox-item">
-                                        <input type="checkbox" id="account">
-                                        <label for="account" class="form-label">
-                                            Create an account?</label>
-                                    </div>
-                                </div>
-                                <div class="review-form-name shipping">
-                                    <h5 class="wrapper-heading">Shipping Address</h5>
-                                    <div class="checkbox-item">
-                                        <input type="checkbox" id="remember">
-                                        <label for="remember" class="form-label">
-                                            Create an account?</label>
-                                    </div>
-                                </div>
+                                <button class="change-address" data-bs-toggle="modal" data-bs-target="#exampleModal">Thay đổi</button>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6">
+                <div class="col-lg-12">
                     <div class="checkout-wrapper">
                         <div class="account-section billing-section">
-                            <h5 class="wrapper-heading">Order Summary</h5>
+                            <h5 class="wrapper-heading">Tóm tắt đơn hàng</h5>
                             <div class="order-summery">
-                                <div class="subtotal product-total">
-                                    <h5 class="wrapper-heading">PRODUCT</h5>
-                                    <h5 class="wrapper-heading">TOTAL</h5>
+                                <div class="subtotal product-total text-center">
+                                    <div class="col-6">
+                                        <h5 class="wrapper-heading">SẢN PHẨM</h5>
+                                    </div>
+                                    <div class="col-2">
+                                        <h5 class="wrapper-heading">GIÁ</h5>
+                                    </div>
+                                    <div class="col-2">
+                                        <h5 class="wrapper-heading">SỐ LƯỢNG</h5>
+                                    </div>
+                                    <div class="col-2">
+                                        <h5 class="wrapper-heading">SỐ TIỀN</h5>
+                                    </div>
+
                                 </div>
                                 <hr>
                                 <div class="subtotal product-total">
                                     <ul class="product-list">
+                                        @php
+                                            $total = 0;
+                                        @endphp
+                                        @foreach($cartItems as $cartItem)
+                                            @php
+                                                $total += $cartItem->productVariant->getCurrentPrice() * $cartItem->quantity
+                                            @endphp
                                         <li>
-                                            <div class="product-info">
-                                                <h5 class="wrapper-heading">Apple Watch X1</h5>
-                                                <p class="paragraph">64GB, Black, 44mm, Chain Belt</p>
+                                            <div class="d-flex col-6 justify-content-center gap-5">
+                                                <div class="wrapper-img">
+                                                    <img src="{{ \Storage::url($cartItem->productVariant->image) }}" alt="img">
+                                                </div>
+                                                <div class="product-info">
+                                                    <h5 class="wrapper-heading">{{ $cartItem->productVariant->product->name }}</h5>
+                                                    <p class="paragraph">
+                                                        @php
+                                                            foreach ($cartItem->productVariant->attributes as $attributeValue) {
+                                                                 echo $attributeValue->value . ',';
+                                                             }
+                                                        @endphp
+                                                    </p>
+                                                </div>
                                             </div>
-                                            <div class="price">
-                                                <h5 class="wrapper-heading">$38</h5>
+                                            <div class="col-2 text-center">
+                                                <h5 class="wrapper-heading"> ₫{{ number_format($cartItem->productVariant->getCurrentPrice(), 0, ',', '.') }}</h5>
+                                            </div>
+                                            <div class="col-2 text-center">
+                                                <h5 class="wrapper-heading">{{ $cartItem->quantity }}</h5>
+                                            </div>
+                                            <div class="col-2 text-center">
+                                                <h5 class="wrapper-heading">đ {{ number_format($cartItem->productVariant->getCurrentPrice() * $cartItem->quantity, 0, ',', '.') }}</h5>
                                             </div>
                                         </li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                                <hr>
+                                <div class="d-flex justify-content-end text-end my-4">
+                                    <form id="cart-coupon" class="cart-coupon">
+                                        <h4>Phiếu giảm giá</h4>
+                                        <p>Nhập mã phiếu giảm giá của bạn nếu bạn có.</p>
+                                        <div class="cuppon-form">
+                                            <input type="text" id="coupon-code" placeholder="Coupon code" />
+                                            <input type="hidden" id="cart_total" value="{{ $total }}" />
+                                            <input type="hidden" id="user_id" value="{{ auth()->id() }}" />
+                                            <input type="hidden" id="discount_value" value="0" />
+                                            <input type="hidden" id="voucher_previous" value="0" />
+                                            <input type="submit" value="Apply Coupon" />
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="d-block text-end" id="coupon-message"></div>
+                                <div class="subtotal product-total">
+                                    <h5 class="wrapper-heading">TỔNG TIỀN PHỤ</h5>
+                                    <h5 class="wrapper-heading"> {{ number_format($total, 0, ',', '.') }} ₫</h5>
+                                </div>
+                                <div class="subtotal product-total">
+                                    <ul class="product-list fee">
                                         <li>
                                             <div class="product-info">
-                                                <h5 class="wrapper-heading">Beats Wireless x1</h5>
-                                                <p class="paragraph">64GB, Black, 44mm, Chain Belt</p>
+                                                <p class="paragraph">Giảm giá</p>
+                                                <h5 class="wrapper-heading">Giảm giá sản phẩm</h5>
                                             </div>
                                             <div class="price">
-                                                <h5 class="wrapper-heading">$48</h5>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="product-info">
-                                                <h5 class="wrapper-heading">Samsung Galaxy S10 x2</h5>
-                                                <p class="paragraph">12GB RAM, 512GB, Dark Blue</p>
-                                            </div>
-                                            <div class="price">
-                                                <h5 class="wrapper-heading">$279</h5>
+                                                <h5 class="wrapper-heading"> 0 ₫</h5>
                                             </div>
                                         </li>
                                     </ul>
                                 </div>
-                                <hr>
-                                <div class="subtotal product-total">
-                                    <h5 class="wrapper-heading">SUBTOTAL</h5>
-                                    <h5 class="wrapper-heading">$365</h5>
-                                </div>
-                                <div class="subtotal product-total">
-                                    <ul class="product-list">
-                                        <li>
-                                            <div class="product-info">
-                                                <p class="paragraph">SHIPPING</p>
-                                                <h5 class="wrapper-heading">Free Shipping</h5>
+                                <form action="{{ route('order.create') }}" method="post">
+                                    @csrf
+                                    <input type="hidden" name="address_id">
+                                    <input type="hidden" name="user_id" value="{{ $user->id }}">
+                                    <input type="hidden" name="total_price" value="{{ $total }}">
+                                    <input type="hidden" name="cart_items" value="{{ $cartItems }}">
+                                    <hr>
+                                    <div class="subtotal total">
+                                        <h5 class="wrapper-heading">Tổng tiền</h5>
+                                        <h5 class="wrapper-heading price"><span class="price wrapper-heading" id="total-amount">{{ number_format($total, 0, ',', '.') }}₫</span></h5>
+                                    </div>
+                                    <div class="subtotal payment-type">
+                                        <label for="momo" class="w-100">
+                                            <div class="checkbox-item">
+                                                <input type="radio" id="momo" name="payment_method" value="payUrl">
+                                                <div class="bank">
+                                                    <h5 class="wrapper-heading">MOMO</h5>
+                                                    <p class="paragraph">
+                                                        <img
+                                                            src="{{ asset('theme/client/assets/images/payment/momo.png') }}"
+                                                            width="100">
+                                                    </p>
+                                                </div>
                                             </div>
-                                            <div class="price">
-                                                <h5 class="wrapper-heading">+$0</h5>
+                                        </label>
+                                        <label for="cash" class="w-100">
+                                            <div class="checkbox-item">
+                                                <input type="radio" id="cash" name="payment_method" value="cash">
+                                                <div class="cash">
+                                                    <h5 class="wrapper-heading">Thanh toán bằng tiền mặt</h5>
+                                                </div>
                                             </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <hr>
-                                <div class="subtotal total">
-                                    <h5 class="wrapper-heading">TOTAL</h5>
-                                    <h5 class="wrapper-heading price">$365</h5>
-                                </div>
-                                <div class="subtotal payment-type">
-                                    <div class="checkbox-item">
-                                        <input type="radio" id="bank" name="bank">
-                                        <div class="bank">
-                                            <h5 class="wrapper-heading">Direct Bank Transfer</h5>
-                                            <p class="paragraph">Make your payment directly into our bank account.
-                                                Please use
-                                                <span class="inner-text">
-                                                    your Order ID as the payment reference.
-                                                </span>
-                                            </p>
-                                        </div>
+                                        </label>
                                     </div>
-                                    <div class="checkbox-item">
-                                        <input type="radio" id="cash" name="bank">
-                                        <div class="cash">
-                                            <h5 class="wrapper-heading">Cash on Delivery</h5>
-                                        </div>
+                                    <div class="mb-3">
+                                        <p class="paragraph">Ghi chú đặt hàng</p>
+                                        <textarea name="note" id="" cols="30" rows="7" class="form-control"></textarea>
                                     </div>
-                                    <div class="checkbox-item">
-                                        <input type="radio" id="credit" name="bank">
-                                        <div class="credit">
-                                            <h5 class="wrapper-heading">Credit/Debit Cards or Paypal</h5>
-                                        </div>
-                                    </div>
-                                </div>
-                                <a href="#" class="shop-btn">Place Order Now</a>
+                                    <button type="submit" class="shop-btn">Đặt hàng ngay</button>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -185,7 +169,48 @@
         </div>
     </div>
 </section>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content" id="modal-address">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel" style="color: #ae1c9a;"> Địa chỉ của tôi</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="popup-address">
+                    <div id="all-address"></div>
+                    <!-- Add New Address -->
+                    <div class="d-block p-4">
+                        <a class="add-new-address">+ Thêm Địa Chỉ Mới</a>
+                    </div>
 
-
+                    <!-- Action Buttons -->
+                    <div class="action-buttons">
+                        <button class="cancel-button" data-bs-dismiss="modal">Hủy</button>
+                        <button class="confirm-button">Xác nhận</button>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection
-
+@section('css')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+@endsection
+@section('js')
+    <script>
+        const addressDefault = @json($addressDefautl);
+        const allAddresses = @json($allAddresses);
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    @vite('resources/js/client/order.js')
+    <script>
+        @if ($errors->any())
+            @foreach ($errors->all() as $error)
+            toastr.error( '{{ $error }}');
+            @endforeach
+        @endif
+        @if(session('error'))
+            toastr.error( '{{ session('error') }}');
+        @endif
+    </script>
+@endsection

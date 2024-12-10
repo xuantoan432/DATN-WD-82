@@ -25,10 +25,10 @@
                         <div class="review-inner-form ">
                             <div class="review-form-name">
                                 <label for="email" class="form-label">Nhập mật khẩu mới </label>
-                                <input type="text" id="email" class="form-control" name="password"
+                                <input type="password" id="email" class="form-control" name="password"
                                     placeholder="Vui lòng nhập mật khẩu mới">
                                 <label for="email" class="form-label">Xác nhận mật khẩu mới </label>
-                                <input type="text" id="email" class="form-control" name="password_confirmation"
+                                <input type="password" id="email" class="form-control" name="password_confirmation"
                                     placeholder="Xác nhận lại mật khẩu">
                                     <input type="hidden" name="token" value="{{ $token }}">
                             </div>

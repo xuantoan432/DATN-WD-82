@@ -16,15 +16,20 @@ class OrderFactory extends Factory
      */
     public function definition(): array
     {
+        // Lấy ngày tạo ngẫu nhiên trong khoảng thời gian nhất định
+        $createdAt = $this->faker->dateTimeBetween('-1 year', 'now');  // Ngày ngẫu nhiên trong 1 năm qua
+
         return [
             'payment_status_id' => \App\Models\PaymentStatus::factory(),
             'payment_method_id' => \App\Models\PaymentMethod::factory(),
             'order_code' => $this->faker->unique()->bothify('ORDER-#####'),
-            'order_status_id' => \App\Models\OrderStatus::factory(),
             'total_price' => $this->faker->randomFloat(2, 10, 1000),
-            'shipping_address' => $this->faker->address,
+            'address_id' => rand(1, 4),
             'note' => $this->faker->sentence,
+            'status' => $this->faker->randomElement(['Pending', 'Processing', 'Shipping', 'Delivered', 'Cancelled']),
             'user_id' => \App\Models\User::factory(),
+            'created_at' => $createdAt,  // Gán giá trị ngày tạo ngẫu nhiên
+            'updated_at' => $createdAt,  // Gán giá trị ngày cập nhật bằng với ngày tạo
         ];
     }
 }

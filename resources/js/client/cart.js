@@ -126,18 +126,13 @@ $(document).ready(function () {
         let total = 0;
 
         $('.table-row').each(function () {
-            // Lấy giá đơn vị từ thuộc tính `data-unit-price`
             let unitPrice = parseInt($(this).find('.total-price').data('unit-price')) || 0;
 
-            // Lấy số lượng từ input hiện tại của sản phẩm
             let quantity = parseInt($(this).find('.quantity-input').val()) || 1;
 
-            // Tính tổng cho sản phẩm hiện tại và cộng vào `total`
             total += unitPrice * quantity;
         });
-
-        // Cập nhật tổng giá trị giỏ hàng với định dạng tiền tệ
-        $('#cart-total').text('₫' + total.toLocaleString('vi-VN'));
+        $('#cart-total1').text('₫' + total.toLocaleString('vi-VN'));
     }
 
 });

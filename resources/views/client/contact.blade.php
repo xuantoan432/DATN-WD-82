@@ -14,9 +14,8 @@
                 <div class="col-lg-6">
                     <div class="contact-info-section">
                         <div class="contact-information">
-                            <h5 class="wrapper-heading">Contact Information</h5>
-                            <p class="paragraph">Fill the form below or write us .We will help you as soon as
-                                possible.</p>
+                            <h5 class="wrapper-heading">Thông tin liên hệ</h5>
+                            <p class="paragraph">Điền vào mẫu dưới đây, chúng tôi sẽ hỗ trợ bạn sớm nhất có thể !!!</p>
                             <div class="contact-wrapper">
                                 <div class="row gy-5">
                                     <div class="col-sm-6">

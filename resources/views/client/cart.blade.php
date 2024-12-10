@@ -62,18 +62,18 @@
                                 </div>
                             </td>
                             <td class="table-wrapper">
-                                <div class="table-wrapper-center">
-                                    <h5 class="heading">
+                                <div class="table-wrapper-center justify-content-start">
+                                    <h5 class="heading text-start">
                                        @php
                                            foreach ($cartItem->productVariant->attributes as $attributeValue) {
-                                                echo $attributeValue->attribute->name . ":"  . $attributeValue->value . "</br>";
+                                                echo '<p><strong>' . $attributeValue->attribute->name . "</strong>:"  . $attributeValue->value . "</p>";
                                             }
                                        @endphp
                                     </h5>
                                 </div>
                             </td>
                             <td class="table-wrapper">
-                                <div class="table-wrapper-center">
+                                <div class="table-wrapper-center ">
                                     <h5 class="heading">
                                         ₫{{ number_format($cartItem->productVariant->getCurrentPrice(), 0, ',', '.') }}</h5>
                                 </div>
@@ -117,11 +117,11 @@
                         </tr>
                     @endforeach
                     <tr class="table-row ticket-row">
-                        <td colspan="3"></td>
+                        <td colspan="4"></td>
                         <td class="table-wrapper">
                             <div class="table-wrapper-center">
-                                <h5 class="heading" id="cart-total">
-                                    {{ $total }}
+                                <h5 class="heading" id="cart-total1">
+                                    ₫ {{ number_format($total, 0,',', '.') }}
                                 </h5>
                             </div>
                         </td>
@@ -132,7 +132,7 @@
             <div class="wishlist-btn cart-btn">
                 <a href="empty-cart.html" class="clean-btn">Clear Cart</a>
                 <a href="#" class="shop-btn update-btn">Update Cart</a>
-                <a href="{{ route('checkout.show') }}" class="shop-btn">Proceed to Checkout</a>
+                <a href="{{ route('checkout.show', $user) }}" class="shop-btn">Proceed to Checkout</a>
             </div>
         </div>
         @else
@@ -154,8 +154,5 @@
 @endsection
 @section('js')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-    <script>
-        const PATH_ROOT = '{{ config('app.url') }}';
-    </script>
     @vite('resources/js/client/cart.js')
 @endsection

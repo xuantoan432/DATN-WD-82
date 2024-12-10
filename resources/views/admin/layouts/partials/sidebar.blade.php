@@ -42,6 +42,24 @@
                     <a href="{{ route('admin.posts.index') }}"><i class="material-icons-outlined">arrow_right</i>Bài viết
                         </a>
                 </li>
+                <li>
+                    <a href="{{ route('admin.vouchers.index') }}"><i class="material-icons-outlined">arrow_right</i>Mã giảm giá
+                <li>
+                    <a href="{{ route('admin.seller-approval') }}"><i class="material-icons-outlined">arrow_right</i>Xác thực
+                        </a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon"><i class="material-icons-outlined">widgets</i>
+                </div>
+                <div class="menu-title">Quản lý trang chủ</div>
+            </a>
+            <ul>
+                <li>
+                    <a href="{{ route('admin.banners.index') }}"><i class="material-icons-outlined">arrow_right</i>Banner</a>
+                </li>
             </ul>
         </li>
         <li>

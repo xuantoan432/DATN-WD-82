@@ -2,6 +2,33 @@
     <div class="btn-toggle">
         <a href="javascript:;"><i class="material-icons-outlined">menu</i></a>
     </div>
+    <div id="confirmationModal" style="display: none; position: fixed; top: 30%; left: 40%; padding: 20px; background: white; border: 1px solid black;">
+        <p>Bạn đã được xác thực thành công. Bạn có muốn chuyển hướng tới trang đăng nhập không?</p>
+        <button onclick="confirmRedirect()">OK</button>
+        <button onclick="closeModal()">Cancel</button>
+    </div>
+
+    <script>
+        function showModal() {
+            document.getElementById('confirmationModal').style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('confirmationModal').style.display = 'none';
+        }
+
+        function confirmRedirect() {
+            window.location.href = "/"; // Redirect to login or homepage
+        }
+
+        // Replace window.confirm with custom modal when notification arrives
+        window.Echo.private(`user.${window.userId}`)
+            .listen('SellerApproved', (e) => {
+                if (e.userId === window.userId) {
+                    showModal(); // Show custom modal instead of window.confirm
+                }
+            });
+    </script>
     <div class="search-bar flex-grow-1">
         <div class="position-relative">
             <input class="form-control rounded-5 px-5 search-control d-lg-block d-none" type="text"

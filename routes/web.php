@@ -19,18 +19,14 @@ use App\Http\Controllers\Auth\SellerRegisterController;
 use App\Http\Controllers\Client\WishlistController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
-Route::get('/1', [HomeController::class, 'shop'])->name('home.shop');
+Route::get('/shop', [HomeController::class, 'shop'])->name('home.shop');
 Route::get('/product/{product}', [ProductController::class, 'detailProduct'])->name('home.product-detail');
-Route::get('/4', [HomeController::class, 'contact'])->name('home.contact');
-Route::get('/5', [HomeController::class, 'about'])->name('home.about');
+Route::get('/contact', [HomeController::class, 'contact'])->name('home.contact');
+Route::get('/about', [HomeController::class, 'about'])->name('home.about');
 Route::get('/6', [HomeController::class, 'cart'])->name('home.cart');
-Route::get('/7', [HomeController::class, 'compaire'])->name('home.compaire');
-Route::get('/8', [HomeController::class, 'becomeVendor'])->name('home.become-vendor');
 Route::get('/9', [HomeController::class, 'flashSale'])->name('home.flash-sale');
-Route::get('/10', [HomeController::class, 'createAccount'])->name('home.create-account');
-Route::get('/11', [HomeController::class, 'login'])->name('home.login');
 Route::get('/12', [HomeController::class, 'sellerSidebar'])->name('home.seller-sidebar');
-Route::get('/13', [HomeController::class, 'wishlist'])->name('home.wishlist');
+Route::get('/policy', [HomeController::class, 'policy'])->name('home.policy');
 
 Route::get('posts', [PostController::class, 'showPost'])->name('posts');
 Route::get('post/{id}', [PostController::class, 'postDetail'])->name('posts.detail');
@@ -55,11 +51,13 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/logout', [LoginController::class,'logout'])->name('logout');
     Route::get('/dashboard', [UserController::class, 'userDashboard'])->name('dashboard');
+    Route::get('/orderDetail/{code}', [UserController::class, 'orderDetail'])->name('orderDetail');
     Route::post('/createAddress', [UserController::class, 'createAddress'])->name('user.address.create');
     Route::delete('/deleteAddress/{id}', [UserController::class, 'deleteAddress'])->name('user.address.delete');
 
     Route::put('/updateUser/{id}',[UserController::class,'updateUser'])->name('user.update');
     Route::post('/change-password', [UserController::class, 'changePassword'])->name('user.changePassword');
+    Route::post('user/address-default/{user}', [UserController::class, 'updateAddressDefault'])->name('user.address.default');
     Route::get('posts/{post}', [PostController::class, 'show'])->name('posts.show');
     Route::post('comments', [PostController::class, 'store'])->name('posts.comments');
     Route::post('add-cart', [CartController::class, 'addToCart'])->name('add.cart');
@@ -68,9 +66,13 @@ Route::middleware('auth')->group(function () {
 
 
     Route::get('/wishlist', [WishlistController::class, 'listWishlist'])->name('wishlist.show');
-    Route::get('/wishlist/add', [WishlistController::class, 'addToWishlist'])->name('wishlist.add');
+    Route::post('/wishlist/add', [WishlistController::class, 'addToWishlist'])->name('wishlist.add');
     Route::post('/wishlist/remove/{id}', [WishlistController::class, 'removeWishlist'])->name('wishlist.remove');
     Route::post('/wishlist/clean', [WishlistController::class, 'cleanWishlist'])->name('wishlist.clean');
+    Route::get('checkout/{user}', [OrderController::class, 'showCheckout'])->name('checkout.show');
+    Route::post('order/create', [OrderController::class, 'createOrder'])->name('order.create');
+    Route::get('order/check', [OrderController::class, 'checkOrderMomo'])->name('order.check');
+    Route::get('thank', [OrderController::class, 'thank'])->name('thank');
 });
 
 
