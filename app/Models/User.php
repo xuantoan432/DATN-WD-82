@@ -114,6 +114,11 @@ class User extends Authenticatable
         return $this->hasOne(AttributeValue::class);
     }
 
+    public function notifications()
+    {
+        return $this->morphMany(Notification::class, 'notifiable');
+    }
+
     public function defaultAddress()
     {
         return $this->belongsTo(Address::class, 'default_address_id')->with('details');

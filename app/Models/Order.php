@@ -64,7 +64,13 @@ class Order extends Model
         return $this->hasMany(OrderDetail::class);
     }
 
+    public function notifications()
+    {
+        return $this->morphMany(Notification::class, 'notifiable');
+    }
+
     public function address(){
         return $this->belongsTo(Address::class);
+
     }
 }

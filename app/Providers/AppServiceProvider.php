@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Category;
+use App\Models\Notification;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Pagination\Paginator;
@@ -31,5 +32,17 @@ class AppServiceProvider extends ServiceProvider
         ->orderByDesc('id')
         ->limit(10)->get());
         Blade::component('comment', Comment::class);
+         // thông báo
+        View::composer('admin.layouts.partials.header', function ($view) {
+
+                $notifications = Notification::where([['receiver_type', 'admin'] , ['status', 'pending']])->get();
+                $notification = Notification::where('receiver_type', 'admin')
+                ->orderByDesc('id')
+                ->get();
+              
+
+                $view->with('notifications', $notifications);
+                $view->with('notification', $notification);
+        });
     }
 }

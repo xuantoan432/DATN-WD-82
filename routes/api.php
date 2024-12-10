@@ -1,6 +1,10 @@
 <?php
 
+
+use App\Http\Controllers\API\ProductApproveController;
+
 use App\Http\Controllers\Client\API\AddressController;
+
 use App\Http\Controllers\Client\API\AddToCartController;
 use App\Http\Controllers\API\AttributeController;
 use App\Http\Controllers\API\AttributeValueController;
@@ -29,5 +33,11 @@ Route::get('check-quantity', [AddToCartController::class, 'checkQuantity']);
 Route::delete('remove-from-cart', [AddToCartController::class, 'deleteItemCart']);
 Route::resource('attribute', AttributeController::class);
 Route::resource('attributevalue', AttributeValueController::class);
+
+Route::prefix('admin')->group(function () {
+    Route::resource('admin-product' , ProductApproveController::class);
+});
+
 Route::post('voucher/apply', [VoucherController::class, 'applyVoucher']);
 Route::post('address/create', [AddressController::class, 'create']);
+

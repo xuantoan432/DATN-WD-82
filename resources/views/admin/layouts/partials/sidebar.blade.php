@@ -13,17 +13,12 @@
     <!--navigation-->
     <ul class="metismenu" id="sidenav">
         <li>
-            <a href="javascript:;" class="has-arrow">
+            <a href="javascript:;" >
                 <div class="parent-icon"><i class="material-icons-outlined">home</i>
                 </div>
                 <div class="menu-title">Dashboard</div>
             </a>
-            <ul>
-                <li><a href=""><i class="material-icons-outlined">arrow_right</i>Analysis</a>
-                </li>
-                <li><a href=""><i class="material-icons-outlined">arrow_right</i>eCommerce</a>
-                </li>
-            </ul>
+
         </li>
         <li>
             <a href="javascript:;" class="has-arrow">
@@ -66,6 +61,17 @@
                     <a href="{{ route('admin.banners.index') }}"><i class="material-icons-outlined">arrow_right</i>Banner</a>
                 </li>
             </ul>
+        </li>
+        <li>
+            <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon"><i class="material-icons-outlined">fact_check</i>
+                </div>
+                <div class="menu-title">Phê Duyệt </div>
+            </a>
+            <ul>
+                <li><a href="{{ route('admin.phe-duyet.index') }}"><i class="material-icons-outlined">task</i>Sản Phẩm </a> </li>
+                <li><a href="javascript:;"><i class="material-icons-outlined">badge</i>Người Bán Hàng</a> </li>
+              </ul>
         </li>
     </ul>
 
