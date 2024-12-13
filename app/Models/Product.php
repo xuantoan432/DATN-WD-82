@@ -64,6 +64,40 @@ class Product extends Model
 
     public function getFormattedDateAttribute()
     {
-        return Carbon::now()->locale('vi')->format('d, \T\h\á\ng m, h:i A'); 
+        return Carbon::now()->locale('vi')->format('d, \T\h\á\ng m, h:i A');
+    }
+
+    public function scopeFilter($query, $filters)
+    {
+        if (isset($filters['min-value'], $filters['max-value'])) {
+            $query->whereBetween('price', [$filters['min-value'], $filters['max-value']]);
+        }
+        if (!empty($filters['categories_id'])) {
+            $query->whereIn('category_id', $filters['categories_id']);
+        }
+        if (!empty($filters['sellers_id'])) {
+            $query->whereIn('seller_id', $filters['sellers_id']);
+        }
+        if (!empty($filters['searchProduct'])) {
+            $query->where('name', 'like', '%' . $filters['searchProduct'] . '%');
+        }
+    }
+
+    public function scopeSort($query, $sortOrder)
+    {
+        switch ($sortOrder) {
+            case 'price_asc':
+                $query->orderBy('price', 'asc');
+                break;
+            case 'price_desc':
+                $query->orderBy('price', 'desc');
+                break;
+            case 'rating':
+                $query->orderByDesc('reviews_avg_star');
+                break;
+            default:
+                $query->orderBy('created_at', 'desc');
+                break;
+        }
     }
 }

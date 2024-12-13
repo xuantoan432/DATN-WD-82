@@ -1,12 +1,4 @@
 $(document).ready(function () {
-    // Cấu hình `toastr` một lần duy nhất
-    toastr.options = {
-        "closeButton": true,
-        "progressBar": true,
-        "positionClass": "toast-top-right",
-        "timeOut": "5000",
-    };
-
     function updateQuantityDisplay(inputElement, quantity) {
         $(inputElement).val(quantity);
     }

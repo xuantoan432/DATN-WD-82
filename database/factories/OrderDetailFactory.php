@@ -20,7 +20,7 @@ class OrderDetailFactory extends Factory
             'order_id' => \App\Models\Order::factory(),
             'seller_id' => rand(1, 10),
             'quantity' => $this->faker->numberBetween(1, 10),
-            'product_variant_id' => \App\Models\ProductVariant::factory(),
+            'product_variant_id' => rand(1,30),
             'name' => $this->faker->word,
             'image' => $this->faker->imageUrl(640, 480, 'products', true),
             'price' => $this->faker->randomFloat(2, 10, 100),

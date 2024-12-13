@@ -39,7 +39,9 @@ class WishlistController extends Controller
             'status' => 1
         ]);
 
-        return response()->json(['success' => true, 'message' => 'Đã thêm sản phẩm vào danh sách yêu thích.']);
+        $productCount = Wishlist::where('user_id', $userId)->count();
+
+        return response()->json(['success' => true, 'message' => 'Đã thêm sản phẩm vào danh sách yêu thích.', 'quantity' => $productCount]);
     }
 
     public function removeWishlist($id)

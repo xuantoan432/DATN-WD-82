@@ -755,11 +755,7 @@
         </div>
     </section>
 @endsection
-@section('css')
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
-@endsection
 @section('js')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script>
         const attributes = @json($attributes);
         const productId = {{ $product->id }};

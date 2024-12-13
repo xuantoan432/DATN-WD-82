@@ -94,14 +94,14 @@
             </div>
             <div class="category-section pb-5">
                 @foreach($categories as $category)
-                    <div class="product-wrapper" data-aos="fade-right" data-aos-duration="100">
-                    <div class="wrapper-img">
-                        <img src="{{ \Storage::url($category->icon) }}" alt="dress">
-                    </div>
-                    <div class="wrapper-info">
-                        <a href="product-sidebar.html" class="wrapper-details">{{ $category->name }}</a>
-                    </div>
-                </div>
+                    <a href="{{ route('home.shop', ['categories_id[]' => $category->id]) }}" class="product-wrapper" data-aos="fade-right" data-aos-duration="100">
+                        <div class="wrapper-img">
+                            <img src="{{ \Storage::url($category->icon) }}" alt="dress">
+                        </div>
+                        <div class="wrapper-info">
+                            <p class="wrapper-details">{{ $category->name }}</p>
+                        </div>
+                    </a>
                 @endforeach
             </div>
         </div>
@@ -376,70 +376,4 @@
     </section>
 @endsection
 
-@section('css')
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" />
 
-    <style>
-        .toast-title,
-        .toast-message {
-            font-size: 20px !important;
-        }
-
-        .form-control,
-        .form-select {
-            height: 50px;
-            font-size: 16px;
-            width: 100%;
-            max-width: 500px;
-            margin-top: 10px;
-        }
-    </style>
-@endsection
-
-@section('js')
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-    <script>
-        @if (session('success'))
-            toastr.options = {
-                "closeButton": true,
-                "progressBar": true,
-                "positionClass": "toast-bottom-right",
-                "timeOut": "5000",
-            };
-            toastr.success("{{ session('success') }}", "🎉 Thành công!");
-        @endif
-    </script>
-    <script>
-        $(document).on('click', '.favourite.cart-item', function(e) {
-            e.preventDefault();
-            const productId = $(this).data('product-id');
-
-            console.log('Product ID:', productId);
-
-            if (!productId) {
-                toastr.error('Sản phẩm không hợp lệ.');
-                return;
-            }
-
-            $.ajax({
-                url: '{{ route('wishlist.add') }}',
-                method: 'POST',
-                data: {
-                    product_id: productId,
-                    _token: '{{ csrf_token() }}'
-                },
-                success: function(response) {
-                    if (response.success) {
-                        toastr.success(response.message, "🎉 Thành công!");
-                    } else {
-                        toastr.error(response.message || 'Đã có lỗi xảy ra.');
-                    }
-                },
-                error: function(xhr) {
-                    toastr.error(xhr.responseJSON.message || 'Đã có lỗi xảy ra.');
-                }
-            });
-        });
-    </script>
-@endsection

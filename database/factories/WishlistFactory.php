@@ -19,7 +19,7 @@ class WishlistFactory extends Factory
         return [
             'user_id' => \App\Models\User::factory(),
             'status' => rand(0,1),
-            'product_id' => \App\Models\Product::factory(),
+            'product_id' => rand(1,30),
         ];
     }
 }

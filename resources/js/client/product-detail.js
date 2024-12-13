@@ -72,12 +72,6 @@ $(document).ready(function () {
                     }
                 },
                 error: function(xhr) {
-                    toastr.options = {
-                        "closeButton": true,
-                        "progressBar": true,
-                        "positionClass": "toast-top-right",
-                        "timeOut": "5000",
-                    };
                     toastr.warning("Không có sản phẩm với biến thể này", "Thông báo!");
                     $.each(selectedValues, function(attrKey, attrId) {
                         let $radioInput = $(`.attribute-options input[type="radio"][value="${attrKey}-${attrId}"]`);
@@ -109,23 +103,11 @@ $(document).ready(function () {
             let stockQuantity = parseInt($('#stock-quantity').val());
 
             if (currentQuantity + 1 > stockQuantity) {
-                toastr.options = {
-                    "closeButton": true,
-                    "progressBar": true,
-                    "positionClass": "toast-top-right",
-                    "timeOut": "5000",
-                };
                 toastr.warning("Số lượng không được vượt quá trong kho", "Thông báo!");
             } else {
                 input.val(currentQuantity + 1);
             }
         } else {
-            toastr.options = {
-                "closeButton": true,
-                "progressBar": true,
-                "positionClass": "toast-top-right",
-                "timeOut": "5000",
-            };
             toastr.warning("Vui lòng chọn biến thể trước rồi chọn số lượng", "Thông báo!");
         }
     });
@@ -137,12 +119,6 @@ $(document).ready(function () {
         if (currentValue > 1) {
             input.val(currentValue - 1);
         } else {
-            toastr.options = {
-                "closeButton": true,
-                "progressBar": true,
-                "positionClass": "toast-top-right",
-                "timeOut": "5000",
-            };
             toastr.warning("Số lượng sản phẩm không thể nhỏ hơn 1", "Thông báo!");
         }
     });
@@ -151,44 +127,8 @@ $(document).ready(function () {
         if (Object.keys(selectedValues).length === totalAttributes) {
             return true;
         } else {
-            toastr.options = {
-                "closeButton": true,
-                "progressBar": true,
-                "positionClass": "toast-top-right",
-                "timeOut": "5000",
-            };
             toastr.warning("Vui lòng chọn các thuộc tính trước khi thêm vào giỏ hàng", "Thông báo!");
             return false;
-        }
-    });
-});
-
-$('.favourite.cart-item').on('click', function (e) {
-    e.preventDefault();
-    const productId = $(this).data('product-id');
-    const csrf_token = $('meta[name="csrf-token"]').attr('content');
-    console.log('Product ID:', productId);
-
-    if (!productId) {
-        toastr.error('Sản phẩm không hợp lệ.');
-        return;
-    }
-
-    $.ajax({
-        url: PATH_ROOT + 'wishlist/add',
-        method: 'GET',
-        data: {
-            product_id: productId,
-        },
-        success: function (response) {
-            if (response.success) {
-                toastr.success(response.message, "🎉 Thành công!");
-            } else {
-                toastr.error(response.message || 'Đã có lỗi xảy ra.');
-            }
-        },
-        error: function (xhr) {
-            toastr.error(xhr.responseJSON.message || 'Đã có lỗi xảy ra.');
         }
     });
 });

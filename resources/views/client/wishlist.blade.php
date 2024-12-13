@@ -21,7 +21,7 @@
                                         <img src="{{ Storage::url($item->product->image) }}" alt="Ảnh sản phẩm lỗi">
                                     </div>
                                     <div class="product-info">
-                                       
+
                                         <div class="product-description">
                                             <a href="{{ route('home.product-detail', $item->product->id) }}"
                                                 class="product-details">{{ $item->product->name }}</a>
@@ -55,7 +55,7 @@
                     @endif
                 </div>
             </div>
-            
+
             <div class="wishlist-btn">
                 <form action="{{ route('wishlist.clean') }}" method="POST"
                     onsubmit="return confirm('Bạn có chắc chắn muốn xóa tất cả sản phẩm khỏi danh sách yêu thích?');">
@@ -69,8 +69,6 @@
     </section>
 @endsection
 @section('css')
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" />
-
     <style>
         .toast-title,
         .toast-message {
@@ -88,18 +86,3 @@
     </style>
 @endsection
 
-@section('js')
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-    <script>
-        @if (session('success'))
-            toastr.options = {
-                "closeButton": true,
-                "progressBar": true,
-                "positionClass": "toast-bottom-right",
-                "timeOut": "5000",
-            };
-            toastr.success("{{ session('success') }}", "🎉 Thành công!");
-        @endif
-    </script>
-@endsection

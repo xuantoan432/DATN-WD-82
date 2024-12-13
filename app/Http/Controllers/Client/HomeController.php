@@ -68,6 +68,19 @@ class HomeController extends Controller
 
     public function shop(Request $request)
     {
+        $validated = $request->validate([
+            'categories_id.*' => 'integer|exists:categories,id',
+            'sellers_id.*' => 'integer|exists:sellers,id',
+            'min-value' => 'numeric|min:0',
+            'max-value' => 'numeric|min:0|gte:min-value',
+            'searchProduct' => 'string|max:255',
+            'sort_order' => 'in:price_asc,price_desc,rating,default',
+        ]);
+
+        $priceRange = Product::selectRaw('MAX(price) as maxPrice, MIN(price) as minPrice')->first();
+        $maxPrice = $priceRange->maxPrice;
+        $minPrice = $priceRange->minPrice;
+
         $topSellers = Seller::withCount('products')
             ->orderByDesc('products_count')
             ->limit(10)
@@ -78,51 +91,26 @@ class HomeController extends Controller
             ->limit(10)
             ->get();
 
-        $cats = Category::all();
-        $seller = Seller::all();
-
-        $query = Product::where('is_verified', true)
+        $products = Product::where('is_verified', true)
             ->where('status', 'active')
-            ->withAvg('reviews', 'star');
+            ->withAvg('reviews', 'star')
+            ->filter($request->all())
+            ->sort($request->input('sort_order'))
+            ->paginate(15)
+            ->appends($request->query());
 
-        $checkCategoryId = $request->category_id ?? [];
-        $checkSeller = $request->seller ?? [];
-
-        if (count($checkCategoryId) > 0) {
-            $query = $query->whereIn('category_id', $checkCategoryId);
+        if ($request->ajax()) {
+            $productsHtml = view('client.components.shop', compact('products'))->render();
+            return response()->json(['productsHtml' => $productsHtml]);
         }
 
-        if (count($checkSeller) > 0) {
-            $query = $query->whereIn('seller_id', $checkSeller);
-        }
-
-        if ($request->searchProduct) {
-            $query = $query->where('name', 'like', '%' . $request->searchProduct . '%');
-        }
-
-        $sort = $request->get('sort', 'default');
-        switch ($sort) {
-            case 'price_asc':
-                $query->orderBy('price', 'asc');
-                break;
-            case 'price_desc':
-                $query->orderBy('price', 'desc');
-                break;
-            case 'rating':
-                $query->orderByDesc('reviews_avg_star');
-                break;
-            default:
-                $query->orderBy('created_at', 'desc');
-                break;
-        }
-
-        $products = $query->paginate(16);
-
-        return view('client.shop', compact(
-            'products', 'cats', 'checkCategoryId',
-            'seller', 'checkSeller', 'topCategories',
-            'topSellers', 'sort'
-        ));
+        return view('client.shop', [
+            'products' => $products,
+            'minPrice' => $minPrice,
+            'maxPrice' => $maxPrice,
+            'topSellers' => $topSellers,
+            'topCategories' => $topCategories,
+        ]);
     }
 
     public function productInfo()
