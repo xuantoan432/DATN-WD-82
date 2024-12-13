@@ -1,11 +1,5 @@
 
 $(document).ready(function() {
-    toastr.options = {
-        "closeButton": true,
-        "progressBar": true,
-        "positionClass": "toast-top-right",
-        "timeOut": "5000",
-    };
     async function displayFullAddress(addressDefault) {
         try {
             const province = await getLocation('p', addressDefault.province_id);

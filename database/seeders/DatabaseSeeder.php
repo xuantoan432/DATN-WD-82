@@ -242,7 +242,7 @@ class DatabaseSeeder extends Seeder
         ]);
         Order::factory(10)->create();
         OrderDetail::factory(10)->create();
-        Notification::factory(10)->create();
+//        Notification::factory(10)->create();
         for ($i = 1; $i <= 10; $i++) {
             for ($j = 1; $j <= 4; $j++) {
                 DB::table('seller_address')->insert([
