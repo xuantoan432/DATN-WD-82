@@ -3383,7 +3383,8 @@ hr {
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
-    gap: 1rem
+    gap: 1rem;
+    width: 100%;
 }
 
 .sidebar-section .sidebar-wrapper .sidebar-item .sidebar-list li label {
