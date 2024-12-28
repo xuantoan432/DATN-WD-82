@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Models\Category;
 use App\Models\Notification;
+use App\Models\OrderDetail;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Pagination\Paginator;
@@ -39,10 +40,21 @@ class AppServiceProvider extends ServiceProvider
                 $notification = Notification::where('receiver_type', 'admin')
                 ->orderByDesc('id')
                 ->get();
-              
+
 
                 $view->with('notifications', $notifications);
                 $view->with('notification', $notification);
+        });
+        View::composer('seller.layouts.partials.header', function ($view) {
+
+            $sellerId = Auth::user()->seller->id;
+            $notificationOrders = Notification::with('notifiable')->whereHas('notifiable', function ($query) use ($sellerId) {
+                $query->where('seller_id', $sellerId);
+            })->where([['receiver_type', 'seller'], ['status', 'pending']])
+                ->orderByDesc('id')
+                ->get();
+
+            $view->with('notificationOrders', $notificationOrders);
         });
     }
 }

@@ -45,15 +45,6 @@
     </footer>
     <!--end footer-->
 
-    <!--start cart-->
-    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasCart">
-        @include('seller.layouts.partials.canvasCart')
-
-    </div>
-    <!--end cart-->
-
-
-
     <!--start switcher-->
     <button class="btn btn-grd btn-grd-primary position-fixed bottom-0 end-0 m-3 d-flex align-items-center gap-2"
         type="button" data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop">

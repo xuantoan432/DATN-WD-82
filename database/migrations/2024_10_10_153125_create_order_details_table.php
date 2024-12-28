@@ -27,7 +27,7 @@ return new class extends Migration
             $table->string('image') ;
             $table->decimal('price',10,2);
             $table->string('variant_name');
-            $table->enum('status',['Pending', 'Processing', 'Shipping', 'Delivered', 'Cancelled']);
+            $table->enum('status',['Pending', 'Processing', 'Shipping', 'Completed', 'Cancelled']);
             $table->timestamps();
         });
     }

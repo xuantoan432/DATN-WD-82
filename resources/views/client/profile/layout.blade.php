@@ -176,47 +176,6 @@
 
 
 @section('css')
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" />
-
-    <style>
-        .toast-title,
-        .toast-message {
-            font-size: 20px !important;
-        }
-
-        .form-control,
-        .form-select {
-            height: 50px;
-            font-size: 16px;
-            width: 100%;
-            max-width: 500px;
-            margin-top: 10px;
-        }
-    </style>
 @endsection
 
-@section('js')
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-    <script>
-        @if (session('success'))
-            toastr.options = {
-            "closeButton": true,
-            "progressBar": true,
-            "positionClass": "toast-bottom-right",
-            "timeOut": "5000",
-        };
-        toastr.success("{{ session('success') }}", "🎉 Thành công!");
-        @endif
-    </script>
-    <script>
-        function togglePassword(inputId) {
-            var input = document.getElementById(inputId);
-            if (input.type === "password") {
-                input.type = "text";
-            } else {
-                input.type = "password";
-            }
-        }
-    </script>
-@endsection
+

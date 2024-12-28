@@ -1,8 +1,4 @@
 
-@vite('resources/js/admin/notification.js')
-<script src="{{asset('theme/admin/assets/js/bootstrap.bundle.min.js')}}"></script>
-
-
 <script src="{{ asset('theme/admin/assets/js/bootstrap.bundle.min.js') }}"></script>
 <script>
     const PATH_ROOT = '{{ config('app.url') }}'

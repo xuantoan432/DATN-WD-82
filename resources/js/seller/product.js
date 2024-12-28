@@ -1,5 +1,3 @@
-
-// hiện thị cate + giá
 var giatien = 0;
 $(function () {
     // $('#image-uploadify').imageuploadify();
@@ -276,7 +274,7 @@ $('#them-bien-the').click(function (e) {
             thongbao('error', 'bi bi-exclamation-triangle', `Vui lòng bỏ biến thể : ${duplicateText}`);
             return;
         }
-         // Tạo biến thể mới
+        // Tạo biến thể mới
         attributeValues.forEach((val) => {
             let data = val.map((value) => {
                 return {

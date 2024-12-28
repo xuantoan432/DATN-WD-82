@@ -18,7 +18,6 @@ return new class extends Migration
             $table->enum('status', ['pending', 'sent', 'read'])->default('pending');
             $table->string('title');
             $table->morphs('notifiable');
-            $table->foreignIdFor(User::class) -> constrained()->onDelete('cascade');
             $table->string('message');
             $table->string('receiver_type');
             $table->timestamps();
