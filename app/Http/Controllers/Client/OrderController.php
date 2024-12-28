@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers\Client;
 
+use App\Events\EventNotification;
+use App\Events\OrderDetailNotification;
 use App\Http\Controllers\Controller;
 use App\Models\Cart;
 use App\Models\Order;
 use App\Models\OrderDetail;
 use App\Models\ProductVariant;
+use App\Models\Review;
 use App\Models\User;
 use App\Models\Voucher;
 use Carbon\Carbon;
@@ -69,12 +72,15 @@ class OrderController extends Controller
                     'payment_status_id' => 1,
                     'status' => Order::PENDING,
                 ]);
+                DB::beginTransaction();
                 $order = Order::create($data);
                 foreach ($orderDetails as $orderDetail){
-                    $order->orderDetails()->create($orderDetail);
+                    $orderItem = $order->orderDetails()->create($orderDetail);
+                    $this->notificationOrderDetail($orderItem, $data['user_id']);
                     $this->updateQuantityProductVariant($orderDetail['quantity'], $orderDetail['product_variant_id']);
                 }
                 Cart::query()->where('user_id', auth()->id())->delete();
+                DB::commit();
                 session()->put('order_id', $order->id);
                 return redirect()->route('thank');
             }
@@ -163,7 +169,8 @@ class OrderController extends Controller
         if($request->input('resultCode') == 0){
             $order = Order::create(session('order'));
             foreach (session('orderDetails') as $orderDetail){
-                $order->orderDetails()->create($orderDetail);
+                $orderItem = $order->orderDetails()->create($orderDetail);
+                $this->notificationOrderDetail($orderItem, $user->id);
                 $this->updateQuantityProductVariant($orderDetail['quantity'], $orderDetail['product_variant_id']);
             }
             session()->put('order_id', $order->id);
@@ -181,8 +188,6 @@ class OrderController extends Controller
         $productVariant->update(['stock_quantity' => $newQuantity]);
     }
 
-
-
     public function thank()
     {
         if (session('order_id')){
@@ -191,5 +196,32 @@ class OrderController extends Controller
             return view('client.thank', compact('order'));
         }
         return redirect('/');
+    }
+
+    public function rating(Request $request, User $user){
+        $request->validate([
+            'star' => 'required',
+            'product_id' => 'required',
+            'content' => 'required',
+            'image' => 'nullable',
+        ]);
+        $data = $request->except('image');
+        $data['user_id'] = $user->id;
+        if ($request->hasFile('image')){
+            $data['image'] = \Storage::put('rates', $request->file('image'));
+        }
+        Review::query()->create($data);
+
+        return back()->with('success', 'Cảm ơn bạn đã đánh giá!');
+    }
+
+    public function notificationOrderDetail($orderDetil, $user_id){
+        $user = User::query()->findOrFail($user_id);
+        $notification =  $orderDetil->notifications()->create([
+            'title' => 'Có đơn hàng mới',
+            'message' => $user->name . 'đã đăt 1 đơn hàng mới' ,
+            'receiver_type' => 'seller',
+        ]);
+        broadcast(new OrderDetailNotification( $notification , $orderDetil));
     }
 }

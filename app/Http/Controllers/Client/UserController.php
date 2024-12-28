@@ -170,13 +170,4 @@ class UserController extends Controller
         return redirect()->back();
    }
 
-   public function orderDetail(Request $request, string $orderCode)
-   {
-        $order = Order::query()->with('orderDetails')->where('order_code', $orderCode)->first();
-        if(!$order){
-            return back();
-        }
-        $orderDetails = $order->orderDetails;
-       return view('client.profile.components.order-detail', compact('orderDetails'));
-   }
 }

@@ -3,6 +3,7 @@
 use App\Http\Controllers\Client\CartController;
 use App\Http\Controllers\Client\HomeController;
 use App\Http\Controllers\Client\OrderController;
+use App\Http\Controllers\Client\OrderDetailController;
 use App\Http\Controllers\Client\ProductController;
 use App\Http\Controllers\Client\UserController;
 use Illuminate\Support\Facades\Route;
@@ -51,7 +52,8 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/logout', [LoginController::class,'logout'])->name('logout');
     Route::get('/dashboard', [UserController::class, 'userDashboard'])->name('dashboard');
-    Route::get('/orderDetail/{code}', [UserController::class, 'orderDetail'])->name('orderDetail');
+    Route::get('/orderDetail/{code}', [OrderDetailController::class, 'orderDetail'])->name('orderDetail');
+    Route::post('/orderDetail/{id}/cancel', [OrderDetailController::class, 'cancelOrderDetail'])->name('orderDetail.cancel');
     Route::post('/createAddress', [UserController::class, 'createAddress'])->name('user.address.create');
     Route::delete('/deleteAddress/{id}', [UserController::class, 'deleteAddress'])->name('user.address.delete');
 
@@ -73,6 +75,8 @@ Route::middleware('auth')->group(function () {
     Route::post('order/create', [OrderController::class, 'createOrder'])->name('order.create');
     Route::get('order/check', [OrderController::class, 'checkOrderMomo'])->name('order.check');
     Route::get('thank', [OrderController::class, 'thank'])->name('thank');
+
+    Route::post('rating/{user}', [OrderController::class, 'rating'])->name('rating');
 });
 
 

@@ -5,6 +5,7 @@ use App\Http\Controllers\Seller\AttributeController;
 use App\Http\Controllers\Seller\AttributeValueController;
 use App\Http\Controllers\Seller\SellerController;
 use App\Http\Controllers\Seller\VoucherController;
+use App\Http\Controllers\Seller\OrderController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -22,12 +23,16 @@ Route::prefix('/seller')->as('seller.')->middleware('role:2')->group(function ()
         Route::resource($name, $controller );
     }
     Route::resource('/vouchers',VoucherController::class);
-    Route::resource('attributes', AttributeController::class);
     Route::prefix('/attribute')->as('attribute.values.')->group(function () {
         Route::get('{attribute}/values', [AttributeValueController::class, 'index'])->name('index');
         Route::post('{attribute}/values', [AttributeValueController::class, 'store'])->name('store');
         Route::get('{attribute}/values/{attributeValue}', [AttributeValueController::class, 'edit'])->name('edit');
         Route::put('/values/{attributeValue}', [AttributeValueController::class, 'update'])->name('update');
         Route::delete('{attribute}/values/{attributeValue}', [AttributeValueController::class, 'destroy'])->name('destroy');
+    });
+    Route::prefix('/orders')->as('orders.')->group(function () {
+        Route::get('/', [OrderController::class, 'index'])->name('index');
+        Route::get('{orderDetail}/edit', [OrderController::class, 'edit'])->name('edit');
+        Route::put('{orderDetail}/update', [OrderController::class, 'update'])->name('update');
     });
 });

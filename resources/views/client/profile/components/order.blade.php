@@ -30,7 +30,7 @@
                     </div>
                 </td>
             </tr>
-            @foreach($user->orders as $order)
+            @foreach($user->orders()->orderByDesc('id')->get() as $order)
                 <tr class="table-row ticket-row">
                     <td class="table-wrapper wrapper-total">
                         <div class="table-wrapper-center">

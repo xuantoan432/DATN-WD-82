@@ -58,12 +58,6 @@
     </div>
 @endsection
 
-@section('css')
-    <style>
-
-    </style>
-@endsection
-
 @section('js')
     <script>
         function togglePassword(inputId) {
