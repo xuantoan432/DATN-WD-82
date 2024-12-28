@@ -422,7 +422,7 @@
                         <div class="col border-end">
                             <div class="app-wrapper d-flex flex-column gap-2 text-center">
                                 <div class="app-icon">
-                                    <img src="{{asset('theme/admin/assets/images/apps/10.png" w')}}idth="36" alt="">
+                                    <img src="{{asset('theme/admin/assets/images/apps/10.png')}}" width="36" alt="">
                                 </div>
                                 <div class="app-name">
                                     <p class="mb-0">Figma</p>
@@ -432,7 +432,7 @@
                         <div class="col border-end">
                             <div class="app-wrapper d-flex flex-column gap-2 text-center">
                                 <div class="app-icon">
-                                    <img src="{{asset('theme/admin/assets/images/apps/11.png" w')}}idth="36" alt="">
+                                    <img src="{{asset('theme/admin/assets/images/apps/11.png')}}" width="36" alt="">
                                 </div>
                                 <div class="app-name">
                                     <p class="mb-0">Paypal</p>
@@ -442,7 +442,7 @@
                         <div class="col">
                             <div class="app-wrapper d-flex flex-column gap-2 text-center">
                                 <div class="app-icon">
-                                    <img src="{{asset('theme/admin/assets/images/apps/12.png" w')}}idth="36" alt="">
+                                    <img src="{{asset('theme/admin/assets/images/apps/12.png')}}" width="36" alt="">
                                 </div>
                                 <div class="app-name">
                                     <p class="mb-0">Photo</p>
@@ -607,7 +607,14 @@
         <li class="nav-item d-md-flex d-none">
             <a class="nav-link position-relative" data-bs-toggle="offcanvas" href="#offcanvasCart"><i
                     class="material-icons-outlined">shopping_cart</i>
-                <span class="badge-notify">8</span>
+                <span class="badge-notify" data-data="{{ count($notificationOrders) }}" id="notification-order-count">
+                    @if (count($notificationOrders) > 9)
+                        {{ count($notificationOrders) }}
+                    @else
+                        {{ count($notificationOrders) > 0 ? '0' . count($notificationOrders) : 0 }}
+                    @endif
+                </span>
+
             </a>
         </li>
         <li class="nav-item dropdown">
@@ -642,3 +649,8 @@
     </ul>
 
 </nav>
+<!--start cart-->
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasCart">
+    @include('seller.layouts.partials.canvasCart')
+</div>
+<!--end cart-->

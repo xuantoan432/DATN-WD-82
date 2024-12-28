@@ -93,7 +93,7 @@
                                                 </div>
                                             </td>
                                             <td class="">
-                                                <a href="{{ route('seller.attribute.values.index', $attribute) }}" class="btn btn-outline-success d-flex gap-2">Thêm
+                                                <a href="{{ route('seller.attribute.values.index', $attribute) }}" class="btn btn-outline-success">Thêm
                                                     value
                                                 </a>
                                             </td>

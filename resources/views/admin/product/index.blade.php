@@ -153,7 +153,7 @@
             $('#bang').DataTable({
                 // display everything
 
-                searching: false,
+                searching: true,
                 lengthChange: false,
                 language: {
                     info: " Từ _START_ đến _END_ trong  _TOTAL_ mục",

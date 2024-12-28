@@ -12,7 +12,6 @@ class Notification extends Model
         'notifiable_type' ,
         'notifiable_id',
         'title',
-        'user_id' ,
         'message' ,
         'receiver_type',
     ]  ;

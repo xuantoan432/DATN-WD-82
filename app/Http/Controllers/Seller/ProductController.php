@@ -75,7 +75,7 @@ class ProductController extends Controller
             'title' => 'Đăng sản phẩm ',
                'message' => 'Cần admin phê duyệt !! ' ,
               'receiver_type' => 'admin',
-           ]);
+        ]);
      broadcast(new EventNotification( $thongbao , $seller));
         if ($request->hasFile('gallery')) {
             foreach ($request->file('gallery') as $image) {
