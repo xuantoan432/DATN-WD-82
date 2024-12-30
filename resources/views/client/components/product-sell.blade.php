@@ -108,7 +108,7 @@
             <div class="product-description">
                 <a href="{{ route('home.product-detail', $product->id) }}" class="product-details">{{ $product->name }}
                 </a>
-                <div class="price">
+                <div class="price flex-column align-items-start ">
                     @php
                         $minRegularPrice = !empty($priceRegulars) ? min($priceRegulars) : null;
                         $maxRegularPrice = !empty($priceRegulars) ? max($priceRegulars) : null;
@@ -126,7 +126,7 @@
                             $minSalePrice = min($priceSales);
                             $maxSalePrice = max($priceSales);
                         @endphp
-                        <span class="price-cut">{{ number_format($minRegularPrice, 0, ',', '.') }}₫ -
+                        <span class="price-cut mt-2">{{ number_format($minRegularPrice, 0, ',', '.') }}₫ -
                                         {{ number_format($maxRegularPrice, 0, ',', '.') }}₫</span>
                         <span class="new-price">{{ number_format($minSalePrice, 0, ',', '.') }}₫ -
                                         {{ number_format($maxSalePrice, 0, ',', '.') }}₫</span>

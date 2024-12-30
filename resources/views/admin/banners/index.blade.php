@@ -1,8 +1,5 @@
 @extends('admin.layouts.master')
 
-@section('css_new')
-    <link href="{{ asset('theme/admin/assets/plugins/datatable/css/dataTables.bootstrap5.min.css') }}" rel="stylesheet" />
-@endsection
 
 @section('content')
     <div class="main-content">
@@ -32,8 +29,7 @@
                                         <th>STT</th>
                                         <th>Tiêu đề banner</th>
                                         <th>Ảnh banner</th>
-                                        <th>Text banner</th>
-                                        <th>Đường dẫn banner</th>
+                                        <th>Vị trí</th>
                                         <th>Trạng thái</th>
                                         <th>Hành Động</th>
                                     </tr>
@@ -51,9 +47,8 @@
                                                     N/A
                                                 @endif
                                             </td>
-                                            <td>{{ $banner->banner_text }}</td>
-                                            <td>{{ $banner->banner_link }}</td>
-                                            <td>{{ $banner->is_featured ? 'Active' : 'Inactive' }}</td>
+                                            <td>{{ config('banner_positions.'. $banner->position) }}</td>
+                                            <td>{{ $banner->status }}</td>
                                             <td>
                                                 <div class="row row-cols-auto g-3 mt-2">
                                                     <div class="col">
@@ -80,9 +75,6 @@
                                     @endforeach
                                 </tbody>
                             </table>
-                            <div class="d-flex justify-content-center">
-                                {{ $banners->links() }}
-                            </div>
                         </div>
 
                     </div>
@@ -94,6 +86,8 @@
 
 @section('css_new')
     <link rel="stylesheet" href="{{ asset('theme/admin/assets/plugins/notifications/css/lobibox.min.css') }}">
+    <link href="{{ asset('theme/admin/assets/plugins/datatable/css/dataTables.bootstrap5.min.css') }}" rel="stylesheet" />
+
 @endsection
 
 
@@ -102,7 +96,6 @@
     <script src="{{ asset('theme/admin/assets/plugins/datatable/js/dataTables.bootstrap5.min.js') }}"></script>
     <script src="{{ asset('theme/admin/assets/plugins/notifications/js/lobibox.min.js') }}"></script>
     <script src="{{ asset('theme/admin/assets/plugins/notifications/js/notifications.min.js') }}"></script>
-
     <script>
         $(document).ready(function() {
             $('#postsTable').DataTable({
@@ -110,13 +103,7 @@
                     [0, "asc"]
                 ]
             });
-            let color = 'error';
-        let icon = 'bi bi-exclamation-triangle';
-        let msg = 'Vui lòng chọn loại biến thể !!';
-        thongbao(color, icon, msg);
         });
-   
-        
         function thongbao(color, icon, msg) {
             Lobibox.notify(color, {
                 pauseDelayOnHover: false,
@@ -127,6 +114,14 @@
                 msg: msg
             });
         }
+        @if (session('error'))
+            thongbao('error', 'bi bi-exclamation-triangle', '{{ session('error') }}')
+        @endif
+
+        @if (session('success'))
+        console.log(1)
+            thongbao('success', 'bi bi-check-circle', '{{ session('success') }}');
+        @endif
     </script>
 
 

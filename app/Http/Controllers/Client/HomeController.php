@@ -15,7 +15,9 @@ class HomeController extends Controller
 
     public function index()
     {
-        $activeBanners = Banner::where('is_featured', 1)->get();
+        $bannerHero = Banner::query()->where('status', 'active')->where('position', 'hero')->orderByDesc('id')->get();
+        $bannersub1 = Banner::query()->where('status', 'active')->where('position', 'sub1')->orderByDesc('id')->take(2)->get();
+        $bannersub2 = Banner::query()->where('status', 'active')->where('position', 'sub2')->orderByDesc('id')->take(2)->get();
 
         $categories = Category::query()->limit(11)->get();
 
@@ -60,7 +62,9 @@ class HomeController extends Controller
             'sell_products' => $sell_products,
             'best_sell' => $best_sell,
             'flash_sale' => $flash_sale,
-            'activeBanners' => $activeBanners,
+            'bannerHero' => $bannerHero,
+            'bannersub1' => $bannersub1,
+            'bannersub2' => $bannersub2,
             'categories' => $categories
         ]);
 

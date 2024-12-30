@@ -42,6 +42,8 @@ var swiper = new Swiper(".hero-swiper", {
     spaceBetween: 30,
     centeredSlides: true,
     effect: "fade",
+    fadeEffect: { crossFade: true },
+    loop: true,
     autoplay: {delay: 2500,},
     pagination: {el: ".swiper-pagination", clickable: true,},
     navigation: {nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev",},

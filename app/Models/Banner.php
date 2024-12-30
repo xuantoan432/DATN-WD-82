@@ -14,6 +14,7 @@ class Banner extends Model
         'banner_image',
         'banner_text',
         'banner_link',
-        'is_featured',
+        'status',
+        'position',
     ];
 }

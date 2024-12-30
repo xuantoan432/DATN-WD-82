@@ -14,7 +14,7 @@ class BannerController extends Controller
      */
     public function index()
     {
-        $banners = Banner::latest()->paginate(5);
+        $banners = Banner::latest()->get();
         return view('admin.banners.index', compact('banners'));
     }
 
@@ -31,12 +31,14 @@ class BannerController extends Controller
      */
     public function store(Request $request)
     {
+        $validPositions = array_keys(config('banner_positions'));
         $validatedData = $request->validate([
             'banner_title' => 'required|string|max:255',
-            'banner_text' => 'required|string|max:500',
-            'banner_link' => 'required|url|max:255',
+            'banner_text' => 'nullable|string|max:500',
+            'banner_link' => 'nullable|url|max:255',
             'banner_image' => 'required|image',
-            'is_featured' => 'sometimes|boolean',
+            'status' => 'required|in:active,inactive',
+            'position' => 'required|in:' . implode(',', $validPositions)
         ]);
 
         if ($request->hasFile('banner_image')) {
@@ -70,12 +72,14 @@ class BannerController extends Controller
     {
         $banner = Banner::findOrFail($id);
 
+        $validPositions = array_keys(config('banner_positions'));
         $validatedData = $request->validate([
             'banner_title' => 'required|string|max:255',
-            'banner_text' => 'required|string|max:500',
-            'banner_link' => 'required|url|max:255',
-            'banner_image' => 'sometimes|image',
-            'is_featured' => 'sometimes|boolean',
+            'banner_text' => 'nullable|string|max:500',
+            'banner_link' => 'nullable|url|max:255',
+            'banner_image' => 'nullable|image',
+            'status' => 'required|in:active,inactive',
+            'position' => 'required|in:' . implode(',', $validPositions)
         ]);
 
         if ($request->hasFile('banner_image')) {

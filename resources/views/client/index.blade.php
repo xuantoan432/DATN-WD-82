@@ -8,25 +8,27 @@
     <section id="hero" class="hero">
         <div class="swiper hero-swiper">
             <div class="swiper-wrapper hero-wrapper">
-                @foreach($activeBanners as $banner)
-                    <div class="swiper-slide hero-slider" style="background-image: url('{{ Storage::url($banner->banner_image) }}'); width:100%; background-size:100%">
-                        <div class="container">
-                            <div class="col-lg-6">
-                                <div class="wrapper-section" data-aos="fade-up">
-                                    <div class="wrapper-info">
-                                        <h5 class="wrapper-subtitle">{{ $banner->banner_text }} <span class="wrapper-inner-title">70%</span> OFF</h5>
-                                        <h1 class="wrapper-details">{{ $banner->banner_title }}</h1>
-                                        <a href="{{ $banner->banner_link }}" class="shop-btn">Mua hàng ngay</a>
-                                    </div>
+                @foreach($bannerHero as $banner)
+                <div class="swiper-slide" style="background: url('{{ \Storage::url($banner->banner_image) }}') no-repeat center/cover">
+                    <div class="container">
+                        <div class="col-lg-6">
+                            <div class="wrapper-section" data-aos="fade-up">
+                                <div class="wrapper-info">
+                                    <h5 class="wrapper-subtitle">{{ $banner->banner_text }}
+                                    </h5>
+                                    <h1 class="wrapper-details">{{ $banner->banner_title }}</h1>
+                                    <a href="{{ $banner->banner_link }}" class="shop-btn">Mua sắm ngay</a>
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>
                 @endforeach
             </div>
             <div class="swiper-pagination"></div>
         </div>
     </section>
+
 @endsection
 
 
@@ -36,12 +38,13 @@
         <div class="container">
             <div class="style-section">
                 <div class="row gy-4 gx-5 gy-lg-0">
+                    @foreach($bannersub1 as $banner)
                     <div class="col-lg-6">
-                        <div class="product-wrapper wrapper-one" data-aos="fade-right">
+                        <div class="product-wrapper wrapper-one" data-aos="fade-right" style="background: url('{{ \Storage::url($banner->banner_image) }}') no-repeat center/cover">
                             <div class="wrapper-info">
-                                <span class="wrapper-subtitle">NEW STYLE</span>
-                                <h4 class="wrapper-details">Get 65% Offer
-                                    <span class="wrapper-inner-title">& Make New</span> Fusion.
+                                <span class="wrapper-subtitle">{{ $banner->banner_text }}</span>
+                                <h4 class="wrapper-details" style="width: 260px;">
+                                    {{ $banner->banner_title }}
                                 </h4>
                                 <a href="product-sidebar.html" class="shop-btn">Shop Now
                                     <span>
@@ -57,29 +60,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-6">
-                        <div class="product-wrapper wrapper-two" data-aos="fade-up">
-                            <div class="wrapper-info">
-                                <span class="wrapper-subtitle">Mega OFFER</span>
-                                <h4 class="wrapper-details">
-                                    Make your New
-                                    <span class="wrapper-inner-title">Styles with Our</span>
-                                    Products
-                                </h4>
-                                <a href="product-sidebar.html" class="shop-btn">Shop Now
-                                    <span>
-                                        <svg width="8" height="14" viewBox="0 0 8 14" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <rect x="1.45312" y="0.914062" width="9.25346" height="2.05632"
-                                                transform="rotate(45 1.45312 0.914062)" />
-                                            <rect x="8" y="7.45703" width="9.25346" height="2.05632"
-                                                transform="rotate(135 8 7.45703)" />
-                                        </svg>
-                                    </span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -308,50 +289,29 @@
             </div>
             <div class="style-section">
                 <div class="row gy-4 gx-5 gy-lg-0">
-                    <div class="col-lg-6">
-                        <div class="product-wrapper wrapper-one" data-aos="fade-right">
-                            <div class="wrapper-info">
-                                <span class="wrapper-subtitle">NEW STYLE</span>
-                                <h4 class="wrapper-details">Get 65% Offer
-                                    <span class="wrapper-inner-title">& Make New</span> Fusion.
-                                </h4>
-                                <a href="product-sidebar.html" class="shop-btn">Shop Now
-                                    <span>
+                    @foreach($bannersub2 as $banner)
+                        <div class="col-lg-6">
+                            <div class="product-wrapper wrapper-one" data-aos="fade-right" style="background: url('{{ \Storage::url($banner->banner_image) }}') no-repeat center/cover">
+                                <div class="wrapper-info">
+                                    <span class="wrapper-subtitle">{{ $banner->banner_text }}</span>
+                                    <h4 class="wrapper-details" style="width: 260px;">
+                                        {{ $banner->banner_title }}
+                                    </h4>
+                                    <a href="product-sidebar.html" class="shop-btn">Shop Now
+                                        <span>
                                         <svg width="8" height="14" viewBox="0 0 8 14" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
+                                             xmlns="http://www.w3.org/2000/svg">
                                             <rect x="1.45312" y="0.914062" width="9.25346" height="2.05632"
-                                                transform="rotate(45 1.45312 0.914062)" />
+                                                  transform="rotate(45 1.45312 0.914062)" />
                                             <rect x="8" y="7.45703" width="9.25346" height="2.05632"
-                                                transform="rotate(135 8 7.45703)" />
+                                                  transform="rotate(135 8 7.45703)" />
                                         </svg>
                                     </span>
-                                </a>
+                                    </a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="product-wrapper wrapper-two" data-aos="fade-up">
-                            <div class="wrapper-info">
-                                <span class="wrapper-subtitle">Mega OFFER</span>
-                                <h4 class="wrapper-details">
-                                    Make your New
-                                    <span class="wrapper-inner-title">Styles with Our</span>
-                                    Products
-                                </h4>
-                                <a href="product-sidebar.html" class="shop-btn">Shop Now
-                                    <span>
-                                        <svg width="8" height="14" viewBox="0 0 8 14" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <rect x="1.45312" y="0.914062" width="9.25346" height="2.05632"
-                                                transform="rotate(45 1.45312 0.914062)" />
-                                            <rect x="8" y="7.45703" width="9.25346" height="2.05632"
-                                                transform="rotate(135 8 7.45703)" />
-                                        </svg>
-                                    </span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>
