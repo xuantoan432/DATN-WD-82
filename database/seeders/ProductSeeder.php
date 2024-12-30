@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Storage;
 
-class ProductSeeder extends Seeder
+class ProductSeeder extends BaseSeeder
 {
     /**
      * Run the database seeds.
@@ -16,7 +16,7 @@ class ProductSeeder extends Seeder
     public function run(): void
     {
         Schema::disableForeignKeyConstraints();
-        $this->deleteOldImages();
+        $this->deleteOldImages('products');
         // Xóa dữ liệu cũ
         DB::table('products')->truncate();
         DB::table('galleries')->truncate();
@@ -68,7 +68,7 @@ class ProductSeeder extends Seeder
                 'sku' => $productSku,
                 'content' => 'Detailed description for ' . $productName,
                 'price' => 100000,
-                'image' => $this->uploadImage("$index.jpg"),
+                'image' => $this->uploadImage("$index.jpg", 'products'),
                 'views' => rand(50, 200),
                 'is_verified' => true,
                 'status' => 1,
@@ -95,7 +95,7 @@ class ProductSeeder extends Seeder
                             'sku' => $sku,
                             'price' => rand(100000, 200000),
                             'price_sale' => rand(90000, 150000),
-                            'image' => $this->uploadImage(rand(1,30) . ".jpg"),
+                            'image' => $this->uploadImage(rand(1,30) . ".jpg",'products'),
                             'stock_quantity' => rand(5, 20),
                             'is_verified' => true,
                             'status' => 1,
@@ -132,7 +132,7 @@ class ProductSeeder extends Seeder
             foreach (range(1, $galleryCount) as $k) {
                 $galleries[] = [
                     'product_id' => $index,
-                    'image' => $this->uploadImage(rand(1,30) . ".jpg"),
+                    'image' => $this->uploadImage(rand(1,30) . ".jpg",'products'),
                 ];
             }
 
@@ -146,26 +146,5 @@ class ProductSeeder extends Seeder
         DB::table('galleries')->insert($galleries);
 
         Schema::enableForeignKeyConstraints();
-    }
-
-    private function uploadImage($fileName)
-    {
-        $sourcePath = base_path("database/seeders/images/products/{$fileName}");
-        if (file_exists($sourcePath)) {
-            $storagePath = 'products/' . \Str::random(10) . '_' . $fileName;
-            Storage::put($storagePath, file_get_contents($sourcePath));
-            return $storagePath;
-        }
-
-        return 'products/placeholder.jpg';
-    }
-
-    private function deleteOldImages()
-    {
-        // Lấy tất cả các ảnh cũ từ thư mục 'products' và xóa chúng
-        $files = Storage::files('products');
-        foreach ($files as $file) {
-            Storage::delete($file);
-        }
     }
 }
