@@ -157,7 +157,7 @@
                                     </div>
                                     <div class="mb-3">
                                         <p class="paragraph">Ghi chú đặt hàng</p>
-                                        <textarea name="note" id="" cols="30" rows="7" class="form-control"></textarea>
+                                        <textarea name="note" id="" class="form-control" style="max-width: unset !important;"></textarea>
                                     </div>
                                     <button type="submit" class="shop-btn">Đặt hàng ngay</button>
                                 </form>
@@ -177,7 +177,24 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body" id="popup-address">
-                    <div id="all-address"></div>
+                    <div id="all-address">
+                        @foreach($allAddresses as $address)
+                            <div class="address-item row">
+                            <div class="col-9">
+                                <div class="d-flex">
+                                    <input type="radio" name="address" id="address{{ $loop->index }}" value="{{ $address->id }}" @checked($addressDefautl->id === $address->id)>
+                                    <label for="address{{ $loop->index }}"><strong>{{ $address->details->full_name }}</strong> {{ $address->details->phone_number }}  <p class="mb-3">{{ $address->full_address }}</p></label>
+                                </div>
+                                @if($addressDefautl->id === $address->id)
+                                    <span class="default-label address-deafault">Mặc định</span>
+                                @endif
+                            </div>
+                            <div class="address-actions col-3">
+                                <a href="#" onclick="editAddress({{ $address->id }}">Cập nhật</a>
+                            </div>
+                        </div>
+                        @endforeach
+                    </div>
                     <!-- Add New Address -->
                     <div class="d-block p-4">
                         <a class="add-new-address">+ Thêm Địa Chỉ Mới</a>
@@ -199,6 +216,7 @@
 @section('js')
     <script>
         const addressDefault = @json($addressDefautl);
+        const line_address = '{{ $addressDefautl->full_address }}';
         const allAddresses = @json($allAddresses);
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>

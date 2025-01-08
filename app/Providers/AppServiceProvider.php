@@ -48,13 +48,27 @@ class AppServiceProvider extends ServiceProvider
         View::composer('seller.layouts.partials.header', function ($view) {
 
             $sellerId = Auth::user()->seller->id;
-            $notificationOrders = Notification::with('notifiable')->whereHas('notifiable', function ($query) use ($sellerId) {
+            $notificationOrders = Notification::with(['notifiable' => function ($query) use ($sellerId) {
                 $query->where('seller_id', $sellerId);
-            })->where([['receiver_type', 'seller'], ['status', 'pending']])
+            }])
+                ->where([
+                    ['receiver_type', 'seller'],
+                    ['status', 'pending'],
+                    ['notifiable_type', OrderDetail::class],
+                ])
+                ->orderByDesc('id')
+                ->get();
+            $notifications = Notification::query()
+                ->where([
+                    ['receiver_type', 'seller-' . $sellerId],
+                    ['status', 'pending'],
+                    ['notifiable_type', '<>', OrderDetail::class],
+                ])
                 ->orderByDesc('id')
                 ->get();
 
             $view->with('notificationOrders', $notificationOrders);
+            $view->with('notifications', $notifications);
         });
     }
 }

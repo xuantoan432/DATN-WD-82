@@ -1,6 +1,7 @@
 <?php
 
 
+use App\Http\Controllers\API\ImageUploadController;
 use App\Http\Controllers\API\ProductApproveController;
 
 use App\Http\Controllers\Client\API\AddressController;
@@ -40,4 +41,8 @@ Route::prefix('admin')->group(function () {
 
 Route::post('voucher/apply', [VoucherController::class, 'applyVoucher']);
 Route::post('address/create', [AddressController::class, 'create']);
+Route::post('tinyMCE/upload', [ImageUploadController::class, 'upload']);
+Route::get('p', [AddressController::class, 'getAllProvinces']);
+Route::get('p/{province_id}', [AddressController::class, 'getDistrictByProvince']);
+Route::get('d/{district_id}', [AddressController::class, 'getWardByDistrict']);
 

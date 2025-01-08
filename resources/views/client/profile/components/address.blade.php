@@ -152,7 +152,7 @@
 
 @section('js')
     <script>
-        const address = @json($addresses);
+        const address = @json($line_addresses);
     </script>
     @vite('resources/js/client/address.js')
 @endsection

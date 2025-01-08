@@ -94,7 +94,7 @@ $('#product').on('submit', function (e) {
 
             $('#modalText').text('');
             $('#inputField').val('');
-         
+
         }
     });
 

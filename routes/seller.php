@@ -3,6 +3,7 @@
 use App\Http\Controllers\Seller\ProductController;
 use App\Http\Controllers\Seller\AttributeController;
 use App\Http\Controllers\Seller\AttributeValueController;
+use App\Http\Controllers\Seller\ReviewController;
 use App\Http\Controllers\Seller\SellerController;
 use App\Http\Controllers\Seller\VoucherController;
 use App\Http\Controllers\Seller\OrderController;
@@ -17,6 +18,7 @@ Route::prefix('/seller')->as('seller.')->middleware('role:2')->group(function ()
     $url = [
         'products' =>  ProductController::class ,
         'attributes' => AttributeController::class ,
+        'reviews' => ReviewController::class ,
     ] ;
 
     foreach ( $url as $name => $controller ) {

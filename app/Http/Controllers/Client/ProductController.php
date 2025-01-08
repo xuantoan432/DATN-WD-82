@@ -46,7 +46,7 @@ class ProductController extends Controller
             }
         }
         $attributes = array_values($attributes);
-        $averageRating = $product->reviews->avg('star');
+        $averageRating = $product->reviews->where('parent_id', 0)->avg('star');
         $reviews = $product->reviews->groupBy('parent_id');
         return view('client.product-info', compact('product', 'reviews','averageRating','attributes', 'imageVariants', 'priceSales', 'priceRegulars', 'imageVariants', 'priceSales'));
     }

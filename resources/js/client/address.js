@@ -1,12 +1,13 @@
 $(document).ready(function() {
 
     $.ajax({
-        url: 'https://provinces.open-api.vn/api/p/',
+        url: '/api/p/',
         method: 'GET',
-        success: function(data) {
-            $('#province').append(data.map(function(province) {
-                return `<option value="${province.code}">${province.name}</option>`;
-            }));
+        success: function(response) {
+            const provinces = response.data
+            $('#province').append(provinces.map(function(province) {
+                return `<option value="${province.id}">${province.name}</option>`;
+            }).join(''));
         },
         error: function() {
             alert('Không thể tải danh sách Tỉnh/Thành phố.');
@@ -23,11 +24,12 @@ $('#province').on( 'change' , function () {
 
         if (selectedValue) {
             $.ajax({
-                url: `https://provinces.open-api.vn/api/p/${selectedValue}?depth=2`,
+                url: `/api/p/${selectedValue}`,
                 method: 'GET',
-                success: function(data) {
-                    $('#district').append(data.districts.map(function(district) {
-                        return `<option value="${district.code}">${district.name}</option>`;
+                success: function(response) {
+                    const districts = response.data
+                    $('#district').append(districts.map(function(district) {
+                        return `<option value="${district.id}">${district.name}</option>`;
                     }));
                 },
                 error: function() {
@@ -44,11 +46,12 @@ $('#district').on( 'change' , function () {
 
     if (selectedValue) {
         $.ajax({
-            url: `https://provinces.open-api.vn/api/d/${selectedValue}?depth=2`,
+            url: `/api/d/${selectedValue}`,
             method: 'GET',
-            success: function(data) {
-                $('#ward').append(data.wards.map(function(ward) {
-                    return `<option value="${ward.code}">${ward.name}</option>`;
+            success: function(response) {
+                const wards = response.data
+                $('#ward').append(wards.map(function(ward) {
+                    return `<option value="${ward.id}">${ward.name}</option>`;
                 }));
             },
             error: function() {
@@ -74,25 +77,13 @@ const getLocation = (type, id) => {
     });
 };
 
-const getFullAddress = (addressInline, ward, district, province) => {
-
-    return  `${addressInline},${ward},${district},${province}`;
-}
-
-async function displayFullAddress(addressDefault, element) {
-    try {
-        const province = await getLocation('p', addressDefault.province_id);
-        const district = await getLocation('d', addressDefault.district_id);
-        const ward = await getLocation('w', addressDefault.ward_id);
-        const fullAddress = getFullAddress(addressDefault.address_line, ward.name, district.name, province.name);
-        element.html(fullAddress);
-    } catch (error) {
-        console.error(error);
-    }
+function displayFullAddress(addressDefault, element) {
+    element.html(addressDefault);
 }
 
 $('.seller-info.all-address').each(function (index) {
     if (address[index]) { // Kiểm tra nếu địa chỉ tồn tại
+        console.log(address[index].full_address)
         displayFullAddress(address[index], $(this).find('.address-line'));
     } else {
         console.error(`No address found for index ${index}`);

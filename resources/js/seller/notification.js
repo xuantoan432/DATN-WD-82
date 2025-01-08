@@ -1,8 +1,7 @@
 import '../bootstrap';
-let html = document.querySelector('.order-list');
-console.log(html)
 window.Echo.private(`seller.${sellerId}`)
     .listen('OrderDetailNotification', (e) => {
+        let html = document.querySelector('.order-list');
         let thongbao = document.querySelector('#notification-order-count');
         let totalItems = document.querySelector('#offcanvasRightLabel');
         let count = parseInt(thongbao.dataset.data, 10) || 0;
@@ -33,5 +32,38 @@ window.Echo.private(`seller.${sellerId}`)
         // Thêm thông báo mới vào đầu danh sách
         html.insertAdjacentHTML('afterbegin', UI);
 
-    });
+    })
+    .listen('ReviewNotifycation', (e) => {
+        let html = document.querySelector('#notify-list');
+        let thongbao = document.querySelector('#notify-list-count');
+        let count = parseInt(thongbao.dataset.data, 10) || 0;
+        count += 1;
 
+        // Cập nhật số lượng thông báo
+        thongbao.innerText = count <= 9 ? '0' + count : count;
+        thongbao.dataset.data = count;
+
+        let UI = `
+            <div>
+                <a class="dropdown-item border-bottom py-2" href="${e.url}">
+                    <div class="d-flex align-items-center gap-3">
+                        <div class="">
+                            <img src="${e.avatar}" class="rounded-circle"
+                                width="45" height="45" alt="">
+                        </div>
+                        <div class="">
+                            <h5 class="notify-title">${ e.title}</h5>
+                            <p class="mb-0 notify-desc">${ e.message}</p>
+                            <p class="mb-0 notify-time">${e.time}</p>
+                        </div>
+                        <div class="notify-close position-absolute end-0 me-3">
+                            <i class="material-icons-outlined fs-6">close</i>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        `;
+
+        // Thêm thông báo mới vào đầu danh sách
+        html.insertAdjacentHTML('afterbegin', UI);
+    });

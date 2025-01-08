@@ -154,18 +154,10 @@
     <link rel="stylesheet"
         href="{{ asset('theme/admin/assets/npm/select2-bootstrap-5/dist/select2-bootstrap-5-theme.min.css') }}">
     <link rel="stylesheet" href="{{ asset('theme/admin/assets/plugins/notifications/css/lobibox.min.css') }}">
-    {{-- <link href="{{ asset('theme/admin/assets/plugins/Drag-And-Drop/dist/imageuploadify.min.css') }}" rel="stylesheet"> --}}
-    {{-- <link href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet"> --}}
-
+    <x-head.tinymce-config/>
 @endsection
 @section('js_new')
-    <script src="https://cdn.ckeditor.com/4.22.1/full/ckeditor.js"></script>
-    {{-- <script src="{{ asset('theme/admin/assets/plugins/Drag-And-Drop/dist/imageuploadify.min.js') }}"></script> --}}
     <script>
-        CKEDITOR.replace('content', {
-            height: 100
-        });
-        CKEDITOR.replace('content1');
         let categories = @json($categories);
         let attributeValues = @json($attributeValues);
         let routePost = "{{ route('seller.products.store') }}"

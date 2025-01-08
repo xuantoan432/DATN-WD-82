@@ -8,7 +8,7 @@
                     <div class="currentpass form-item position-relative">
                         <label for="currentpass" class="form-label">Mật khẩu hiện tại</label>
                         <div class="input-group">
-                            <input type="password" name="current_password" class="form-control"
+                            <input type="password" name="current_password" class="form-control mt-0"
                                    id="currentpass" placeholder="******">
                             <button type="button" class="input-group-text "
                                     onclick="togglePassword('currentpass')">👁️</button>
@@ -21,7 +21,7 @@
                     <div class="password form-item">
                         <label for="pass" class="form-label">Mật khẩu mới</label>
                         <div class="input-group">
-                            <input type="password" name="new_password" class="form-control"
+                            <input type="password" name="new_password" class="form-control mt-0"
                                    id="pass" placeholder="******" >
                             <button type="button" class="input-group-text"
                                     onclick="togglePassword('pass')">👁️</button>
@@ -35,7 +35,7 @@
                         <label for="repass" class="form-label">Xác nhận mật khẩu mới</label>
                         <div class="input-group">
                             <input type="password" name="new_password_confirmation"
-                                   class="form-control" id="repass" placeholder="******">
+                                   class="form-control mt-0" id="repass" placeholder="******">
                             <button type="button" class="input-group-text"
                                     onclick="togglePassword('repass')">👁️</button>
                         </div>

@@ -1,3 +1,4 @@
+@props(['review', 'reviews', 'isChild' => false])
 <div class="wrapper">
     <div class="wrapper-aurthor">
         <div class="wrapper-info">
@@ -16,18 +17,22 @@
                 <p>{{ \Carbon\Carbon::parse($review->created_at)->format('d/m/Y') }}</p>
             </div>
         </div>
-        <div class="ratings">
-            <span class="text-warning">
-                @for ($i = 0; $i < 5; $i++)
-                    @if ($i < $review->star )
-                        <i class="fa-solid fa-star"></i>
-                    @else
-                        <i class="fa-regular fa-star"></i>
-                    @endif
-                @endfor
-            </span>
-            <span>({{ $review->star }}.0)</span>
-        </div>
+
+        <!-- Chỉ hiển thị ratings nếu không phải bình luận con -->
+        @if(!isset($isChild) || !$isChild)
+            <div class="ratings">
+                <span class="text-warning">
+                    @for ($i = 0; $i < 5; $i++)
+                        @if ($i < $review->star )
+                            <i class="fa-solid fa-star"></i>
+                        @else
+                            <i class="fa-regular fa-star"></i>
+                        @endif
+                    @endfor
+                </span>
+                <span>({{ $review->star }}.0)</span>
+            </div>
+        @endif
     </div>
     <div class="wrapper-description">
         <p class="wrapper-details">{{ $review->content }}</p>
@@ -37,7 +42,8 @@
     @if(isset($reviews[$review->id]))
         <div class="nested-comments">
             @foreach($reviews[$review->id] as $childReview)
-                <x-comment :review="$childReview" :reviews="$reviews"/>
+                <!-- Đặt biến $isChild = true cho bình luận con -->
+                <x-comment :review="$childReview" :reviews="$reviews" :isChild="true"/>
             @endforeach
         </div>
     @endif

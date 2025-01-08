@@ -28,26 +28,26 @@
             </a>
             <ul>
                 <li>
-                    <a href="{{ route('admin.category.index') }}"><i class="material-icons-outlined">arrow_right</i>Danh
-                        mục</a>
+                    <a href="{{ route('admin.category.index') }}">
+                        <i class="material-icons-outlined">arrow_right</i>
+                        Danh mục
+                    </a>
                 </li>
 
-
-                <li><a href="{{ route('admin.roles.index') }}"><i class="material-icons-outlined">arrow_right</i>Phân
-                        quyền</a>
-
-                <li><a href="{{ route('admin.tags.index') }}"><i class="material-icons-outlined">arrow_right</i>Thẻ</a>
-
                 <li>
-                    <a href="{{ route('admin.posts.index') }}"><i class="material-icons-outlined">arrow_right</i>Bài viết
-                        </a>
+                    <a href="{{ route('admin.roles.index') }}">
+                        <i class="material-icons-outlined">arrow_right</i>
+                        Phân quyền
+                    </a>
                 </li>
+
                 <li>
-                    <a href="{{ route('admin.vouchers.index') }}"><i class="material-icons-outlined">arrow_right</i>Mã giảm giá
-                <li>
-                    <a href="{{ route('admin.seller-approval') }}"><i class="material-icons-outlined">arrow_right</i>Xác thực
-                        </a>
+                    <a href="{{ route('admin.vouchers.index') }}">
+                        <i class="material-icons-outlined">arrow_right</i>
+                        Mã giảm giá
+                    </a>
                 </li>
+
             </ul>
         </li>
         <li>
@@ -70,9 +70,31 @@
             </a>
             <ul>
                 <li><a href="{{ route('admin.phe-duyet.index') }}"><i class="material-icons-outlined">task</i>Sản Phẩm </a> </li>
-                <li><a href="javascript:;"><i class="material-icons-outlined">badge</i>Người Bán Hàng</a> </li>
-              </ul>
+                <li><a href="{{ route('admin.seller-approval') }}"><i class="material-icons-outlined">badge</i>Người Bán Hàng</a> </li>
+            </ul>
         </li>
+        <li>
+            <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon"><i class="material-icons-outlined">fact_check</i>
+                </div>
+                <div class="menu-title">Bài viết</div>
+            </a>
+            <ul>
+                <li>
+                    <a href="{{ route('admin.tags.index') }}">
+                        <i class="material-icons-outlined">arrow_right</i>
+                        Thẻ
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('admin.posts.index') }}">
+                        <i class="material-icons-outlined">arrow_right</i>
+                        Bài viết
+                    </a>
+                </li>
+            </ul>
+        </li>
+
     </ul>
 
     <!--end navigation-->

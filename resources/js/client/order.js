@@ -1,58 +1,17 @@
 
 $(document).ready(function() {
-    async function displayFullAddress(addressDefault) {
+    async function displayFullAddress(addressDefault, line_address) {
         try {
-            const province = await getLocation('p', addressDefault.province_id);
-            const district = await getLocation('d', addressDefault.district_id);
-            const ward = await getLocation('w', addressDefault.ward_id);
             $('input[name="address_id"]').val(addressDefault.id)
-            const fullAddress = getFullAddress(addressDefault.address_line, ward.name, district.name, province.name);
-            $('.address-line').html(fullAddress);
+            $('.address-line').html(line_address);
             $('.address-info .name').html(`${addressDefault.details.full_name} | ${addressDefault.details.phone_number}`);
         } catch (error) {
             console.error(error);
         }
     }
 
-    displayFullAddress(addressDefault);
+    displayFullAddress(addressDefault, line_address);
 
-    async function getAllFullAddresses(addressArray) {
-        try {
-            const addressPromises = addressArray.map(async (address, index) => {
-                const province = await getLocation('p', address.province_id);
-                const district = await getLocation('d', address.district_id);
-                const ward = await getLocation('w', address.ward_id);
-
-                const fullAddress = getFullAddress(address.address_line, ward.name, district.name, province.name);
-
-                const defaultLabel = address.id === addressDefault.id ? `<span class="default-label address-deafault">Mặc định</span>` : '';
-
-                return `<div class="address-item row">
-                        <div class="col-9">
-                        <div class="d-flex">
-                            <input type="radio" name="address" id="address${index + 1}" value="${address.id}" ${ defaultLabel != '' ? 'checked' : ''}>
-                            <label for="address${index + 1}"><strong>${address.details.full_name}</strong> ${address.details.phone_number}  <p class="mb-3">${fullAddress}</p></label>
-                        </div>
-                            ${defaultLabel}
-                        </div>
-                        <div class="address-actions col-3">
-                            <a href="#" onclick="editAddress(${address.id})">Cập nhật</a>
-                        </div>
-                    </div>`;
-            });
-
-            const fullAddressesHTML = await Promise.all(addressPromises);
-            const html = fullAddressesHTML.join('');
-            return html;
-        } catch (error) {
-            console.error(error);
-        }
-    }
-
-
-    getAllFullAddresses(allAddresses).then(fullAddresses => {
-        $('#all-address').append(fullAddresses)
-    })
 
     $('.confirm-button').on('click', function (){
         const addressRadios = document.querySelectorAll('#all-address input[name="address"]');
@@ -61,7 +20,10 @@ $(document).ready(function() {
             const selectedAddress = allAddresses.find(address => address.id == selectedRadio.value);
 
             if (selectedAddress) {
-                displayFullAddress(selectedAddress);
+                const addressElement = selectedRadio.closest('.address-item');
+                const fullAddressText = addressElement.querySelector('p.mb-3').innerText;
+
+                displayFullAddress(selectedAddress, fullAddressText);
                 const modalElement = document.getElementById('exampleModal');
                 const modal = bootstrap.Modal.getInstance(modalElement) || new bootstrap.Modal(modalElement);
                 modal.hide();
@@ -178,12 +140,13 @@ $(document).ready(function() {
             </form>
         `)
         $.ajax({
-            url: 'https://provinces.open-api.vn/api/p/',
+            url: '/api/p/',
             method: 'GET',
-            success: function(data) {
-                $('#province').append(data.map(function(province) {
-                    return `<option value="${province.code}">${province.name}</option>`;
-                }));
+            success: function(response) {
+                const provinces = response.data
+                $('#province').append(provinces.map(function(province) {
+                    return `<option value="${province.id}">${province.name}</option>`;
+                }).join(''));
             },
             error: function() {
                 alert('Không thể tải danh sách Tỉnh/Thành phố.');
@@ -199,11 +162,12 @@ $(document).ready(function() {
 
             if (selectedValue) {
                 $.ajax({
-                    url: `https://provinces.open-api.vn/api/p/${selectedValue}?depth=2`,
+                    url: `/api/p/${selectedValue}`,
                     method: 'GET',
-                    success: function(data) {
-                        $('#district').append(data.districts.map(function(district) {
-                            return `<option value="${district.code}">${district.name}</option>`;
+                    success: function(response) {
+                        const districts = response.data
+                        $('#district').append(districts.map(function(district) {
+                            return `<option value="${district.id}">${district.name}</option>`;
                         }));
                     },
                     error: function() {
@@ -220,11 +184,12 @@ $(document).ready(function() {
 
             if (selectedValue) {
                 $.ajax({
-                    url: `https://provinces.open-api.vn/api/d/${selectedValue}?depth=2`,
+                    url: `/api/d/${selectedValue}`,
                     method: 'GET',
-                    success: function(data) {
-                        $('#ward').append(data.wards.map(function(ward) {
-                            return `<option value="${ward.code}">${ward.name}</option>`;
+                    success: function(response) {
+                        const wards = response.data
+                        $('#ward').append(wards.map(function(ward) {
+                            return `<option value="${ward.id}">${ward.name}</option>`;
                         }));
                     },
                     error: function() {
@@ -246,6 +211,7 @@ $(document).ready(function() {
             district: $('#district').val(),
             ward: $('#ward').val(),
             address_line: $('#useraddress').val(),
+            user_id: $('input[name="user_id"]').val()
         };
 
         // Gửi dữ liệu qua AJAX
@@ -258,7 +224,7 @@ $(document).ready(function() {
             },
             success: function (response) {
                 $('#exampleModal').modal('hide');
-                displayFullAddress(response.data)
+                displayFullAddress(response.data, response.address_line)
             },
             error: function (xhr) {
 
@@ -269,25 +235,8 @@ $(document).ready(function() {
     });
 });
 
-const getLocation = (type, id) => {
-    return new Promise((resolve, reject) => {
-        $.ajax({
-            url: `https://provinces.open-api.vn/api/${type}/${id}?depth=2`,
-            method: 'GET',
-            success: function (data) {
-                resolve(data);
-            },
-            error: function () {
-                reject(`Không thể tải danh sách ${type === 'p' ? 'Tỉnh/Thành phố' : type === 'd' ? 'Quận/Huyện' : 'Xã/Phường'}.`);
-            }
-        });
-    });
-};
 
-const getFullAddress = (addressInline, ward, district, province) => {
 
-    return  `${addressInline},${ward},${district},${province}`;
-}
 
 
 
