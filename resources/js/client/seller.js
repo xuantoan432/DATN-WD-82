@@ -5,12 +5,13 @@ var j = jQuery.noConflict();
 j(document).ready(function() {
 
     $.ajax({
-        url: 'https://provinces.open-api.vn/api/p/',
+        url: '/api/p/',
         method: 'GET',
-        success: function(data) {
-            $('#province').append(data.map(function(province) {
-                return `<option value="${province.code}">${province.name}</option>`;
-            }));
+        success: function(response) {
+            const provinces = response.data
+            $('#province').append(provinces.map(function(province) {
+                return `<option value="${province.id}">${province.name}</option>`;
+            }).join(''));
         },
         error: function() {
             alert('Không thể tải danh sách Tỉnh/Thành phố.');
@@ -29,11 +30,12 @@ j('#province').on( 'change' , function () {
 
         if (selectedValue) {
             $.ajax({
-                url: `https://provinces.open-api.vn/api/p/${selectedValue}?depth=2`,
+                url: `/api/p/${selectedValue}`,
                 method: 'GET',
-                success: function(data) {
-                    $('#district').append(data.districts.map(function(district) {
-                        return `<option value="${district.code}">${district.name}</option>`;
+                success: function(response) {
+                    const districts = response.data
+                    $('#district').append(districts.map(function(district) {
+                        return `<option value="${district.id}">${district.name}</option>`;
                     }));
                 },
                 error: function() {
@@ -50,11 +52,12 @@ j('#district').on( 'change' , function () {
 
     if (selectedValue) {
         $.ajax({
-            url: `https://provinces.open-api.vn/api/d/${selectedValue}?depth=2`,
+            url: `/api/d/${selectedValue}`,
             method: 'GET',
-            success: function(data) {
-                $('#ward').append(data.wards.map(function(ward) {
-                    return `<option value="${ward.code}">${ward.name}</option>`;
+            success: function(response) {
+                const wards = response.data
+                $('#ward').append(wards.map(function(ward) {
+                    return `<option value="${ward.id}">${ward.name}</option>`;
                 }));
             },
             error: function() {

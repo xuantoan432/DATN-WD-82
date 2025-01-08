@@ -163,7 +163,7 @@
                                     <p class="mb-0 product-category">Tên người nhận: {{ $user->details->full_name }}</p>
                                     <a href="tel:{{ $user->details->phone_number }}" class="mb-0 product-category"> Số
                                         điện thoại: {{ $user->details->phone_number }}</a>
-                                    <p class="mb-0 product-category">Địa chỉ: {{ $user->getFullAddress() }}</p>
+                                    <p class="mb-0 product-category">Địa chỉ: {{ $user->full_address }}</p>
                                 </div>
                             </div>
                         </div>

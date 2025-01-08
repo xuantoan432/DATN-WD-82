@@ -28,13 +28,20 @@ class UserController extends Controller
                return view('client.profile.components.payment-method');
            }
            case 'order':{
-               return view('client.profile.components.order');
+               $user =  Auth::user();
+               $user->load('orders.orderDetails','addresses.province', 'addresses.ward', 'addresses.district');
+               $orders = $user->orders()->orderByDesc('id')->get();
+               return view('client.profile.components.order', compact('orders'));
            }
            case 'address':{
                $user =  Auth::user();
-               $user->load('addresses');
+               $user->load('addresses.province', 'addresses.ward', 'addresses.district');
+               $line_addresses = [];
                $addresses = $user->addresses;
-               return view('client.profile.components.address', compact('addresses'));
+               foreach ($addresses as $address){
+                   $line_addresses[] = $address->full_address;
+               }
+               return view('client.profile.components.address', compact('addresses', 'line_addresses'));
            }
            case 'rating':{
                return view('client.profile.components.rating');

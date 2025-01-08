@@ -3,6 +3,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Kjmtrue\VietnamZone\Models\District;
+use Kjmtrue\VietnamZone\Models\Province;
 
 return new class extends Migration
 {
@@ -14,9 +16,9 @@ return new class extends Migration
         Schema::create('addresses', function (Blueprint $table) {
             $table->id();
             $table->string('address_line');
-            $table->unsignedBigInteger('province_id');
-            $table->unsignedBigInteger('ward_id');
-            $table->unsignedBigInteger('district_id');
+            $table->foreignIdFor(Province::class)->constrained()->onDelete('cascade');
+            $table->foreignIdFor(Ward::class)->constrained()->onDelete('cascade');
+            $table->foreignIdFor(District::class)->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -30,7 +30,7 @@
                     </div>
                 </td>
             </tr>
-            @foreach($user->orders()->orderByDesc('id')->get() as $order)
+            @foreach($orders as $order)
                 <tr class="table-row ticket-row">
                     <td class="table-wrapper wrapper-total">
                         <div class="table-wrapper-center">
@@ -49,7 +49,7 @@
                     </td>
                     <td class="table-wrapper wrapper-total">
                         <div class="table-wrapper-center">
-                            <h5 class="heading">{{ $order->address->getFullAddress() }}</h5>
+                            <h5 class="heading">{{ $order->address->full_address }}</h5>
                         </div>
                     </td>
                     <td class="table-wrapper wrapper-total">

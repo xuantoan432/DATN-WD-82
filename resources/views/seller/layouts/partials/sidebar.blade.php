@@ -45,6 +45,25 @@
                 </li>
             </ul>
         </li>
+        <li>
+            <a href="#" class="has-arrow">
+                <div class="parent-icon"><i class="material-icons-outlined">shopping_bag</i>
+                </div>
+                <div class="menu-title">Đơn hàng</div>
+            </a>
+            <ul>
+                <li><a href="{{ route('seller.orders.index') }}"><i
+                            class="material-icons-outlined">arrow_right</i>Danh sách đơn hàng </a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a href="{{ route('seller.reviews.index') }}">
+                <div class="parent-icon"><i class="material-icons-outlined">star</i>
+                </div>
+                <div class="menu-title">Đánh giá</div>
+            </a>
+        </li>
     </ul>
     <!--end navigation-->
 </div>

@@ -121,7 +121,7 @@ class User extends Authenticatable
 
     public function defaultAddress()
     {
-        return $this->belongsTo(Address::class, 'default_address_id')->with('details');
+        return $this->belongsTo(Address::class, 'default_address_id')->with(['details','province','ward','district']);
     }
 
     public function userVouchers()

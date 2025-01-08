@@ -27,4 +27,9 @@ class Review extends Model
         return $this->belongsTo(Product::class);
     }
 
+    public function notifications()
+    {
+        return $this->morphMany(Notification::class, 'notifiable');
+    }
+
 }

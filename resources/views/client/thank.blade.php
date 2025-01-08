@@ -44,7 +44,7 @@
                     </p>
                     <p>
                         <span class="d-inline-block">Địa chỉ:</span>
-                        <span class="order-customer-info-meta address-line"></span>
+                        <span class="order-customer-info-meta">{{ $order->address->full_address }}</span>
                     </p>
                     <p>
                         <span class="d-inline-block">Phương thức thanh toán:</span>
@@ -77,7 +77,7 @@
                                     data-bs-target="{{ '#cart-item-' }}"
                                     href="javascript:void(0);"
                                 >
-                                    Thoong tin đơn hàng #234324324
+                                    Thông tin đơn hàng #234324324
                                     <i
                                         class="fa fa-angle-down"
                                         aria-hidden="true"
@@ -868,45 +868,6 @@
             height: 34.5rem;
         }
     </style>
-@endsection
-@section('js')
-    <script>
-        const getLocation = (type, id) => {
-            return new Promise((resolve, reject) => {
-                $.ajax({
-                    url: `https://provinces.open-api.vn/api/${type}/${id}?depth=2`,
-                    method: 'GET',
-                    success: function (data) {
-                        resolve(data);
-                    },
-                    error: function () {
-                        reject(`Không thể tải danh sách ${type === 'p' ? 'Tỉnh/Thành phố' : type === 'd' ? 'Quận/Huyện' : 'Xã/Phường'}.`);
-                    }
-                });
-            });
-        };
-
-        const getFullAddress = (addressInline, ward, district, province) => {
-
-            return `${addressInline},${ward},${district},${province}`;
-        }
-        const address = @json( $order->address);
-
-        async function displayFullAddress(addressDefault) {
-            try {
-                const province = await getLocation('p', addressDefault.province_id);
-                const district = await getLocation('d', addressDefault.district_id);
-                const ward = await getLocation('w', addressDefault.ward_id);
-                $('input[name="address_id"]').val(addressDefault.id)
-                const fullAddress = getFullAddress(addressDefault.address_line, ward.name, district.name, province.name);
-                $('.address-line').html(fullAddress);
-            } catch (error) {
-                console.error(error);
-            }
-        }
-
-        displayFullAddress(address);
-    </script>
 @endsection
 
 

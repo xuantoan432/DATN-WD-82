@@ -21,7 +21,7 @@ class OrderController extends Controller
     {
         $orderDetail->load(['order.address.details', 'order.user','notifications']);
         $orderDetail->notifications()->update(['status' => 'read']);
-        $user = $orderDetail->order->address;
+        $user = $orderDetail->order->address->load('province', 'ward', 'district');
         return view('seller.order.edit', compact('orderDetail', 'user'));
     }
 

@@ -27,10 +27,9 @@
                                 <th scope="col">ID</th>
                                 <th scope="col">Tên người dùng</th>
 
-                                <th scope="col">Tên người bán</th>
+                                <th scope="col">Tên cửa haàng</th>
                                 <th scope="col">Email</th>
-                                <th scope="col">Description</th>
-
+                                <th scope="col">Địa chỉ</th>
                                 <th scope="col">Actions</th>
                             </tr>
                         </thead>
@@ -43,7 +42,7 @@
 
                                     <td>{{ $se->store_name }}</td>
                                     <td>{{ $se->store_email }}</td>
-                                    <td>{{ $se->store_description }}</td>
+                                    <td>{{ $se->address[0]->getFullAddress() }}</td>
                                     <td>
                                         <form action="{{ route('admin.seller-approve', $se->id) }}" method="POST" style="display:inline;">
                                             @csrf

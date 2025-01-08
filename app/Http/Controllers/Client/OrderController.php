@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Client;
 
 use App\Events\EventNotification;
 use App\Events\OrderDetailNotification;
+use App\Events\ReviewNotifycation;
 use App\Http\Controllers\Controller;
 use App\Models\Cart;
 use App\Models\Order;
@@ -210,8 +211,14 @@ class OrderController extends Controller
         if ($request->hasFile('image')){
             $data['image'] = \Storage::put('rates', $request->file('image'));
         }
-        Review::query()->create($data);
-
+        $review = Review::query()->create($data);
+        $review->load('product');
+        $notification =  $review->notifications()->create([
+            'title' => 'Có đánh giá mới',
+            'message' => $user->name . 'đã đánh giá sản phẩm' ,
+            'receiver_type' => 'seller-' . $review->product->seller_id,
+        ]);
+        broadcast(new ReviewNotifycation( $notification , $review));
         return back()->with('success', 'Cảm ơn bạn đã đánh giá!');
     }
 
