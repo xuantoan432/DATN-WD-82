@@ -57,11 +57,12 @@ class PostController extends Controller
 
     public function show($id)
     {
-        $post = Post::with(['comments' => function ($query) {
+        $postDetail = Post::with(['comments' => function ($query) {
             $query->where('parent_id', 0)->with('replies.user', 'user');
         }])->findOrFail(id: $id);
+        $comments = Comment::with(['replies', 'user'])->where('post_id', $postDetail->id)->get();
 
-        return view('client.blogs-details', compact('post'));
+        return view('client.blogs-details', compact('post','comments'));
     }
     public function store(Request $request)
     {

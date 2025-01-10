@@ -1,8 +1,6 @@
 @extends('admin.layouts.master')
 
-@section('css_new')
-<!-- Add your specific CSS here -->
-@endsection
+
 
 @section('content')
 <div class="main-wrapper">
@@ -62,9 +60,7 @@
         </div>
     </div>
     @section('js_new')
-    {{-- <script>
-        let route = "{{route('admin.admin.seller-app')}}" ;
-    </script> --}}
+
 
     @vite('resources/js/public.js')
 

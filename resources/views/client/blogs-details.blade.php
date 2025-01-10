@@ -154,75 +154,36 @@
                             </div>
 
                             <div class="review-form">
+      
                                 <form action="{{ route('posts.comments', $postDetail->id) }}" method="post">
                                     @csrf
-                                    <h5 class="comment-title">Leave a comment</h5>
-
                                     <div class="review-textarea">
-                                        <label for="floatingTextarea">Comment*</label>
-                                        <textarea class="form-control" name="content" placeholder="Write something..........." id="floatingTextarea"
-                                            rows="8"></textarea>
+                                    <label for="floatingTextarea">Bình luận*</label>
+                                    <textarea class="form-control" name="content" placeholder="Viết cái gì đó..........." id="floatingTextarea"
+                                        rows="8"></textarea>
                                     </div>
                                     <div class="review-btn">
                                         <input type="hidden" name="post_id" value="{{ $postDetail->id }}">
-                                        <button class="shop-btn" type="submit">Add Comment</button>
+                                        <button class="shop-btn" type="submit">Gửi</button>
                                     </div>
                                 </form>
 
-                                @foreach ($postDetail->comments as $comment)
-                                    <div class="card mb-3">
-                                        <div class="card-body">
-                                            <div class="col-md-4">
-                                                <img class="img-fluid rounded-start"
-                                                    src="{{ asset('theme/client/assets/images/homepage-one/aurthor-img-1.webp') }}"
-                                                    alt="aurthor-img">
-                                            </div>
 
-                                            <div class="col-md-8">
-                                                <div class="card-body">
-                                                    <h6 class="card-title">
-                                                        {{ $comment->user ? $comment->user->name : 'Khách' }}</h6>
-                                                    <p>{{ $comment->content }}</p>
-                                                </div>
-                                            </div>
-
-
-
-                                            <button class="btn btn-link btn-sm"
-                                                onclick="showReplyForm({{ $comment->id }})">Phản hồi</button>
-                                            <small
-                                                class=" btn btn-link btn-sm ">{{ $comment->created_at->format('d/m/Y H:i') }}</small>
-
-
-                                            <div id="reply-form-{{ $comment->id }}" class="mt-2" style="display: none;">
-                                                <form action="{{ route('posts.comments') }}" method="POST">
-                                                    @csrf
-                                                    <input type="hidden" name="post_id" value="{{ $postDetail->id }}">
-                                                    <input type="hidden" name="parent_id" value="{{ $comment->id }}">
-                                                    <div class="form-group">
-                                                        <textarea name="content" class="form-control" rows="2" placeholder="Viết phản hồi..." required></textarea>
-                                                    </div>
-                                                    <button type="submit" class="btn btn-primary btn-sm">Gửi</button>
-                                                </form>
-                                            </div>
-
-                                            @foreach ($comment->replies as $reply)
-                                                <div class="" style="margin-left: 20px;">
-                                                    <div class="card-body">
-                                                        <h6>{{ $reply->user ? $reply->user->name : 'Khách' }}</h6>
-                                                        <p>{{ $reply->content }}</p>
-                                                    </div>
-                                                </div>
-                                            @endforeach
-                                        </div>
-                                    </div>
+                                @foreach ($postDetail->comments->where('parent_id', 0) as $comment)
+                                    @include('client.layouts.patials.comment', [
+                                        'comment' => $comment,
+                                        'post' => $postDetail,
+                                    ])
                                 @endforeach
-
 
                                 <script>
                                     function showReplyForm(commentId) {
-                                        const form = document.getElementById(`reply-form-${commentId}`);
-                                        form.style.display = form.style.display === 'none' ? 'block' : 'none';
+                                        const replyForm = document.getElementById(`reply-form-${commentId}`);
+                                        if (replyForm.style.display === "none") {
+                                            replyForm.style.display = "block";
+                                        } else {
+                                            replyForm.style.display = "none";
+                                        }
                                     }
                                 </script>
 
@@ -243,9 +204,8 @@
                                             <form action="{{ route('posts.search') }}" method="get">
                                                 <input type="text" name="key" placeholder="Tìm kiếm bài viết">
                                                 <span>
-                                                    <svg width="25" height="25" viewBox="0 0 25 25"
-                                                        fill="#AE1C9A" xmlns="http://www.w3.org/2000/svg"
-                                                        class="fill-current">
+                                                    <svg width="25" height="25" viewBox="0 0 25 25" fill="#AE1C9A"
+                                                        xmlns="http://www.w3.org/2000/svg" class="fill-current">
                                                         <path
                                                             d="M0 9.59954C0.0526938 9.17184 0.105388 8.74414 0.184428 8.34317C0.526938 6.44524 1.34369 4.81463 2.60834 3.39787C4.08377 1.74052 5.92805 0.644534 8.0885 0.216832C10.6178 -0.291064 13.0154 0.0831754 15.2549 1.44648C17.7842 2.99689 19.3913 5.24233 19.9973 8.15605C20.5242 10.6421 20.129 13.0212 18.9171 15.2666C18.68 15.6943 18.68 15.6943 19.0225 16.0418C20.7877 17.8328 22.553 19.6238 24.3182 21.4148C24.8978 22.0029 25.1349 22.6712 24.9242 23.4731C24.529 24.9968 22.6583 25.5582 21.4727 24.3285C20.4715 23.286 19.4704 22.2969 18.4428 21.2544C17.6261 20.4257 16.8357 19.6238 16.0189 18.7951C15.9662 18.7417 15.9135 18.6882 15.8872 18.6615C15.2549 18.9823 14.6752 19.3565 14.0429 19.6238C11.3292 20.7733 8.58909 20.7465 5.90171 19.5169C3.873 18.5813 2.34487 17.1111 1.26465 15.1597C0.579632 13.9033 0.158081 12.5667 0.0526938 11.1232C0.0526938 11.043 0.0263469 10.9628 0 10.8826C0 10.4817 0 10.0272 0 9.59954ZM3.26702 10.2678C3.26702 14.0904 6.34961 17.1913 10.1172 17.1913C13.8848 17.1645 16.9147 14.0904 16.9411 10.2678C16.9411 6.47197 13.8585 3.3444 10.1172 3.3444C6.32326 3.3444 3.26702 6.44524 3.26702 10.2678Z">
                                                         </path>
