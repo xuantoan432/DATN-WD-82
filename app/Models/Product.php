@@ -105,4 +105,16 @@ class Product extends Model
                 break;
         }
     }
+    public function getFormattedViewsAttribute()
+    {
+        if ($this->views >= 1000000) {
+            return number_format($this->views / 1000000, 1) . 'M lượt xem';
+        }
+
+        if ($this->views >= 1000) {
+            return number_format($this->views / 1000, 1) . 'k lượt xem';
+        }
+
+        return $this->views . ' lượt xem';
+    }
 }
