@@ -52,19 +52,28 @@ class User extends Authenticatable
         'is_default' => 'boolean',
     ];
 
+    public function defaultAddress()
+    {
+        return $this->belongsTo(Address::class, 'default_address_id');
+    }
+
     public function addresses()
     {
-        return $this->belongsToMany(Address::class, 'user_address')->with('details');
+        return $this->belongsToMany(Address::class, 'user_address', 'user_id', 'address_id');
+    }
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class, 'user_role', 'user_id', 'role_id');
     }
 
     public function seller()
     {
         return $this->hasOne(Seller::class);
     }
-    public function roles()
-    {
-        return $this->belongsToMany(Role::class, 'user_role', 'user_id', 'role_id');
-    }
+    // public function roles()
+    // {
+    //     return $this->belongsToMany(Role::class, 'user_role', 'user_id', 'role_id');
+    // }
 
     public function reviews()
     {
@@ -100,7 +109,8 @@ class User extends Authenticatable
         return $this->hasMany(Voucher::class);
     }
 
-    public function cart(){
+    public function cart()
+    {
         return $this->hasOne(Cart::class);
     }
 
@@ -118,12 +128,6 @@ class User extends Authenticatable
     {
         return $this->morphMany(Notification::class, 'notifiable');
     }
-
-    public function defaultAddress()
-    {
-        return $this->belongsTo(Address::class, 'default_address_id')->with(['details','province','ward','district']);
-    }
-
     public function userVouchers()
     {
         return $this->belongsToMany(Voucher::class, 'user_voucher')
