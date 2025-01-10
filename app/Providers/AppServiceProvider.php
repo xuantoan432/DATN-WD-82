@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Category;
+use App\Models\Chat;
 use App\Models\Notification;
 use App\Models\OrderDetail;
 use App\Models\Post;
@@ -69,6 +70,15 @@ class AppServiceProvider extends ServiceProvider
 
             $view->with('notificationOrders', $notificationOrders);
             $view->with('notifications', $notifications);
+        });
+        View::composer('seller.chat.sidebar', function ($view) {
+            $senderUsers = Chat::query()
+                ->where('user_receive_id', auth()->id()) // Lọc những tin nhắn mà bạn là người nhận
+                ->select('user_send_id') // Chỉ lấy cột user_send_id để đảm bảo hiệu năng
+                ->distinct() // Chỉ lấy các giá trị duy nhất
+                ->with('sender:id,name,avatar') // Lấy thông tin người gửi qua quan hệ sender
+                ->get();
+            $view->with('senderUsers', $senderUsers);
         });
     }
 }

@@ -1301,7 +1301,7 @@ form select.error:focus {
 
 .chat-list {
   position: relative;
-  height: 300px;
+  height: 100%;
 }
 .chat-list .chat-user-online:before {
   content: "";

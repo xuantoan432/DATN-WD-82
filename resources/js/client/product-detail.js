@@ -1,4 +1,3 @@
-
 const totalAttributes = $('.attribute-options').length;
 const defaultImage = $('.product-top .swiper-slide img').attr('src');
 const swiperBottom = new Swiper('.product-bottom', {
@@ -36,7 +35,7 @@ $(document).ready(function () {
 
         if (Object.keys(selectedValues).length === totalAttributes) {
             $.ajax({
-                url: PATH_ROOT + 'api/check-variant',
+                url: '/api/check-variant',
                 type: 'GET',
                 data: {
                     selectedAttributes: selectedValues,
@@ -72,6 +71,7 @@ $(document).ready(function () {
                     }
                 },
                 error: function(xhr) {
+                    console.log(xhr)
                     toastr.warning("Không có sản phẩm với biến thể này", "Thông báo!");
                     $.each(selectedValues, function(attrKey, attrId) {
                         let $radioInput = $(`.attribute-options input[type="radio"][value="${attrKey}-${attrId}"]`);

@@ -1,6 +1,7 @@
 <?php
 
 
+use App\Http\Controllers\API\ChatPrivateController;
 use App\Http\Controllers\API\ImageUploadController;
 use App\Http\Controllers\API\ProductApproveController;
 
@@ -45,4 +46,7 @@ Route::post('tinyMCE/upload', [ImageUploadController::class, 'upload']);
 Route::get('p', [AddressController::class, 'getAllProvinces']);
 Route::get('p/{province_id}', [AddressController::class, 'getDistrictByProvince']);
 Route::get('d/{district_id}', [AddressController::class, 'getWardByDistrict']);
+
+Route::post('/post-message-private/{userId}', [ChatPrivateController::class, 'messagePrivate'])->name('messagePrivate');
+Route::get('/list-message-private', [ChatPrivateController::class, 'listMessagePrivate'])->name('listMessagePrivate');
 

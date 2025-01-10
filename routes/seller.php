@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Seller\ChatController;
 use App\Http\Controllers\Seller\ProductController;
 use App\Http\Controllers\Seller\AttributeController;
 use App\Http\Controllers\Seller\AttributeValueController;
@@ -37,4 +38,6 @@ Route::prefix('/seller')->as('seller.')->middleware('role:2')->group(function ()
         Route::get('{orderDetail}/edit', [OrderController::class, 'edit'])->name('edit');
         Route::put('{orderDetail}/update', [OrderController::class, 'update'])->name('update');
     });
+    Route::get('chats', [ChatController::class, 'index'])->name('chats');
+    Route::get('chatPriavte/{userID}', [ChatController::class, 'chatPriavte'])->name('chatPriavte');
 });

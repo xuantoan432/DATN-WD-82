@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('address_line');
             $table->foreignIdFor(Province::class)->constrained()->onDelete('cascade');
-            $table->foreignIdFor(Ward::class)->constrained()->onDelete('cascade');
+            $table->foreignIdFor(\Kjmtrue\VietnamZone\Models\Ward::class)->constrained()->onDelete('cascade');
             $table->foreignIdFor(District::class)->constrained()->onDelete('cascade');
             $table->timestamps();
         });
