@@ -71,7 +71,7 @@ class PostController extends Controller
             'content' => 'required|string',
             'parent_id' => 'nullable|exists:comments,id',
         ]);
-        $parent_id = $request->input('parent_id') ?? 0;
+        $parent_id = $request->input('parent_id') ?? 0; 
         Comment::create([
             'post_id' => $request->post_id,
             'user_id' => auth()->id() ?: null, // Lưu user_id nếu người dùng đã đăng nhập

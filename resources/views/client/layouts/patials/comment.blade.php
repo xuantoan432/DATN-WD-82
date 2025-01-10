@@ -22,7 +22,7 @@
                                             <input type="hidden" name="parent_id" value="{{ $comment->id }}">
                                             <div class="form-group">
 
-                                                    <input type="text" class="form-control" placeholder="Bình luận">
+                                                    <input name="content" type="text" class="form-control" placeholder="Bình luận">
 
                                             </div>
                                             <button type="submit" class="btn btn-primary btn-sm mb-3">Gửi</button>
