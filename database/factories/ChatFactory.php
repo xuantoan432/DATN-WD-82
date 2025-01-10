@@ -17,8 +17,7 @@ class ChatFactory extends Factory
     public function definition(): array
     {
         return [
-            'title' => $this->faker->sentence(3),
-            'content' => $this->faker->sentence,
+            'message' => $this->faker->sentence,
             'user_send_id' => \App\Models\User::factory(),
             'user_receive_id' => \App\Models\User::factory(),
         ];

@@ -18,7 +18,7 @@ class AdminUserApprovalController extends Controller
 {
     public function index()
     {
-        $seller = Seller::with('user', 'address')->where('is_verified', false)->orderByDesc('id')->get();
+        $seller = Seller::with('user', 'address.province', 'address.ward', 'address.district')->where('is_verified', false)->orderByDesc('id')->get();
         return view('Admin.seller.verifySeller', compact('seller'));
     }
 

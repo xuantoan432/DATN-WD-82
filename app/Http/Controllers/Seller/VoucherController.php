@@ -48,7 +48,7 @@ class VoucherController extends Controller
         $voucherData['start_date'] = date("Y-m-d H:i:s", strtotime($request -> start_date));
         $voucherData['end_date'] = date("Y-m-d H:i:s", strtotime($request -> end_date));
         $voucherData['user_id'] = auth()->id();
-        Voucher::create($request->all());
+        Voucher::create($voucherData);
 
         return redirect()->route('seller.vouchers.index')->with('success', 'Thêm voucher thành công');
     }

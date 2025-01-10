@@ -40,7 +40,7 @@
 
                                     <td>{{ $se->store_name }}</td>
                                     <td>{{ $se->store_email }}</td>
-                                    {{-- <td>{{ $se->address[0]->getFullAddress() }}</td> --}}
+                                    {{-- <td>{{ $se->address[0]->full_address }}</td> --}}
                                     <td>
                                         <form action="{{ route('admin.seller-approve', $se->id) }}" method="POST" style="display:inline;">
                                             @csrf

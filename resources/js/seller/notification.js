@@ -67,3 +67,5 @@ window.Echo.private(`seller.${sellerId}`)
         // Thêm thông báo mới vào đầu danh sách
         html.insertAdjacentHTML('afterbegin', UI);
     });
+
+
