@@ -64,6 +64,13 @@
                 <div class="menu-title">Đánh giá</div>
             </a>
         </li>
+        <li>
+            <a href="{{ route('seller.chats') }}">
+                <div class="parent-icon"><i class="material-icons-outlined">messenger</i>
+                </div>
+                <div class="menu-title">Chat</div>
+            </a>
+        </li>
     </ul>
     <!--end navigation-->
 </div>

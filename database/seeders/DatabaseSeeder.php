@@ -176,9 +176,9 @@ class DatabaseSeeder extends BaseSeeder
         $addresses = [
             [
                 'address_line' => 'Xóm 1 Bắc Song',
-                'province_id' => 2,
-                'ward_id' => 745,
-                'district_id' => 26,
+                'province_id' => 1,
+                'ward_id' => 16,
+                'district_id' => 2,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
