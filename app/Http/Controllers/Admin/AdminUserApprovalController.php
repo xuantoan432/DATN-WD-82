@@ -39,7 +39,7 @@ class AdminUserApprovalController extends Controller
         event(new SellerApproved($seller->user_id));
         // $seller->notify(new SellerApplicationSubmitted());
 
-        return redirect()->back()->with('success', 'Seller approved successfully.');
+        return redirect()->back()->with('success', 'Người bán được phê duyệt thành công.');
     }
 
     // Xử lý từ chối seller

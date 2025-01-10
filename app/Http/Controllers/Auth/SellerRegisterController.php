@@ -52,13 +52,13 @@ class SellerRegisterController extends Controller
 
 
         $user = User::findOrFail($user->id);
-        if (!$user->roles()->where('role_id', 2)->exists()) {
-            $user->roles()->attach(2);
-        }
+        // if (!$user->roles()->where('role_id', 2)->exists()) {
+        //     $user->roles()->attach(2);
+        // }
         broadcast(new SellerRegistrationRequested($seller))->toOthers();
 
 
-        return redirect()->back()->with('message', 'Registration submitted. Awaiting admin approval.');
+        return redirect()->back()->with('message', 'Đăng ký đã được gửi. Đang chờ quản trị viên phê duyệt.');
 
 
     }
