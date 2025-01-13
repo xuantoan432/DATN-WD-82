@@ -46,7 +46,7 @@
                                 <h4 class="wrapper-details" style="width: 260px;">
                                     {{ $banner->banner_title }}
                                 </h4>
-                                <a href="product-sidebar.html" class="shop-btn">Shop Now
+                                <a href="{{ $banner->banner_link }}" class="shop-btn">Shop Now
                                     <span>
                                         <svg width="8" height="14" viewBox="0 0 8 14" fill="none"
                                             xmlns="http://www.w3.org/2000/svg">
@@ -297,7 +297,7 @@
                                     <h4 class="wrapper-details" style="width: 260px;">
                                         {{ $banner->banner_title }}
                                     </h4>
-                                    <a href="product-sidebar.html" class="shop-btn">Shop Now
+                                    <a href="{{ $banner->banner_link }}" class="shop-btn">Shop Now
                                         <span>
                                         <svg width="8" height="14" viewBox="0 0 8 14" fill="none"
                                              xmlns="http://www.w3.org/2000/svg">
