@@ -241,17 +241,13 @@
                 </a>
                 <hr class="dropdown-divider">
                 <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="javascript:;"><i
-                        class="material-icons-outlined">person_outline</i>Profile</a>
+                        class="material-icons-outlined">person_outline</i>Hồ sơ</a>
                 <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="javascript:;"><i
-                        class="material-icons-outlined">local_bar</i>Setting</a>
-                <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="javascript:;"><i
-                        class="material-icons-outlined">dashboard</i>Dashboard</a>
-                <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="javascript:;"><i
-                        class="material-icons-outlined">account_balance</i>Earning</a>
-                <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="javascript:;"><i
-                        class="material-icons-outlined">cloud_download</i>Downloads</a>
+                        class="material-icons-outlined">local_bar</i>Cài đặt</a>
+                <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="{{route('home.index')}}"><i
+                        class="material-icons-outlined">dashboard</i>Truy cập Website</a>
                 <hr class="dropdown-divider">
-                <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="javascript:;"><i
+                <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="{{route('logout')}}"><i
                         class="material-icons-outlined">power_settings_new</i>Logout</a>
             </div>
         </li>
