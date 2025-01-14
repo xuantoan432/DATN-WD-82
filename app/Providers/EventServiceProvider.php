@@ -2,7 +2,8 @@
 
 namespace App\Providers;
 
-
+use App\Events\VoucherSuccess;
+use App\Listeners\VoucherSuccessNotification;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -18,7 +19,9 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
-
+          VoucherSuccess::class => [
+            VoucherSuccessNotification::class
+          ]
     ];
 
     /**
