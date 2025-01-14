@@ -18,6 +18,7 @@ use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\SellerRegisterController;
 use App\Http\Controllers\Client\WishlistController;
+use App\Http\Controllers\Client\ContactController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
 Route::get('/shop', [HomeController::class, 'shop'])->name('home.shop');
@@ -32,6 +33,12 @@ Route::get('/policy', [HomeController::class, 'policy'])->name('home.policy');
 Route::get('posts', [PostController::class, 'showPost'])->name('posts');
 Route::get('post/{id}', [PostController::class, 'postDetail'])->name('posts.detail');
 Route::get('search', [PostController::class, 'search'])->name('posts.search');
+
+Route::get('/contact', [ContactController::class, 'index'])->name('contact'); // Hiển thị form
+Route::post('/contact', [ContactController::class, 'send'])->name('contact.send'); // Xử lý dữ liệu form
+
+
+
 
 Route::middleware('guest')->group(function () {
     Route::get('login', [LoginController::class, 'showLogInForm'])->name('login');

@@ -453,7 +453,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="{{route('home.contact')}}">
+                            <a href="{{route('contact')}}">
                                 <span class="list-text">Liên hệ</span>
                             </a>
                         </li>
