@@ -13,7 +13,7 @@ class PostController extends Controller
     public function showPost()
     {
         $posts = Post::with(['user', 'tags'])
-            ->latest()
+            ->orderByDesc('id')
             ->paginate(9);
 
         return view('client.blogs', compact('posts'));

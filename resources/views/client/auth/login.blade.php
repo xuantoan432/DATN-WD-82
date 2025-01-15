@@ -55,7 +55,7 @@
                         </div>
                         <div class="login-btn text-center">
                             <button class="shop-btn" type="submit">Đăng nhập</button>
-                            <span class="shop-account">Bạn chưa có tài khoản ?<a href="{{ route('register') }}"><u>Đăng ký tài
+                            <span class="shop-account">Bạn chưa có tài khoản?<a href="{{ route('register') }}"><u>Đăng ký tài
                                         khoản mới</u></a></span>
                         </div>
                     </form>

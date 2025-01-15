@@ -72,7 +72,7 @@
                                             </td>
                                         </tr>
                                     @endforeach
-                                </tbody>
+                                </tbod  y>
                             </table>
                         </div>
 

@@ -126,6 +126,10 @@ class HomeController extends Controller
     {
         return view('client.contact');
     }
+    public function terms()
+    {
+        return view('client.terms');
+    }
 
     public function about()
     {

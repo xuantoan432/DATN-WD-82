@@ -142,7 +142,7 @@
                 </div>
                 <div class="cart-content">
                     <p class="content-title">Giỏ hàng của bạn đang không có sản phẩm nào </p>
-                    <a href="product-sidebar.html" class="shop-btn">Quay lại trang sản phẩm</a>
+                    <a href="{{route('home.shop')}}" class="shop-btn">Quay lại trang sản phẩm</a>
                 </div>
             </div>
         @endif

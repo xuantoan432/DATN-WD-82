@@ -26,6 +26,7 @@ Route::get('/contact', [HomeController::class, 'contact'])->name('home.contact')
 Route::get('/about', [HomeController::class, 'about'])->name('home.about');
 Route::get('/6', [HomeController::class, 'cart'])->name('home.cart');
 Route::get('/9', [HomeController::class, 'flashSale'])->name('home.flash-sale');
+Route::get('/terms', [HomeController::class, 'terms'])->name('home.terms');
 Route::get('/12', [HomeController::class, 'sellerSidebar'])->name('home.seller-sidebar');
 Route::get('/policy', [HomeController::class, 'policy'])->name('home.policy');
 

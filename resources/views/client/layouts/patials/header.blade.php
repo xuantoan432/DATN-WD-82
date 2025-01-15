@@ -4,11 +4,11 @@
             <div class="header-top">
                 <div class="header-profile">
                     @if (auth()->check())
-                    <a href="{{route('logout')}}"><span>Đăng xuất</span></a>
+                        <a href="{{ route('logout') }}"><span>Đăng xuất</span></a>
                     @endif
 
-                    <a href="order.html"><span>Theo dõi đơn hàng</span></a>
-                    <a href="faq.html"><span>Hỗ trợ</span></a>
+                    <a href="{{ route('dashboard') . '?type=order' }}"><span>Theo dõi đơn hàng</span></a>
+                    <a href="{{ route('home.contact') }}"><span>Hỗ trợ</span></a>
                 </div>
                 <div class="header-contact d-none d-lg-block">
                     <a href="#">
@@ -23,7 +23,7 @@
         <div class="container">
             <div class="header-center">
                 <div class="logo">
-                    <a href="{{route('home.index')}}">
+                    <a href="{{ route('home.index') }}">
                         <img src="/theme/client/assets/images/logos/logo_header.png" alt="logo" style="width:200px">
                     </a>
                 </div>
@@ -45,8 +45,10 @@
                             <div class="modal-main">
                                 <div class="wrapper-close-btn" onclick="modalAction('.search')">
                                     <span>
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="red" class="w-6 h-6">
-                                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                            stroke-width="1.5" stroke="red" class="w-6 h-6">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M6 18L18 6M6 6l12 12"></path>
                                         </svg>
                                     </span>
                                 </div>
@@ -54,10 +56,13 @@
                                     <div class="wrapper-main">
                                         <div class="search-section">
 
-                                                <input type="text" name="searchProduct" id="searchKeyword" placeholder="Tìm kiếm sản phẩm.........">
-                                                <div class="divider"></div>
-                                                <button type="button" onclick="showCategories()">Tất cả danh mục</button>
-                                                <button  type="submit" class="shop-btn" style="background:#ae1c9a !important;  color:white !important;" >Tìm kiếm</button>
+                                            <input type="text" name="searchProduct" id="searchKeyword"
+                                                placeholder="Tìm kiếm sản phẩm.........">
+                                            <div class="divider"></div>
+                                            <button type="button" onclick="showCategories()">Tất cả danh mục</button>
+                                            <button type="submit" class="shop-btn"
+                                                style="background:#ae1c9a !important;  color:white !important;">Tìm
+                                                kiếm</button>
 
                                         </div>
                                     </div>
@@ -68,17 +73,17 @@
 
                     </div>
                     <div class="header-favourite">
-                        <a href="{{route('wishlist.show')}}" class="cart-item">
+                        <a href="{{ route('wishlist.show') }}" class="cart-item">
                             <span>
                                 <svg width="35" height="27" viewBox="0 0 35 27" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path
                                         d="M11.4047 8.54989C11.6187 8.30247 11.8069 8.07783 12.0027 7.86001C15.0697 4.45162 20.3879 5.51717 22.1581 9.60443C23.4189 12.5161 22.8485 15.213 20.9965 17.6962C19.6524 19.498 17.95 20.9437 16.2722 22.4108C15.0307 23.4964 13.774 24.5642 12.5246 25.6408C11.6986 26.3523 11.1108 26.3607 10.2924 25.6397C8.05177 23.6657 5.79225 21.7125 3.59029 19.6964C2.35865 18.5686 1.33266 17.2553 0.638823 15.7086C-0.626904 12.8872 0.0324709 9.41204 2.22306 7.41034C4.84011 5.01855 8.81757 5.36918 11.1059 8.19281C11.1968 8.30475 11.2907 8.41404 11.4047 8.54989Z"
                                         fill="#6E6D79" />
-                                     @if(Auth::check())
-                                        <circle cx="25" cy="10" r="9" fill="#AE1C9A"/>
+                                    @if (Auth::check())
+                                        <circle cx="25" cy="10" r="9" fill="#AE1C9A" />
                                         <text x="22" y="14" font-family="Arial" font-size="12" fill="white"
-                                              id="wishlist-quantity">{{ $user->wishlists->count() ?? 0 }}</text>
+                                            id="wishlist-quantity">{{ $user->wishlists->count() ?? 0 }}</text>
                                     @endif
                                 </svg>
                             </span>
@@ -101,10 +106,10 @@
                                     <path
                                         d="M22.509 25.2393C22.5193 26.4842 21.5393 27.4971 20.3064 27.5155C19.048 27.5342 18.0272 26.525 18.0277 25.2622C18.0279 24.0208 19.0214 23.0161 20.2572 23.0074C21.4877 22.9984 22.4988 24.0006 22.509 25.2393Z"
                                         fill="#6E6D79" />
-                                    @if(Auth::check())
-
-                                    <circle cx="26.9523" cy="10" r="9" fill="#AE1C9A" />
-                                    <text x="23" y="14" font-family="Arial" font-size="12" fill="white" id="text-quantity">{{ $user->cart ? $user->cart->cartItems()->count() : 0 }}</text>
+                                    @if (Auth::check())
+                                        <circle cx="26.9523" cy="10" r="9" fill="#AE1C9A" />
+                                        <text x="23" y="14" font-family="Arial" font-size="12" fill="white"
+                                            id="text-quantity">{{ $user->cart ? $user->cart->cartItems()->count() : 0 }}</text>
                                     @endif
                                 </svg>
                             </span>
@@ -112,75 +117,85 @@
                                 Giỏ hàng
                             </span>
                         </a>
-                        @if(Auth::check())
+                        @if (Auth::check())
                             @php
                                 $cartItems = $user->cart ? $user->cart->cartItems()->get() : collect([]);
                                 $total = 0;
                             @endphp
                             <div class="cart-submenu">
-                            <div class="cart-wrapper-item" @if($cartItems->isEmpty())  style="height: unset !important;" @endif>
-                                @if(!$cartItems->isEmpty())
-                                    @foreach($cartItems as $cartItem)
-                                        @php
-                                            $total += $cartItem->productVariant->getCurrentPrice() * $cartItem->quantity
-                                        @endphp
+                                <div class="cart-wrapper-item"
+                                    @if ($cartItems->isEmpty()) style="height: unset !important;" @endif>
+                                    @if (!$cartItems->isEmpty())
+                                        @foreach ($cartItems as $cartItem)
+                                            @php
+                                                $total +=
+                                                    $cartItem->productVariant->getCurrentPrice() * $cartItem->quantity;
+                                            @endphp
 
-                                        <div class="wrapper" data-unit-price="{{ $cartItem->productVariant->getCurrentPrice() }}">
-                                            <div class="wrapper-item">
-                                                <div class="wrapper-img">
-                                                    <img src="{{ \Storage::url($cartItem->productVariant->image) }}"
-                                                        alt="img">
-                                                </div>
-                                                <div class="wrapper-content">
-                                                    <h5 class="wrapper-title">{{ $cartItem->productVariant->product->name }} x {{ $cartItem->quantity }}</h5>
-                                                    <div class="price">
-                                                        <p class="new-price">₫{{ number_format($cartItem->productVariant->getCurrentPrice(), 0, ',', '.') }}</p>
+                                            <div class="wrapper"
+                                                data-unit-price="{{ $cartItem->productVariant->getCurrentPrice() }}">
+                                                <div class="wrapper-item">
+                                                    <div class="wrapper-img">
+                                                        <img src="{{ \Storage::url($cartItem->productVariant->image) }}"
+                                                            alt="img">
+                                                    </div>
+                                                    <div class="wrapper-content">
+                                                        <h5 class="wrapper-title">
+                                                            {{ $cartItem->productVariant->product->name }} x
+                                                            {{ $cartItem->quantity }}</h5>
+                                                        <div class="price">
+                                                            <p class="new-price">
+                                                                ₫{{ number_format($cartItem->productVariant->getCurrentPrice(), 0, ',', '.') }}
+                                                            </p>
+                                                        </div>
                                                     </div>
                                                 </div>
+                                                <span class="close-btn cart-btn-delete p-3"
+                                                    data-id="{{ $cartItem->id }}">
+                                                    <svg viewBox="0 0 10 10" fill="none" class="fill-current"
+                                                        xmlns="http://www.w3.org/2000/svg">
+                                                        <path
+                                                            d="M9.7 0.3C9.3 -0.1 8.7 -0.1 8.3 0.3L5 3.6L1.7 0.3C1.3 -0.1 0.7 -0.1 0.3 0.3C-0.1 0.7 -0.1 1.3 0.3 1.7L3.6 5L0.3 8.3C-0.1 8.7 -0.1 9.3 0.3 9.7C0.7 10.1 1.3 10.1 1.7 9.7L5 6.4L8.3 9.7C8.7 10.1 9.3 10.1 9.7 9.7C10.1 9.3 10.1 8.7 9.7 8.3L6.4 5L9.7 1.7C10.1 1.3 10.1 0.7 9.7 0.3Z">
+                                                        </path>
+                                                    </svg>
+                                                </span>
                                             </div>
-                                            <span class="close-btn cart-btn-delete p-3" data-id="{{ $cartItem->id }}">
-                                                <svg viewBox="0 0 10 10" fill="none" class="fill-current"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <path
-                                                        d="M9.7 0.3C9.3 -0.1 8.7 -0.1 8.3 0.3L5 3.6L1.7 0.3C1.3 -0.1 0.7 -0.1 0.3 0.3C-0.1 0.7 -0.1 1.3 0.3 1.7L3.6 5L0.3 8.3C-0.1 8.7 -0.1 9.3 0.3 9.7C0.7 10.1 1.3 10.1 1.7 9.7L5 6.4L8.3 9.7C8.7 10.1 9.3 10.1 9.7 9.7C10.1 9.3 10.1 8.7 9.7 8.3L6.4 5L9.7 1.7C10.1 1.3 10.1 0.7 9.7 0.3Z">
-                                                    </path>
-                                                </svg>
-                                            </span>
+                                        @endforeach
+                                    @else
+                                        <div class="d-flex justify-content-center align-content-center">
+                                            <p class="text-center">Không có sản phẩm nào trong giỏ hàng</p>
                                         </div>
-                                    @endforeach
-                                @else
-                                    <div class="d-flex justify-content-center align-content-center">
-                                        <p class="text-center">Không có sản phẩm nào trong giỏ hàng</p>
+                                    @endif
+                                </div>
+                                <div class="cart-wrapper-section">
+                                    <div class="wrapper-line"></div>
+                                    <div class="wrapper-subtotal">
+                                        <h5 class="wrapper-title">Tổng tiền</h5>
+                                        <h5 class="wrapper-title" id="cart-total">
+                                            {{ number_format($total, 0, ',', '.') }}₫</h5>
                                     </div>
-                                @endif
-                            </div>
-                            <div class="cart-wrapper-section">
-                                <div class="wrapper-line"></div>
-                                <div class="wrapper-subtotal">
-                                    <h5 class="wrapper-title">Subtotal</h5>
-                                    <h5 class="wrapper-title" id="cart-total">{{ $total }}</h5>
-                                </div>
-                                <div class="cart-btn">
-                                    <a href="{{ route('cart.show') }}" class="shop-btn view-btn">View Cart</a>
-                                    <a href="{{ route('checkout.show', $user) }}" class="shop-btn checkout-btn">Checkout Now</a>
+                                    <div class="cart-btn">
+                                        <a href="{{ route('cart.show') }}" class="shop-btn view-btn">Xem giỏ hàng</a>
+                                        <a href="{{ route('checkout.show', $user) }}"
+                                            class="shop-btn checkout-btn">Thanh toán nhanh</a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
                         @endif
                     </div>
                     <div class="header-user">
-                        <a href="{{ route('dashboard')}}">
+                        <a href="{{ route('dashboard') }}">
                             @if (auth()->check())
                                 @if (auth()->user()->avatar)
                                     <span>
-                                        <img src="{{ Storage::url( auth()->user()->avatar) }}"
-                                            alt="User Avatar" width="40" height="40"
-                                            style="border-radius: 50%;">
+                                        <img src="{{ Storage::url(auth()->user()->avatar) }}" alt="User Avatar"
+                                            width="40" height="40" style="border-radius: 50%;">
                                     </span>
                                 @else
                                     <span>
-                                        <img src="{{ asset('theme/client/assets/images/logos/avatar.jpg') }}" alt="Default Avatar"
-                                            width="40" height="40" style="border-radius: 50%;">
+                                        <img src="/theme/client/assets/images/logos/logo_header.png"
+                                            alt="Default Avatar" width="40" height="40"
+                                            style="border-radius: 50%;">
                                     </span>
                                 @endif
                             @else
@@ -215,7 +230,7 @@
                 </span>
             </button>
             <a href="index-2.html" class="mobile-header-logo">
-                <img src="/theme/client/assets/images/logos/logo.webp" alt="logo">
+                <img src="/theme/client/assets/images/logos/logo_header.png" alt="logo" width="200px">
             </a>
             <a href="cart.html" class="header-cart cart-item">
                 <span>
@@ -300,33 +315,31 @@
                 <div class="category-dropdown">
                     <ul class="category-list">
                         @foreach ($categories as $cate)
-                        <li class="category-list-item">
-                            <a href="product-sidebar.html">
-                                <div class="dropdown-item d-flex justify-content-between align-items-center">
-                                    <div class="dropdown-list-item d-flex">
-                                        <span class="dropdown-img">
-                                            <img src="{{\Storage::url($cate->icon)}}"
-                                                alt="dress">
-                                        </span>
-                                        <span class="dropdown-text">
-                                            {{$cate->name}}
-                                        </span>
+                            <li class="category-list-item">
+                                <a href="{{ route('home.shop', ['categories_id[]' => $cate->id]) }}">
+                                    <div class="dropdown-item d-flex justify-content-between align-items-center">
+                                        <div class="dropdown-list-item d-flex">
+                                            <span class="dropdown-img">
+                                                <img src="{{ \Storage::url($cate->icon) }}" alt="dress">
+                                            </span>
+                                            <span class="dropdown-text">
+                                                {{ $cate->name }}
+                                            </span>
+                                        </div>
+                                        <div class="drop-down-list-icon">
+                                            <span>
+                                                <svg width="6" height="9" viewBox="0 0 6 9" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <rect x="1.5" y="0.818359" width="5.78538" height="1.28564"
+                                                        transform="rotate(45 1.5 0.818359)" />
+                                                    <rect x="5.58984" y="4.90918" width="5.78538" height="1.28564"
+                                                        transform="rotate(135 5.58984 4.90918)" />
+                                                </svg>
+                                            </span>
+                                        </div>
                                     </div>
-                                    <div class="drop-down-list-icon">
-                                        <span>
-                                            <svg width="6" height="9" viewBox="0 0 6 9" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <rect x="1.5" y="0.818359" width="5.78538" height="1.28564"
-                                                    transform="rotate(45 1.5 0.818359)" />
-                                                <rect x="5.58984" y="4.90918" width="5.78538" height="1.28564"
-                                                    transform="rotate(135 5.58984 4.90918)" />
-                                            </svg>
-                                        </span>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-
+                                </a>
+                            </li>
                         @endforeach
 
 
@@ -361,7 +374,7 @@
                                         <div class="dropdown-item d-flex justify-content-between align-items-center">
                                             <div class="dropdown-list-item d-flex">
                                                 <span class="dropdown-img">
-                                                    <img src="{{\Storage::url($cate->icon)}}" alt="Bags">
+                                                    <img src="{{ \Storage::url($cate->icon) }}" alt="Bags">
                                                 </span>
                                                 <span class="dropdown-text">
                                                     {{ $cate->name }}
@@ -391,7 +404,7 @@
                 <div class="header-nav-menu">
                     <ul class="menu-list">
                         <li>
-                            <a href="{{route('home.index')}}">
+                            <a href="{{ route('home.index') }}">
                                 <span class="list-text">Trang chủ</span>
                             </a>
                         </li>
@@ -436,24 +449,22 @@
                                 </span>
                             </a>
                             <ul class="header-sub-menu">
-                                <li><a href="{{route('home.policy')}}">Chính sách bảo mật</a></li>
-                                <li><a href="terms.html">Điều khoản và điều kiện</a></li>
-                                <li><a href="faq.html">Câu hỏi thường gặp</a></li>
-                                <li><a href="product-sidebar.html">Xem danh sách cửa hàng</a></li>
+                                <li><a href="{{ route('home.policy') }}">Chính sách bảo mật</a></li>
+                                <li><a href="{{ route('home.terms') }}">Điều khoản và điều kiện</a></li>
                             </ul>
                         </li>
                         <li>
-                            <a href="{{route('home.about')}}">
+                            <a href="{{ route('home.about') }}">
                                 <span class="list-text">Về chúng tôi</span>
                             </a>
                         </li>
                         <li>
-                            <a href="{{route('posts')}}">
+                            <a href="{{ route('posts') }}">
                                 <span class="list-text">Blog</span>
                             </a>
                         </li>
                         <li>
-                            <a href="{{route('home.contact')}}">
+                            <a href="{{ route('home.contact') }}">
                                 <span class="list-text">Liên hệ</span>
                             </a>
                         </li>
@@ -465,35 +476,43 @@
                         <a href="{{ route('seller.index') }}" class="shop-btn">
                             <span class="list-text shop-text">Truy cập trang quản trị</span>
                             <span class="icon">
-                                <svg width="24" height="16" viewBox="0 0 24 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M20.257 7.07205C20.038 7.07205 19.8474 7.07205 19.6563 7.07205C17.4825 7.07205 15.3086 7.07205 13.1352 7.07205C10.1545 7.07205 7.17336 7.0725 4.19265 7.0725C3.30392 7.0725 2.41519 7.07024 1.52646 7.07295C1.12124 7.07431 0.809811 7.25265 0.625785 7.62651C0.43866 8.00623 0.488204 8.37556 0.737704 8.70426C0.932347 8.96027 1.20529 9.08173 1.52867 9.08037C2.20948 9.07766 2.8903 9.07902 3.57111 9.07902C5.95285 9.07902 8.33415 9.07902 10.7159 9.07902C13.782 9.07902 16.8485 9.07902 19.9146 9.07902C20.0274 9.07902 20.1398 9.07902 20.2822 9.07902C20.1871 9.18332 20.1141 9.26865 20.0358 9.34857C19.5656 9.82672 19.0922 10.3022 18.6229 10.7812C18.1363 11.2779 17.6541 11.7791 17.1675 12.2757C16.4942 12.9634 15.8116 13.6415 15.1476 14.3391C14.9096 14.5893 14.8455 14.9157 14.9406 15.2575C15.156 16.0305 16.0567 16.2499 16.6119 15.6769C17.4342 14.8286 18.2655 13.9892 19.0927 13.1458C19.6948 12.5317 20.2968 11.9172 20.8985 11.3023C21.5952 10.5902 22.2911 9.87729 22.9878 9.1648C23.1059 9.04425 23.2249 8.9246 23.3435 8.8045C23.6903 8.45367 23.7239 7.84278 23.3943 7.4766C22.998 7.03683 22.5852 6.61241 22.1756 6.18573C21.7965 5.79066 21.4134 5.39965 21.0303 5.00909C20.6733 4.64473 20.3132 4.28306 19.9553 3.91915C19.6147 3.57284 19.2754 3.22563 18.9356 2.87887C18.5154 2.44948 18.0951 2.01964 17.6744 1.5907C17.2511 1.15861 16.8198 0.734188 16.4057 0.29261C16.0363 -0.101559 15.3697 -0.0816927 15.0344 0.257392C14.6238 0.672782 14.5999 1.26381 14.995 1.68552C15.3378 2.0517 15.6957 2.40342 16.0465 2.76192C16.929 3.66449 17.8111 4.56797 18.6937 5.47054C19.1829 5.97081 19.6735 6.47018 20.1632 6.97046C20.1885 6.99574 20.2123 7.02329 20.257 7.07205Z" />
+                                <svg width="24" height="16" viewBox="0 0 24 16" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M20.257 7.07205C20.038 7.07205 19.8474 7.07205 19.6563 7.07205C17.4825 7.07205 15.3086 7.07205 13.1352 7.07205C10.1545 7.07205 7.17336 7.0725 4.19265 7.0725C3.30392 7.0725 2.41519 7.07024 1.52646 7.07295C1.12124 7.07431 0.809811 7.25265 0.625785 7.62651C0.43866 8.00623 0.488204 8.37556 0.737704 8.70426C0.932347 8.96027 1.20529 9.08173 1.52867 9.08037C2.20948 9.07766 2.8903 9.07902 3.57111 9.07902C5.95285 9.07902 8.33415 9.07902 10.7159 9.07902C13.782 9.07902 16.8485 9.07902 19.9146 9.07902C20.0274 9.07902 20.1398 9.07902 20.2822 9.07902C20.1871 9.18332 20.1141 9.26865 20.0358 9.34857C19.5656 9.82672 19.0922 10.3022 18.6229 10.7812C18.1363 11.2779 17.6541 11.7791 17.1675 12.2757C16.4942 12.9634 15.8116 13.6415 15.1476 14.3391C14.9096 14.5893 14.8455 14.9157 14.9406 15.2575C15.156 16.0305 16.0567 16.2499 16.6119 15.6769C17.4342 14.8286 18.2655 13.9892 19.0927 13.1458C19.6948 12.5317 20.2968 11.9172 20.8985 11.3023C21.5952 10.5902 22.2911 9.87729 22.9878 9.1648C23.1059 9.04425 23.2249 8.9246 23.3435 8.8045C23.6903 8.45367 23.7239 7.84278 23.3943 7.4766C22.998 7.03683 22.5852 6.61241 22.1756 6.18573C21.7965 5.79066 21.4134 5.39965 21.0303 5.00909C20.6733 4.64473 20.3132 4.28306 19.9553 3.91915C19.6147 3.57284 19.2754 3.22563 18.9356 2.87887C18.5154 2.44948 18.0951 2.01964 17.6744 1.5907C17.2511 1.15861 16.8198 0.734188 16.4057 0.29261C16.0363 -0.101559 15.3697 -0.0816927 15.0344 0.257392C14.6238 0.672782 14.5999 1.26381 14.995 1.68552C15.3378 2.0517 15.6957 2.40342 16.0465 2.76192C16.929 3.66449 17.8111 4.56797 18.6937 5.47054C19.1829 5.97081 19.6735 6.47018 20.1632 6.97046C20.1885 6.99574 20.2123 7.02329 20.257 7.07205Z" />
                                 </svg>
                             </span>
                         </a>
                     @elseif(auth()->check() && auth()->user()->hasRole(1))
-                    <a href="{{ route('admin.index') }}" class="shop-btn">
-                        <span class="list-text shop-text">Truy cập quản trị</span>
-                        <span class="icon">
-                            <svg width="24" height="16" viewBox="0 0 24 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M20.257 7.07205C20.038 7.07205 19.8474 7.07205 19.6563 7.07205C17.4825 7.07205 15.3086 7.07205 13.1352 7.07205C10.1545 7.07205 7.17336 7.0725 4.19265 7.0725C3.30392 7.0725 2.41519 7.07024 1.52646 7.07295C1.12124 7.07431 0.809811 7.25265 0.625785 7.62651C0.43866 8.00623 0.488204 8.37556 0.737704 8.70426C0.932347 8.96027 1.20529 9.08173 1.52867 9.08037C2.20948 9.07766 2.8903 9.07902 3.57111 9.07902C5.95285 9.07902 8.33415 9.07902 10.7159 9.07902C13.782 9.07902 16.8485 9.07902 19.9146 9.07902C20.0274 9.07902 20.1398 9.07902 20.2822 9.07902C20.1871 9.18332 20.1141 9.26865 20.0358 9.34857C19.5656 9.82672 19.0922 10.3022 18.6229 10.7812C18.1363 11.2779 17.6541 11.7791 17.1675 12.2757C16.4942 12.9634 15.8116 13.6415 15.1476 14.3391C14.9096 14.5893 14.8455 14.9157 14.9406 15.2575C15.156 16.0305 16.0567 16.2499 16.6119 15.6769C17.4342 14.8286 18.2655 13.9892 19.0927 13.1458C19.6948 12.5317 20.2968 11.9172 20.8985 11.3023C21.5952 10.5902 22.2911 9.87729 22.9878 9.1648C23.1059 9.04425 23.2249 8.9246 23.3435 8.8045C23.6903 8.45367 23.7239 7.84278 23.3943 7.4766C22.998 7.03683 22.5852 6.61241 22.1756 6.18573C21.7965 5.79066 21.4134 5.39965 21.0303 5.00909C20.6733 4.64473 20.3132 4.28306 19.9553 3.91915C19.6147 3.57284 19.2754 3.22563 18.9356 2.87887C18.5154 2.44948 18.0951 2.01964 17.6744 1.5907C17.2511 1.15861 16.8198 0.734188 16.4057 0.29261C16.0363 -0.101559 15.3697 -0.0816927 15.0344 0.257392C14.6238 0.672782 14.5999 1.26381 14.995 1.68552C15.3378 2.0517 15.6957 2.40342 16.0465 2.76192C16.929 3.66449 17.8111 4.56797 18.6937 5.47054C19.1829 5.97081 19.6735 6.47018 20.1632 6.97046C20.1885 6.99574 20.2123 7.02329 20.257 7.07205Z" />
-                            </svg>
-                        </span>
-                    </a>
+                        <a href="{{ route('admin.index') }}" class="shop-btn">
+                            <span class="list-text shop-text">Truy cập quản trị</span>
+                            <span class="icon">
+                                <svg width="24" height="16" viewBox="0 0 24 16" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M20.257 7.07205C20.038 7.07205 19.8474 7.07205 19.6563 7.07205C17.4825 7.07205 15.3086 7.07205 13.1352 7.07205C10.1545 7.07205 7.17336 7.0725 4.19265 7.0725C3.30392 7.0725 2.41519 7.07024 1.52646 7.07295C1.12124 7.07431 0.809811 7.25265 0.625785 7.62651C0.43866 8.00623 0.488204 8.37556 0.737704 8.70426C0.932347 8.96027 1.20529 9.08173 1.52867 9.08037C2.20948 9.07766 2.8903 9.07902 3.57111 9.07902C5.95285 9.07902 8.33415 9.07902 10.7159 9.07902C13.782 9.07902 16.8485 9.07902 19.9146 9.07902C20.0274 9.07902 20.1398 9.07902 20.2822 9.07902C20.1871 9.18332 20.1141 9.26865 20.0358 9.34857C19.5656 9.82672 19.0922 10.3022 18.6229 10.7812C18.1363 11.2779 17.6541 11.7791 17.1675 12.2757C16.4942 12.9634 15.8116 13.6415 15.1476 14.3391C14.9096 14.5893 14.8455 14.9157 14.9406 15.2575C15.156 16.0305 16.0567 16.2499 16.6119 15.6769C17.4342 14.8286 18.2655 13.9892 19.0927 13.1458C19.6948 12.5317 20.2968 11.9172 20.8985 11.3023C21.5952 10.5902 22.2911 9.87729 22.9878 9.1648C23.1059 9.04425 23.2249 8.9246 23.3435 8.8045C23.6903 8.45367 23.7239 7.84278 23.3943 7.4766C22.998 7.03683 22.5852 6.61241 22.1756 6.18573C21.7965 5.79066 21.4134 5.39965 21.0303 5.00909C20.6733 4.64473 20.3132 4.28306 19.9553 3.91915C19.6147 3.57284 19.2754 3.22563 18.9356 2.87887C18.5154 2.44948 18.0951 2.01964 17.6744 1.5907C17.2511 1.15861 16.8198 0.734188 16.4057 0.29261C16.0363 -0.101559 15.3697 -0.0816927 15.0344 0.257392C14.6238 0.672782 14.5999 1.26381 14.995 1.68552C15.3378 2.0517 15.6957 2.40342 16.0465 2.76192C16.929 3.66449 17.8111 4.56797 18.6937 5.47054C19.1829 5.97081 19.6735 6.47018 20.1632 6.97046C20.1885 6.99574 20.2123 7.02329 20.257 7.07205Z" />
+                                </svg>
+                            </span>
+                        </a>
                     @elseif(auth()->check() && auth()->user()->hasRole(3))
-                    <a href="{{ route('register.seller') }}" class="shop-btn">
-                        <span class="list-text shop-text">Trở thành người bán</span>
-                        <span class="icon">
-                            <svg width="24" height="16" viewBox="0 0 24 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M20.257 7.07205C20.038 7.07205 19.8474 7.07205 19.6563 7.07205C17.4825 7.07205 15.3086 7.07205 13.1352 7.07205C10.1545 7.07205 7.17336 7.0725 4.19265 7.0725C3.30392 7.0725 2.41519 7.07024 1.52646 7.07295C1.12124 7.07431 0.809811 7.25265 0.625785 7.62651C0.43866 8.00623 0.488204 8.37556 0.737704 8.70426C0.932347 8.96027 1.20529 9.08173 1.52867 9.08037C2.20948 9.07766 2.8903 9.07902 3.57111 9.07902C5.95285 9.07902 8.33415 9.07902 10.7159 9.07902C13.782 9.07902 16.8485 9.07902 19.9146 9.07902C20.0274 9.07902 20.1398 9.07902 20.2822 9.07902C20.1871 9.18332 20.1141 9.26865 20.0358 9.34857C19.5656 9.82672 19.0922 10.3022 18.6229 10.7812C18.1363 11.2779 17.6541 11.7791 17.1675 12.2757C16.4942 12.9634 15.8116 13.6415 15.1476 14.3391C14.9096 14.5893 14.8455 14.9157 14.9406 15.2575C15.156 16.0305 16.0567 16.2499 16.6119 15.6769C17.4342 14.8286 18.2655 13.9892 19.0927 13.1458C19.6948 12.5317 20.2968 11.9172 20.8985 11.3023C21.5952 10.5902 22.2911 9.87729 22.9878 9.1648C23.1059 9.04425 23.2249 8.9246 23.3435 8.8045C23.6903 8.45367 23.7239 7.84278 23.3943 7.4766C22.998 7.03683 22.5852 6.61241 22.1756 6.18573C21.7965 5.79066 21.4134 5.39965 21.0303 5.00909C20.6733 4.64473 20.3132 4.28306 19.9553 3.91915C19.6147 3.57284 19.2754 3.22563 18.9356 2.87887C18.5154 2.44948 18.0951 2.01964 17.6744 1.5907C17.2511 1.15861 16.8198 0.734188 16.4057 0.29261C16.0363 -0.101559 15.3697 -0.0816927 15.0344 0.257392C14.6238 0.672782 14.5999 1.26381 14.995 1.68552C15.3378 2.0517 15.6957 2.40342 16.0465 2.76192C16.929 3.66449 17.8111 4.56797 18.6937 5.47054C19.1829 5.97081 19.6735 6.47018 20.1632 6.97046C20.1885 6.99574 20.2123 7.02329 20.257 7.07205Z" />
-                            </svg>
-                        </span>
-                    </a>
+                        <a href="{{ route('register.seller') }}" class="shop-btn">
+                            <span class="list-text shop-text">Trở thành người bán</span>
+                            <span class="icon">
+                                <svg width="24" height="16" viewBox="0 0 24 16" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M20.257 7.07205C20.038 7.07205 19.8474 7.07205 19.6563 7.07205C17.4825 7.07205 15.3086 7.07205 13.1352 7.07205C10.1545 7.07205 7.17336 7.0725 4.19265 7.0725C3.30392 7.0725 2.41519 7.07024 1.52646 7.07295C1.12124 7.07431 0.809811 7.25265 0.625785 7.62651C0.43866 8.00623 0.488204 8.37556 0.737704 8.70426C0.932347 8.96027 1.20529 9.08173 1.52867 9.08037C2.20948 9.07766 2.8903 9.07902 3.57111 9.07902C5.95285 9.07902 8.33415 9.07902 10.7159 9.07902C13.782 9.07902 16.8485 9.07902 19.9146 9.07902C20.0274 9.07902 20.1398 9.07902 20.2822 9.07902C20.1871 9.18332 20.1141 9.26865 20.0358 9.34857C19.5656 9.82672 19.0922 10.3022 18.6229 10.7812C18.1363 11.2779 17.6541 11.7791 17.1675 12.2757C16.4942 12.9634 15.8116 13.6415 15.1476 14.3391C14.9096 14.5893 14.8455 14.9157 14.9406 15.2575C15.156 16.0305 16.0567 16.2499 16.6119 15.6769C17.4342 14.8286 18.2655 13.9892 19.0927 13.1458C19.6948 12.5317 20.2968 11.9172 20.8985 11.3023C21.5952 10.5902 22.2911 9.87729 22.9878 9.1648C23.1059 9.04425 23.2249 8.9246 23.3435 8.8045C23.6903 8.45367 23.7239 7.84278 23.3943 7.4766C22.998 7.03683 22.5852 6.61241 22.1756 6.18573C21.7965 5.79066 21.4134 5.39965 21.0303 5.00909C20.6733 4.64473 20.3132 4.28306 19.9553 3.91915C19.6147 3.57284 19.2754 3.22563 18.9356 2.87887C18.5154 2.44948 18.0951 2.01964 17.6744 1.5907C17.2511 1.15861 16.8198 0.734188 16.4057 0.29261C16.0363 -0.101559 15.3697 -0.0816927 15.0344 0.257392C14.6238 0.672782 14.5999 1.26381 14.995 1.68552C15.3378 2.0517 15.6957 2.40342 16.0465 2.76192C16.929 3.66449 17.8111 4.56797 18.6937 5.47054C19.1829 5.97081 19.6735 6.47018 20.1632 6.97046C20.1885 6.99574 20.2123 7.02329 20.257 7.07205Z" />
+                                </svg>
+                            </span>
+                        </a>
                     @else
                         <a href="{{ route('login') }}" class="shop-btn">
                             <span class="list-text shop-text">Đăng nhập/ Đăng ký</span>
                             <span class="icon">
-                                <svg width="24" height="16" viewBox="0 0 24 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M20.257 7.07205C20.038 7.07205 19.8474 7.07205 19.6563 7.07205C17.4825 7.07205 15.3086 7.07205 13.1352 7.07205C10.1545 7.07205 7.17336 7.0725 4.19265 7.0725C3.30392 7.0725 2.41519 7.07024 1.52646 7.07295C1.12124 7.07431 0.809811 7.25265 0.625785 7.62651C0.43866 8.00623 0.488204 8.37556 0.737704 8.70426C0.932347 8.96027 1.20529 9.08173 1.52867 9.08037C2.20948 9.07766 2.8903 9.07902 3.57111 9.07902C5.95285 9.07902 8.33415 9.07902 10.7159 9.07902C13.782 9.07902 16.8485 9.07902 19.9146 9.07902C20.0274 9.07902 20.1398 9.07902 20.2822 9.07902C20.1871 9.18332 20.1141 9.26865 20.0358 9.34857C19.5656 9.82672 19.0922 10.3022 18.6229 10.7812C18.1363 11.2779 17.6541 11.7791 17.1675 12.2757C16.4942 12.9634 15.8116 13.6415 15.1476 14.3391C14.9096 14.5893 14.8455 14.9157 14.9406 15.2575C15.156 16.0305 16.0567 16.2499 16.6119 15.6769C17.4342 14.8286 18.2655 13.9892 19.0927 13.1458C19.6948 12.5317 20.2968 11.9172 20.8985 11.3023C21.5952 10.5902 22.2911 9.87729 22.9878 9.1648C23.1059 9.04425 23.2249 8.9246 23.3435 8.8045C23.6903 8.45367 23.7239 7.84278 23.3943 7.4766C22.998 7.03683 22.5852 6.61241 22.1756 6.18573C21.7965 5.79066 21.4134 5.39965 21.0303 5.00909C20.6733 4.64473 20.3132 4.28306 19.9553 3.91915C19.6147 3.57284 19.2754 3.22563 18.9356 2.87887C18.5154 2.44948 18.0951 2.01964 17.6744 1.5907C17.2511 1.15861 16.8198 0.734188 16.4057 0.29261C16.0363 -0.101559 15.3697 -0.0816927 15.0344 0.257392C14.6238 0.672782 14.5999 1.26381 14.995 1.68552C15.3378 2.0517 15.6957 2.40342 16.0465 2.76192C16.929 3.66449 17.8111 4.56797 18.6937 5.47054C19.1829 5.97081 19.6735 6.47018 20.1632 6.97046C20.1885 6.99574 20.2123 7.02329 20.257 7.07205Z" />
+                                <svg width="24" height="16" viewBox="0 0 24 16" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M20.257 7.07205C20.038 7.07205 19.8474 7.07205 19.6563 7.07205C17.4825 7.07205 15.3086 7.07205 13.1352 7.07205C10.1545 7.07205 7.17336 7.0725 4.19265 7.0725C3.30392 7.0725 2.41519 7.07024 1.52646 7.07295C1.12124 7.07431 0.809811 7.25265 0.625785 7.62651C0.43866 8.00623 0.488204 8.37556 0.737704 8.70426C0.932347 8.96027 1.20529 9.08173 1.52867 9.08037C2.20948 9.07766 2.8903 9.07902 3.57111 9.07902C5.95285 9.07902 8.33415 9.07902 10.7159 9.07902C13.782 9.07902 16.8485 9.07902 19.9146 9.07902C20.0274 9.07902 20.1398 9.07902 20.2822 9.07902C20.1871 9.18332 20.1141 9.26865 20.0358 9.34857C19.5656 9.82672 19.0922 10.3022 18.6229 10.7812C18.1363 11.2779 17.6541 11.7791 17.1675 12.2757C16.4942 12.9634 15.8116 13.6415 15.1476 14.3391C14.9096 14.5893 14.8455 14.9157 14.9406 15.2575C15.156 16.0305 16.0567 16.2499 16.6119 15.6769C17.4342 14.8286 18.2655 13.9892 19.0927 13.1458C19.6948 12.5317 20.2968 11.9172 20.8985 11.3023C21.5952 10.5902 22.2911 9.87729 22.9878 9.1648C23.1059 9.04425 23.2249 8.9246 23.3435 8.8045C23.6903 8.45367 23.7239 7.84278 23.3943 7.4766C22.998 7.03683 22.5852 6.61241 22.1756 6.18573C21.7965 5.79066 21.4134 5.39965 21.0303 5.00909C20.6733 4.64473 20.3132 4.28306 19.9553 3.91915C19.6147 3.57284 19.2754 3.22563 18.9356 2.87887C18.5154 2.44948 18.0951 2.01964 17.6744 1.5907C17.2511 1.15861 16.8198 0.734188 16.4057 0.29261C16.0363 -0.101559 15.3697 -0.0816927 15.0344 0.257392C14.6238 0.672782 14.5999 1.26381 14.995 1.68552C15.3378 2.0517 15.6957 2.40342 16.0465 2.76192C16.929 3.66449 17.8111 4.56797 18.6937 5.47054C19.1829 5.97081 19.6735 6.47018 20.1632 6.97046C20.1885 6.99574 20.2123 7.02329 20.257 7.07205Z" />
                                 </svg>
                             </span>
                         </a>

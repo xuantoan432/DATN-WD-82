@@ -17,6 +17,12 @@ class ProductController extends Controller
             'galleries',
             'seller'
         ]);
+        $productrelated = Product::where('is_verified', operator: true)
+                                ->where('status', 'active')
+                                ->where('id', '<>', $product->id)
+                                ->withAvg('reviews', 'star')
+                                ->limit(4)
+                                ->get();
         $attributes = [];
         $imageVariants = [];
         $priceSales = [];
@@ -48,7 +54,7 @@ class ProductController extends Controller
         $attributes = array_values($attributes);
         $averageRating = $product->reviews->where('parent_id', 0)->avg('star');
         $reviews = $product->reviews->groupBy('parent_id');
-        return view('client.product-info', compact('product', 'reviews','averageRating','attributes', 'imageVariants', 'priceSales', 'priceRegulars', 'imageVariants', 'priceSales'));
+        return view('client.product-info', compact('product', 'reviews','averageRating','attributes', 'imageVariants', 'priceSales', 'priceRegulars', 'imageVariants', 'priceSales', 'productrelated'));
     }
     public function search(Request $request)
     {

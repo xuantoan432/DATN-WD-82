@@ -121,14 +121,14 @@
                 <div class="col-lg-3 col-sm-6">
                     <div class="about-us">
                         <h4 class="footer-heading footer-title">
-                            About Us
+                            Về chúng tôi
                         </h4>
                         <div class="footer-link about-link">
                             <ul>
-                                <li><a href="about.html">Rave’s Story</a></li>
-                                <li><a href="about.html">Work With Us</a></li>
-                                <li><a href="about.html">Coporate News</a></li>
-                                <li><a href="about.html">Investors</a></li>
+                                <li><a href="{{route('home.about')}}">Lịch sử hình thành</a></li>
+                                <li><a href="{{route('home.policy')}}">Chính sách bảo mật</a></li>
+                                <li><a href="{{route('posts')}}">Bài viết</a></li>
+                                <li><a href="{{route('home.contact')}}">Liên hệ</a></li>
                             </ul>
                         </div>
                     </div>
@@ -140,10 +140,10 @@
                         </h4>
                         <div class="footer-link useful-link">
                             <ul>
-                                <li><a href="about.html">Secure Payment</a></li>
-                                <li><a href="privacy.html">Privacy Policy</a></li>
-                                <li><a href="terms.html">Terms of Use</a></li>
-                                <li><a href="product-sidebar.html">Archived Products</a></li>
+                                <li><a href="{{route('wishlist.show')}}">Sản phẩm yêu thích</a></li>
+                                <li><a href="{{route('dashboard')}}">Tài khoản </a></li>
+                                <li><a href="{{route('home.shop')}}">Sản phẩm</a></li>
+                                <li><a href="{{route('cart.show')}}">Giỏ hàng</a></li>
                             </ul>
                         </div>
                     </div>

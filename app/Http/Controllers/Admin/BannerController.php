@@ -33,7 +33,7 @@ class BannerController extends Controller
     {
         $validPositions = array_keys(config('banner_positions'));
         $validatedData = $request->validate([
-            'banner_title' => 'required|string|max:255',
+            'banner_title' => 'nullable|string|max:255',
             'banner_text' => 'nullable|string|max:500',
             'banner_link' => 'nullable|url|max:255',
             'banner_image' => 'required|image',
@@ -74,7 +74,7 @@ class BannerController extends Controller
 
         $validPositions = array_keys(config('banner_positions'));
         $validatedData = $request->validate([
-            'banner_title' => 'required|string|max:255',
+            'banner_title' => 'nullable|string|max:255',
             'banner_text' => 'nullable|string|max:500',
             'banner_link' => 'nullable|url|max:255',
             'banner_image' => 'nullable|image',

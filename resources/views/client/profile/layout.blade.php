@@ -51,20 +51,6 @@
                                 Thông tin cá nhân
                             </span>
                         </a>
-                        <a class="nav-link {{ request('type') == 'payment-method' ? 'active' : '' }}" href="{{ route('dashboard') . '?type=payment-method' }}">
-                            <span>
-                                <svg width="17" height="12" viewBox="0 0 17 12" fill="none"
-                                     xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M12.7405 0.0107422H3.61054C1.81171 0.0136959 0.352563 1.46989 0.349609 3.27167H15.9985C15.9985 1.47284 14.5394 0.0136959 12.7405 0.0107422Z" />
-                                    <path
-                                        d="M0.349609 8.48814C0.352563 10.287 1.80876 11.7461 3.61054 11.7491H12.7405C14.5394 11.7461 15.9985 10.2899 16.0015 8.48814V4.57739H0.349609V8.48814ZM4.91314 8.16323C4.91314 8.70377 4.47598 9.14092 3.93545 9.14092C3.39492 9.14092 2.95776 8.70377 2.95776 8.16323C2.95776 7.6227 3.39492 7.18554 3.93545 7.18554C4.47598 7.18554 4.91314 7.6227 4.91314 8.16323Z" />
-                                </svg>
-                            </span>
-                            <span class="text">
-                                Phương thức thanh toán
-                            </span>
-                        </a>
                         <a class="nav-link {{ request('type') == 'order' ? 'active' : '' }}" href="{{ route('dashboard') . '?type=order' }}">
                             <span>
                                 <svg width="15" height="18" viewBox="0 0 15 18" fill="none"

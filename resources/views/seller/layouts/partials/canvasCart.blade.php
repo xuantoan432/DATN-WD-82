@@ -9,7 +9,7 @@
         @foreach($notificationOrders as $item)
             <div class="order-item d-flex align-items-center gap-3 p-3 border-bottom">
                 <div class="order-img">
-                    <img src="{{ \Storage::url($item['notifiable']->image) }}" class="img-fluid rounded-3" width="75"
+                    <img src="{{ \Storage::url($item['notifiable']?->image) }}" class="img-fluid rounded-3" width="75"
                          alt="">
                 </div>
                 <div class="order-info flex-grow-1">
