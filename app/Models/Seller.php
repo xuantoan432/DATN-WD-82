@@ -34,6 +34,10 @@ class Seller extends Model
     {
         return $this->hasMany(Product::class);
     }
+    public  function  oderDetails()
+    {
+        return $this->hasMany(OrderDetail::class);
+    }
     public function notifications()
     {
         return $this->morphMany(Notification::class, 'notifiable');
