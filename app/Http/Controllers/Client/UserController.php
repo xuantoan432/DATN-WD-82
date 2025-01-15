@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Address;
 use App\Models\AddressDetail;
 use App\Models\Order;
+use App\Models\Review;
 use App\Models\Seller;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -44,7 +45,13 @@ class UserController extends Controller
                return view('client.profile.components.address', compact('addresses', 'line_addresses'));
            }
            case 'rating':{
-               return view('client.profile.components.rating');
+
+            $user = Auth::user();
+            $reviews = Review::where('user_id', $user->id)
+                ->with('product') // Load thông tin sản phẩm liên quan
+                ->orderByDesc('created_at')
+                ->get();
+               return view('client.profile.components.rating', compact('reviews'));
            }
            case 'change-password':{
                return view('client.profile.components.password');
