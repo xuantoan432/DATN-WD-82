@@ -24,7 +24,6 @@ Route::get('/shop', [HomeController::class, 'shop'])->name('home.shop');
 Route::get('/product/{product}', [ProductController::class, 'detailProduct'])->name('home.product-detail');
 Route::get('/contact', [HomeController::class, 'contact'])->name('home.contact');
 Route::get('/about', [HomeController::class, 'about'])->name('home.about');
-Route::get('/6', [HomeController::class, 'cart'])->name('home.cart');
 Route::get('/9', [HomeController::class, 'flashSale'])->name('home.flash-sale');
 Route::get('/12', [HomeController::class, 'sellerSidebar'])->name('home.seller-sidebar');
 Route::get('/policy', [HomeController::class, 'policy'])->name('home.policy');
@@ -63,6 +62,7 @@ Route::middleware('auth')->group(function () {
     Route::get('posts/{post}', [PostController::class, 'show'])->name('posts.show');
     Route::post('comments', [PostController::class, 'store'])->name('posts.comments');
     Route::post('add-cart', [CartController::class, 'addToCart'])->name('add.cart');
+    Route::delete('clear-cart/{cartId}', [CartController::class, 'clearCart'])->name('clear.cart');
     Route::get('cart', [CartController::class, 'showCart'])->name('cart.show');
     Route::get('checkout', [OrderController::class, 'showCheckout'])->name('checkout.show');
 
@@ -77,6 +77,8 @@ Route::middleware('auth')->group(function () {
     Route::get('thank', [OrderController::class, 'thank'])->name('thank');
 
     Route::post('rating/{user}', [OrderController::class, 'rating'])->name('rating');
+
+    Route::post('/shop/save', [UserController::class, 'saveOrUpdateShop'])->name('shop.save');
 });
 
- 
+

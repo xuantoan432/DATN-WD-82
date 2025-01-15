@@ -22,7 +22,7 @@ $(document).ready(function () {
         let unitPrice = parseInt($(this).closest('.table-row').find('.total-price').data('unit-price'));
 
         $.ajax({
-            url: PATH_ROOT + 'api/check-quantity',
+            url: '/api/check-quantity',
             type: 'GET',
             data: {
                 quantity: newQuantity,
@@ -61,7 +61,7 @@ $(document).ready(function () {
         let newQuantity = currentVal - 1;
         let unitPrice = parseInt($(this).closest('.table-row').find('.total-price').data('unit-price'));
         $.ajax({
-            url: PATH_ROOT + 'api/check-quantity',
+            url: '/api/check-quantity',
             type: 'GET',
             data: {
                 quantity: newQuantity,
@@ -93,7 +93,7 @@ $(document).ready(function () {
         let cartID = button.data('id');
 
         $.ajax({
-            url: PATH_ROOT + 'api/remove-from-cart', // Giả sử API có endpoint là remove-from-cart
+            url: '/api/remove-from-cart', // Giả sử API có endpoint là remove-from-cart
             type: 'DELETE',
             data: {
                 cartId: cartID

@@ -62,20 +62,6 @@ $('#district').on( 'change' , function () {
 
 })
 
-const getLocation = (type, id) => {
-    return new Promise((resolve, reject) => {
-        $.ajax({
-            url: `https://provinces.open-api.vn/api/${type}/${id}?depth=2`,
-            method: 'GET',
-            success: function (data) {
-                resolve(data);
-            },
-            error: function () {
-                reject(`Không thể tải danh sách ${type === 'p' ? 'Tỉnh/Thành phố' : type === 'd' ? 'Quận/Huyện' : 'Xã/Phường'}.`);
-            }
-        });
-    });
-};
 
 function displayFullAddress(addressDefault, element) {
     element.html(addressDefault);

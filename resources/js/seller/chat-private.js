@@ -33,7 +33,6 @@ Echo.private(`chat.private.${ userSend }.${ userReceiver }`)
     })
 Echo.private(`chat.private.${ userReceiver }.${ userSend }`)
     .listen('ChatPrivate',e => {
-        console.log(e)
         let listMessage = $('.chat-content')
         let UI;
         if (userReceiver == e.userSend.id){
