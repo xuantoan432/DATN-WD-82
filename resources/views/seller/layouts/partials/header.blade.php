@@ -344,7 +344,7 @@
                         <div class="col">
                             <div class="app-wrapper d-flex flex-column gap-2 text-center">
                                 <div class="app-icon">
-                                    <img src="{{asset('theme/admin/assets/images/apps/03.png" w')}}idth="36" alt="">
+                                    <img src="{{asset('theme/admin/assets/images/apps/03.png')}}"width="36" alt="">
                                 </div>
                                 <div class="app-name">
                                     <p class="mb-0">Slack</p>
@@ -357,7 +357,7 @@
                         <div class="col border-end">
                             <div class="app-wrapper d-flex flex-column gap-2 text-center">
                                 <div class="app-icon">
-                                    <img src="{{asset('theme/admin/assets/images/apps/04.png" w')}}idth="36" alt="">
+                                    <img src="{{asset('theme/admin/assets/images/apps/04.png')}}"width="36" alt="">
                                 </div>
                                 <div class="app-name">
                                     <p class="mb-0">YouTube</p>
@@ -367,7 +367,7 @@
                         <div class="col border-end">
                             <div class="app-wrapper d-flex flex-column gap-2 text-center">
                                 <div class="app-icon">
-                                    <img src="{{asset('theme/admin/assets/images/apps/05.png" w')}}idth="36" alt="">
+                                    <img src="{{asset('theme/admin/assets/images/apps/05.png')}}" width="36" alt="">
                                 </div>
                                 <div class="app-name">
                                     <p class="mb-0">Google</p>
@@ -377,7 +377,7 @@
                         <div class="col">
                             <div class="app-wrapper d-flex flex-column gap-2 text-center">
                                 <div class="app-icon">
-                                    <img src="{{asset('theme/admin/assets/images/apps/06.png" w')}}idth="36" alt="">
+                                    <img src="{{asset('theme/admin/assets/images/apps/06.png')}}" width="36" alt="">
                                 </div>
                                 <div class="app-name">
                                     <p class="mb-0">Instagram</p>
@@ -390,7 +390,7 @@
                         <div class="col border-end">
                             <div class="app-wrapper d-flex flex-column gap-2 text-center">
                                 <div class="app-icon">
-                                    <img src="{{asset('theme/admin/assets/images/apps/07.png" w')}}idth="36" alt="">
+                                    <img src="{{asset('theme/admin/assets/images/apps/07.png')}}" width="36" alt="">
                                 </div>
                                 <div class="app-name">
                                     <p class="mb-0">Spotify</p>
@@ -400,7 +400,7 @@
                         <div class="col border-end">
                             <div class="app-wrapper d-flex flex-column gap-2 text-center">
                                 <div class="app-icon">
-                                    <img src="{{asset('theme/admin/assets/images/apps/08.png" w')}}idth="36" alt="">
+                                    <img src="{{asset('theme/admin/assets/images/apps/08.png')}}" width="36" alt="">
                                 </div>
                                 <div class="app-name">
                                     <p class="mb-0">Yahoo</p>
@@ -410,7 +410,7 @@
                         <div class="col">
                             <div class="app-wrapper d-flex flex-column gap-2 text-center">
                                 <div class="app-icon">
-                                    <img src="{{asset('theme/admin/assets/images/apps/09.png" w')}}idth="36" alt="">
+                                    <img src="{{asset('theme/admin/assets/images/apps/09.png')}}" width="36" alt="">
                                 </div>
                                 <div class="app-name">
                                     <p class="mb-0">Facebook</p>

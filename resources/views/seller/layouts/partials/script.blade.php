@@ -1,5 +1,7 @@
 <script>
+    const PATH_ROOT = '{{ config('app.url') }}'
     let sellerId = {{ auth()->user()->seller->id }}
+
 </script>
 @vite('resources/js/seller/notification.js')
 <script src="{{asset('theme/admin/assets/js/bootstrap.bundle.min.js')}}"></script>

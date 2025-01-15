@@ -1,5 +1,7 @@
 <?php
 
+use Carbon\Carbon;
+
 if (!function_exists('numberToShortString')) {
     function numberToShortString($number)
     {
@@ -13,4 +15,13 @@ if (!function_exists('numberToShortString')) {
 
         return round($number, 1) . $suffixes[$suffixIndex];
     }
+    function  percent($value1 , $value2)
+    {
+        return round((($value1 - $value2)  / $value2) * 100 , 1);
+
+    }
+
+
+
+
 }
