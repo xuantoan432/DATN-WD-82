@@ -48,7 +48,7 @@ class AppServiceProvider extends ServiceProvider
         });
         View::composer('seller.layouts.partials.header', function ($view) {
 
-            $sellerId = Auth::user()->seller->id;
+            $sellerId = Auth::user()->seller?->id;
             $notificationOrders = Notification::with(['notifiable' => function ($query) use ($sellerId) {
                 $query->where('seller_id', $sellerId);
             }])
