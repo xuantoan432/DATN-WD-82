@@ -63,6 +63,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/orderDetail/{id}/cancel', [OrderDetailController::class, 'cancelOrderDetail'])->name('orderDetail.cancel');
     Route::post('/createAddress', [UserController::class, 'createAddress'])->name('user.address.create');
     Route::delete('/deleteAddress/{id}', [UserController::class, 'deleteAddress'])->name('user.address.delete');
+    Route::resource('reviews', UserController::class);
 
     Route::put('/updateUser/{id}',[UserController::class,'updateUser'])->name('user.update');
     Route::post('/change-password', [UserController::class, 'changePassword'])->name('user.changePassword');

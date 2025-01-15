@@ -15,7 +15,7 @@ class VoucherController extends Controller
      */
     public function index()
     {
-        $vouchers = Voucher::latest()->get(); 
+        $vouchers = Voucher::latest()->get();
         return view('admin.voucher.index', compact('vouchers'));
     }
 
@@ -31,7 +31,7 @@ class VoucherController extends Controller
      * Store a newly created voucher in storage.
      */
     public function store(Request $request)
-    {   
+    {
         $request->validate([
             'code' => 'required|string|max:255|unique:vouchers,code',
             'discount_type' => 'required|in:percentage,fixed',
@@ -44,14 +44,20 @@ class VoucherController extends Controller
             'usage_type' => 'required|boolean',
             'usage_per_customer' => 'nullable|integer|min:1',
         ]);
-        
+
         $voucherData = $request->all();
         // dd($request->all());
         $voucherData['start_date'] = date("Y-m-d H:i:s", strtotime($request -> start_date));
         $voucherData['end_date'] = date("Y-m-d H:i:s", strtotime($request -> end_date));
         $voucherData['user_id'] = auth()->id();
-        Voucher::create($voucherData);
-        
+      $voucher=   Voucher::create($voucherData);
+        $data = [
+            'code' => $voucher->code,
+
+
+        ];
+        \App\Events\VoucherSuccess::dispatch($data);
+
         return redirect()->route('admin.vouchers.index')->with('success', 'Thêm voucher thành công');
     }
 
@@ -60,7 +66,7 @@ class VoucherController extends Controller
      */
     public function edit(Voucher $voucher)
     {
-        
+
         return view('admin.voucher.edit', compact('voucher'));
     }
 
@@ -78,14 +84,14 @@ class VoucherController extends Controller
         'start_date' => 'required|date',
         'end_date' => 'required|date|after_or_equal:start_date',
     ]);
-    
+
     $voucher->update($request->only([
-        'code', 
-        'discount_type', 
-        'discount_value', 
-        'max_discount_amount', 
-        'min_order_value', 
-        'start_date', 
+        'code',
+        'discount_type',
+        'discount_value',
+        'max_discount_amount',
+        'min_order_value',
+        'start_date',
         'end_date'
     ]));
 

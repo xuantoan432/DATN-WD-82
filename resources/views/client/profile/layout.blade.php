@@ -1,7 +1,7 @@
 @extends('client.layouts.master')
 
 @section('title')
-    User Dashboard
+    Cài đặt
 @endsection
 
 @section('content')
