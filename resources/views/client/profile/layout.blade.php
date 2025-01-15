@@ -51,6 +51,16 @@
                                 Thông tin cá nhân
                             </span>
                         </a>
+                        @if (auth()->check() && auth()->user()->hasRole(2))
+                        <a class="nav-link {{ request('type') == 'store' ? 'active' : '' }}" href="{{ route('dashboard') . '?type=store' }}">
+                            <span>
+                                <i class="fa-solid fa-store" style="color: #797979;"></i>
+                            </span>
+                            <span class="text">
+                                Thông tin cửa hàng
+                            </span>
+                        </a>
+                        @endif
                         <a class="nav-link {{ request('type') == 'payment-method' ? 'active' : '' }}" href="{{ route('dashboard') . '?type=payment-method' }}">
                             <span>
                                 <svg width="17" height="12" viewBox="0 0 17 12" fill="none"

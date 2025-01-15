@@ -35,13 +35,6 @@
                 </li>
 
                 <li>
-                    <a href="{{ route('admin.roles.index') }}">
-                        <i class="material-icons-outlined">arrow_right</i>
-                        Phân quyền
-                    </a>
-                </li>
-
-                <li>
                     <a href="{{ route('admin.vouchers.index') }}">
                         <i class="material-icons-outlined">arrow_right</i>
                         Mã giảm giá
@@ -71,6 +64,22 @@
             <ul>
                 <li><a href="{{ route('admin.phe-duyet.index') }}"><i class="material-icons-outlined">task</i>Sản Phẩm </a> </li>
                 <li><a href="{{ route('admin.seller-approval') }}"><i class="material-icons-outlined">badge</i>Người Bán Hàng</a> </li>
+            </ul>
+        </li>
+        <li>
+            <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon"><i class="material-icons-outlined">person</i>
+                </div>
+                <div class="menu-title">Người dùng </div>
+            </a>
+            <ul>
+                <li>
+                    <a href="{{ route('admin.roles.index') }}">
+                        <i class="material-icons-outlined">arrow_right</i>
+                        Phân quyền
+                    </a>
+                </li>
+                <li><a href="{{ route('admin.users.index') }}"><i class="material-icons-outlined">arrow_right</i>Tài khoản</a> </li>
             </ul>
         </li>
         <li>

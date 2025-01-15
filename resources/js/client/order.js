@@ -44,7 +44,7 @@ $(document).ready(function() {
         var voucherPrevious = $('#voucher_previous').val();
 
         $.ajax({
-            url: PATH_ROOT + 'api/voucher/apply',
+            url:'/api/voucher/apply',
             type: 'POST',
             data: {
                 _token: $('meta[name="csrf-token"]').attr('content'),

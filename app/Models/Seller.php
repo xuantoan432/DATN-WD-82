@@ -14,6 +14,7 @@ class Seller extends Model
         'user_id',
         'store_name',
         'store_email',
+        'logo_shop',
         'store_description' ,
         'account_balance'
     ];

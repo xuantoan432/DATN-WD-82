@@ -130,9 +130,12 @@
                 </table>
             </div>
             <div class="wishlist-btn cart-btn">
-                <a href="empty-cart.html" class="clean-btn">Clear Cart</a>
-                <a href="#" class="shop-btn update-btn">Update Cart</a>
-                <a href="{{ route('checkout.show', $user) }}" class="shop-btn">Proceed to Checkout</a>
+                <form action="{{ route('clear.cart', $cart->id) }}" method="post">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="clean-btn">Xóa giỏ hàng</button>
+                </form>
+                <a href="{{ route('checkout.show', $user) }}" class="shop-btn">Tiến hành thanh toán</a>
             </div>
         </div>
         @else
@@ -142,7 +145,7 @@
                 </div>
                 <div class="cart-content">
                     <p class="content-title">Giỏ hàng của bạn đang không có sản phẩm nào </p>
-                    <a href="product-sidebar.html" class="shop-btn">Quay lại trang sản phẩm</a>
+                    <a href="{{ route('home.shop') }}" class="shop-btn">Quay lại trang sản phẩm</a>
                 </div>
             </div>
         @endif
