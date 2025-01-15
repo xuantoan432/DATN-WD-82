@@ -106,7 +106,7 @@
                                 </a>
                                 <div class="blog-details">
                                     <p>
-                                        {{ $postDetail->content }}
+                                        {!! $postDetail->content !!}
                                     </p>
                                 </div>
                                 <div class="wrapper-data mt-3">

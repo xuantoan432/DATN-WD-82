@@ -1,123 +1,95 @@
 @extends('client.layouts.master')
 
 @section('title')
-   Cart
+    Điều khoản và điều kiện
 @endsection
 
 @section('content')
-
-@include('client.components.breadcrumbs')
-<section class="product privacy footer-padding">
-    <div class="container">
-        <div class="privacy-section">
-            <div class="policy">
-                <h5 class="intro-heading">1. What Are Privacy Policy ?</h5>
-                <p class="policy-details">Terms and conditions typically have a short description of your privacy
-                    policy or a statement
-                    declaring that using the site means expressing consent to the way you handle and process
-                    personal data. It has survived not only five centuries but also the on leap into electronic
-                    typesetting, remaining essentially unchanged. It wasn’t popularised in the 1960s with the
-                    release of Letraset sheets containing Lorem Ipsum passages, andei more recently with desktop
-                    publishing software like Aldus PageMaker including versions of Lorem Ipsum to make a type
-                    specimen book.</p>
-            </div>
-            <div class="policy">
-                <h5 class="intro-heading">2. Ecommerce Terms and Conditions Examples</h5>
-                <p class="policy-details">While it’s not legally required for ecommerce websites to have a terms and
-                    conditions agreement, adding one will help protect your online business.As terms and conditions
-                    are legally enforceable rules, they allow you to set standards for how users interact with your
-                    site. Here are some of the major benefits of including terms and conditions on your ecommerce
-                    site:
-                    <span class="policy-inner-text">
-                        It has survived not only five centuries but also the on leap into electronic typesetting,
-                        remaining essentially unchanged. It wasn’t popularised in the 1960s with the release of
-                        Letraset
-                        sheets containing Lorem Ipsum passages, andei more recently with desktop.
-                    </span>
-                </p>
-                <div class="policy-features">
-                    <h5 class="intro-heading">Features :</h5>
-                    <ul>
-                        <li>
-                            <p>slim body with metal cover</p>
-                        </li>
-                        <li>
-                            <p>latest Intel Core i5-1135G7 processor (4 cores / 8 threads)</p>
-                        </li>
-                        <li>
-                            <p>8GB DDR4 RAM and fast 512GB PCIe SSD</p>
-                        </li>
-                        <li>
-                            <p>NVIDIA GeForce MX350 2GB GDDR5 graphics card backlit keyboard, touchpad with gesture
-                                support</p>
-                        </li>
-                    </ul>
+    @include('client.components.breadcrumbs')
+    <section class="product privacy footer-padding">
+        <div class="container">
+            <div class="privacy-section">
+                <div class="policy">
+                    <h5 class="intro-heading">1. Chính sách bảo mật là gì?</h5>
+                    <p class="policy-details">Điều khoản và điều kiện thường có một mô tả ngắn gọn về chính sách bảo mật của
+                        bạn hoặc một tuyên bố rằng việc sử dụng trang web đồng nghĩa với việc đồng ý với cách bạn xử lý và
+                        xử lý dữ liệu cá nhân. Nó đã tồn tại không chỉ qua năm thế kỷ mà còn qua sự chuyển đổi sang sắp chữ
+                        điện tử, vẫn giữ nguyên bản chất. Nó không trở nên phổ biến vào những năm 1960 khi các tấm Letraset
+                        chứa các đoạn văn Lorem Ipsum được phát hành, và gần đây hơn là với phần mềm xuất bản trên máy tính
+                        để bàn như Aldus PageMaker bao gồm các phiên bản của Lorem Ipsum để tạo một cuốn sách mẫu kiểu chữ.
+                    </p>
+                </div>
+                <div class="policy">
+                    <h5 class="intro-heading">2. Ví dụ về điều khoản và điều kiện thương mại điện tử</h5>
+                    <p class="policy-details">Mặc dù không bắt buộc phải có điều khoản và điều kiện đối với các trang web
+                        thương mại điện tử, việc thêm điều khoản này sẽ giúp bảo vệ doanh nghiệp trực tuyến của bạn. Vì điều
+                        khoản và điều kiện là các quy tắc có hiệu lực pháp lý, chúng cho phép bạn thiết lập tiêu chuẩn về
+                        cách người dùng tương tác với trang web của bạn. Dưới đây là một số lợi ích chính khi thêm điều
+                        khoản và điều kiện vào trang web thương mại điện tử của bạn:
+                        <span class="policy-inner-text">
+                            Nó đã tồn tại không chỉ qua năm thế kỷ mà còn qua sự chuyển đổi sang sắp chữ điện tử, vẫn giữ
+                            nguyên bản chất. Nó không trở nên phổ biến vào những năm 1960 khi các tấm Letraset chứa các đoạn
+                            văn Lorem Ipsum được phát hành, và gần đây hơn là với phần mềm xuất bản trên máy tính để bàn.
+                        </span>
+                    </p>
+                    <div class="policy-features">
+                        <h5 class="intro-heading">Tính năng:</h5>
+                        <ul>
+                            <li>
+                                <p>Thân máy mỏng với vỏ kim loại</p>
+                            </li>
+                            <li>
+                                <p>Bộ xử lý Intel Core i5-1135G7 mới nhất (4 lõi / 8 luồng)</p>
+                            </li>
+                            <li>
+                                <p>RAM DDR4 8GB và ổ cứng SSD PCIe 512GB tốc độ cao</p>
+                            </li>
+                            <li>
+                                <p>Card đồ họa NVIDIA GeForce MX350 2GB GDDR5, bàn phím có đèn nền, touchpad hỗ trợ cử chỉ
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="policy">
+                    <h5 class="intro-heading">3. Mẫu điều khoản và điều kiện thương mại điện tử [Miễn phí]</h5>
+                    <p class="policy-details">Lorem Ipsum chỉ đơn giản là văn bản giả của ngành in ấn và sắp chữ. Lorem
+                        Ipsum đã trở thành tiêu chuẩn của ngành kể từ những năm 1500, khi một thợ in vô danh lấy một khay
+                        chữ và xáo trộn để tạo ra một cuốn sách mẫu kiểu chữ. Nó đã tồn tại không chỉ qua năm thế kỷ mà còn
+                        qua sự chuyển đổi sang sắp chữ điện tử, vẫn giữ nguyên bản chất. Nó không trở nên phổ biến vào những
+                        năm 1960 khi các tấm Letraset chứa các đoạn văn Lorem Ipsum được phát hành, và gần đây hơn là với
+                        phần mềm xuất bản trên máy tính để bàn như Aldus PageMaker bao gồm các phiên bản của Lorem Ipsum để
+                        tạo một cuốn sách mẫu kiểu chữ.</p>
+                </div>
+                <div class="policy">
+                    <h5 class="intro-heading">4. Những gì cần bao gồm trong điều khoản và điều kiện cho các cửa hàng trực
+                        tuyến</h5>
+                    <p class="policy-details">Lorem Ipsum chỉ đơn giản là văn bản giả của ngành in ấn và sắp chữ. Lorem
+                        Ipsum đã trở thành tiêu chuẩn của ngành kể từ những năm 1500, khi một thợ in vô danh lấy một khay
+                        chữ và xáo trộn để tạo ra một cuốn sách mẫu kiểu chữ. Nó đã tồn tại không chỉ qua năm thế kỷ mà còn
+                        qua sự chuyển đổi sang sắp chữ điện tử, vẫn giữ nguyên bản chất.
+                        <span class="policy-inner-text">
+                            Nó đã không trở nên phổ biến cho đến những năm 1960, khi các tấm Letraset chứa các đoạn Lorem
+                            Ipsum được phát hành. Gần đây hơn, các chương trình xuất bản trên máy tính để bàn như Aldus
+                            PageMaker đã bao gồm các phiên bản của Lorem Ipsum để tạo ra sách mẫu kiểu chữ.
+                        </span>
+                    </p>
+                </div>
+                <div class="policy">
+                    <h5 class="intro-heading">5. Điều khoản giá cả và thanh toán</h5>
+                    <p class="policy-details">Lorem Ipsum là văn bản giả của ngành công nghiệp in ấn và sắp chữ. Kể từ những
+                        năm 1500, khi một thợ in vô danh xáo trộn một khay chữ để tạo ra một cuốn sách mẫu kiểu chữ, Lorem
+                        Ipsum đã trở thành tiêu chuẩn giả định của ngành. Nó đã tồn tại gần như không thay đổi trong năm thế
+                        kỷ và thậm chí còn vượt qua sự chuyển đổi sang sắp chữ điện tử.
+                        <span class="policy-inner-text">
+                            Nó đã không trở nên phổ biến cho đến những năm 1960, khi các tấm Letraset chứa các đoạn Lorem
+                            Ipsum được phát hành. Gần đây hơn, các chương trình xuất bản trên máy tính để bàn như Aldus
+                            PageMaker đã bao gồm các phiên bản của Lorem Ipsum để tạo ra sách mẫu kiểu chữ.
+                        </span>
+                    </p>
                 </div>
             </div>
-            <div class="policy">
-                <h5 class="intro-heading">3. Ecommerce Terms and Conditions Template [Free]</h5>
-                <p class="policy-details">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                    Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown
-                    printer took a galley of type and scrambled it to make a type specimen book. It has survived not
-                    only five centuries but also the on leap into electronic typesetting, remaining essentially
-                    unchanged. It wasn’t popularised in the 1960s with the release of Letraset sheets containing
-                    Lorem Ipsum passages, andei more recently with desktop publishing software like Aldus PageMaker
-                    including versions of Lorem Ipsum to make a type specimen book. five centuries but also the on
-                    leap into electronic typesetting, remaining essentially unchanged. It wasn’t popularised in the
-                    1960s with the release of Letraset sheets containing Lorem Ipsum passages, andei more recently
-                    with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum to make
-                    a type specimen book.
-                </p>
-            </div>
-            <div class="policy">
-                <h5 class="intro-heading">4. What to Include in Terms and Conditions for Online Stores</h5>
-                <p class="policy-details">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                    Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown
-                    printer took a galley of type and scrambled it to make a type specimen book. It has survived not
-                    only five centuries but also the on leap into electronic typesetting, remaining essentially
-                    unchanged. It wasn’t popularised in the 1960s with the release of Letraset sheets containing
-                    Lorem Ipsum passages, andei more recently with desktop publishing software like Aldus PageMaker
-                    including versions of Lorem Ipsum to make a type specimen book.
-                    <span class="policy-inner-text">
-                        five centuries, not to mention the transition to electronic typesetting, which remained
-                        largely unaltered. It didn't become widely known until the 1960s, when Letraset sheets with
-                        sections from Lorem Ipsum were released. More recently, desktop publishing programs like
-                        Aldus PageMaker have included renditions of Lorem Ipsum to create type specimen books. It
-                        didn't become widely known until the 1960s, when Letraset sheets with sections from Lorem
-                        Ipsum were released. More recently, desktop publishing programs like Aldus PageMaker have
-                        included renditions of Lorem Ipsum to create type specimen books.
-                    </span>
-                </p>
-            </div>
-            <div class="policy">
-                <h5 class="intro-heading">05.Pricing and Payment Terms</h5>
-                <p class="policy-details">Lorem Ipsum is essentially the typeset and printing industry's dummy text.
-                    Since an unidentified printer jumbled a galley of type to create a type specimen book in the
-                    1500s, Lorem Ipsum has been the industry standard sham text. It has remained virtually constant
-                    for five centuries, and it has even withstood the transition to electronic typesetting. It
-                    didn't become widely known until the 1960s, when Letraset sheets with sections from Lorem Ipsum
-                    were released. More recently, desktop publishing programs like Aldus PageMaker have included
-                    renditions of Lorem Ipsum to create type specimen books.
-                    <span class="policy-inner-text">
-                        five centuries but also the on leap into electronic typesetting, remaining essentially
-                        unchanged. It wasn’t popularised in the 1960s with the release of Letraset sheets containing
-                        Lorem Ipsum passages, andei more recently with desktop publishing software like Aldus
-                        PageMaker including versions of Lorem Ipsum to make a type specimen book. It wasn’t
-                        popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum
-                        passages, andei more recently with desktop publishing software like Aldus PageMaker
-                        including versions of Lorem Ipsum to make a type specimen book.
-                    </span>
-                    <span class="policy-inner-text">
-                        It has remained virtually constant for five centuries, and it has even withstood the
-                        transition to electronic typesetting. It didn't become widely known until the 1960s, when
-                        Letraset sheets with sections from Lorem Ipsum were released. More recently, desktop
-                        publishing programs like Aldus PageMaker have included renditions of Lorem Ipsum to create
-                        type specimen books.
-                    </span>
-                </p>
-            </div>
         </div>
-    </div>
-</section>
-@endsection
 
+    </section>
+@endsection

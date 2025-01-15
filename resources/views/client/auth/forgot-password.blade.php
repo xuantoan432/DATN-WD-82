@@ -31,7 +31,7 @@
                         </div>
                         <div class="login-btn text-center">
                             <button type="submit" class="shop-btn">Xác nhận</button>
-                            <span class="shop-account">bạn chưa có tài khoản ?<a href="create-account.html">Đăng ký
+                            <span class="shop-account">Bạn chưa có tài khoản ?<a href="{{route('register')}}">Đăng ký
                                 </a></span>
                         </div>
                     </form>

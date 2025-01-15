@@ -8,27 +8,28 @@
     <section id="hero" class="hero">
         <div class="swiper hero-swiper">
             <div class="swiper-wrapper hero-wrapper">
-                @foreach($bannerHero as $banner)
-                <div class="swiper-slide" style="background: url('{{ \Storage::url($banner->banner_image) }}') no-repeat center/cover">
-                    <div class="container">
-                        <div class="col-lg-6">
-                            <div class="wrapper-section" data-aos="fade-up">
-                                <div class="wrapper-info">
-                                    <h5 class="wrapper-subtitle">{{ $banner->banner_text }}
-                                    </h5>
-                                    <h1 class="wrapper-details">{{ $banner->banner_title }}</h1>
-                                    <a href="{{ $banner->banner_link }}" class="shop-btn">Mua sắm ngay</a>
+                @foreach ($bannerHero as $banner)
+                    <div class="swiper-slide"
+                        style="background: url('{{ \Storage::url($banner->banner_image) }}') no-repeat center/cover">
+                        <a href="{{ $banner->banner_link }}">
+                            <div class="container">
+                                <div class="col-lg-6">
+                                    <div class="wrapper-section" data-aos="fade-up">
+                                        <div class="wrapper-info">
+                                            <h5 class="wrapper-subtitle">{{ $banner->banner_text }}
+                                            </h5>
+                                            <h1 class="wrapper-details">{{ $banner->banner_title }}</h1>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </a>
                     </div>
-                </div>
                 @endforeach
             </div>
             <div class="swiper-pagination"></div>
         </div>
     </section>
-
 @endsection
 
 
@@ -38,28 +39,19 @@
         <div class="container">
             <div class="style-section">
                 <div class="row gy-4 gx-5 gy-lg-0">
-                    @foreach($bannersub1 as $banner)
-                    <div class="col-lg-6">
-                        <div class="product-wrapper wrapper-one" data-aos="fade-right" style="background: url('{{ \Storage::url($banner->banner_image) }}') no-repeat center/cover">
-                            <div class="wrapper-info">
-                                <span class="wrapper-subtitle">{{ $banner->banner_text }}</span>
-                                <h4 class="wrapper-details" style="width: 260px;">
-                                    {{ $banner->banner_title }}
-                                </h4>
-                                <a href="{{ $banner->banner_link }}" class="shop-btn">Shop Now
-                                    <span>
-                                        <svg width="8" height="14" viewBox="0 0 8 14" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <rect x="1.45312" y="0.914062" width="9.25346" height="2.05632"
-                                                transform="rotate(45 1.45312 0.914062)" />
-                                            <rect x="8" y="7.45703" width="9.25346" height="2.05632"
-                                                transform="rotate(135 8 7.45703)" />
-                                        </svg>
-                                    </span>
-                                </a>
+                    @foreach ($bannersub1 as $banner)
+                        <a href="{{ $banner->banner_link }}" class="col-lg-6">
+                            <div class="product-wrapper wrapper-one" data-aos="fade-right" 
+                                style="background: url('{{ \Storage::url($banner->banner_image) }}') no-repeat center/cover">
+                                <div class="wrapper-info">
+                                    <span class="wrapper-subtitle">{{ $banner->banner_text }}</span>
+                                    <h4 class="wrapper-details" style="width: 260px;">
+                                        {{ $banner->banner_title }}
+                                    </h4>
+                                     
+                                </div>
                             </div>
-                        </div>
-                    </div>
+                        </a>
                     @endforeach
                 </div>
             </div>
@@ -70,12 +62,13 @@
     <section class="product-category">
         <div class="container">
             <div class="section-title">
-                <h5>Our Categories</h5>
-                <a href="product-sidebar.html" class="view">View All</a>
+                <h5>Danh mục</h5>
+                <a href="{{ route('home.shop') }}" class="view">Xem tất cả</a>
             </div>
             <div class="category-section pb-5">
-                @foreach($categories as $category)
-                    <a href="{{ route('home.shop', ['categories_id[]' => $category->id]) }}" class="product-wrapper" data-aos="fade-right" data-aos-duration="100">
+                @foreach ($categories as $category)
+                    <a href="{{ route('home.shop', ['categories_id[]' => $category->id]) }}" class="product-wrapper"
+                        data-aos="fade-right" data-aos-duration="100">
                         <div class="wrapper-img">
                             <img src="{{ \Storage::url($category->icon) }}" alt="dress">
                         </div>
@@ -91,19 +84,22 @@
     <section class="product arrival">
         <div class="container">
             <div class="section-title">
-                <h5>NEW ARRIVALS</h5>
-                <a href="product-sidebar.html" class="view">View All</a>
+                <h5>Hàng mới về</h5>
+                <a href="{{ route('home.shop') }}" class="view">Xem tất cả</a>
             </div>
             <div class="arrival-section">
                 <div class="row g-5">
                     @foreach ($new_products as $np)
-                        @include('client.components.product', ['class' => 'col-lg-3 col-md-6', 'product' => $np])
+                        @include('client.components.product', [
+                            'class' => 'col-lg-3 col-md-6',
+                            'product' => $np,
+                        ])
                     @endforeach
                 </div>
             </div>
         </div>
     </section>
-
+    <!-- Flash sale-->
 
     <section class="product flash-sale">
         <div class="container">
@@ -124,15 +120,18 @@
                     </div>
                     <div class="countdown-items">
                         <span id="second" class="number" style="color: red;">0</span>
-                        <span class="text">seconds</span>
+                        <span class="text">Seconds</span>
                     </div>
                 </div>
-                <a href="flash-sale.html" class="view">View All</a>
+                <a href="{{ route('home.shop') }}" class="view">Xem tất cả</a>
             </div>
             <div class="flash-sale-section">
                 <div class="row g-5">
                     @foreach ($sale_products as $sp)
-                        @include('client.components.product', ['class' => 'col-lg-3 col-md-6', 'product' => $sp])
+                        @include('client.components.product', [
+                            'class' => 'col-lg-3 col-md-6',
+                            'product' => $sp,
+                        ])
                     @endforeach
                 </div>
             </div>
@@ -140,11 +139,12 @@
     </section>
 
 
+
     <section class="product top-selling">
         <div class="container">
             <div class="section-title">
-                <h5>Top Selling Prodcuts</h5>
-                <a href="product-sidebar.html" class="view">View All</a>
+                <h5>Bán chạy nhất</h5>
+                <a href="{{ route('home.shop') }}" class="view">Xem tất cả</a>
             </div>
             <div class="top-selling-section">
                 <div class="row g-5">
@@ -161,10 +161,6 @@
     <section class="product best-seller">
         <div class="container">
             <div class="best-selling-section">
-                <div class="section-title">
-                    <h5>Best Sellers</h5>
-                    <a href="sellers.html" class="view">View All</a>
-                </div>
                 <div class="best-selling-items">
                     <div class="product-wrapper">
                         <div class="wrapper-img">
@@ -277,40 +273,34 @@
     <section class="product weekly-sale">
         <div class="container">
             <div class="section-title">
-                <h5>Best Sell in this Week</h5>
-                <a href="product-sidebar.html" class="view">View All</a>
+                <h5>Nổi bật trong tuần</h5>
+                <a href="{{ route('home.shop') }}" class="view">Xem tất cả</a>
             </div>
             <div class="weekly-sale-section">
                 <div class="row g-5">
                     @foreach ($best_sell as $bs)
-                        @include('client.components.product', ['class' => 'col-lg-3 col-md-6', 'product' => $bs])
+                        @include('client.components.product', [
+                            'class' => 'col-lg-3 col-md-6',
+                            'product' => $bs,
+                        ])
                     @endforeach
                 </div>
             </div>
             <div class="style-section">
                 <div class="row gy-4 gx-5 gy-lg-0">
-                    @foreach($bannersub2 as $banner)
-                        <div class="col-lg-6">
-                            <div class="product-wrapper wrapper-one" data-aos="fade-right" style="background: url('{{ \Storage::url($banner->banner_image) }}') no-repeat center/cover">
+                    @foreach ($bannersub2 as $banner)
+                        <a href="{{ $banner->banner_link }}" class="col-lg-6">
+                            <div class="product-wrapper wrapper-one" data-aos="fade-right"
+                                style="background: url('{{ \Storage::url($banner->banner_image) }}') no-repeat center/cover">
                                 <div class="wrapper-info">
                                     <span class="wrapper-subtitle">{{ $banner->banner_text }}</span>
                                     <h4 class="wrapper-details" style="width: 260px;">
                                         {{ $banner->banner_title }}
                                     </h4>
-                                    <a href="{{ $banner->banner_link }}" class="shop-btn">Shop Now
-                                        <span>
-                                        <svg width="8" height="14" viewBox="0 0 8 14" fill="none"
-                                             xmlns="http://www.w3.org/2000/svg">
-                                            <rect x="1.45312" y="0.914062" width="9.25346" height="2.05632"
-                                                  transform="rotate(45 1.45312 0.914062)" />
-                                            <rect x="8" y="7.45703" width="9.25346" height="2.05632"
-                                                  transform="rotate(135 8 7.45703)" />
-                                        </svg>
-                                    </span>
-                                    </a>
+                                    
                                 </div>
                             </div>
-                        </div>
+                        </a>
                     @endforeach
                 </div>
             </div>
@@ -322,18 +312,54 @@
     <section class="product best-product">
         <div class="container">
             <div class="section-title">
-                <h5>Flash Sale</h5>
-                <a href="flash-sale.html" class="view">View All</a>
+                <h5>Có thể bạn sẽ thích</h5>
+                <a href="{{ route('home.shop') }}" class="view">Xem tất cả</a>
             </div>
             <div class="best-product-section">
                 <div class="row g-4">
                     @foreach ($flash_sale as $fs)
-                        @include('client.components.product', ['class' => 'col-xl-2 col-md-4', 'product' => $fs, 'hideBtn' => true])
+                        @include('client.components.product', [
+                            'class' => 'col-xl-2 col-md-4',
+                            'product' => $fs,
+                            'hideBtn' => true,
+                        ])
                     @endforeach
                 </div>
             </div>
         </div>
     </section>
 @endsection
+@section('js')
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Cài đặt thời gian kết thúc flash sale
+            const flashSaleEndTime = new Date("2025-01-31T23:59:59")
+        .getTime(); // Thay đổi thời gian kết thúc tại đây
 
+            // Cập nhật mỗi giây
+            const countdownTimer = setInterval(() => {
+                const now = new Date().getTime();
+                const timeLeft = flashSaleEndTime - now;
 
+                // Tính toán ngày, giờ, phút, giây
+                const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+                document.getElementById('day').textContent = days;
+                document.getElementById('hour').textContent = hours;
+                document.getElementById('minute').textContent = minutes;
+                document.getElementById('second').textContent = seconds;
+
+                // Dừng đếm ngược khi hết thời gian
+                if (timeLeft < 0) {
+                    clearInterval(countdownTimer);
+                    document.querySelector('.countdown-section').innerHTML =
+                        `<span class="expired">Flash Sale Ended!</span>`;
+                }
+            }, 1000);
+        });
+    </script>
+    @vite(['resources/js/client/product-detail.js', 'resources/js/client/chat-seller.js'])
+@endsection
