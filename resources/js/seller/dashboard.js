@@ -305,7 +305,7 @@ $(function () {
             data: [],
         }
     };
-
+    let tongdoanhthu = 0 ;
     for (const val of data.revenue.weeklyStats) {
         chart4.day.donhang.push(val.total_orders);
         chart4.day.doanhthu.push(val.total_price);
@@ -326,7 +326,10 @@ $(function () {
         chart4.year.doanhthu.push(val.total_price);
         chart4.year.data.push("Năm " + val.year);
     }
-
+    for (const val of chart4.day.doanhthu) {
+        tongdoanhthu += parseInt(val)
+    }
+    $('#thongketong').text('Tổng Tiền : ' + FormatPrice(tongdoanhthu))
 
     var options = {
         series: [{
@@ -424,23 +427,31 @@ $(function () {
     $('.dropdown-item').on('click', function () {
         var selectedOption = $(this).attr('id');
 
-        // Thực hiện thay đổi dữ liệu theo lựa chọn
         if (selectedOption === 'data-ngay') {
-
-            console.log('Hiển thị dữ liệu theo Ngày');
-
+            $('#thongketong').text('Tổng Tiền : ' + FormatPrice(tongdoanhthu))
             changeChartData('day');
         } else if (selectedOption === 'data-tuan') {
-
-            console.log('Hiển thị dữ liệu theo Tuần');
+            tongdoanhthu = 0
+            for (const val of chart4.week.doanhthu) {
+                tongdoanhthu += parseInt(val)
+            }
+            $('#thongketong').text('Tổng Tiền : ' + FormatPrice(tongdoanhthu))
             changeChartData('week');
         } else if (selectedOption === 'data-thang') {
 
-            console.log('Hiển thị dữ liệu theo Tháng');
+            tongdoanhthu = 0
+            for (const val of chart4.month.doanhthu) {
+                tongdoanhthu += parseInt(val)
+            }
+            $('#thongketong').text('Tổng Tiền : ' + FormatPrice(tongdoanhthu))
             changeChartData('month');
         } else if (selectedOption === 'data-nam') {
+            tongdoanhthu = 0
+            for (const val of chart4.year.doanhthu) {
+                tongdoanhthu += parseInt(val)
+            }
+            $('#thongketong').text('Tổng Tiền : ' + FormatPrice(tongdoanhthu))
 
-            console.log('Hiển thị dữ liệu theo Năm');
             changeChartData('year');
         }
     });
