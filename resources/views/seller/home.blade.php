@@ -123,7 +123,10 @@
                                 </ul>
                             </div>
                         </div>
-                        <div id="chart5"></div>
+                        <span id="thongketong"></span>
+                        <div id="chart5">
+
+                        </div>
 
                     </div>
                 </div>
