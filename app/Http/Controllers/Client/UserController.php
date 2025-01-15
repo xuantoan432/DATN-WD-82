@@ -6,12 +6,14 @@ use App\Http\Controllers\Controller;
 use App\Models\Address;
 use App\Models\AddressDetail;
 use App\Models\Order;
+use App\Models\Review;
 use App\Models\Seller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\Rule;
 use Illuminate\Validation\ValidationException;
 
 class UserController extends Controller
@@ -19,16 +21,22 @@ class UserController extends Controller
    public function userDashboard(Request $request)
    {
        $type = $request->input('type') ?? null;
-
+       $user =  Auth::user();
        switch ($type) {
            case 'personal':{
                return view('client.profile.components.personal-info');
+           }
+           case 'store':{
+               $user->load('seller.address');
+               $store = $user->seller;
+               $address = $store?->address[0];
+               return view('client.profile.components.store-info', compact('store', 'address'));
            }
            case 'payment-method':{
                return view('client.profile.components.payment-method');
            }
            case 'order':{
-               $user =  Auth::user();
+
                $user->load('orders.orderDetails','addresses.province', 'addresses.ward', 'addresses.district');
                $orders = $user->orders()->orderByDesc('id')->get();
                return view('client.profile.components.order', compact('orders'));
@@ -44,7 +52,13 @@ class UserController extends Controller
                return view('client.profile.components.address', compact('addresses', 'line_addresses'));
            }
            case 'rating':{
-               return view('client.profile.components.rating');
+
+            $user = Auth::user();
+            $reviews = Review::where('user_id', $user->id)
+                ->with('product') // Load thông tin sản phẩm liên quan
+                ->orderByDesc('created_at')
+                ->get();
+               return view('client.profile.components.rating', compact('reviews'));
            }
            case 'change-password':{
                return view('client.profile.components.password');
@@ -176,5 +190,76 @@ class UserController extends Controller
         $user->update(['default_address_id' => $idAddress]);
         return redirect()->back();
    }
+
+    public function saveOrUpdateShop(Request $request)
+    {
+        $user = Auth::user();
+
+        // Xác thực dữ liệu
+        $validated = $request->validate([
+            'store_name' => 'required|string|max:255',
+            'address' => 'array',
+            'address.province' => 'required|exists:provinces,id',
+            'address.district' => 'required|exists:districts,id',
+            'address.ward' => 'required|exists:wards,id',
+            'address.address_line' => 'required|string|max:255',
+            'logo_shop' => 'nullable|file|max:2048',
+            'store_email' => [
+                'required',
+                'string',
+                'email',
+                'max:255',
+                Rule::unique('sellers', 'store_email')->ignore(optional($user->seller)->id),
+            ],
+            'store_description' => 'nullable|string',
+        ]);
+
+        // Chuẩn bị dữ liệu cho địa chỉ
+        $dataAddress = [
+            'address_line' => $validated['address']['address_line'],
+            'province_id' => $validated['address']['province'],
+            'district_id' => $validated['address']['district'],
+            'ward_id' => $validated['address']['ward'],
+        ];
+
+        if ($request->hasFile('logo_shop')) {
+            $validated['logo_shop'] = Storage::put('sellers', $request->file('logo_shop'));
+        }
+
+        if (!$user->seller) {
+            $seller = $user->seller()->create([
+                'store_name' => $validated['store_name'],
+                'store_email' => $validated['store_email'],
+                'store_description' => $validated['store_description'] ?? null,
+                'logo_shop' => $validated['logo_shop'] ?? null,
+            ]);
+
+            $address = Address::create($dataAddress);
+
+            $seller->address()->attach($address->id);
+
+            return redirect()->back()->with('success', 'Cửa hàng đã được thêm mới.');
+        } else {
+            $user->seller->update([
+                'store_name' => $validated['store_name'],
+                'store_email' => $validated['store_email'],
+                'store_description' => $validated['store_description'] ?? null,
+                'logo_shop' => $validated['logo_shop'] ?? $user->seller->logo_shop, // Giữ logo cũ nếu không cập nhật mới
+            ]);
+
+            // Thêm hoặc cập nhật địa chỉ
+            $address = Address::updateOrCreate(
+                [
+                    'id' => $user->seller->address()->first()->id ?? null, // Lấy địa chỉ đầu tiên của cửa hàng hiện tại
+                ],
+                $dataAddress
+            );
+
+            $user->seller->address()->syncWithoutDetaching([$address->id]);
+
+            return redirect()->back()->with('success', 'Cửa hàng đã được cập nhật.');
+        }
+    }
+
 
 }

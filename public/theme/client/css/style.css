@@ -285,7 +285,11 @@ button {
 }
 
 .product-wrapper .product-details {
-    font-family: jost, sans-serif
+    font-family: jost, sans-serif;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
 }
 
 @media(max-width:767px) {

@@ -112,31 +112,32 @@
                     </div>
                 </div>
                 <div class="col-lg-6">
-                    <div class="question-section login-section ">
+                    <div class="question-section login-section">
                         <div class="review-form">
                             <h5 class="comment-title">Get In Touch</h5>
-                            <div class=" account-inner-form">
-                                <div class="review-form-name">
-                                    <label for="fname" class="form-label">Name*</label>
-                                    <input type="text" id="fname" class="form-control" placeholder="Name">
-                                </div>
-                                <div class="review-form-name">
-                                    <label for="email" class="form-label">Email*</label>
-                                    <input type="email" id="email" class="form-control"
-                                        placeholder="user@gmail.com">
-                                </div>
-                                <div class="review-form-name">
-                                    <label for="subject" class="form-label">Subject*</label>
-                                    <input type="text" id="subject" class="form-control" placeholder="Subject">
-                                </div>
-                            </div>
-                            <div class="review-textarea">
-                                <label for="floatingTextarea">Massage*</label>
-                                <textarea class="form-control" placeholder="Write Massage..........."
-                                    id="floatingTextarea" rows="3"></textarea>
-                            </div>
-                            <div class="login-btn">
-                                <a href="#" class="shop-btn">Send Now</a>
+                            <div class="account-inner-form">
+                                <form method="POST" action="{{ route('contact.send') }}">
+                                    @csrf  <!-- Đừng quên thêm token CSRF để bảo vệ form khỏi CSRF attack -->
+                                    <div class="review-form-name">
+                                        <label for="fname" class="form-label">Name*</label>
+                                        <input type="text" id="fname" class="form-control" placeholder="Name" name="name" required>
+                                    </div>
+                                    <div class="review-form-name">
+                                        <label for="email" class="form-label">Email*</label>
+                                        <input type="email" id="email" class="form-control" placeholder="user@gmail.com" name="email" required>
+                                    </div>
+                                    <div class="review-form-name">
+                                        <label for="phone" class="form-label">Phone*</label>
+                                        <input type="tel" id="phone" class="form-control" placeholder="Phone Number" name="phone" required>
+                                    </div>
+                                    <div class="review-textarea">
+                                        <label for="floatingTextarea">Message*</label>
+                                        <textarea class="form-control" placeholder="Write your message here..." id="floatingTextarea" rows="3" name="message" required></textarea>
+                                    </div>
+                                    <div class="login-btn">
+                                        <button type="submit" class="shop-btn">Send Now</button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -145,6 +146,15 @@
         </div>
     </div>
 </section>
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 
 
 @endsection

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('store_name') -> unique();
             $table->string('store_email') -> unique();
             $table->text('store_description') -> nullable();
-            $table ->decimal('account_balance',10,2)->default(0);
+            $table ->decimal('account_balance',12,2)->default(0);
             $table->timestamps();
         });
     }

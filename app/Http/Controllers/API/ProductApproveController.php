@@ -36,6 +36,7 @@ class ProductApproveController extends Controller
 
             $product->update([
                 'is_verified' => 1,
+                'status' => "active"
             ]);
             $thongbao =  $product->notifications()->create([
                 'title' => 'Sản phẩm của bạn được phê duyệt',

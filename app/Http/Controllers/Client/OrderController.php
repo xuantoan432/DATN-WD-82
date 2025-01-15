@@ -199,6 +199,12 @@ class OrderController extends Controller
         return redirect('/');
     }
 
+
+    public function showRating(){
+        $userId = auth()->id();
+        $reviews = Review::where('user_id', $userId)->orderBy('created_at', 'desc')->get();
+           return view('client.profile.components.rating', compact('reviews'));
+    }
     public function rating(Request $request, User $user){
         $request->validate([
             'star' => 'required',

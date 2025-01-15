@@ -1,9 +1,9 @@
 <div class="sidebar-header">
     <div class="logo-icon">
-        <img src="{{ asset('theme/admin/assets/images/logo-icon.png') }}" class="logo-img" alt="">
+        <img src="{{ asset('theme/admin/assets/images/g.png') }}" class="logo-img" alt="">
     </div>
     <div class="logo-name flex-grow-1">
-        <h5 class="mb-0">Maxton</h5>
+        <h5 class="mb-0">StyleNest</h5>
     </div>
     <div class="sidebar-close">
         <span class="material-icons-outlined">close</span>
@@ -31,13 +31,6 @@
                     <a href="{{ route('admin.category.index') }}">
                         <i class="material-icons-outlined">arrow_right</i>
                         Danh mục
-                    </a>
-                </li>
-
-                <li>
-                    <a href="{{ route('admin.roles.index') }}">
-                        <i class="material-icons-outlined">arrow_right</i>
-                        Phân quyền
                     </a>
                 </li>
 
@@ -71,6 +64,22 @@
             <ul>
                 <li><a href="{{ route('admin.phe-duyet.index') }}"><i class="material-icons-outlined">task</i>Sản Phẩm </a> </li>
                 <li><a href="{{ route('admin.seller-approval') }}"><i class="material-icons-outlined">badge</i>Người Bán Hàng</a> </li>
+            </ul>
+        </li>
+        <li>
+            <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon"><i class="material-icons-outlined">person</i>
+                </div>
+                <div class="menu-title">Người dùng </div>
+            </a>
+            <ul>
+                <li>
+                    <a href="{{ route('admin.roles.index') }}">
+                        <i class="material-icons-outlined">arrow_right</i>
+                        Phân quyền
+                    </a>
+                </li>
+                <li><a href="{{ route('admin.users.index') }}"><i class="material-icons-outlined">arrow_right</i>Tài khoản</a> </li>
             </ul>
         </li>
         <li>

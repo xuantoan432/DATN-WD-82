@@ -12,7 +12,7 @@
                                     Họ và tên:
                                 </td>
                                 <td>
-                                    <strong>{{ $address->details->full_name }}</strong>
+                                    <strong>{{ $address->details?->full_name }}</strong>
                                 </td>
                             </tr>
                             <tr>
@@ -20,7 +20,7 @@
                                     Số điện thoại:
                                 </td>
                                 <td>
-                                    <strong>{{ $address->details->phone_number }}</strong>
+                                    <strong>{{ $address->details?->phone_number }}</strong>
                                 </td>
                             </tr>
                             <tr>

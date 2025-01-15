@@ -1,6 +1,7 @@
 <script>
+    let sellerId = {{ auth()->user()->seller?->id }}
     const PATH_ROOT = '{{ config('app.url') }}'
-    let sellerId = {{ auth()->user()->seller->id }}
+
 
 </script>
 @vite('resources/js/seller/notification.js')

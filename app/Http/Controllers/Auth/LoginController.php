@@ -30,7 +30,7 @@ class LoginController extends Controller
             return redirect()->intended('/');
         }
         return back()->withErrors([
-            'email' => 'Email không tồn tại, vui lòng đăng ký tài khoản!',
+            'email' => 'Email hoặc mật khẩu không chính xác, vui lòng nhập lại!',
         ]);
     }
 

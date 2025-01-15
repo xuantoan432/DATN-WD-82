@@ -8,12 +8,18 @@ use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::paginate(10);
+        $users = User::query()->orderByDesc('id')->paginate(10);
+        if($request->role){
+            $users = User::whereHas('roles', function ($query) use ($request) {
+                $query->where('id', $request->role);
+            })->paginate(10);
+        }
         return view('admin.user.index', compact('users'));
     }
 
@@ -23,10 +29,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        // Lấy tất cả các vai trò từ bảng roles
-        $roles = Role::all(); // Đảm bảo rằng bạn có model Role và bảng roles đã tồn tại
+        $roles = Role::all();
 
-        // Trả về view và truyền dữ liệu roles vào
         return view('admin.user.create', compact('roles'));
     }
 
@@ -35,13 +39,16 @@ class UserController extends Controller
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'phone' => 'nullable|string|max:15',
-            'address' => 'nullable|string|max:500',
-            'avatar' => 'nullable|image|max:2048', // tối đa 2MB
+            'address' => 'array',
+            'address.province' => 'required|exists:provinces,id',
+            'address.district' => 'required|exists:districts,id',
+            'address.ward' => 'required|exists:wards,id',
+            'address.address_line' => 'required|string|max:255',
+            'avatar' => 'nullable|image|max:2048',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
-            'role_id' => 'required|exists:roles,id', // Đảm bảo vai trò tồn tại
+            'roles' => 'required',
         ]);
-
         // Tải ảnh avatar lên nếu có
         if ($request->hasFile('avatar')) {
             $validated['avatar'] = $request->file('avatar')->store('avatars', 'public');
@@ -58,18 +65,20 @@ class UserController extends Controller
 
         if ($validated['address']) {
             $address = Address::create([
-                'address_line' => $validated['address'],
-                'province_id' => $request->input('province_id', null), // Gán null nếu không có giá trị
-                'district_id' => $request->input('district_id', null),
-                'ward_id' => $request->input('ward_id', null),
+                'address_line' => $validated['address']['address_line'],
+                'province_id' => $validated['address']['province'], // Gán null nếu không có giá trị
+                'district_id' => $validated['address']['district'],
+                'ward_id' => $validated['address']['ward'],
             ]);
-        
+            $user->update([
+                'default_address_id' => $address->id,
+            ]);
             // Gắn địa chỉ này với người dùng
             $user->addresses()->attach($address->id);
         }
 
         // Gán vai trò cho người dùng
-        $user->roles()->attach($validated['role_id']);
+        $user->roles()->attach($validated['roles']);
 
         return redirect()->route('admin.users.index')->with('success', 'User created successfully!');
     }
@@ -79,30 +88,35 @@ class UserController extends Controller
 
     public function edit($id)
     {
-        // Lấy thông tin người dùng cùng với role và địa chỉ mặc định (defaultAddress)
-        $user = User::with(['defaultAddress.details'])->findOrFail($id);
         $roles = Role::all(); // Lấy tất cả các vai trò
-        $user = User::with(['roles'])->findOrFail($id);
-
-        return view('admin.user.edit', compact('user', 'roles'));
+        $user = User::with(['roles', 'addresses'])->findOrFail($id);
+        $address = Address::query()->find($user->default_address_id)->first();
+        return view('admin.user.edit', compact('user', 'roles', 'address'));
     }
     public function update(Request $request, $id)
     {
         // Xác thực dữ liệu từ form
-        $request->validate([
+        $validated = $request->validate([
             'name' => 'required|string|max:255',
-            'dob' => 'required|string|max:255',
-            'phone' => 'required',
-            'avatar' => 'nullable|image|mimes:png,jpg,gif',
-            'email' => 'required|string|max:255',
-            'role_id' => 'required|array', // Xác thực role (nếu có nhiều role)
-            'role_id.*' => 'exists:roles,id', // Đảm bảo các role ID hợp lệ
+            'phone' => 'nullable|string|max:15',
+            'address' => 'array',
+            'address.province' => 'required|exists:provinces,id',
+            'address.district' => 'required|exists:districts,id',
+            'address.ward' => 'required|exists:wards,id',
+            'address.address_line' => 'required|string|max:255',
+            'avatar' => 'nullable|image|max:2048',
+            'email' => [
+                'required',
+                'string',
+                'email',
+                'max:255',
+                Rule::unique('users', 'email')->ignore($id),
+            ],
+            'password' => 'nullable|string|min:6|confirmed',
+            'roles' => 'required',
         ]);
-
-        // Lấy thông tin người dùng
         $user = User::findOrFail($id);
 
-        // Xử lý avatar nếu có thay đổi
         if ($request->hasFile('avatar')) {
             // Xóa avatar cũ nếu có
             if ($user->avatar && Storage::disk('public')->exists($user->avatar)) {
@@ -132,8 +146,14 @@ class UserController extends Controller
         // Cập nhật dữ liệu người dùng
         $user->update($data);
 
-        if ($request->has('address_id')) {
-            $user->update(['default_address_id' => $request->address_id]);
+        if ($request->has('address')) {
+            $dataAddress = [
+                'address_line' => $validated['address']['address_line'],
+                'province_id' => $validated['address']['province'], // Gán null nếu không có giá trị
+                'district_id' => $validated['address']['district'],
+                'ward_id' => $validated['address']['ward'],
+            ];
+            $user->defaultAddress()->update($dataAddress);
         }
 
         // Cập nhật các role mà người dùng có (nếu có)

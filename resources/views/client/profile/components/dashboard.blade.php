@@ -108,8 +108,8 @@
 
                                         </div>
                                         <div class="info-details">
-                                            <p>{{ $user->seller->store_name }}</p>
-                                            <p>{{ $user->seller->store_email }}</p>
+                                            <p>{{ $user->seller?->store_name }}</p>
+                                            <p>{{ $user->seller?->store_email }}</p>
 
                                         </div>
                                     </div>

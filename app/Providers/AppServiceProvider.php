@@ -32,7 +32,7 @@ class AppServiceProvider extends ServiceProvider
     {
         View::share('categories', Category::with('products')
         ->orderByDesc('id')
-        ->limit(10)->get());
+        ->limit(11)->get());
         Blade::component('comment', Comment::class);
          // thông báo
         View::composer('admin.layouts.partials.header', function ($view) {
@@ -48,7 +48,7 @@ class AppServiceProvider extends ServiceProvider
         });
         View::composer('seller.layouts.partials.header', function ($view) {
 
-            $sellerId = Auth::user()->seller->id;
+            $sellerId = Auth::user()->seller?->id;
             $notificationOrders = Notification::with(['notifiable' => function ($query) use ($sellerId) {
                 $query->where('seller_id', $sellerId);
             }])

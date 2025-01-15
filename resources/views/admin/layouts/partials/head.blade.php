@@ -1,5 +1,5 @@
     <!--favicon-->
-    <link rel="icon" href="{{asset('theme/admin/assets/images/favicon-32x32.png')}}" type="image/png">
+    <link rel="icon" href="{{asset('theme/admin/assets/images/g.png')}}" type="image/png">
     <!-- loader-->
     <link href="{{asset('theme/admin/assets/css/pace.min.css')}}" rel="stylesheet">
     <script src="{{asset('theme/admin/assets/js/pace.min.js')}}"></script>

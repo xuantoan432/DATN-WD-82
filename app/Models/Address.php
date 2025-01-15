@@ -19,9 +19,9 @@ class Address extends Model
         'address_line',  // Thêm trường này vào để cho phép mass assignment
     ];
 
-    public function user()
+    public function users()
     {
-        return $this->belongsTo(User::class);  // Mỗi địa chỉ thuộc về một user
+        return $this->belongsToMany(User::class, 'user_address');
     }
 
     public function sellers()

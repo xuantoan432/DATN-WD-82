@@ -1,5 +1,5 @@
 
-let url = "api/admin/admin-product/"
+let url = "/api/admin/admin-product/"
 $('.duyet').click(function (e) {
 
     e.preventDefault();
@@ -18,7 +18,7 @@ $('.duyet').click(function (e) {
     }).then((result) => {
         if (result.isConfirmed) {
             $.ajax({
-                url: appUrl + url + id,
+                url: url + id,
                 method: 'PUT',
                 data: {
                     status: 'duyet'
@@ -64,7 +64,7 @@ $('#product').on('submit', function (e) {
 
 
     $.ajax({
-        url: appUrl + url + id,
+        url: url + id,
         method: 'PUT',
         data: {
             status: 'tuchoi' ,
