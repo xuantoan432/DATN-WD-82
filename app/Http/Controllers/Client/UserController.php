@@ -124,7 +124,10 @@ class UserController extends Controller
       ]);
 
       $address->users()->attach($request->user()->id);
-
+      $user = auth()->user();
+      $user->update([
+          'default_address_id' => $address->id,
+      ]);
       AddressDetail::create([
           'address_id' => $address->id,
           'full_name' => $validatedData['full_name'],

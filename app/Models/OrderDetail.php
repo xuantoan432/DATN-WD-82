@@ -28,8 +28,8 @@ class OrderDetail extends Model
     ];
 
     protected static $validTransitions = [
-        self::PENDING => [self::PROCESSING, self::CANCELLED],
-        self::PROCESSING => [self::SHIPPING, self::CANCELLED],
+        self::PENDING => [self::PROCESSING, self::CANCELLED, self::COMPLETED],
+        self::PROCESSING => [self::SHIPPING, self::CANCELLED, self::COMPLETED],
         self::SHIPPING => [self::COMPLETED],
         self::COMPLETED => [],
         self::CANCELLED => [],

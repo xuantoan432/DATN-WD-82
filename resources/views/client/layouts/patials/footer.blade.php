@@ -128,7 +128,7 @@
                                 <li><a href="{{route('home.about')}}">Lịch sử hình thành</a></li>
                                 <li><a href="{{route('home.policy')}}">Chính sách bảo mật</a></li>
                                 <li><a href="{{route('posts')}}">Bài viết</a></li>
-                                <li><a href="{{route('home.contact')}}">Liên hệ</a></li>
+                                {{-- <li><a href="{{route('home.contact')}}">Liên hệ</a></li> --}}
                             </ul>
                         </div>
                     </div>

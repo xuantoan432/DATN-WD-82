@@ -9,15 +9,15 @@
         @foreach($notificationOrders as $item)
             <div class="order-item d-flex align-items-center gap-3 p-3 border-bottom">
                 <div class="order-img">
-                    <img src="{{ \Storage::url($item['notifiable']?->image) }}" class="img-fluid rounded-3" width="75"
+                    <img src="{{ \Storage::url($item['notifiable']->image) }}" class="img-fluid rounded-3" width="75"
                          alt="">
                 </div>
                 <div class="order-info flex-grow-1">
                     <h5 class="mb-1 order-title">{{ $item['notifiable']?->name }}</h5>
-                    <p class="mb-0 order-price">{{ number_format($item['notifiable']?->price, 0, ',','.') }} VNĐ</p>
+                    <p class="mb-0 order-price">{{ number_format($item['notifiable']->price, 0, ',','.') }} VNĐ</p>
                 </div>
                 <div class="d-flex">
-                    <a href="{{ route('seller.orders.edit', $item['notifiable']?->id ?? 0) }}" class="order-delete"><span class="material-icons-outlined">visibility</span></a>
+                    <a href="{{ route('seller.orders.edit', $item['notifiable']->id ?? 0) }}" class="order-delete"><span class="material-icons-outlined">visibility</span></a>
                 </div>
             </div>
         @endforeach

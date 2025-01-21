@@ -70,7 +70,6 @@
                     @elseif($showReviewButton)
                         <button class="order-btn order-btn-review" data-bs-toggle="modal" data-bs-target="#rating-product" data-id="{{ $product->productVariant->product->id }}">Đánh Giá</button>
                     @endif
-                    <button class="order-btn order-btn-contact">Liên Hệ Người Bán</button>
                     @if($showCancelButton && !$product->isCancelled())
                         <form action="{{ route('orderDetail.cancel', $product->id) }}" method="post">
                             @csrf

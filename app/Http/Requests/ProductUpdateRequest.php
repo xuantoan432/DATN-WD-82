@@ -24,11 +24,11 @@ class ProductUpdateRequest extends FormRequest
         return [
              'namesanpham' => 'required' ,
              'giasanpham' => 'required|numeric|min:0|max:99999999' ,
-             'anhsanphamchinh' => 'file|mimes:jpg,jpeg,png|max:2048' ,
+             'anhsanphamchinh' => 'file' ,
              'motangan' => 'required' ,
              'noidung' => 'required' ,
              'gallery'=> 'array' ,
-             'gallery.*' => 'file|mimes:jpg,jpeg,png|max:2048' ,
+             'gallery.*' => 'file' ,
              'danhmuc' => 'required' ,
              'masanpham' => 'required|string|max:255' ,
 
@@ -36,7 +36,7 @@ class ProductUpdateRequest extends FormRequest
             'variants.*.giamgia' => 'nullable|numeric|min:0|max:99999999',
             'variants.*.sku' => 'required|string|max:255',
             'variants.*.soluong' => 'required|integer|min:1',
-            'variants.*.anhbienthe' => 'file|mimes:jpg,jpeg,png|max:2048',
+            'variants.*.anhbienthe' => 'file',
             'variants.*.ngaybd' => 'nullable|date',
             'variants.*.ngayketthuc' => 'nullable|date|after_or_equal:variants.*.ngaybd',
 

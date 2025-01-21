@@ -189,16 +189,11 @@
                                     <span class="default-label address-deafault">Mặc định</span>
                                 @endif
                             </div>
-                            <div class="address-actions col-3">
-                                <a href="#" onclick="editAddress({{ $address->id }}">Cập nhật</a>
-                            </div>
+                            
                         </div>
                         @endforeach
                     </div>
-                    <!-- Add New Address -->
-                    <div class="d-block p-4">
-                        <a class="add-new-address">+ Thêm Địa Chỉ Mới</a>
-                    </div>
+                
 
                     <!-- Action Buttons -->
                     <div class="action-buttons">
@@ -216,7 +211,7 @@
 @section('js')
     <script>
         const addressDefault = @json($addressDefautl);
-        const line_address = '{{ $addressDefautl->full_address }}';
+        const line_address = '{{ $addressDefautl?->full_address }}';
         const allAddresses = @json($allAddresses);
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
