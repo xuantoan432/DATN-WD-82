@@ -55,6 +55,6 @@ class AdminUserApprovalController extends Controller
         event(new SellerRejected($seller->user_id, 'Yêu cầu đăng ký của bạn đã bị từ chối vì không đáp ứng điều kiện.'));
 
 
-        return redirect()->back()->with('success', 'Seller rejected successfully.');
+        return redirect()->back()->with('success', 'Từ chối người bán thành công.');
     }
 }

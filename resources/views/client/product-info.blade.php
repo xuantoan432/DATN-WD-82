@@ -7,7 +7,9 @@
 @section('content')
     <section class="product product-info">
         <div class="container">
-            @include('client.components.breadcrumbs1')
+            @include('client.components.breadcrumbs1', [
+                'detail' => $product->name
+            ])
             <div class="product-info-section">
                 <div class="row ">
                     <div class="col-md-6">
@@ -58,23 +60,32 @@
                             </div>
                             <div class="price">
                                 @php
-                                    $minRegularPrice = min($priceRegulars);
-                                    $maxRegularPrice = max($priceRegulars);
-                                @endphp
+    $minRegularPrice = !empty($priceRegulars) ? min($priceRegulars) : 0;
+    $maxRegularPrice = !empty($priceRegulars) ? max($priceRegulars) : 0;
 
-                                @if (!empty($priceSales))
-                                    @php
-                                        $minSalePrice = min($priceSales);
-                                        $maxSalePrice = max($priceSales);
-                                    @endphp
-                                    <span class="price-cut">₫{{ number_format($minRegularPrice, 0, ',', '.') }} -
-                                        ₫{{ number_format($maxRegularPrice, 0, ',', '.') }}</span>
-                                    <span class="new-price">₫{{ number_format($minSalePrice, 0, ',', '.') }} -
-                                        ₫{{ number_format($maxSalePrice, 0, ',', '.') }}</span>
-                                @else
-                                    <span class="new-price">₫{{ number_format($minRegularPrice, 0, ',', '.') }} -
-                                        ₫{{ number_format($maxRegularPrice, 0, ',', '.') }}</span>
-                                @endif
+    $minSalePrice = !empty($priceSales) ? min($priceSales) : null;
+    $maxSalePrice = !empty($priceSales) ? max($priceSales) : null;
+@endphp
+
+@if ($minSalePrice !== null && $maxSalePrice !== null)
+    @if ($minSalePrice == $maxSalePrice && $minRegularPrice == $maxRegularPrice)
+        <span class="price-cut">₫{{ number_format($minRegularPrice, 0, ',', '.') }}</span>
+        <span class="new-price">₫{{ number_format($minSalePrice, 0, ',', '.') }}</span>
+    @else
+        <span class="price-cut">₫{{ number_format($minRegularPrice, 0, ',', '.') }} - 
+            ₫{{ number_format($maxRegularPrice, 0, ',', '.') }}</span>
+        <span class="new-price">₫{{ number_format($minSalePrice, 0, ',', '.') }} - 
+            ₫{{ number_format($maxSalePrice, 0, ',', '.') }}</span>
+    @endif
+@else
+    @if ($minRegularPrice == $maxRegularPrice)
+        <span class="new-price">₫{{ number_format($minRegularPrice, 0, ',', '.') }}</span>
+    @else
+        <span class="new-price">₫{{ number_format($minRegularPrice, 0, ',', '.') }} - 
+            ₫{{ number_format($maxRegularPrice, 0, ',', '.') }}</span>
+    @endif
+@endif
+
                             </div>
 
                             <p class="content-paragraph">{!! $product->short_description !!}</p>

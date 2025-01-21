@@ -8,7 +8,7 @@
                     @endif
 
                     <a href="{{ route('dashboard') . '?type=order' }}"><span>Theo dõi đơn hàng</span></a>
-                    <a href="{{ route('home.contact') }}"><span>Hỗ trợ</span></a>
+                    {{-- <a href="{{ route('home.contact') }}"><span>Hỗ trợ</span></a> --}}
                 </div>
                 <div class="header-contact d-none d-lg-block">
                     <a href="#">
@@ -463,11 +463,11 @@
                                 <span class="list-text">Blog</span>
                             </a>
                         </li>
-                        <li>
+                        {{-- <li>
                             <a href="{{ route('home.contact') }}">
                                 <span class="list-text">Liên hệ</span>
                             </a>
-                        </li>
+                        </li> --}}
                     </ul>
                 </div>
                 <div class="header-vendor-btn">

@@ -30,12 +30,19 @@ class AddressController extends Controller
         ]);
 
         $address->users()->attach($request->user()->id);
-        $address->load(['province', 'district', 'ward']);
+        $user = auth()->user();
+        $user->update([
+            'default_address_id' => $address->id,
+        ]);
+
         AddressDetail::create([
             'address_id' => $address->id,
             'full_name' => $validatedData['full_name'],
             'phone_number' => $validatedData['phone_number'],
         ]);
+
+        $address->load(relations: ['province', 'district', 'ward']);
+
         return response()->json([
             'success' => true,
             'data' => $address,
@@ -66,7 +73,8 @@ class AddressController extends Controller
         ]);
     }
 
-    public function getWardByDistrict($districtId){
+    public function getWardByDistrict($districtId)
+    {
         $district = District::query()->with('wards')->findOrFail($districtId);
         return response()->json([
             'data' => $district->wards

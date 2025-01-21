@@ -56,7 +56,7 @@ class VoucherController extends Controller
 
 
         ];
-        \App\Events\VoucherSuccess::dispatch($data);
+        // \App\Events\VoucherSuccess::dispatch($data);
 
         return redirect()->route('admin.vouchers.index')->with('success', 'Thêm voucher thành công');
     }

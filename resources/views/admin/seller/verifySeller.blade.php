@@ -27,7 +27,6 @@
 
                                 <th scope="col">Tên cửa haàng</th>
                                 <th scope="col">Email</th>
-                                <th scope="col">Địa chỉ</th>
                                 <th scope="col">Actions</th>
                             </tr>
                         </thead>

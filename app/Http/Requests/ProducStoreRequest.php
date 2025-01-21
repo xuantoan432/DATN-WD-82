@@ -24,11 +24,11 @@ class ProducStoreRequest extends FormRequest
         return [
              'namesanpham' => 'required' ,
              'giasanpham' => 'required|numeric|min:0|max:99999999' ,
-             'anhsanphamchinh' => 'required|file|mimes:jpg,jpeg,png|max:2048' ,
+             'anhsanphamchinh' => 'required' ,
              'motangan' => 'required' ,
              'noidung' => 'required' ,
              'gallery'=> 'required|array' ,
-             'gallery.*' => 'file|mimes:jpg,jpeg,png|max:2048' ,
+             'gallery.*' => 'file' ,
              'danhmuc' => 'required' ,
              'masanpham' => 'required|string|max:255' ,
              'valuebute' => 'required' ,
@@ -36,7 +36,7 @@ class ProducStoreRequest extends FormRequest
             'variants.*.giamgia' => 'nullable|numeric|min:0|max:99999999|lte:variants.*.gia',
             'variants.*.sku' => 'required|string|max:255',
             'variants.*.soluong' => 'required|integer|min:1',
-            'variants.*.anhbienthe' => 'required|file|mimes:jpg,jpeg,png|max:2048',
+            'variants.*.anhbienthe' => 'required|file',
             'variants.*.ngaybd' => 'nullable|date',
             'variants.*.ngayketthuc' => 'nullable|date|after_or_equal:variants.*.ngaybd',
 
